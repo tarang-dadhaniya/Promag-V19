@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
+import { GlobalDataForm } from "./GlobalDataForm";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
 
 interface Collection {
