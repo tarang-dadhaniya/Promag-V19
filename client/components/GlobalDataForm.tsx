@@ -4,7 +4,13 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { Calendar } from "./ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Checkbox } from "./ui/checkbox";
@@ -46,7 +52,13 @@ const stepperSteps = [
   { number: "04", active: false },
 ];
 
-export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, onNext }: GlobalDataFormProps) {
+export function GlobalDataForm({
+  open,
+  onOpenChange,
+  publicationData,
+  onSave,
+  onNext,
+}: GlobalDataFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: publicationData?.title || "",
     topicsCategory: publicationData?.category || "",
@@ -67,9 +79,11 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
     orientation: "",
   });
 
-
-  const handleInputChange = (field: keyof FormData, value: string | boolean | Date | undefined) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (
+    field: keyof FormData,
+    value: string | boolean | Date | undefined,
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSave = () => {
@@ -88,13 +102,27 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
       <div className="w-full max-w-[1680px] max-h-[90vh] mx-4 bg-[#F5F5F5] rounded-lg shadow-lg overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-5 bg-white shadow-sm">
-          <h2 className="text-promag-body font-manrope text-base font-semibold">Global Data</h2>
-          <button 
+          <h2 className="text-promag-body font-manrope text-base font-semibold">
+            Global Data
+          </h2>
+          <button
             onClick={handleCancel}
             className="text-gray-500 hover:text-gray-700"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
         </div>
@@ -112,12 +140,14 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
           <div className="flex justify-center items-center gap-2.5 mb-5">
             {stepperSteps.map((step, index) => (
               <div key={step.number} className="flex items-center">
-                <div className={cn(
-                  "flex w-10 h-10 items-center justify-center rounded-full border-2 text-center font-medium",
-                  step.active 
-                    ? "border-promag-primary bg-promag-primary text-white" 
-                    : "border-[#ABB7C2] text-[#ABB7C2]"
-                )}>
+                <div
+                  className={cn(
+                    "flex w-10 h-10 items-center justify-center rounded-full border-2 text-center font-medium",
+                    step.active
+                      ? "border-promag-primary bg-promag-primary text-white"
+                      : "border-[#ABB7C2] text-[#ABB7C2]",
+                  )}
+                >
                   {step.number}
                 </div>
                 {index < stepperSteps.length - 1 && (
@@ -138,7 +168,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter Issue Name"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
                   className="mt-2"
                 />
               </div>
@@ -148,7 +178,12 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Label className="text-sm font-medium">
                   Topics/Category<span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.topicsCategory} onValueChange={(value) => handleInputChange('topicsCategory', value)}>
+                <Select
+                  value={formData.topicsCategory}
+                  onValueChange={(value) =>
+                    handleInputChange("topicsCategory", value)
+                  }
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Category" />
                   </SelectTrigger>
@@ -167,7 +202,12 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Label className="text-sm font-medium">
                   Collection<span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.collection} onValueChange={(value) => handleInputChange('collection', value)}>
+                <Select
+                  value={formData.collection}
+                  onValueChange={(value) =>
+                    handleInputChange("collection", value)
+                  }
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Collection" />
                   </SelectTrigger>
@@ -184,7 +224,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter Edition"
                   value={formData.edition}
-                  onChange={(e) => handleInputChange('edition', e.target.value)}
+                  onChange={(e) => handleInputChange("edition", e.target.value)}
                   className="mt-2"
                 />
               </div>
@@ -195,7 +235,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Textarea
                   placeholder="Enter Teaser"
                   value={formData.teaser}
-                  onChange={(e) => handleInputChange('teaser', e.target.value)}
+                  onChange={(e) => handleInputChange("teaser", e.target.value)}
                   className="mt-2 min-h-[100px]"
                 />
               </div>
@@ -208,7 +248,9 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Textarea
                   placeholder="Enter Description"
                   value={formData.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   className="mt-2 min-h-[100px]"
                 />
               </div>
@@ -221,7 +263,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter Author"
                   value={formData.author}
-                  onChange={(e) => handleInputChange('author', e.target.value)}
+                  onChange={(e) => handleInputChange("author", e.target.value)}
                   className="mt-2"
                 />
               </div>
@@ -234,7 +276,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter Editor"
                   value={formData.editor}
-                  onChange={(e) => handleInputChange('editor', e.target.value)}
+                  onChange={(e) => handleInputChange("editor", e.target.value)}
                   className="mt-2"
                 />
               </div>
@@ -244,7 +286,12 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Label className="text-sm font-medium">
                   Language<span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.language} onValueChange={(value) => handleInputChange('language', value)}>
+                <Select
+                  value={formData.language}
+                  onValueChange={(value) =>
+                    handleInputChange("language", value)
+                  }
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Language" />
                   </SelectTrigger>
@@ -268,10 +315,12 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                       variant="outline"
                       className={cn(
                         "w-full justify-between mt-2",
-                        !formData.releaseDate && "text-muted-foreground"
+                        !formData.releaseDate && "text-muted-foreground",
                       )}
                     >
-                      {formData.releaseDate ? format(formData.releaseDate, "dd-MM-yyyy") : "DD-MM-YYYY"}
+                      {formData.releaseDate
+                        ? format(formData.releaseDate, "dd-MM-yyyy")
+                        : "DD-MM-YYYY"}
                       <CalendarIcon className="h-4 w-4" />
                     </Button>
                   </PopoverTrigger>
@@ -279,7 +328,9 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                     <Calendar
                       mode="single"
                       selected={formData.releaseDate}
-                      onSelect={(date) => handleInputChange('releaseDate', date)}
+                      onSelect={(date) =>
+                        handleInputChange("releaseDate", date)
+                      }
                       initialFocus
                     />
                   </PopoverContent>
@@ -294,35 +345,49 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter ISBN/ISSN"
                   value={formData.isbnIssn}
-                  onChange={(e) => handleInputChange('isbnIssn', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("isbnIssn", e.target.value)
+                  }
                   className="mt-2"
                 />
                 <div className="flex items-center space-x-2 mt-2">
                   <Checkbox
                     id="presentation"
                     checked={formData.presentation}
-                    onCheckedChange={(checked) => handleInputChange('presentation', !!checked)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("presentation", !!checked)
+                    }
                   />
-                  <Label htmlFor="presentation" className="text-sm">Presentation</Label>
+                  <Label htmlFor="presentation" className="text-sm">
+                    Presentation
+                  </Label>
                 </div>
               </div>
 
               {/* Index Offset with Document Print Allowed checkbox */}
               <div className="lg:col-span-1">
-                <Label className="text-sm font-medium">Index Offset<span className="text-red-500">*</span></Label>
+                <Label className="text-sm font-medium">
+                  Index Offset<span className="text-red-500">*</span>
+                </Label>
                 <Input
                   placeholder="0"
                   value={formData.indexOffset}
-                  onChange={(e) => handleInputChange('indexOffset', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("indexOffset", e.target.value)
+                  }
                   className="mt-2"
                 />
                 <div className="flex items-center space-x-2 mt-2">
                   <Checkbox
                     id="documentPrintAllowed"
                     checked={formData.documentPrintAllowed}
-                    onCheckedChange={(checked) => handleInputChange('documentPrintAllowed', !!checked)}
+                    onCheckedChange={(checked) =>
+                      handleInputChange("documentPrintAllowed", !!checked)
+                    }
                   />
-                  <Label htmlFor="documentPrintAllowed" className="text-sm">Document Print Allowed</Label>
+                  <Label htmlFor="documentPrintAllowed" className="text-sm">
+                    Document Print Allowed
+                  </Label>
                 </div>
               </div>
 
@@ -331,7 +396,10 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Label className="text-sm font-medium">
                   Status<span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
+                <Select
+                  value={formData.status}
+                  onValueChange={(value) => handleInputChange("status", value)}
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Status" />
                   </SelectTrigger>
@@ -351,7 +419,9 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Input
                   placeholder="Enter Pages"
                   value={formData.previewPages}
-                  onChange={(e) => handleInputChange('previewPages', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("previewPages", e.target.value)
+                  }
                   className="mt-2"
                 />
               </div>
@@ -361,7 +431,12 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                 <Label className="text-sm font-medium">
                   Orientation<span className="text-red-500">*</span>
                 </Label>
-                <Select value={formData.orientation} onValueChange={(value) => handleInputChange('orientation', value)}>
+                <Select
+                  value={formData.orientation}
+                  onValueChange={(value) =>
+                    handleInputChange("orientation", value)
+                  }
+                >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Orientation" />
                   </SelectTrigger>

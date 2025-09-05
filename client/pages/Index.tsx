@@ -203,7 +203,11 @@ export default function Index() {
           : p,
       ),
     );
-    console.log("Global data updated for publication:", publication.title, data);
+    console.log(
+      "Global data updated for publication:",
+      publication.title,
+      data,
+    );
   };
 
   // Auto-close success popup after 5s and reset
