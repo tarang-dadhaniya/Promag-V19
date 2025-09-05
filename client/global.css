@@ -1,0 +1,285 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-border {
+    0%, 100% {
+      border-color: rgba(114, 37, 85, 0.4);
+    }
+    50% {
+      border-color: rgba(114, 37, 85, 0.8);
+    }
+  }
+
+  @keyframes progress-bar {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce-scale {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-border {
+    animation: pulse-border 2s ease-in-out infinite;
+  }
+
+  .animate-progress {
+    animation: progress-bar 3s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-bounce-scale {
+    animation: bounce-scale 1s ease-in-out infinite;
+  }
+
+  /* Additional trending animations */
+  @keyframes sheen {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 200%; }
+  }
+  @keyframes border-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(114, 37, 85, 0), 0 0 0 0 rgba(114, 37, 85, 0); }
+    50% { box-shadow: 0 0 40px 8px rgba(114, 37, 85, 0.12), 0 0 80px 16px rgba(114, 37, 85, 0.06); }
+  }
+  @keyframes icon-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes orbit-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pop-in {
+    0% { transform: scale(0.95); opacity: 0.6; }
+    60% { transform: scale(1.03); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes ripple {
+    from { transform: scale(0.8); opacity: 0.5; }
+    to { transform: scale(2.4); opacity: 0; }
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-gradient-sheen {
+    background-size: 200% 200%;
+    animation: sheen 2.5s linear infinite;
+  }
+  .animate-border-glow {
+    animation: border-glow 2.2s ease-in-out infinite;
+  }
+  .animate-icon-bob {
+    animation: icon-bob 1.8s ease-in-out infinite;
+  }
+  .animate-pop {
+    animation: pop-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .drop-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160px;
+    height: 160px;
+    margin-left: -80px;
+    margin-top: -80px;
+    border: 2px solid rgba(16, 185, 129, 0.4);
+    border-radius: 9999px;
+    animation: ripple 1s ease-out 1;
+    pointer-events: none;
+  }
+  .orbit {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    animation: orbit-rotate 12s linear infinite;
+  }
+  .orbit span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: #722555;
+    border-radius: 9999px;
+    transform-origin: 0 0;
+    box-shadow: 0 0 0 2px rgba(114, 37, 85, 0.15);
+  }
+  .orbit span:nth-child(1) { transform: rotate(0deg) translate(60px); opacity: 0.4; }
+  .orbit span:nth-child(2) { transform: rotate(45deg) translate(60px); opacity: 0.25; }
+  .orbit span:nth-child(3) { transform: rotate(90deg) translate(60px); opacity: 0.35; }
+  .orbit span:nth-child(4) { transform: rotate(135deg) translate(60px); opacity: 0.2; }
+  .orbit span:nth-child(5) { transform: rotate(180deg) translate(60px); opacity: 0.4; }
+  .orbit span:nth-child(6) { transform: rotate(225deg) translate(60px); opacity: 0.3; }
+  .orbit span:nth-child(7) { transform: rotate(270deg) translate(60px); opacity: 0.35; }
+  .orbit span:nth-child(8) { transform: rotate(315deg) translate(60px); opacity: 0.25; }
+
+  .progress-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+    animation: shimmer 1s ease-in-out infinite;
+  }
+
+  /* Orb travel animation utilities */
+  .upload-orb {
+    position: absolute;
+    border: 3px solid #34D399; /* emerald-400 */
+    border-radius: 9999px;
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.12), inset 0 0 20px rgba(52, 211, 153, 0.15);
+    pointer-events: none;
+    transition: left 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                top 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                width 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                height 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 400ms ease-out;
+    will-change: left, top, width, height, opacity;
+  }
+
+  @keyframes btn-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.0); }
+    60% { transform: scale(1.12); box-shadow: 0 0 0 8px rgba(52, 211, 153, 0.18); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.0); }
+  }
+  .btn-pulse {
+    animation: btn-pulse 600ms ease-out 1;
+  }
+}
