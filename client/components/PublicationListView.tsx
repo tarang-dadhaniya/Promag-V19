@@ -81,12 +81,14 @@ const PublicationCard = ({
   onShare,
   onDelete,
   onClone,
+  onGlobalDataEdit,
 }: {
   publication: Publication;
   onEdit: () => void;
   onShare: () => void;
   onDelete: () => void;
   onClone: () => void;
+  onGlobalDataEdit: () => void;
 }) => (
   <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
     {/* Cover Image */}
