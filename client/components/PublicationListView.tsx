@@ -33,6 +33,7 @@ interface PublicationListViewProps {
   onEditCollectionSettings?: () => void;
   onDeletePublication?: (publication: Publication) => void;
   onClonePublication?: (publication: Publication) => void;
+  onGlobalDataEdit?: (publication: Publication, data: any) => void;
 }
 
 const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
