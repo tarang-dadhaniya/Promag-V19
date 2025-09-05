@@ -287,18 +287,8 @@ const PublicationCard = ({
 
       {/* Action Buttons */}
       <div className="flex items-start gap-5 self-stretch">
-        <div className="w-[18px] h-[18px]">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onEdit();
-            }}
-            className="w-full h-full"
-            aria-label="Settings"
-            title="Settings"
-          >
-            <SettingsIcon size={18} strokeWidth={1.5} color="#722555" />
-          </button>
+        <div className="w-[18px] h-[18px]" title="Settings" aria-hidden="true">
+          <SettingsIcon size={18} strokeWidth={1.5} color="#722555" />
         </div>
 
         {/* Edit Icon */}
