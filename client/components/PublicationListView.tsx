@@ -550,6 +550,19 @@ export function PublicationListView({
     setShowCloneConfirmation(true);
   };
 
+  const handleGlobalDataEdit = (publication: Publication) => {
+    setGlobalDataPublication(publication);
+    setShowGlobalDataForm(true);
+  };
+
+  const handleGlobalDataSave = (data: any) => {
+    if (globalDataPublication) {
+      onGlobalDataEdit?.(globalDataPublication, data);
+    }
+    setShowGlobalDataForm(false);
+    setGlobalDataPublication(null);
+  };
+
   const confirmDelete = () => {
     if (targetPublication) {
       // Here you would implement the actual deletion logic
