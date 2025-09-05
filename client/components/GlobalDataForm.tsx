@@ -145,11 +145,11 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Topics/Category */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.topicsCategory && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Topics/Category<span className="text-red-500">*</span>
                 </Label>
                 <Select value={formData.topicsCategory} onValueChange={(value) => handleInputChange('topicsCategory', value)}>
-                  <SelectTrigger className={cn("mt-2", errors.topicsCategory && "border-red-500")}>
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -164,11 +164,11 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Collection */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.collection && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Collection<span className="text-red-500">*</span>
                 </Label>
                 <Select value={formData.collection} onValueChange={(value) => handleInputChange('collection', value)}>
-                  <SelectTrigger className={cn("mt-2", errors.collection && "border-red-500")}>
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Collection" />
                   </SelectTrigger>
                   <SelectContent>
@@ -202,50 +202,50 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Description */}
               <div className="lg:col-span-2">
-                <Label className={cn("text-sm font-medium", errors.description && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Description<span className="text-red-500">*</span>
                 </Label>
                 <Textarea
                   placeholder="Enter Description"
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  className={cn("mt-2 min-h-[100px]", errors.description && "border-red-500")}
+                  className="mt-2 min-h-[100px]"
                 />
               </div>
 
               {/* Author */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.author && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Author<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   placeholder="Enter Author"
                   value={formData.author}
                   onChange={(e) => handleInputChange('author', e.target.value)}
-                  className={cn("mt-2", errors.author && "border-red-500")}
+                  className="mt-2"
                 />
               </div>
 
               {/* Editor */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.editor && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Editor<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   placeholder="Enter Editor"
                   value={formData.editor}
                   onChange={(e) => handleInputChange('editor', e.target.value)}
-                  className={cn("mt-2", errors.editor && "border-red-500")}
+                  className="mt-2"
                 />
               </div>
 
               {/* Language */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.language && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Language<span className="text-red-500">*</span>
                 </Label>
                 <Select value={formData.language} onValueChange={(value) => handleInputChange('language', value)}>
-                  <SelectTrigger className={cn("mt-2", errors.language && "border-red-500")}>
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Language" />
                   </SelectTrigger>
                   <SelectContent>
@@ -259,7 +259,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Release Date */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.releaseDate && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Release Date<span className="text-red-500">*</span>
                 </Label>
                 <Popover>
@@ -268,8 +268,7 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
                       variant="outline"
                       className={cn(
                         "w-full justify-between mt-2",
-                        !formData.releaseDate && "text-muted-foreground",
-                        errors.releaseDate && "border-red-500"
+                        !formData.releaseDate && "text-muted-foreground"
                       )}
                     >
                       {formData.releaseDate ? format(formData.releaseDate, "dd-MM-yyyy") : "DD-MM-YYYY"}
@@ -289,14 +288,14 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* ISBN/ISSN with Presentation checkbox */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.isbnIssn && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   ISBN/ISSN<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   placeholder="Enter ISBN/ISSN"
                   value={formData.isbnIssn}
                   onChange={(e) => handleInputChange('isbnIssn', e.target.value)}
-                  className={cn("mt-2", errors.isbnIssn && "border-red-500")}
+                  className="mt-2"
                 />
                 <div className="flex items-center space-x-2 mt-2">
                   <Checkbox
@@ -329,11 +328,11 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Status */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.status && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Status<span className="text-red-500">*</span>
                 </Label>
                 <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                  <SelectTrigger className={cn("mt-2", errors.status && "border-red-500")}>
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -346,24 +345,24 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
 
               {/* Preview Pages */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.previewPages && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Preview Pages<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   placeholder="Enter Pages"
                   value={formData.previewPages}
                   onChange={(e) => handleInputChange('previewPages', e.target.value)}
-                  className={cn("mt-2", errors.previewPages && "border-red-500")}
+                  className="mt-2"
                 />
               </div>
 
               {/* Orientation */}
               <div className="lg:col-span-2">
-                <Label className={cn("text-sm font-medium", errors.orientation && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Orientation<span className="text-red-500">*</span>
                 </Label>
                 <Select value={formData.orientation} onValueChange={(value) => handleInputChange('orientation', value)}>
-                  <SelectTrigger className={cn("mt-2", errors.orientation && "border-red-500")}>
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select Orientation" />
                   </SelectTrigger>
                   <SelectContent>
