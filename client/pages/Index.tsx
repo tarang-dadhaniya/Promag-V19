@@ -612,6 +612,7 @@ export default function Index() {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
             }}
+            onGlobalDataEdit={handleGlobalDataEdit}
             className="flex-1"
           />
         );
