@@ -670,20 +670,18 @@ export default function Index() {
   };
 
   const getPageTitle = () => {
-    // Keep the header title stable for the main "Manage Publications" section
-    const manageSectionViews: ViewMode[] = [
-      "collections",
-      "publications",
-      "publication-list",
-      "upload",
-      "edit-publication",
-    ];
-
-    if (manageSectionViews.includes(currentView)) {
-      return "Manage Publications";
+    // If the user selected a collection from the sidebar and we're on the
+    // publication list view, show "Publications - <Collection>" in header.
+    if (
+      currentView === "publication-list" &&
+      sidebarCollectionId &&
+      selectedCollection
+    ) {
+      return `Publications - ${selectedCollection.title}`;
     }
 
-    // Fallback title
+    // For all other inner views, keep the stable section title and rely on
+    // the breadcrumb to show detailed navigation context.
     return "Manage Publications";
   };
 
