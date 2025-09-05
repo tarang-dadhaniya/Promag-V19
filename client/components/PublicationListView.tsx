@@ -4,6 +4,7 @@ import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { GlobalDataForm } from "./GlobalDataForm";
+import { FileChanges } from "./FileChanges";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
 
 interface Collection {
