@@ -291,9 +291,17 @@ const PublicationCard = ({
 
       {/* Action Buttons */}
       <div className="flex items-start gap-5 self-stretch">
-        <div className="w-[18px] h-[18px]" title="Settings" aria-hidden="true">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onGlobalDataEdit();
+          }}
+          className="w-[18px] h-[18px] hover:scale-110 transition-transform"
+          title="Global Data Settings"
+          aria-label="Global Data Settings"
+        >
           <SettingsIcon size={18} strokeWidth={1.5} color="#722555" />
-        </div>
+        </button>
 
         {/* Edit Icon */}
         <svg
