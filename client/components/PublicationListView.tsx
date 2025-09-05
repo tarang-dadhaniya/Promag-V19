@@ -561,7 +561,16 @@ export function PublicationListView({
     if (globalDataPublication) {
       onGlobalDataEdit?.(globalDataPublication, data);
     }
+  };
+
+  const handleGlobalDataNext = () => {
     setShowGlobalDataForm(false);
+    setShowFileChanges(true);
+  };
+
+  const handleFileChangesSave = (data: any) => {
+    console.log("File changes saved:", data);
+    setShowFileChanges(false);
     setGlobalDataPublication(null);
   };
 
