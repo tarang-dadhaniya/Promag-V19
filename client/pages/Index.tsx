@@ -185,6 +185,27 @@ export default function Index() {
     setCurrentView("publication-list");
   };
 
+  const handleGlobalDataEdit = (publication: Publication, data: any) => {
+    // Update the publication with global data
+    setPublications((prev) =>
+      prev.map((p) =>
+        p.id === publication.id
+          ? {
+              ...p,
+              title: data.name,
+              category: data.topicsCategory,
+              collectionId: data.collection,
+              edition: data.edition,
+              teaser: data.teaser,
+              description: data.description,
+              status: data.status,
+            }
+          : p,
+      ),
+    );
+    console.log("Global data updated for publication:", publication.title, data);
+  };
+
   // Auto-close success popup after 5s and reset
   useEffect(() => {
     if (!showSuccess) return;
