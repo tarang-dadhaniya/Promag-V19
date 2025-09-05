@@ -907,6 +907,13 @@ export function PublicationListView({
         onConfirm={confirmClone}
         onCancel={cancelAction}
       />
+
+      <GlobalDataForm
+        open={showGlobalDataForm}
+        onOpenChange={setShowGlobalDataForm}
+        publicationData={globalDataPublication}
+        onSave={handleGlobalDataSave}
+      />
     </div>
   );
 }
