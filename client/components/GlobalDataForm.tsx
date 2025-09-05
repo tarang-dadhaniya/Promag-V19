@@ -70,10 +70,6 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave }: 
 
   const handleInputChange = (field: keyof FormData, value: string | boolean | Date | undefined) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: false }));
-    }
   };
 
   const validateForm = () => {
