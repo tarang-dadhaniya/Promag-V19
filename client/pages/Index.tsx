@@ -670,20 +670,19 @@ export default function Index() {
   };
 
   const getPageTitle = () => {
-    switch (currentView) {
-      case "collections":
-        return "Manage Publications";
-      case "publications":
-        return `Publications - ${selectedCollection?.title || ""}`;
-      case "publication-list":
-        return `Publications - ${selectedCollection?.title || ""}`;
-      case "edit-publication":
-        return `Edit Publication - ${editingPublication?.title || ""}`;
-      case "upload":
-        return "New Publication";
-      default:
-        return "Manage Publications";
+    // If the user selected a collection from the sidebar and we're on the
+    // publication list view, show "Publications - <Collection>" in header.
+    if (
+      currentView === "publication-list" &&
+      sidebarCollectionId &&
+      selectedCollection
+    ) {
+      return `Publications - ${selectedCollection.title}`;
     }
+
+    // For all other inner views, keep the stable section title and rely on
+    // the breadcrumb to show detailed navigation context.
+    return "Manage Publications";
   };
 
   return (
