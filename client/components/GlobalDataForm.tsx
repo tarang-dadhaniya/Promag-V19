@@ -67,7 +67,6 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave }: 
     orientation: "",
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({});
 
   const handleInputChange = (field: keyof FormData, value: string | boolean | Date | undefined) => {
     setFormData(prev => ({ ...prev, [field]: value }));
