@@ -132,14 +132,14 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, on
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               {/* Name */}
               <div className="lg:col-span-1">
-                <Label className={cn("text-sm font-medium", errors.name && "text-red-500")}>
+                <Label className="text-sm font-medium">
                   Name<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   placeholder="Enter Issue Name"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={cn("mt-2", errors.name && "border-red-500")}
+                  className="mt-2"
                 />
               </div>
 
