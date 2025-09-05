@@ -72,31 +72,9 @@ export function GlobalDataForm({ open, onOpenChange, publicationData, onSave }: 
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const validateForm = () => {
-    const newErrors: Partial<Record<keyof FormData, boolean>> = {};
-    
-    if (!formData.name.trim()) newErrors.name = true;
-    if (!formData.topicsCategory) newErrors.topicsCategory = true;
-    if (!formData.collection) newErrors.collection = true;
-    if (!formData.description.trim()) newErrors.description = true;
-    if (!formData.author.trim()) newErrors.author = true;
-    if (!formData.editor.trim()) newErrors.editor = true;
-    if (!formData.language) newErrors.language = true;
-    if (!formData.releaseDate) newErrors.releaseDate = true;
-    if (!formData.isbnIssn.trim()) newErrors.isbnIssn = true;
-    if (!formData.status) newErrors.status = true;
-    if (!formData.previewPages.trim()) newErrors.previewPages = true;
-    if (!formData.orientation) newErrors.orientation = true;
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSave = () => {
-    if (validateForm()) {
-      onSave?.(formData);
-      onOpenChange(false);
-    }
+    onSave?.(formData);
+    onNext?.();
   };
 
   const handleCancel = () => {
