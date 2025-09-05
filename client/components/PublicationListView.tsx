@@ -924,6 +924,14 @@ export function PublicationListView({
         onOpenChange={setShowGlobalDataForm}
         publicationData={globalDataPublication}
         onSave={handleGlobalDataSave}
+        onNext={handleGlobalDataNext}
+      />
+
+      <FileChanges
+        open={showFileChanges}
+        onOpenChange={setShowFileChanges}
+        publicationData={globalDataPublication}
+        onSave={handleFileChangesSave}
       />
     </div>
   );
