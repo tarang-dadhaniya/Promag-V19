@@ -513,6 +513,7 @@ export function PublicationListView({
     useState<Publication | null>(null);
   const [showGlobalDataForm, setShowGlobalDataForm] = useState(false);
   const [globalDataPublication, setGlobalDataPublication] = useState<Publication | null>(null);
+  const [showFileChanges, setShowFileChanges] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
