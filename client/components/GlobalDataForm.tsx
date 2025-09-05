@@ -46,7 +46,7 @@ const stepperSteps = [
   { number: "04", active: false },
 ];
 
-export function GlobalDataForm({ open, onOpenChange, publicationData, onSave }: GlobalDataFormProps) {
+export function GlobalDataForm({ open, onOpenChange, publicationData, onSave, onNext }: GlobalDataFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: publicationData?.title || "",
     topicsCategory: publicationData?.category || "",
