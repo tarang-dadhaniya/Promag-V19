@@ -16,6 +16,7 @@ interface GlobalDataFormProps {
   onOpenChange: (open: boolean) => void;
   publicationData?: any;
   onSave?: (data: any) => void;
+  onNext?: () => void;
 }
 
 interface FormData {
