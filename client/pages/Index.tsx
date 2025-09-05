@@ -670,20 +670,21 @@ export default function Index() {
   };
 
   const getPageTitle = () => {
-    switch (currentView) {
-      case "collections":
-        return "Manage Publications";
-      case "publications":
-        return `Publications - ${selectedCollection?.title || ""}`;
-      case "publication-list":
-        return `Publications - ${selectedCollection?.title || ""}`;
-      case "edit-publication":
-        return `Edit Publication - ${editingPublication?.title || ""}`;
-      case "upload":
-        return "New Publication";
-      default:
-        return "Manage Publications";
+    // Keep the header title stable for the main "Manage Publications" section
+    const manageSectionViews: ViewMode[] = [
+      "collections",
+      "publications",
+      "publication-list",
+      "upload",
+      "edit-publication",
+    ];
+
+    if (manageSectionViews.includes(currentView)) {
+      return "Manage Publications";
     }
+
+    // Fallback title
+    return "Manage Publications";
   };
 
   return (
