@@ -914,6 +914,7 @@ export function PublicationListView({
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
             onSettings={() => onOpenPublicationDetails?.(publication)}
+            onFileChanges={() => onFileChanges?.(publication)}
           />
         ))}
       </div>
