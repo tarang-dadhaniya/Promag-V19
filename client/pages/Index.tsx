@@ -780,6 +780,99 @@ export default function Index() {
           </div>
         );
 
+      case "file-changes":
+        if (!editingPublication || !selectedCollection) {
+          setCurrentView("publication-list");
+          return null;
+        }
+        return (
+          <div className="flex flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
+            {/* Back Navigation */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setCurrentView("publication-list")}
+                className="flex items-center gap-2 text-black/60 hover:text-black transition-colors"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 12L6 8L10 4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="font-inter text-sm">Back to Publications</span>
+              </button>
+            </div>
+
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
+                <div className="text-sm font-inter text-black/60">
+                  Collections / Publications{" "}
+                  <span className="text-black">/ Selected Publication Name</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step Navigation */}
+            <div className="flex flex-col justify-center items-center gap-2.5 self-stretch">
+              <div className="flex h-10 justify-center items-center gap-2.5">
+                {/* Step 01 - Completed */}
+                <div className="flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-[20px] border-2 border-promag-primary bg-promag-primary">
+                  <div className="text-white text-center font-roboto text-base font-medium">01</div>
+                </div>
+                <div className="w-[304px] h-[3px] bg-promag-primary"></div>
+
+                {/* Step 02 - Current/Completed */}
+                <div className="flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-[20px] border-2 border-promag-primary bg-promag-primary">
+                  <div className="text-white text-center font-roboto text-base font-medium">02</div>
+                </div>
+                <div className="w-[302px] h-[3px] bg-[#ABB7C2]"></div>
+
+                {/* Step 03 - Upcoming */}
+                <div className="flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-[20px] border-2 border-[#ABB7C2]">
+                  <div className="text-[#ABB7C2] text-center font-roboto text-base font-medium">03</div>
+                </div>
+                <div className="w-[302px] h-[3px] bg-[#ABB7C2]"></div>
+
+                {/* Step 04 - Upcoming */}
+                <div className="flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-[20px] border-2 border-[#ABB7C2]">
+                  <div className="text-[#ABB7C2] text-center font-roboto text-base font-medium">04</div>
+                </div>
+              </div>
+            </div>
+
+            {/* File Changes Form */}
+            <FileChangesForm
+              onSave={(data) => {
+                // Handle file changes save
+                if (editingPublication) {
+                  const updated: Publication = {
+                    ...editingPublication,
+                    // Update with new file data if needed
+                    // For now, just mark as updated
+                  };
+                  setPublications((prev) =>
+                    prev.map((p) => (p.id === updated.id ? updated : p))
+                  );
+                  setEditingPublication(null);
+                  setCurrentView("publication-list");
+                }
+              }}
+              onCancel={() => setCurrentView("publication-list")}
+              className="flex-1"
+            />
+          </div>
+        );
+
       case "upload":
         return (
           <div className="flex flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
