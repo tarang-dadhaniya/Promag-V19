@@ -23,6 +23,26 @@ export function BlankStepPage({
   publicationName,
   className,
 }: BlankStepPageProps) {
+  // State for Add Solutions modal
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "Solutions",
+    startPage: "5",
+    endPage: "10"
+  });
+
+  const handleAddSolution = () => {
+    // Handle adding the solution (you can extend this logic)
+    console.log("Adding solution:", formData);
+    setShowAddModal(false);
+    // Reset form
+    setFormData({
+      title: "Solutions",
+      startPage: "5",
+      endPage: "10"
+    });
+  };
+
   const steps = [1, 2, 3, 4].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
