@@ -497,6 +497,7 @@ export function PublicationListView({
   onDeleteCollection,
   className,
   onEditPublication,
+  onOpenPublicationDetails,
   onEditCollectionSettings,
   onDeletePublication,
   onClonePublication,
