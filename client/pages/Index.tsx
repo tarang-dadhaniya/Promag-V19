@@ -15,6 +15,7 @@ import { PublicationListView } from "../components/PublicationListView";
 import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
 import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
+import { FileChangesForm } from "../components/FileChangesForm";
 import {
   Dialog,
   DialogContent,
