@@ -19,6 +19,10 @@ interface Publication {
   createdAt: Date;
   collectionId: string;
   status?: "draft" | "published" | "pending";
+  category?: string;
+  description?: string;
+  edition?: string;
+  teaser?: string;
 }
 
 interface PublicationListViewProps {
@@ -29,6 +33,7 @@ interface PublicationListViewProps {
   onDeleteCollection?: (collectionId: string) => void;
   className?: string;
   onEditPublication?: (publication: Publication) => void;
+  onOpenPublicationDetails?: (publication: Publication) => void;
   onEditCollectionSettings?: () => void;
   onDeletePublication?: (publication: Publication) => void;
   onClonePublication?: (publication: Publication) => void;
@@ -79,12 +84,14 @@ const PublicationCard = ({
   onShare,
   onDelete,
   onClone,
+  onSettings,
 }: {
   publication: Publication;
   onEdit: () => void;
   onShare: () => void;
   onDelete: () => void;
   onClone: () => void;
+  onSettings: () => void;
 }) => (
   <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
     {/* Cover Image */}
@@ -287,9 +294,22 @@ const PublicationCard = ({
 
       {/* Action Buttons */}
       <div className="flex items-start gap-5 self-stretch">
-        <div className="w-[18px] h-[18px]" title="Settings" aria-hidden="true">
-          <SettingsIcon size={18} strokeWidth={1.5} color="#722555" />
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onSettings();
+          }}
+          className="w-[18px] h-[18px] group hover:scale-110 transition-transform"
+          title="Settings"
+          aria-label="Open publication settings"
+        >
+          <SettingsIcon
+            size={18}
+            strokeWidth={1.5}
+            color="#722555"
+            className="group-hover:text-promag-primary/80"
+          />
+        </button>
 
         {/* Edit Icon */}
         <svg
@@ -482,6 +502,7 @@ export function PublicationListView({
   onDeleteCollection,
   className,
   onEditPublication,
+  onOpenPublicationDetails,
   onEditCollectionSettings,
   onDeletePublication,
   onClonePublication,
@@ -534,6 +555,8 @@ export function PublicationListView({
     setTargetPublication(publication);
     setShowCloneConfirmation(true);
   };
+
+  // NOTE: opening details is handled by parent via onOpenPublicationDetails prop
 
   const confirmDelete = () => {
     if (targetPublication) {
@@ -829,6 +852,7 @@ export function PublicationListView({
             onShare={() => handleShare(publication)}
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
+            onSettings={() => onOpenPublicationDetails?.(publication)}
           />
         ))}
       </div>

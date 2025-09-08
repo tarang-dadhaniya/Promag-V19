@@ -14,6 +14,7 @@ import { PublicationsPage } from "../components/PublicationsPage";
 import { PublicationListView } from "../components/PublicationListView";
 import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
+import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
 import {
   Dialog,
   DialogContent,
@@ -48,6 +49,17 @@ interface Publication {
   description?: string;
   edition?: string;
   teaser?: string;
+  // Additional metadata
+  author?: string;
+  editor?: string;
+  language?: string;
+  releaseDate?: string;
+  isbnIssn?: string;
+  indexOffset?: string | number;
+  documentPrintAllowed?: boolean;
+  previewPages?: string;
+  orientation?: string;
+  presentation?: boolean;
 }
 
 type ViewMode =
@@ -55,7 +67,8 @@ type ViewMode =
   | "publications"
   | "publication-list"
   | "upload"
-  | "edit-publication";
+  | "edit-publication"
+  | "publication-details";
 
 export default function Index() {
   const STORAGE_KEY = "promag:publication";
@@ -163,6 +176,34 @@ export default function Index() {
     setCurrentView("upload");
   };
 
+  const handleOpenPublicationDetails = (publication: Publication) => {
+    // Open the full screen details form (not a dialog)
+    setEditingPublication(publication);
+    const collection =
+      collections.find((c) => c.id === publication.collectionId) || null;
+    if (collection) setSelectedCollection(collection);
+    setCurrentView("publication-details");
+  };
+
+  const handleSaveFromDetails = (data: any) => {
+    if (!editingPublication) return;
+    const updated: Publication = {
+      ...editingPublication,
+      title: data.name || editingPublication.title,
+      category: data.topicsCategory || editingPublication.category,
+      edition: data.edition || editingPublication.edition,
+      teaser: data.teaser || editingPublication.teaser,
+      description: data.description || editingPublication.description,
+      status: data.status || editingPublication.status,
+    };
+
+    setPublications((prev) =>
+      prev.map((p) => (p.id === updated.id ? updated : p)),
+    );
+    setEditingPublication(null);
+    setCurrentView("publication-list");
+  };
+
   const handleSavePublication = (updatedPublication: Publication) => {
     setPublications((prev) =>
       prev.map((p) =>
@@ -212,27 +253,68 @@ export default function Index() {
 
       // Load publications
       const publicationsRaw = localStorage.getItem(PUBLICATIONS_STORAGE_KEY);
+      const uploadRaw = localStorage.getItem(STORAGE_KEY);
+      let savedUpload: any = null;
+
+      if (uploadRaw) {
+        try {
+          savedUpload = JSON.parse(uploadRaw);
+        } catch {}
+      }
+
       if (publicationsRaw) {
-        const savedPublications = JSON.parse(publicationsRaw);
-        setPublications(
-          savedPublications.map((p: any) => ({
-            ...p,
-            createdAt: new Date(p.createdAt),
-          })),
-        );
+        try {
+          const savedPublications = JSON.parse(publicationsRaw);
+          const enriched = savedPublications.map((p: any) => {
+            // normalize createdAt
+            const base = { ...p, createdAt: new Date(p.createdAt) };
+
+            // If publication is missing certain metadata but matches the last saved upload (by title), merge it
+            if (
+              savedUpload &&
+              savedUpload.issueData &&
+              savedUpload.issueData.name &&
+              base.title === savedUpload.issueData.name
+            ) {
+              const authorData = savedUpload.authorData || {};
+              return {
+                ...base,
+                author: base.author ?? authorData.author,
+                editor: base.editor ?? authorData.editor,
+                language: base.language ?? authorData.language,
+                releaseDate: base.releaseDate ?? authorData.releaseDate,
+                isbnIssn: base.isbnIssn ?? authorData.isbnIssn,
+                indexOffset: base.indexOffset ?? authorData.indexOffset,
+                documentPrintAllowed:
+                  base.documentPrintAllowed ??
+                  !!authorData.documentPrintAllowed,
+                previewPages: base.previewPages ?? authorData.previewPages,
+                orientation: base.orientation ?? authorData.orientation,
+                presentation: base.presentation ?? !!authorData.presentation,
+              };
+            }
+
+            return base;
+          });
+
+          setPublications(enriched);
+        } catch (e) {
+          console.warn("Failed parsing publications", e);
+        }
       }
 
       // Load upload flow data only if in upload mode
-      const uploadRaw = localStorage.getItem(STORAGE_KEY);
       if (uploadRaw) {
-        const saved = JSON.parse(uploadRaw);
-        if (saved.currentStep) setCurrentStep(saved.currentStep);
-        if (saved.uploadedFile)
-          setUploadedFile({ ...saved.uploadedFile, file: null });
-        if (saved.issueData) setIssueData(saved.issueData);
-        if (saved.authorData) setAuthorData(saved.authorData);
-        if (saved.validation) setValidation(saved.validation);
-        // Do not restore currentView or selectedCollection on load to land on Collections screen
+        const saved = savedUpload;
+        if (saved) {
+          if (saved.currentStep) setCurrentStep(saved.currentStep);
+          if (saved.uploadedFile)
+            setUploadedFile({ ...saved.uploadedFile, file: null });
+          if (saved.issueData) setIssueData(saved.issueData);
+          if (saved.authorData) setAuthorData(saved.authorData);
+          if (saved.validation) setValidation(saved.validation);
+          // Do not restore currentView or selectedCollection on load to land on Collections screen
+        }
       }
     } catch (e) {
       console.warn("Failed to load saved data", e);
@@ -425,6 +507,22 @@ export default function Index() {
           teaser: issueData?.teaser || editingPublication.teaser,
           description: issueData?.description || editingPublication.description,
           coverImage: coverImageUrl ?? editingPublication.coverImage,
+          // persist author/metadata
+          author: data?.author || editingPublication.author,
+          editor: data?.editor || editingPublication.editor,
+          language: data?.language || editingPublication.language,
+          releaseDate: data?.releaseDate || editingPublication.releaseDate,
+          isbnIssn: data?.isbnIssn || editingPublication.isbnIssn,
+          indexOffset: data?.indexOffset ?? editingPublication.indexOffset,
+          documentPrintAllowed: !!(
+            data?.documentPrintAllowed ??
+            editingPublication.documentPrintAllowed
+          ),
+          previewPages: data?.previewPages || editingPublication.previewPages,
+          orientation: data?.orientation || editingPublication.orientation,
+          presentation: !!(
+            data?.presentation ?? editingPublication.presentation
+          ),
         };
         setPublications((prev) =>
           prev.map((p) => (p.id === updated.id ? updated : p)),
@@ -443,6 +541,17 @@ export default function Index() {
           edition: issueData?.edition || "",
           teaser: issueData?.teaser || "",
           description: issueData?.description || "",
+          // persist author/metadata
+          author: data?.author || "",
+          editor: data?.editor || "",
+          language: data?.language || "",
+          releaseDate: data?.releaseDate || "",
+          isbnIssn: data?.isbnIssn || "",
+          indexOffset: data?.indexOffset ?? "0",
+          documentPrintAllowed: !!data?.documentPrintAllowed,
+          previewPages: data?.previewPages || "",
+          orientation: data?.orientation || "",
+          presentation: !!data?.presentation,
         };
         setPublications((prev) => [...prev, newPublication]);
       }
@@ -563,6 +672,7 @@ export default function Index() {
             onBackToCollections={handleBackToCollections}
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
+            onOpenPublicationDetails={handleOpenPublicationDetails}
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
@@ -586,6 +696,7 @@ export default function Index() {
             onBackToCollections={handleBackToCollections}
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
+            onOpenPublicationDetails={handleOpenPublicationDetails}
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
@@ -614,6 +725,48 @@ export default function Index() {
             onCancel={handleCancelEdit}
             className="flex-1"
           />
+        );
+
+      case "publication-details":
+        if (!editingPublication || !selectedCollection) {
+          setCurrentView("publication-list");
+          return null;
+        }
+        return (
+          <div className="flex-1">
+            <PublicationDetailsForm
+              initialData={{
+                name: editingPublication.title,
+                topicsCategory: editingPublication.category || "",
+                collection: editingPublication.collectionId,
+                edition: editingPublication.edition || "",
+                teaser: editingPublication.teaser || "",
+                description: editingPublication.description || "",
+                author: editingPublication.author || "",
+                editor: editingPublication.editor || "",
+                language: editingPublication.language || "",
+                releaseDate: editingPublication.releaseDate || "",
+                isbnIssn: editingPublication.isbnIssn || "",
+                indexOffset: String(editingPublication.indexOffset ?? "0"),
+                documentPrintAllowed: !!editingPublication.documentPrintAllowed,
+                status: editingPublication.status || "draft",
+                previewPages: editingPublication.previewPages || "",
+                orientation: editingPublication.orientation || "",
+                presentation: !!editingPublication.presentation,
+              }}
+              onSubmit={handleSaveFromDetails}
+              onCancel={() => setCurrentView("publication-list")}
+              onGoToCollections={() => {
+                setSelectedCollection(null);
+                setCurrentView("collections");
+              }}
+              onGoToPublications={() => setCurrentView("publication-list")}
+              collectionOptions={collections.map((c) => ({
+                value: c.id,
+                label: c.title,
+              }))}
+            />
+          </div>
         );
 
       case "upload":
