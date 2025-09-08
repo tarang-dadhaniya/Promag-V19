@@ -699,7 +699,7 @@ export default function Index() {
                 language: editingPublication.language || "",
                 releaseDate: editingPublication.releaseDate || "",
                 isbnIssn: editingPublication.isbnIssn || "",
-                indexOffset: editingPublication.indexOffset ?? "0",
+                indexOffset: String(editingPublication.indexOffset ?? "0"),
                 documentPrintAllowed: !!editingPublication.documentPrintAllowed,
                 status: editingPublication.status || "draft",
                 previewPages: editingPublication.previewPages || "",
