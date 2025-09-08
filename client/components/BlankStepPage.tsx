@@ -26,9 +26,9 @@ export function BlankStepPage({
   // State for Add Solutions modal
   const [showAddModal, setShowAddModal] = useState(false);
   const [formData, setFormData] = useState({
-    title: "Solutions",
-    startPage: "5",
-    endPage: "10",
+    title: "",
+    startPage: "",
+    endPage: "",
   });
 
   // State for Keywords (Step 4)
