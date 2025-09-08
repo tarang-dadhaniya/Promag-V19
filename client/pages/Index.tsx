@@ -14,6 +14,7 @@ import { PublicationsPage } from "../components/PublicationsPage";
 import { PublicationListView } from "../components/PublicationListView";
 import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
+import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
 import {
   Dialog,
   DialogContent,
@@ -55,7 +56,8 @@ type ViewMode =
   | "publications"
   | "publication-list"
   | "upload"
-  | "edit-publication";
+  | "edit-publication"
+  | "publication-details";
 
 export default function Index() {
   const STORAGE_KEY = "promag:publication";
