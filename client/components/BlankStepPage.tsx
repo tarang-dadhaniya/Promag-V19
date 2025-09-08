@@ -457,6 +457,19 @@ export function BlankStepPage({
                       </div>
                     </div>
                   )}
+
+                  {/* PDF upload progress */}
+                  {pdfUploading && (
+                    <div className="w-full mt-3">
+                      <div className="w-full h-2 bg-gray-200 rounded overflow-hidden">
+                        <div
+                          className="h-2 bg-promag-primary rounded"
+                          style={{ width: `${pdfProgress}%` }}
+                        />
+                      </div>
+                      <div className="text-promag-body text-sm mt-2 text-right">{pdfProgress}%</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
