@@ -39,7 +39,7 @@ function Circle({ index, status }: { index: number; status: StepStatus }) {
         "flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-full text-xs sm:text-sm font-semibold transition-colors",
         status === "current" && "bg-promag-primary text-white",
         status === "completed" && "bg-promag-primary text-white",
-        status === "upcoming" && "bg-gray-200 text-gray-600"
+        status === "upcoming" && "bg-gray-200 text-gray-600",
       )}
     >
       {number}
@@ -47,7 +47,10 @@ function Circle({ index, status }: { index: number; status: StepStatus }) {
   );
 }
 
-export function StepNavigation({ currentStep, className }: StepNavigationProps) {
+export function StepNavigation({
+  currentStep,
+  className,
+}: StepNavigationProps) {
   const currentIndex = steps.findIndex((s) => s.id === currentStep);
   return (
     <div className={cn("flex w-full flex-col gap-5 py-2", className)}>
@@ -57,7 +60,13 @@ export function StepNavigation({ currentStep, className }: StepNavigationProps) 
             <div key={s.id} className="flex items-center">
               <Circle index={i} status={getStatus(i, currentStep)} />
               {i < steps.length - 1 && (
-                <div className={cn("mx-2 sm:mx-3 flex-1 h-[3px] min-w-[120px] sm:min-w-[220px] rounded-lg", i < currentIndex ? "bg-promag-primary" : "bg-gray-300")} aria-hidden />
+                <div
+                  className={cn(
+                    "mx-2 sm:mx-3 flex-1 h-[3px] min-w-[120px] sm:min-w-[220px] rounded-lg",
+                    i < currentIndex ? "bg-promag-primary" : "bg-gray-300",
+                  )}
+                  aria-hidden
+                />
               )}
             </div>
           ))}
