@@ -211,8 +211,9 @@ export default function Index() {
     setPublications((prev) =>
       prev.map((p) => (p.id === updated.id ? updated : p)),
     );
-    setEditingPublication(null);
-    setCurrentView("publication-list");
+    // After saving details, jump to file upload screen (step 2)
+    setEditingPublication(updated);
+    setCurrentView("file-changes");
   };
 
   const handleSavePublication = (updatedPublication: Publication) => {
