@@ -116,7 +116,7 @@ export function BlankStepPage({
               <div className="flex flex-col items-center gap-7 bg-white rounded-[10px]">
                 <div
                   className={cn(
-                    "flex flex-col justify-center items-center gap-6 flex-1 self-stretch border-2 border-dashed rounded-[10px] p-8 md:p-10 cursor-pointer",
+                    "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] min-h-[220px] p-[20px] px-[40px] pb-[43px] cursor-pointer mb-[-3px]",
                     pdfDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
                   )}
                   onClick={() => pdfInputRef.current?.click()}
@@ -148,7 +148,7 @@ export function BlankStepPage({
 
                   {!pdfFile ? (
                     <div className="flex flex-col items-center gap-6">
-                      <div className="flex h-[84px] p-5 flex-col justify-between items-center border-[3px] border-black rounded-[10px]">
+                      <div className="flex p-[10px] flex-col items-center border-[3px] border-black rounded-[10px]">
                         <svg
                           className="flex h-11 flex-col justify-center items-center gap-2.5 flex-shrink-0"
                           width="48"
@@ -218,7 +218,7 @@ export function BlankStepPage({
               <div className="flex flex-col items-center gap-7 self-stretch bg-white rounded-[10px]">
                 <div
                   className={cn(
-                    "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] p-8 md:p-10 cursor-pointer",
+                    "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] min-h-[220px] p-[20px] px-[40px] cursor-pointer",
                     coverDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
                   )}
                   onClick={() => coverInputRef.current?.click()}
@@ -250,7 +250,7 @@ export function BlankStepPage({
 
                   {!coverFile ? (
                     <div className="flex flex-col items-center gap-6">
-                      <div className="flex p-5 flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px]">
+                      <div className="flex p-[10px] flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px]">
                         <svg
                           className="flex h-11 flex-col justify-center items-center gap-2.5"
                           width="48"
