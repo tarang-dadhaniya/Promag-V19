@@ -101,6 +101,9 @@ export default function Index() {
   const [editingPublication, setEditingPublication] =
     useState<Publication | null>(null);
 
+  // Simple blank step state
+  const [blankStep, setBlankStep] = useState<1 | 2 | 3 | 4>(2);
+
   // Upload flow state (existing)
   const [currentStep, setCurrentStep] = useState<Step>("upload");
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null);
@@ -203,8 +206,10 @@ export default function Index() {
     setPublications((prev) =>
       prev.map((p) => (p.id === updated.id ? updated : p)),
     );
-    setEditingPublication(null);
-    setCurrentView("publication-list");
+    // After saving step-1 details, show blank step-2 page by default
+    setEditingPublication(updated);
+    setBlankStep(2);
+    setCurrentView("blank-step");
   };
 
   const handleSavePublication = (updatedPublication: Publication) => {
