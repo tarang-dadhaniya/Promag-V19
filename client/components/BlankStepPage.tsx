@@ -775,7 +775,7 @@ export function BlankStepPage({
                 {/* Modal Header */}
                 <div className="flex w-full h-[50px] px-5 justify-between items-center border-b border-black/20 rounded-t-[10px]">
                   <div className="text-black text-center font-inter text-lg font-bold leading-[15px]">
-                    Add Solutions
+                    {editingId ? "Edit Solution" : "Add Solution"}
                   </div>
                   <button
                     onClick={() => setShowAddModal(false)}
