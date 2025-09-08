@@ -686,6 +686,23 @@ export function BlankStepPage({
                 </div>
               </div>
             </div>
+
+            {addedSolutions.map((s) => (
+              <div key={s.id} className="flex items-center gap-1 self-stretch bg-white p-1">
+                <div className="flex h-6 flex-col justify-center items-center">
+                  <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.66602 6.66675L7.99935 10.0001L11.3327 6.66675H4.66602Z" fill="#707070" />
+                  </svg>
+                </div>
+                <div className="h-6 flex-1 rounded-[5px] relative">
+                  <div className="inline-flex p-1 flex-col items-start absolute left-0 top-0">
+                    <div className="text-promag-body font-inter text-sm font-normal leading-4">
+                      {`${s.title} (Pages ${s.startPage}-${s.endPage})`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
 
