@@ -916,6 +916,48 @@ export function PublicationListView({
         onConfirm={confirmClone}
         onCancel={cancelAction}
       />
+
+      {/* Publication Details Dialog */}
+      <Dialog
+        open={showPublicationDetailsDialog}
+        onOpenChange={setShowPublicationDetailsDialog}
+      >
+        <DialogContent className="max-w-[90vw] max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-promag-primary font-manrope text-base font-semibold">
+              Manage Publications
+            </DialogTitle>
+          </DialogHeader>
+          {detailsPublication && (
+            <PublicationDetailsForm
+              onSubmit={handlePublicationDetailsSubmit}
+              onCancel={handlePublicationDetailsCancel}
+              initialData={{
+                name: detailsPublication.title,
+                topicsCategory: detailsPublication.category || "",
+                collection: detailsPublication.collectionId,
+                edition: detailsPublication.edition || "",
+                teaser: detailsPublication.teaser || "",
+                description: detailsPublication.description || "",
+                author: "",
+                editor: "",
+                language: "",
+                releaseDate: "",
+                isbnIssn: "",
+                indexOffset: "0",
+                documentPrintAllowed: false,
+                status: detailsPublication.status || "draft",
+                previewPages: "",
+                orientation: "",
+                presentation: false,
+              }}
+              collectionOptions={[
+                { value: detailsPublication.collectionId, label: "Current Collection" }
+              ]}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
