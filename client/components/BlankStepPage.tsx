@@ -736,7 +736,7 @@ export function BlankStepPage({
                             setFormData({ ...formData, title: e.target.value })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="Solutions"
+                          placeholder="Add title"
                         />
                       </div>
                     </div>
@@ -757,7 +757,7 @@ export function BlankStepPage({
                             })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="5"
+                          placeholder="Add Start Page"
                         />
                       </div>
                     </div>
@@ -778,7 +778,7 @@ export function BlankStepPage({
                             })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="10"
+                            placeholder="Add End Page"
                         />
                       </div>
                     </div>
