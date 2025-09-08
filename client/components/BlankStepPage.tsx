@@ -244,6 +244,53 @@ export function BlankStepPage({
   const pdfInputRef = useRef<HTMLInputElement>(null);
   const coverInputRef = useRef<HTMLInputElement>(null);
 
+  // Upload animation / progress states
+  const [pdfUploading, setPdfUploading] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState(0);
+  const pdfUploadIntervalRef = useRef<number | null>(null);
+
+  const [coverUploading, setCoverUploading] = useState(false);
+  const [coverProgress, setCoverProgress] = useState(0);
+  const coverUploadIntervalRef = useRef<number | null>(null);
+
+  const startPdfUpload = (file: File) => {
+    setPdfUploading(true);
+    setPdfProgress(0);
+    if (pdfUploadIntervalRef.current) window.clearInterval(pdfUploadIntervalRef.current);
+    pdfUploadIntervalRef.current = window.setInterval(() => {
+      setPdfProgress((prev) => {
+        const next = Math.min(100, prev + Math.floor(Math.random() * 15) + 5);
+        if (next >= 100) {
+          if (pdfUploadIntervalRef.current) {
+            window.clearInterval(pdfUploadIntervalRef.current);
+            pdfUploadIntervalRef.current = null;
+          }
+          setPdfUploading(false);
+        }
+        return next;
+      });
+    }, 500);
+  };
+
+  const startCoverUpload = (file: File) => {
+    setCoverUploading(true);
+    setCoverProgress(0);
+    if (coverUploadIntervalRef.current) window.clearInterval(coverUploadIntervalRef.current);
+    coverUploadIntervalRef.current = window.setInterval(() => {
+      setCoverProgress((prev) => {
+        const next = Math.min(100, prev + Math.floor(Math.random() * 20) + 5);
+        if (next >= 100) {
+          if (coverUploadIntervalRef.current) {
+            window.clearInterval(coverUploadIntervalRef.current);
+            coverUploadIntervalRef.current = null;
+          }
+          setCoverUploading(false);
+        }
+        return next;
+      });
+    }, 400);
+  };
+
   const validatePdf = (file: File) => {
     if (file.type !== "application/pdf") {
       alert("Please select a PDF file.");
@@ -336,7 +383,7 @@ export function BlankStepPage({
                     e.preventDefault();
                     setPdfDrag(false);
                     const file = e.dataTransfer.files?.[0];
-                    if (file && validatePdf(file)) setPdfFile(file);
+                    if (file && validatePdf(file)) { setPdfFile(file); startPdfUpload(file); }
                   }}
                 >
                   <input
@@ -346,7 +393,7 @@ export function BlankStepPage({
                     className="hidden"
                     onChange={(e) => {
                       const f = e.target.files?.[0] || null;
-                      if (f && validatePdf(f)) setPdfFile(f);
+                      if (f && validatePdf(f)) { setPdfFile(f); startPdfUpload(f); }
                     }}
                   />
 
@@ -440,7 +487,7 @@ export function BlankStepPage({
                     e.preventDefault();
                     setCoverDrag(false);
                     const file = e.dataTransfer.files?.[0];
-                    if (file && validateCover(file)) setCoverFile(file);
+                    if (file && validateCover(file)) { setCoverFile(file); startCoverUpload(file); }
                   }}
                 >
                   <input
@@ -450,7 +497,7 @@ export function BlankStepPage({
                     className="hidden"
                     onChange={(e) => {
                       const f = e.target.files?.[0] || null;
-                      if (f && validateCover(f)) setCoverFile(f);
+                      if (f && validateCover(f)) { setCoverFile(f); startCoverUpload(f); }
                     }}
                   />
 
