@@ -261,11 +261,17 @@ export function PublicationDetailsForm({
 
   return (
     <div className={cn("flex flex-col gap-5", className)}>
-      {/* Breadcrumb */}
+          {/* Breadcrumb */}
       <div className="flex items-center gap-4">
         <div className="text-black font-inter text-sm font-medium">
-          <span className="text-black/60">Collections / Publications</span>
-          <span className="text-black"> / Selected Publication Name</span>
+          <button
+            type="button"
+            onClick={() => onCancel?.()}
+            className="text-black/60 hover:text-promag-primary hover:underline underline-offset-4 mr-2"
+          >
+            Collections / Publications
+          </button>
+          <span className="text-black"> / {formData.name || initialData?.name || "Selected Publication Name"}</span>
         </div>
       </div>
 
