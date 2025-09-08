@@ -398,6 +398,37 @@ export function BlankStepPage({
             </div>
           )}
         </div>
+      ) : currentStep === 4 ? (
+        <div className="rounded-[10px] bg-white p-5 border border-gray-200">
+          {/* Keywords Form */}
+          <div className="flex flex-col items-start gap-5 self-stretch">
+            {/* Keywords Input */}
+            <div className="flex w-full h-[67px] flex-col items-start gap-2 self-stretch">
+              <label className="self-stretch text-promag-body font-inter text-sm font-medium">
+                KeyWords
+              </label>
+              <div className="flex h-[42px] px-3.5 py-2.5 items-center gap-2.5 flex-shrink-0 self-stretch rounded-[5px] border border-promag-input-border bg-white">
+                <input
+                  type="text"
+                  value={keywordsData}
+                  onChange={(e) => setKeywordsData(e.target.value)}
+                  className="text-promag-placeholder font-inter text-sm font-normal bg-transparent border-none outline-none flex-1 placeholder:text-promag-placeholder"
+                  placeholder="Enter KeyWords"
+                />
+              </div>
+            </div>
+
+            {/* Button Box */}
+            <div className="flex justify-end items-center gap-2.5 flex-1 self-stretch">
+              <button
+                onClick={handleKeywordsSave}
+                className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
       ) : (
         <div className="rounded-[10px] bg-white min-h-[320px] border border-gray-200" />
       )}​
