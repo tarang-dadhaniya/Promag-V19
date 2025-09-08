@@ -69,7 +69,8 @@ type ViewMode =
   | "publication-list"
   | "upload"
   | "edit-publication"
-  | "publication-details";
+  | "publication-details"
+  | "blank-step";
 
 export default function Index() {
   const STORAGE_KEY = "promag:publication";
