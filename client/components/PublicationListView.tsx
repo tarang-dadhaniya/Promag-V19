@@ -30,6 +30,7 @@ interface PublicationListViewProps {
   publications: Publication[];
   onNewIssue: () => void;
   onBackToCollections: () => void;
+  onGoToPublications?: () => void;
   onDeleteCollection?: (collectionId: string) => void;
   className?: string;
   onEditPublication?: (publication: Publication) => void;
