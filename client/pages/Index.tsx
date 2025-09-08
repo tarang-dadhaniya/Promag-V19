@@ -790,31 +790,6 @@ export default function Index() {
         }
         return (
           <div className="flex flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
-            {/* Back Navigation */}
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setCurrentView("publication-list")}
-                className="flex items-center gap-2 text-black/60 hover:text-black transition-colors"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10 12L6 8L10 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span className="font-inter text-sm">Back to Publications</span>
-              </button>
-            </div>
-
             {/* Breadcrumb */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-4">
