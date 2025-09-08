@@ -627,7 +627,10 @@ export function PDFUpload({
 
                 <button
                   ref={removeBtnRef}
-                  onClick={handleRemoveFile}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveFile();
+                  }}
                   className={cn(
                     "absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-promag-error rounded-full flex items-center justify-center hover:bg-promag-error/90 transition-colors",
                     btnPulse && "btn-pulse ring-2 ring-emerald-400/40",
