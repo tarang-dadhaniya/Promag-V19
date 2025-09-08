@@ -6,10 +6,13 @@ interface BlankStepPageProps {
   onCancel: () => void;
   onPrev?: () => void;
   onSave: () => void;
+  onGoToCollections?: () => void;
+  onGoToPublications?: () => void;
+  publicationName?: string;
   className?: string;
 }
 
-export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, className }: BlankStepPageProps) {
+export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, onGoToCollections, onGoToPublications, publicationName, className }: BlankStepPageProps) {
   const steps = [1, 2, 3, 4].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
@@ -19,9 +22,25 @@ export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, className
 
   return (
     <div className={cn("flex flex-col gap-5", className)}>
-      {/* Breadcrumb */}
-      <div className="text-sm font-inter text-black/60">
-        Collections / Publications <span className="text-black">/ Selected Publication Name</span>
+      {/* Breadcrumb - consistent with step 1 */}
+      <div className="flex items-center gap-2 text-sm font-inter font-medium">
+        <button
+          type="button"
+          onClick={onGoToCollections}
+          className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
+        >
+          Collections
+        </button>
+        <span className="text-promag-body/70">/</span>
+        <button
+          type="button"
+          onClick={onGoToPublications}
+          className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
+        >
+          Publications
+        </button>
+        <span className="text-promag-body/70">/</span>
+        <span className="text-black">{publicationName || "Selected Publication Name"}</span>
       </div>
 
       {/* Stepper */}
