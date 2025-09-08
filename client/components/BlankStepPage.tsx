@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Stepper } from "./ui/stepper";
 import { cn } from "@/lib/utils";
 
@@ -34,22 +34,39 @@ export function BlankStepPage({
   // State for Keywords (Step 4)
   const [keywordsData, setKeywordsData] = useState("");
 
-  const handleAddSolution = () => {
-    // Handle adding the solution (you can extend this logic)
-    console.log("Adding solution:", formData);
-    setShowAddModal(false);
-    // Reset form
-    setFormData({
-      title: "Solutions",
-      startPage: "5",
-      endPage: "10",
-    });
+  // Step 2: working drop zones for File and Cover Image
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [pdfDrag, setPdfDrag] = useState(false);
+  const [coverDrag, setCoverDrag] = useState(false);
+  const pdfInputRef = useRef<HTMLInputElement>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
+
+  const validatePdf = (file: File) => {
+    if (file.type !== "application/pdf") {
+      alert("Please select a PDF file.");
+      return false;
+    }
+    const max = 300 * 1024 * 1024; // 300MB
+    if (file.size > max) {
+      alert("PDF must be less than 300MB.");
+      return false;
+    }
+    return true;
   };
 
-  const handleKeywordsSave = () => {
-    // Handle saving keywords (you can extend this logic)
-    console.log("Saving keywords:", keywordsData);
-    // You can add additional logic here like API calls or form validation
+  const validateCover = (file: File) => {
+    const ok = ["image/png", "image/jpeg", "image/jpg"].includes(file.type);
+    if (!ok) {
+      alert("Cover must be PNG or JPEG.");
+      return false;
+    }
+    const max = 8 * 1024 * 1024; // 8MB
+    if (file.size > max) {
+      alert("Cover image must be less than 8MB.");
+      return false;
+    }
+    return true;
   };
 
   const steps = [1, 2, 3, 4].map((n) => ({
@@ -97,48 +114,79 @@ export function BlankStepPage({
                 File
               </label>
               <div className="flex flex-col items-center gap-7 bg-white rounded-[10px]">
-                <div className="flex flex-col justify-center items-center gap-6 flex-1 self-stretch border-2 border-dashed border-black/50 rounded-[10px] p-8 md:p-10">
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="flex h-[84px] p-5 flex-col justify-between items-center border-[3px] border-black rounded-[10px]">
-                      <svg
-                        className="flex h-11 flex-col justify-center items-center gap-2.5 flex-shrink-0"
-                        width="48"
-                        height="45"
-                        viewBox="0 0 48 45"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M32.0078 30.4976L24.0078 22.4976L16.0078 30.4976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M24.0078 22.4976V40.4976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M40.7887 35.2775C42.7394 34.2141 44.2804 32.5313 45.1685 30.4948C46.0565 28.4583 46.2411 26.184 45.6931 24.0309C45.1451 21.8778 43.8957 19.9686 42.142 18.6044C40.3884 17.2403 38.2304 16.499 36.0087 16.4975H33.4887C32.8833 14.156 31.755 11.9822 30.1886 10.1395C28.6222 8.29683 26.6584 6.83323 24.4449 5.85874C22.2314 4.88426 19.8258 4.42424 17.4089 4.51329C14.9921 4.60234 12.6268 5.23813 10.4911 6.37286C8.35528 7.50759 6.50453 9.11173 5.07795 11.0647C3.65137 13.0176 2.68609 15.2686 2.25467 17.6483C1.82325 20.028 1.93692 22.4746 2.58714 24.804C3.23735 27.1335 4.40719 29.2853 6.00871 31.0975"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M32.0078 30.4976L24.0078 22.4976L16.0078 30.4976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex flex-col justify-center items-center gap-6">
+                <div
+                  className={cn(
+                    "flex flex-col justify-center items-center gap-6 flex-1 self-stretch border-2 border-dashed rounded-[10px] p-8 md:p-10 cursor-pointer",
+                    pdfDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
+                  )}
+                  onClick={() => pdfInputRef.current?.click()}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setPdfDrag(true);
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    setPdfDrag(false);
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setPdfDrag(false);
+                    const file = e.dataTransfer.files?.[0];
+                    if (file && validatePdf(file)) setPdfFile(file);
+                  }}
+                >
+                  <input
+                    ref={pdfInputRef}
+                    type="file"
+                    accept="application/pdf"
+                    className="hidden"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0] || null;
+                      if (f && validatePdf(f)) setPdfFile(f);
+                    }}
+                  />
+
+                  {!pdfFile ? (
+                    <div className="flex flex-col items-center gap-6">
+                      <div className="flex h-[84px] p-5 flex-col justify-between items-center border-[3px] border-black rounded-[10px]">
+                        <svg
+                          className="flex h-11 flex-col justify-center items-center gap-2.5 flex-shrink-0"
+                          width="48"
+                          height="45"
+                          viewBox="0 0 48 45"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M32.0078 30.4976L24.0078 22.4976L16.0078 30.4976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M24.0078 22.4976V40.4976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M40.7887 35.2775C42.7394 34.2141 44.2804 32.5313 45.1685 30.4948C46.0565 28.4583 46.2411 26.184 45.6931 24.0309C45.1451 21.8778 43.8957 19.9686 42.142 18.6044C40.3884 17.2403 38.2304 16.499 36.0087 16.4975H33.4887C32.8833 14.156 31.755 11.9822 30.1886 10.1395C28.6222 8.29683 26.6584 6.83323 24.4449 5.85874C22.2314 4.88426 19.8258 4.42424 17.4089 4.51329C14.9921 4.60234 12.6268 5.23813 10.4911 6.37286C8.35528 7.50759 6.50453 9.11173 5.07795 11.0647C3.65137 13.0176 2.68609 15.2686 2.25467 17.6483C1.82325 20.028 1.93692 22.4746 2.58714 24.804C3.23735 27.1335 4.40719 29.2853 6.00871 31.0975"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M32.0078 30.4976L24.0078 22.4976L16.0078 30.4976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
                       <div className="flex flex-col justify-center items-center gap-2">
                         <div className="text-black font-inter text-base font-bold">
                           Drag and drop file here
@@ -148,7 +196,16 @@ export function BlankStepPage({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <div className="text-black font-inter text-sm font-medium">
+                        {pdfFile.name}
+                      </div>
+                      <div className="text-black/60 font-inter text-xs">
+                        PDF selected — click to change
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -159,48 +216,79 @@ export function BlankStepPage({
                 Cover Image
               </label>
               <div className="flex flex-col items-center gap-7 self-stretch bg-white rounded-[10px]">
-                <div className="flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed border-black/50 rounded-[10px] p-8 md:p-10">
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="flex p-5 flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px]">
-                      <svg
-                        className="flex h-11 flex-col justify-center items-center gap-2.5"
-                        width="48"
-                        height="44"
-                        viewBox="0 0 48 44"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M32.0078 29.9976L24.0078 21.9976L16.0078 29.9976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M24.0078 21.9976V39.9976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M40.7887 34.7775C42.7394 33.7141 44.2804 32.0313 45.1685 29.9948C46.0565 27.9583 46.2411 25.684 45.6931 23.5309C45.1451 21.3778 43.8957 19.4686 42.142 18.1044C40.3884 16.7403 38.2304 15.999 36.0087 15.9975H33.4887C32.8833 13.656 31.755 11.4822 30.1886 9.63951C28.6222 7.79683 26.6584 6.33323 24.4449 5.35874C22.2314 4.38426 19.8258 3.92424 17.4089 4.01329C14.9921 4.10234 12.6268 4.73813 10.4911 5.87286C8.35528 7.00759 6.50453 8.61173 5.07795 10.5647C3.65137 12.5176 2.68609 14.7686 2.25467 17.1483C1.82325 19.528 1.93692 21.9746 2.58714 24.304C3.23735 26.6335 4.40719 28.7853 6.00871 30.5975"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M32.0078 29.9976L24.0078 21.9976L16.0078 29.9976"
-                          stroke="black"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex flex-col justify-center items-center gap-6">
+                <div
+                  className={cn(
+                    "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] p-8 md:p-10 cursor-pointer",
+                    coverDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
+                  )}
+                  onClick={() => coverInputRef.current?.click()}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setCoverDrag(true);
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    setCoverDrag(false);
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setCoverDrag(false);
+                    const file = e.dataTransfer.files?.[0];
+                    if (file && validateCover(file)) setCoverFile(file);
+                  }}
+                >
+                  <input
+                    ref={coverInputRef}
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    className="hidden"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0] || null;
+                      if (f && validateCover(f)) setCoverFile(f);
+                    }}
+                  />
+
+                  {!coverFile ? (
+                    <div className="flex flex-col items-center gap-6">
+                      <div className="flex p-5 flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px]">
+                        <svg
+                          className="flex h-11 flex-col justify-center items-center gap-2.5"
+                          width="48"
+                          height="44"
+                          viewBox="0 0 48 44"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M32.0078 29.9976L24.0078 21.9976L16.0078 29.9976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M24.0078 21.9976V39.9976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M40.7887 34.7775C42.7394 33.7141 44.2804 32.0313 45.1685 29.9948C46.0565 27.9583 46.2411 25.684 45.6931 23.5309C45.1451 21.3778 43.8957 19.4686 42.142 18.1044C40.3884 16.7403 38.2304 15.999 36.0087 15.9975H33.4887C32.8833 13.656 31.755 11.4822 30.1886 9.63951C28.6222 7.79683 26.6584 6.33323 24.4449 5.35874C22.2314 4.38426 19.8258 3.92424 17.4089 4.01329C14.9921 4.10234 12.6268 4.73813 10.4911 5.87286C8.35528 7.00759 6.50453 9.11173 5.07795 10.5647C3.65137 12.5176 2.68609 14.7686 2.25467 17.1483C1.82325 19.528 1.93692 21.9746 2.58714 24.304C3.23735 26.6335 4.40719 28.7853 6.00871 30.5975"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M32.0078 29.9976L24.0078 21.9976L16.0078 29.9976"
+                            stroke="black"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
                       <div className="flex flex-col justify-center items-center gap-2">
                         <div className="text-black font-inter text-base font-bold">
                           Drag and drop file here
@@ -212,7 +300,16 @@ export function BlankStepPage({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <div className="text-black font-inter text-sm font-medium">
+                        {coverFile.name}
+                      </div>
+                      <div className="text-black/60 font-inter text-xs">
+                        Image selected — click to change
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
