@@ -464,6 +464,17 @@ export default function Index() {
           teaser: issueData?.teaser || editingPublication.teaser,
           description: issueData?.description || editingPublication.description,
           coverImage: coverImageUrl ?? editingPublication.coverImage,
+          // persist author/metadata
+          author: data?.author || editingPublication.author,
+          editor: data?.editor || editingPublication.editor,
+          language: data?.language || editingPublication.language,
+          releaseDate: data?.releaseDate || editingPublication.releaseDate,
+          isbnIssn: data?.isbnIssn || editingPublication.isbnIssn,
+          indexOffset: data?.indexOffset ?? editingPublication.indexOffset,
+          documentPrintAllowed: !!(data?.documentPrintAllowed ?? editingPublication.documentPrintAllowed),
+          previewPages: data?.previewPages || editingPublication.previewPages,
+          orientation: data?.orientation || editingPublication.orientation,
+          presentation: !!(data?.presentation ?? editingPublication.presentation),
         };
         setPublications((prev) =>
           prev.map((p) => (p.id === updated.id ? updated : p)),
@@ -482,6 +493,17 @@ export default function Index() {
           edition: issueData?.edition || "",
           teaser: issueData?.teaser || "",
           description: issueData?.description || "",
+          // persist author/metadata
+          author: data?.author || "",
+          editor: data?.editor || "",
+          language: data?.language || "",
+          releaseDate: data?.releaseDate || "",
+          isbnIssn: data?.isbnIssn || "",
+          indexOffset: data?.indexOffset ?? "0",
+          documentPrintAllowed: !!data?.documentPrintAllowed,
+          previewPages: data?.previewPages || "",
+          orientation: data?.orientation || "",
+          presentation: !!data?.presentation,
         };
         setPublications((prev) => [...prev, newPublication]);
       }
