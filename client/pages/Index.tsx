@@ -747,6 +747,8 @@ export default function Index() {
               }}
               onSubmit={handleSaveFromDetails}
               onCancel={() => setCurrentView("publication-list")}
+              onGoToCollections={() => { setSelectedCollection(null); setCurrentView("collections"); }}
+              onGoToPublications={() => setCurrentView("publication-list")}
               collectionOptions={collections.map((c) => ({ value: c.id, label: c.title }))}
             />
           </div>
