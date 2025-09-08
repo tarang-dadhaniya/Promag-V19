@@ -779,6 +779,30 @@ export default function Index() {
           </div>
         );
 
+      case "blank-step":
+        if (!editingPublication || !selectedCollection) {
+          setCurrentView("publication-list");
+          return null;
+        }
+        return (
+          <BlankStepPage
+            currentStep={blankStep}
+            onCancel={() => setCurrentView("publication-list")}
+            onSave={() => {
+              // simple advance logic; loops back to publications after step 4
+              setBlankStep((prev) => {
+                const next = (prev + 1) as 1 | 2 | 3 | 4;
+                if (prev === 4) {
+                  setCurrentView("publication-list");
+                  return prev;
+                }
+                return next;
+              });
+            }}
+            className="flex-1"
+          />
+        );
+
 
       case "upload":
         return (
