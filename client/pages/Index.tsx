@@ -644,6 +644,40 @@ export default function Index() {
           />
         );
 
+      case "publication-details":
+        if (!editingPublication || !selectedCollection) {
+          setCurrentView("publication-list");
+          return null;
+        }
+        return (
+          <div className="flex-1">
+            <PublicationDetailsForm
+              initialData={{
+                name: editingPublication.title,
+                topicsCategory: editingPublication.category || "",
+                collection: editingPublication.collectionId,
+                edition: editingPublication.edition || "",
+                teaser: editingPublication.teaser || "",
+                description: editingPublication.description || "",
+                author: "",
+                editor: "",
+                language: "",
+                releaseDate: "",
+                isbnIssn: "",
+                indexOffset: "0",
+                documentPrintAllowed: false,
+                status: editingPublication.status || "draft",
+                previewPages: "",
+                orientation: "",
+                presentation: false,
+              }}
+              onSubmit={handleSaveFromDetails}
+              onCancel={() => setCurrentView("publication-list")}
+              collectionOptions={collections.map((c) => ({ value: c.id, label: c.title }))}
+            />
+          </div>
+        );
+
       case "upload":
         return (
           <div className="flex flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
