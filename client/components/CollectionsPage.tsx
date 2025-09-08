@@ -115,6 +115,7 @@ export function CollectionsPage({
   collections,
   onCreateCollection,
   onSelectCollection,
+  onBackToCollections,
   className,
 }: CollectionsPageProps) {
   const [searchQuery, setSearchQuery] = useState("");
