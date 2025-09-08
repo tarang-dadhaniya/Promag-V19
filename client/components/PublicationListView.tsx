@@ -509,6 +509,7 @@ export function PublicationListView({
   publications,
   onNewIssue,
   onBackToCollections,
+  onGoToPublications,
   onDeleteCollection,
   className,
   onEditPublication,
