@@ -31,6 +31,9 @@ export function BlankStepPage({
     endPage: "10"
   });
 
+  // State for Keywords (Step 4)
+  const [keywordsData, setKeywordsData] = useState("");
+
   const handleAddSolution = () => {
     // Handle adding the solution (you can extend this logic)
     console.log("Adding solution:", formData);
