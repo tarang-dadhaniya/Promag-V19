@@ -49,6 +49,17 @@ interface Publication {
   description?: string;
   edition?: string;
   teaser?: string;
+  // Additional metadata
+  author?: string;
+  editor?: string;
+  language?: string;
+  releaseDate?: string;
+  isbnIssn?: string;
+  indexOffset?: string | number;
+  documentPrintAllowed?: boolean;
+  previewPages?: string;
+  orientation?: string;
+  presentation?: boolean;
 }
 
 type ViewMode =
