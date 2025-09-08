@@ -546,14 +546,15 @@ export function PDFUpload({
         ref={containerRef}
         className={cn(
           "relative overflow-hidden will-change-transform flex w-full p-6 sm:p-10 lg:p-14 flex-col justify-center items-center gap-4 sm:gap-6 h-full",
-          "border border-dashed border-black/25 rounded-[10px] min-h-[250px] sm:min-h-[330px] transition-all duration-300",
+          "border border-dashed border-black/25 rounded-[10px] min-h-[250px] sm:min-h-[330px] transition-all duration-300 cursor-pointer",
           uploadStatus === "dragover" &&
             "border-promag-primary bg-promag-primary/5 animate-pulse-border ring-2 ring-promag-primary/20 scale-[1.01] sm:scale-[1.02]",
           uploadStatus === "uploading" &&
-            "border-promag-primary bg-promag-primary/5 ring-1 ring-promag-primary/10",
+            "border-promag-primary bg-promag-primary/5 ring-1 ring-promag-primary/10 cursor-default",
           uploadStatus === "completed" &&
             "border-green-500 bg-green-50 animate-pop",
         )}
+        onClick={handleButtonClick}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
