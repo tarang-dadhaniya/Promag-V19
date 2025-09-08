@@ -449,7 +449,7 @@ export function BlankStepPage({
             </button>
             <button
               type="button"
-              onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+              onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -492,7 +492,7 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Add icon */}
                   <button
-                    onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+                    onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
@@ -627,7 +627,7 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Same action icons as parent */}
                   <button
-                    onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+                    onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
@@ -728,7 +728,7 @@ export function BlankStepPage({
                 </div>
                 <div className="flex p-1 justify-center items-center">
                   <div className="flex items-center gap-1.5">
-                    <button onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }} className="w-3.5 h-3.5 hover:opacity-70">
+                    <button onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }} className="w-3.5 h-3.5 hover:opacity-70">
                       <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.7695 5.76953H8.23047V1.23047C8.23047 0.550894 7.67957 0 7 0C6.32043 0 5.76953 0.550894 5.76953 1.23047V5.76953H1.23047C0.550894 5.76953 0 6.32043 0 7C0 7.67957 0.550894 8.23047 1.23047 8.23047H5.76953V12.7695C5.76953 13.4491 6.32043 14 7 14C7.67957 14 8.23047 13.4491 8.23047 12.7695V8.23047H12.7695C13.4491 8.23047 14 7.67957 14 7C14 6.32043 13.4491 5.76953 12.7695 5.76953Z" fill="#7E7E7E"/></svg>
                     </button>
                   </div>
