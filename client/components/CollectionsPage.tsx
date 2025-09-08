@@ -13,6 +13,7 @@ interface CollectionsPageProps {
   collections: Collection[];
   onCreateCollection: () => void;
   onSelectCollection: (collection: Collection) => void;
+  onBackToCollections?: () => void;
   className?: string;
 }
 
