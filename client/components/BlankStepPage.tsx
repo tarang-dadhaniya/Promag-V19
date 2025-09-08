@@ -38,6 +38,18 @@ export function BlankStepPage({
   const [treeRefresh, setTreeRefresh] = useState(0);
   const handleReloadTree = () => setTreeRefresh((n) => n + 1);
 
+  // Add Solutions handler
+  const handleAddSolution = () => {
+    console.log("Adding solution:", formData);
+    setShowAddModal(false);
+    setFormData({ title: "Solutions", startPage: "5", endPage: "10" });
+  };
+
+  // Keywords save handler
+  const handleKeywordsSave = () => {
+    console.log("Saving keywords:", keywordsData);
+  };
+
   // Step 2 options
   const [importEnrichments, setImportEnrichments] = useState(false);
   const [importToc, setImportToc] = useState(false);
