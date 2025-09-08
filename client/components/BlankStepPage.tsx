@@ -884,7 +884,7 @@ export function BlankStepPage({
             </div>
           </div>
 
-          {addedSolutions.map((s) => (
+          {tree.map((s) => (
             <div
               key={s.id}
               className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5"
@@ -960,9 +960,7 @@ export function BlankStepPage({
                     <button
                       onClick={() => {
                         if (confirm("Delete this solution?"))
-                          setAddedSolutions((prev) =>
-                            prev.filter((x) => x.id !== s.id),
-                          );
+                          setTree((prev) => prev.filter((x) => x.id !== s.id));
                       }}
                       className="w-3.5 h-3.5 hover:opacity-70"
                     >
@@ -991,7 +989,7 @@ export function BlankStepPage({
                     </button>
                     {/* Move icon */}
                     <button
-                      onClick={() => moveSolution(s.id, "down")}
+                      onClick={() => moveNode(s.id, "down")}
                       className="w-3.5 h-3.5 hover:opacity-70"
                     >
                       <svg
