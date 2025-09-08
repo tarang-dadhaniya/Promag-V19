@@ -591,6 +591,7 @@ export default function Index() {
             onBackToCollections={handleBackToCollections}
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
+            onOpenPublicationDetails={handleOpenPublicationDetails}
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
@@ -614,6 +615,7 @@ export default function Index() {
             onBackToCollections={handleBackToCollections}
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
+            onOpenPublicationDetails={handleOpenPublicationDetails}
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
