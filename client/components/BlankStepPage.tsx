@@ -38,7 +38,12 @@ export function BlankStepPage({
   const [treeRefresh, setTreeRefresh] = useState(0);
   const handleReloadTree = () => setTreeRefresh((n) => n + 1);
 
-  type Solution = { id: string; title: string; startPage: string; endPage: string };
+  type Solution = {
+    id: string;
+    title: string;
+    startPage: string;
+    endPage: string;
+  };
   const [addedSolutions, setAddedSolutions] = useState<Solution[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
 
@@ -49,7 +54,9 @@ export function BlankStepPage({
     const endPage = (formData.endPage || "0").trim();
     if (editingId) {
       setAddedSolutions((prev) =>
-        prev.map((s) => (s.id === editingId ? { ...s, title, startPage, endPage } : s))
+        prev.map((s) =>
+          s.id === editingId ? { ...s, title, startPage, endPage } : s,
+        ),
       );
     } else {
       setAddedSolutions((prev) => [
@@ -168,7 +175,9 @@ export function BlankStepPage({
                 <div
                   className={cn(
                     "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] min-h-[220px] p-[20px] px-[40px] pb-[43px] cursor-pointer mb-[-3px]",
-                    pdfDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
+                    pdfDrag
+                      ? "border-promag-primary bg-promag-primary/5"
+                      : "border-black/50",
                   )}
                   onClick={() => pdfInputRef.current?.click()}
                   onDragOver={(e) => {
@@ -270,7 +279,9 @@ export function BlankStepPage({
                 <div
                   className={cn(
                     "flex flex-col justify-center items-center gap-6 self-stretch border-2 border-dashed rounded-[10px] min-h-[220px] p-[20px] px-[40px] cursor-pointer",
-                    coverDrag ? "border-promag-primary bg-promag-primary/5" : "border-black/50",
+                    coverDrag
+                      ? "border-promag-primary bg-promag-primary/5"
+                      : "border-black/50",
                   )}
                   onClick={() => coverInputRef.current?.click()}
                   onDragOver={(e) => {
@@ -369,7 +380,10 @@ export function BlankStepPage({
           {/* Checkboxes and Options */}
           <div className="flex flex-col items-start gap-3 mt-6">
             <div className="flex flex-col w-full gap-2">
-              <label htmlFor="import-enrichments" className="flex items-center gap-2">
+              <label
+                htmlFor="import-enrichments"
+                className="flex items-center gap-2"
+              >
                 <input
                   id="import-enrichments"
                   type="checkbox"
@@ -378,7 +392,8 @@ export function BlankStepPage({
                   onChange={(e) => setImportEnrichments(e.target.checked)}
                 />
                 <span className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Import native enrichments (old enrichments will be deleted if present)
+                  Import native enrichments (old enrichments will be deleted if
+                  present)
                 </span>
               </label>
             </div>
@@ -399,21 +414,28 @@ export function BlankStepPage({
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Upload your PDF file here to convert it into a digital publication. It may take a while for the process to complete. You can learn more about its status under My Publications.
+                  Upload your PDF file here to convert it into a digital
+                  publication. It may take a while for the process to complete.
+                  You can learn more about its status under My Publications.
                 </div>
               </div>
             </div>
             <div className="flex justify-center items-center w-full max-w-[520px]">
               <ul className="list-disc pl-5 text-promag-body font-inter text-sm font-medium leading-6 space-y-1">
-                <li>Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.</li>
+                <li>
+                  Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.
+                </li>
                 <li>Do not simulate a double-page spread on one page.</li>
-                <li>Get the best results by making every page the same size.</li>
+                <li>
+                  Get the best results by making every page the same size.
+                </li>
               </ul>
             </div>
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-error font-inter text-sm font-bold">
-                  Note: Don't use Promag to upload documents you do not have permission or own the copyright too.
+                  Note: Don't use Promag to upload documents you do not have
+                  permission or own the copyright too.
                 </div>
               </div>
             </div>
@@ -449,18 +471,42 @@ export function BlankStepPage({
             </button>
             <button
               type="button"
-              onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+              onClick={() => {
+                setEditingId(null);
+                setFormData({ title: "", startPage: "", endPage: "" });
+                setShowAddModal(true);
+              }}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 4V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                className="w-4 h-4"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 4V12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M4 8H12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               Add
             </button>
           </div>
           {/* Tree Structure */}
-          <div key={treeRefresh} className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5">
+          <div
+            key={treeRefresh}
+            className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5"
+          >
             {/* Main tree element */}
             <div className="flex items-center gap-1 self-stretch bg-white p-1">
               {/* Caret */}
@@ -492,7 +538,11 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Add icon */}
                   <button
-                    onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+                    onClick={() => {
+                      setEditingId(null);
+                      setFormData({ title: "", startPage: "", endPage: "" });
+                      setShowAddModal(true);
+                    }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
@@ -627,7 +677,11 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Same action icons as parent */}
                   <button
-                    onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
+                    onClick={() => {
+                      setEditingId(null);
+                      setFormData({ title: "", startPage: "", endPage: "" });
+                      setShowAddModal(true);
+                    }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
@@ -708,15 +762,25 @@ export function BlankStepPage({
                 </div>
               </div>
             </div>
-
           </div>
 
           {addedSolutions.map((s) => (
-            <div key={s.id} className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5">
+            <div
+              key={s.id}
+              className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5"
+            >
               <div className="flex items-center gap-1 self-stretch bg-white p-1">
                 <div className="flex h-6 flex-col justify-center items-center">
-                  <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4.66602 6.66675L7.99935 10.0001L11.3327 6.66675H4.66602Z" fill="#707070" />
+                  <svg
+                    className="w-4 h-4 flex-shrink-0"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.66602 6.66675L7.99935 10.0001L11.3327 6.66675H4.66602Z"
+                      fill="#707070"
+                    />
                   </svg>
                 </div>
                 <div className="h-6 flex-1 rounded-[5px] relative">
@@ -729,27 +793,119 @@ export function BlankStepPage({
                 <div className="flex p-1 justify-center items-center">
                   <div className="flex items-center gap-1.5">
                     {/* Add icon */}
-                    <button onClick={() => { setEditingId(null); setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }} className="w-3.5 h-3.5 hover:opacity-70">
-                      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.7695 5.76953H8.23047V1.23047C8.23047 0.550894 7.67957 0 7 0C6.32043 0 5.76953 0.550894 5.76953 1.23047V5.76953H1.23047C0.550894 5.76953 0 6.32043 0 7C0 7.67957 0.550894 8.23047 1.23047 8.23047H5.76953V12.7695C5.76953 13.4491 6.32043 14 7 14C7.67957 14 8.23047 13.4491 8.23047 12.7695V8.23047H12.7695C13.4491 8.23047 14 7.67957 14 7C14 6.32043 13.4491 5.76953 12.7695 5.76953Z" fill="#7E7E7E"/></svg>
+                    <button
+                      onClick={() => {
+                        setEditingId(null);
+                        setFormData({ title: "", startPage: "", endPage: "" });
+                        setShowAddModal(true);
+                      }}
+                      className="w-3.5 h-3.5 hover:opacity-70"
+                    >
+                      <svg
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.7695 5.76953H8.23047V1.23047C8.23047 0.550894 7.67957 0 7 0C6.32043 0 5.76953 0.550894 5.76953 1.23047V5.76953H1.23047C0.550894 5.76953 0 6.32043 0 7C0 7.67957 0.550894 8.23047 1.23047 8.23047H5.76953V12.7695C5.76953 13.4491 6.32043 14 7 14C7.67957 14 8.23047 13.4491 8.23047 12.7695V8.23047H12.7695C13.4491 8.23047 14 7.67957 14 7C14 6.32043 13.4491 5.76953 12.7695 5.76953Z"
+                          fill="#7E7E7E"
+                        />
+                      </svg>
                     </button>
                     {/* Edit icon */}
-                    <button onClick={() => { setEditingId(s.id); setFormData({ title: s.title, startPage: s.startPage, endPage: s.endPage }); setShowAddModal(true); }} className="w-3.5 h-3.5 hover:opacity-70">
-                      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.666 5.01677L6.77768 9.9051C6.60852 10.0743 6.38685 10.1793 6.14768 10.2026L4.43852 10.3601C4.43852 10.3601 4.39185 10.3601 4.37435 10.3601C4.18185 10.3601 3.99518 10.2843 3.86102 10.1443C3.70935 9.9926 3.63352 9.77677 3.65102 9.56093L3.80852 7.85177C3.83185 7.6126 3.93685 7.39093 4.10602 7.22177L8.98268 2.33343L11.666 5.01677ZM12.7977 1.61593L12.3835 1.20177C11.7593 0.577601 10.7385 0.577601 10.1143 1.20177L9.60102 1.7151L12.2843 4.39843L12.7977 3.8851C13.101 3.58177 13.2702 3.17927 13.2702 2.75343C13.2702 2.3276 13.101 1.91927 12.7977 1.62177V1.61593ZM12.1035 11.0893V7.7001C12.1035 7.46093 11.9052 7.2626 11.666 7.2626C11.4268 7.2626 11.2285 7.46093 11.2285 7.7001V11.0893C11.2285 11.8126 10.6393 12.4018 9.91602 12.4018H2.91602C2.19268 12.4018 1.60352 11.8126 1.60352 11.0893V4.08343C1.60352 3.3601 2.19268 2.77093 2.91602 2.77093H6.30518C6.54435 2.77093 6.74268 2.5726 6.74268 2.33343C6.74268 2.09427 6.54435 1.89593 6.30518 1.89593H2.91602C1.70852 1.89593 0.728516 2.87593 0.728516 4.08343V11.0834C0.728516 12.2909 1.70852 13.2709 2.91602 13.2709H9.91602C11.1235 13.2709 12.1035 12.2909 12.1035 11.0834V11.0893Z" fill="#7E7E7E"/></svg>
+                    <button
+                      onClick={() => {
+                        setEditingId(s.id);
+                        setFormData({
+                          title: s.title,
+                          startPage: s.startPage,
+                          endPage: s.endPage,
+                        });
+                        setShowAddModal(true);
+                      }}
+                      className="w-3.5 h-3.5 hover:opacity-70"
+                    >
+                      <svg
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11.666 5.01677L6.77768 9.9051C6.60852 10.0743 6.38685 10.1793 6.14768 10.2026L4.43852 10.3601C4.43852 10.3601 4.39185 10.3601 4.37435 10.3601C4.18185 10.3601 3.99518 10.2843 3.86102 10.1443C3.70935 9.9926 3.63352 9.77677 3.65102 9.56093L3.80852 7.85177C3.83185 7.6126 3.93685 7.39093 4.10602 7.22177L8.98268 2.33343L11.666 5.01677ZM12.7977 1.61593L12.3835 1.20177C11.7593 0.577601 10.7385 0.577601 10.1143 1.20177L9.60102 1.7151L12.2843 4.39843L12.7977 3.8851C13.101 3.58177 13.2702 3.17927 13.2702 2.75343C13.2702 2.3276 13.101 1.91927 12.7977 1.62177V1.61593ZM12.1035 11.0893V7.7001C12.1035 7.46093 11.9052 7.2626 11.666 7.2626C11.4268 7.2626 11.2285 7.46093 11.2285 7.7001V11.0893C11.2285 11.8126 10.6393 12.4018 9.91602 12.4018H2.91602C2.19268 12.4018 1.60352 11.8126 1.60352 11.0893V4.08343C1.60352 3.3601 2.19268 2.77093 2.91602 2.77093H6.30518C6.54435 2.77093 6.74268 2.5726 6.74268 2.33343C6.74268 2.09427 6.54435 1.89593 6.30518 1.89593H2.91602C1.70852 1.89593 0.728516 2.87593 0.728516 4.08343V11.0834C0.728516 12.2909 1.70852 13.2709 2.91602 13.2709H9.91602C11.1235 13.2709 12.1035 12.2909 12.1035 11.0834V11.0893Z"
+                          fill="#7E7E7E"
+                        />
+                      </svg>
                     </button>
                     {/* Delete icon */}
-                    <button onClick={() => { if (confirm('Delete this solution?')) setAddedSolutions((prev) => prev.filter((x) => x.id !== s.id)); }} className="w-3.5 h-3.5 hover:opacity-70">
-                      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.084 4.08325C10.9293 4.08325 10.7809 4.14471 10.6715 4.25411C10.5621 4.3635 10.5007 4.51188 10.5007 4.66659V11.1947C10.4839 11.4897 10.3513 11.7661 10.1317 11.9637C9.91208 12.1614 9.62326 12.2642 9.32815 12.2499H4.67315C4.37804 12.2642 4.08922 12.1614 3.86961 11.9637C3.65 11.7661 3.51738 11.4897 3.50065 11.1947V4.66659C3.50065 4.51188 3.43919 4.3635 3.3298 4.25411C3.2204 4.14471 3.07203 4.08325 2.91732 4.08325C2.76261 4.08325 2.61424 4.14471 2.50484 4.25411C2.39544 4.3635 2.33398 4.51188 2.33398 4.66659V11.1947C2.35064 11.7991 2.60616 12.3724 3.04459 12.7888C3.48302 13.2053 4.06863 13.431 4.67315 13.4166H9.32815C9.93268 13.431 10.5183 13.2053 10.9567 12.7888C11.3951 12.3724 11.6507 11.7991 11.6673 11.1947V4.66659C11.6673 4.51188 11.6059 4.3635 11.4965 4.25411C11.3871 4.14471 11.2387 4.08325 11.084 4.08325Z" fill="#7E7E7E"/><path d="M11.6667 2.33325H9.33333V1.16659C9.33333 1.01188 9.27187 0.863503 9.16248 0.754106C9.05308 0.64471 8.90471 0.583252 8.75 0.583252H5.25C5.09529 0.583252 4.94692 0.64471 4.83752 0.754106C4.72812 0.863503 4.66667 1.01188 4.66667 1.16659V2.33325H2.33333C2.17862 2.33325 2.03025 2.39471 1.92085 2.50411C1.81146 2.6135 1.75 2.76188 1.75 2.91659C1.75 3.0713 1.81146 3.21967 1.92085 3.32906C2.03025 3.43846 2.17862 3.49992 2.33333 3.49992H11.6667C11.8214 3.49992 11.9697 3.43846 12.0791 3.32906C12.1885 3.21967 12.25 3.0713 12.25 2.91659C12.25 2.76188 12.1885 2.6135 12.0791 2.50411C11.9697 2.39471 11.8214 2.33325 11.6667 2.33325ZM5.83333 2.33325V1.74992H8.16667V2.33325H5.83333Z" fill="#7E7E7E"/><path d="M6.41667 9.91667V5.83333C6.41667 5.67862 6.35521 5.53025 6.24581 5.42085C6.13642 5.31146 5.98804 5.25 5.83333 5.25C5.67862 5.25 5.53025 5.31146 5.42085 5.42085C5.31146 5.53025 5.25 5.67862 5.25 5.83333V9.91667C5.25 10.0714 5.31146 10.2197 5.42085 10.3291C5.53025 10.4385 5.67862 10.5 5.83333 10.5C5.98804 10.5 6.13642 10.4385 6.24581 10.3291C6.35521 10.2197 6.41667 10.0714 6.41667 9.91667Z" fill="#7E7E7E"/><path d="M8.75065 9.91667V5.83333C8.75065 5.67862 8.68919 5.53025 8.5798 5.42085C8.4704 5.31146 8.32203 5.25 8.16732 5.25C8.01261 5.25 7.86424 5.31146 7.75484 5.42085C7.64544 5.53025 7.58398 5.67862 7.58398 5.83333V9.91667C7.58398 10.0714 7.64544 10.2197 7.75484 10.3291C7.86424 10.4385 8.01261 10.5 8.16732 10.5C8.32203 10.5 8.4704 10.4385 8.5798 10.3291C8.68919 10.2197 8.75065 10.0714 8.75065 9.91667Z" fill="#7E7E7E"/></svg>
+                    <button
+                      onClick={() => {
+                        if (confirm("Delete this solution?"))
+                          setAddedSolutions((prev) =>
+                            prev.filter((x) => x.id !== s.id),
+                          );
+                      }}
+                      className="w-3.5 h-3.5 hover:opacity-70"
+                    >
+                      <svg
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11.084 4.08325C10.9293 4.08325 10.7809 4.14471 10.6715 4.25411C10.5621 4.3635 10.5007 4.51188 10.5007 4.66659V11.1947C10.4839 11.4897 10.3513 11.7661 10.1317 11.9637C9.91208 12.1614 9.62326 12.2642 9.32815 12.2499H4.67315C4.37804 12.2642 4.08922 12.1614 3.86961 11.9637C3.65 11.7661 3.51738 11.4897 3.50065 11.1947V4.66659C3.50065 4.51188 3.43919 4.3635 3.3298 4.25411C3.2204 4.14471 3.07203 4.08325 2.91732 4.08325C2.76261 4.08325 2.61424 4.14471 2.50484 4.25411C2.39544 4.3635 2.33398 4.51188 2.33398 4.66659V11.1947C2.35064 11.7991 2.60616 12.3724 3.04459 12.7888C3.48302 13.2053 4.06863 13.431 4.67315 13.4166H9.32815C9.93268 13.431 10.5183 13.2053 10.9567 12.7888C11.3951 12.3724 11.6507 11.7991 11.6673 11.1947V4.66659C11.6673 4.51188 11.6059 4.3635 11.4965 4.25411C11.3871 4.14471 11.2387 4.08325 11.084 4.08325Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M11.6667 2.33325H9.33333V1.16659C9.33333 1.01188 9.27187 0.863503 9.16248 0.754106C9.05308 0.64471 8.90471 0.583252 8.75 0.583252H5.25C5.09529 0.583252 4.94692 0.64471 4.83752 0.754106C4.72812 0.863503 4.66667 1.01188 4.66667 1.16659V2.33325H2.33333C2.17862 2.33325 2.03025 2.39471 1.92085 2.50411C1.81146 2.6135 1.75 2.76188 1.75 2.91659C1.75 3.0713 1.81146 3.21967 1.92085 3.32906C2.03025 3.43846 2.17862 3.49992 2.33333 3.49992H11.6667C11.8214 3.49992 11.9697 3.43846 12.0791 3.32906C12.1885 3.21967 12.25 3.0713 12.25 2.91659C12.25 2.76188 12.1885 2.6135 12.0791 2.50411C11.9697 2.39471 11.8214 2.33325 11.6667 2.33325ZM5.83333 2.33325V1.74992H8.16667V2.33325H5.83333Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M6.41667 9.91667V5.83333C6.41667 5.67862 6.35521 5.53025 6.24581 5.42085C6.13642 5.31146 5.98804 5.25 5.83333 5.25C5.67862 5.25 5.53025 5.31146 5.42085 5.42085C5.31146 5.53025 5.25 5.67862 5.25 5.83333V9.91667C5.25 10.0714 5.31146 10.2197 5.42085 10.3291C5.53025 10.4385 5.67862 10.5 5.83333 10.5C5.98804 10.5 6.13642 10.4385 6.24581 10.3291C6.35521 10.2197 6.41667 10.0714 6.41667 9.91667Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M8.75065 9.91667V5.83333C8.75065 5.67862 8.68919 5.53025 8.5798 5.42085C8.4704 5.31146 8.32203 5.25 8.16732 5.25C8.01261 5.25 7.86424 5.31146 7.75484 5.42085C7.64544 5.53025 7.58398 5.67862 7.58398 5.83333V9.91667C7.58398 10.0714 7.64544 10.2197 7.75484 10.3291C7.86424 10.4385 8.01261 10.5 8.16732 10.5C8.32203 10.5 8.4704 10.4385 8.5798 10.3291C8.68919 10.2197 8.75065 10.0714 8.75065 9.91667Z"
+                          fill="#7E7E7E"
+                        />
+                      </svg>
                     </button>
                     {/* Move icon */}
-                    <button onClick={() => moveSolution(s.id, "down")} className="w-3.5 h-3.5 hover:opacity-70">
-                      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.94545 1.79199L7.26821 0.114749C7.19218 0.0387178 7.09077 -0.000208315 6.98594 1.93231e-05C6.87918 -0.00100505 6.77549 0.0387178 6.69946 0.114749L5.05682 1.75739C4.90294 1.91127 4.90294 2.16144 5.05682 2.31521L5.26864 2.52703C5.41717 2.67556 5.67645 2.67556 5.8251 2.52703L6.45395 1.89681V4.21269C6.45395 4.21975 6.45804 4.22555 6.4593 4.23215C6.47637 4.43395 6.64562 4.59364 6.85197 4.59364H7.15132C7.36883 4.59364 7.54763 4.417 7.54763 4.19949V3.94089C7.54763 3.93975 7.54763 3.93896 7.54763 3.93804V1.93119L8.17671 2.56152C8.3306 2.7154 8.5802 2.7154 8.73397 2.56152L8.94545 2.34993C9.09933 2.19593 9.09933 1.94564 8.94545 1.79199Z" fill="#7E7E7E"/><path d="M8.94341 11.6504L8.7317 11.4383C8.58317 11.2895 8.32378 11.2895 8.17502 11.4383L7.54594 12.0686V10.0706C7.54594 10.0695 7.54594 10.0688 7.54594 10.0678V9.80917C7.54594 9.59155 7.36701 9.40625 7.14973 9.40625H6.85016C6.64404 9.40625 6.47479 9.57004 6.4576 9.77206C6.45635 9.77878 6.45225 9.78902 6.45225 9.79597V12.1032L5.8234 11.473C5.67475 11.3243 5.4149 11.3243 5.26626 11.473L5.05455 11.6848C4.9009 11.8386 4.90112 12.0889 5.05501 12.2427L6.69776 13.8853C6.77185 13.9596 6.87076 14 6.97286 14H6.98766C7.09339 14 7.19207 13.9597 7.26628 13.8853L8.94341 12.2081C9.09729 12.0544 9.09729 11.8042 8.94341 11.6504Z" fill="#7E7E7E"/><path d="M4.18983 6.45301H4.15614H3.92999C3.92919 6.45301 3.92839 6.45301 3.92748 6.45301H1.93906L2.56939 5.82609C2.64372 5.75188 2.68458 5.65445 2.68458 5.54894C2.68458 5.44332 2.64372 5.34509 2.56939 5.271L2.35757 5.05963C2.20369 4.90575 1.9534 4.90598 1.79975 5.05986L0.12251 6.73699C0.046479 6.8129 0.00584562 6.91477 0.00789436 7.01926C0.0057318 7.12795 0.046479 7.22971 0.12251 7.30574L1.76515 8.94849C1.84209 9.02543 1.94305 9.0639 2.04412 9.0639C2.14519 9.0639 2.24615 9.02543 2.32309 8.94849L2.53479 8.73679C2.60912 8.66258 2.65009 8.56344 2.65009 8.45793C2.65009 8.35231 2.60923 8.25215 2.53479 8.17805L1.90469 7.54681H4.20179C4.20873 7.54681 4.22011 7.5451 4.22671 7.54385C4.42863 7.52678 4.59355 7.3598 4.59355 7.15356V6.85376C4.59355 6.63648 4.40734 6.45301 4.18983 6.45301Z" fill="#7E7E7E"/><path d="M13.8772 6.737L12.1999 5.05999C12.0462 4.90611 11.7959 4.90611 11.6421 5.05999L11.4305 5.27181C11.3562 5.34591 11.3152 5.44504 11.3152 5.55055C11.3152 5.65618 11.3561 5.75178 11.4305 5.82599L12.0607 6.45291H10.0596C10.0585 6.45291 10.0577 6.45291 10.0568 6.45291H9.79836C9.58085 6.45291 9.40625 6.63627 9.40625 6.85367V7.15347C9.40625 7.35971 9.56457 7.52645 9.7666 7.54364C9.77332 7.545 9.77821 7.54671 9.78504 7.54671H12.0952L11.4648 8.17784C11.3906 8.25193 11.3496 8.35187 11.3496 8.45715C11.3496 8.56289 11.3905 8.66225 11.4648 8.73646L11.6767 8.94828C11.7535 9.02522 11.8545 9.06381 11.9556 9.06381C12.0566 9.06381 12.1575 9.02533 12.2344 8.94839L13.8773 7.30564C13.9531 7.22984 13.9937 7.12797 13.9919 7.02337C13.9936 6.91467 13.953 6.81281 13.8772 6.737Z" fill="#7E7E7E"/><path d="M7.00051 5.90552C6.39715 5.90552 5.90625 6.39642 5.90625 6.99989C5.90625 7.60324 6.39715 8.09426 7.00051 8.09426C7.60386 8.09426 8.09488 7.60324 8.09488 6.99989C8.09488 6.39642 7.60386 5.90552 7.00051 5.90552Z" fill="#7E7E7E"/></svg>
+                    <button
+                      onClick={() => moveSolution(s.id, "down")}
+                      className="w-3.5 h-3.5 hover:opacity-70"
+                    >
+                      <svg
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.94545 1.79199L7.26821 0.114749C7.19218 0.0387178 7.09077 -0.000208315 6.98594 1.93231e-05C6.87918 -0.00100505 6.77549 0.0387178 6.69946 0.114749L5.05682 1.75739C4.90294 1.91127 4.90294 2.16144 5.05682 2.31521L5.26864 2.52703C5.41717 2.67556 5.67645 2.67556 5.8251 2.52703L6.45395 1.89681V4.21269C6.45395 4.21975 6.45804 4.22555 6.4593 4.23215C6.47637 4.43395 6.64562 4.59364 6.85197 4.59364H7.15132C7.36883 4.59364 7.54763 4.417 7.54763 4.19949V3.94089C7.54763 3.93975 7.54763 3.93896 7.54763 3.93804V1.93119L8.17671 2.56152C8.3306 2.7154 8.5802 2.7154 8.73397 2.56152L8.94545 2.34993C9.09933 2.19593 9.09933 1.94564 8.94545 1.79199Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M8.94341 11.6504L8.7317 11.4383C8.58317 11.2895 8.32378 11.2895 8.17502 11.4383L7.54594 12.0686V10.0706C7.54594 10.0695 7.54594 10.0688 7.54594 10.0678V9.80917C7.54594 9.59155 7.36701 9.40625 7.14973 9.40625H6.85016C6.64404 9.40625 6.47479 9.57004 6.4576 9.77206C6.45635 9.77878 6.45225 9.78902 6.45225 9.79597V12.1032L5.8234 11.473C5.67475 11.3243 5.4149 11.3243 5.26626 11.473L5.05455 11.6848C4.9009 11.8386 4.90112 12.0889 5.05501 12.2427L6.69776 13.8853C6.77185 13.9596 6.87076 14 6.97286 14H6.98766C7.09339 14 7.19207 13.9597 7.26628 13.8853L8.94341 12.2081C9.09729 12.0544 9.09729 11.8042 8.94341 11.6504Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M4.18983 6.45301H4.15614H3.92999C3.92919 6.45301 3.92839 6.45301 3.92748 6.45301H1.93906L2.56939 5.82609C2.64372 5.75188 2.68458 5.65445 2.68458 5.54894C2.68458 5.44332 2.64372 5.34509 2.56939 5.271L2.35757 5.05963C2.20369 4.90575 1.9534 4.90598 1.79975 5.05986L0.12251 6.73699C0.046479 6.8129 0.00584562 6.91477 0.00789436 7.01926C0.0057318 7.12795 0.046479 7.22971 0.12251 7.30574L1.76515 8.94849C1.84209 9.02543 1.94305 9.0639 2.04412 9.0639C2.14519 9.0639 2.24615 9.02543 2.32309 8.94849L2.53479 8.73679C2.60912 8.66258 2.65009 8.56344 2.65009 8.45793C2.65009 8.35231 2.60923 8.25215 2.53479 8.17805L1.90469 7.54681H4.20179C4.20873 7.54681 4.22011 7.5451 4.22671 7.54385C4.42863 7.52678 4.59355 7.3598 4.59355 7.15356V6.85376C4.59355 6.63648 4.40734 6.45301 4.18983 6.45301Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M13.8772 6.737L12.1999 5.05999C12.0462 4.90611 11.7959 4.90611 11.6421 5.05999L11.4305 5.27181C11.3562 5.34591 11.3152 5.44504 11.3152 5.55055C11.3152 5.65618 11.3561 5.75178 11.4305 5.82599L12.0607 6.45291H10.0596C10.0585 6.45291 10.0577 6.45291 10.0568 6.45291H9.79836C9.58085 6.45291 9.40625 6.63627 9.40625 6.85367V7.15347C9.40625 7.35971 9.56457 7.52645 9.7666 7.54364C9.77332 7.545 9.77821 7.54671 9.78504 7.54671H12.0952L11.4648 8.17784C11.3906 8.25193 11.3496 8.35187 11.3496 8.45715C11.3496 8.56289 11.3905 8.66225 11.4648 8.73646L11.6767 8.94828C11.7535 9.02522 11.8545 9.06381 11.9556 9.06381C12.0566 9.06381 12.1575 9.02533 12.2344 8.94839L13.8773 7.30564C13.9531 7.22984 13.9937 7.12797 13.9919 7.02337C13.9936 6.91467 13.953 6.81281 13.8772 6.737Z"
+                          fill="#7E7E7E"
+                        />
+                        <path
+                          d="M7.00051 5.90552C6.39715 5.90552 5.90625 6.39642 5.90625 6.99989C5.90625 7.60324 6.39715 8.09426 7.00051 8.09426C7.60386 8.09426 8.09488 7.60324 8.09488 6.99989C8.09488 6.39642 7.60386 5.90552 7.00051 5.90552Z"
+                          fill="#7E7E7E"
+                        />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-
 
           <div className="flex justify-end items-center gap-2.5 pt-2.5">
             <button
@@ -778,7 +934,10 @@ export function BlankStepPage({
                     {editingId ? "Edit Solution" : "Add Solution"}
                   </div>
                   <button
-                    onClick={() => { setShowAddModal(false); setEditingId(null); }}
+                    onClick={() => {
+                      setShowAddModal(false);
+                      setEditingId(null);
+                    }}
                     className="w-4 h-4 text-[#FF5656] hover:opacity-70"
                   >
                     <svg
@@ -849,7 +1008,7 @@ export function BlankStepPage({
                             })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                            placeholder="Add End Page"
+                          placeholder="Add End Page"
                         />
                       </div>
                     </div>
@@ -859,7 +1018,10 @@ export function BlankStepPage({
                 {/* Modal Footer */}
                 <div className="flex h-[60px] px-[30px] justify-end items-center gap-5 rounded-b-[10px] w-full">
                   <button
-                    onClick={() => { setShowAddModal(false); setEditingId(null); }}
+                    onClick={() => {
+                      setShowAddModal(false);
+                      setEditingId(null);
+                    }}
                     className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded-[5px] bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
                   >
                     Cancel
