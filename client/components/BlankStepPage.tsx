@@ -516,9 +516,9 @@ export function BlankStepPage({
 
                   {!coverFile ? (
                     <div className="flex flex-col items-center gap-6">
-                      <div className="flex p-[10px] flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px]">
+                      <div className={`flex p-[10px] flex-col items-start gap-2.5 border-[3px] border-black rounded-[10px] ${coverDrag ? 'animate-pulse' : ''}`}>
                         <svg
-                          className="flex h-11 flex-col justify-center items-center gap-2.5"
+                          className={`flex h-11 flex-col justify-center items-center gap-2.5 ${coverDrag ? 'translate-y-1 transition-transform duration-200' : ''}`}
                           width="48"
                           height="44"
                           viewBox="0 0 48 44"
