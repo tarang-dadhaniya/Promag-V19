@@ -251,27 +251,66 @@ export default function Index() {
 
       // Load publications
       const publicationsRaw = localStorage.getItem(PUBLICATIONS_STORAGE_KEY);
+      const uploadRaw = localStorage.getItem(STORAGE_KEY);
+      let savedUpload: any = null;
+
+      if (uploadRaw) {
+        try {
+          savedUpload = JSON.parse(uploadRaw);
+        } catch {}
+      }
+
       if (publicationsRaw) {
-        const savedPublications = JSON.parse(publicationsRaw);
-        setPublications(
-          savedPublications.map((p: any) => ({
-            ...p,
-            createdAt: new Date(p.createdAt),
-          })),
-        );
+        try {
+          const savedPublications = JSON.parse(publicationsRaw);
+          const enriched = savedPublications.map((p: any) => {
+            // normalize createdAt
+            const base = { ...p, createdAt: new Date(p.createdAt) };
+
+            // If publication is missing certain metadata but matches the last saved upload (by title), merge it
+            if (
+              savedUpload &&
+              savedUpload.issueData &&
+              savedUpload.issueData.name &&
+              base.title === savedUpload.issueData.name
+            ) {
+              const authorData = savedUpload.authorData || {};
+              return {
+                ...base,
+                author: base.author ?? authorData.author,
+                editor: base.editor ?? authorData.editor,
+                language: base.language ?? authorData.language,
+                releaseDate: base.releaseDate ?? authorData.releaseDate,
+                isbnIssn: base.isbnIssn ?? authorData.isbnIssn,
+                indexOffset: base.indexOffset ?? authorData.indexOffset,
+                documentPrintAllowed: base.documentPrintAllowed ?? !!authorData.documentPrintAllowed,
+                previewPages: base.previewPages ?? authorData.previewPages,
+                orientation: base.orientation ?? authorData.orientation,
+                presentation: base.presentation ?? !!authorData.presentation,
+              };
+            }
+
+            return base;
+          });
+
+          setPublications(enriched);
+        } catch (e) {
+          console.warn('Failed parsing publications', e);
+        }
       }
 
       // Load upload flow data only if in upload mode
-      const uploadRaw = localStorage.getItem(STORAGE_KEY);
       if (uploadRaw) {
-        const saved = JSON.parse(uploadRaw);
-        if (saved.currentStep) setCurrentStep(saved.currentStep);
-        if (saved.uploadedFile)
-          setUploadedFile({ ...saved.uploadedFile, file: null });
-        if (saved.issueData) setIssueData(saved.issueData);
-        if (saved.authorData) setAuthorData(saved.authorData);
-        if (saved.validation) setValidation(saved.validation);
-        // Do not restore currentView or selectedCollection on load to land on Collections screen
+        const saved = savedUpload;
+        if (saved) {
+          if (saved.currentStep) setCurrentStep(saved.currentStep);
+          if (saved.uploadedFile)
+            setUploadedFile({ ...saved.uploadedFile, file: null });
+          if (saved.issueData) setIssueData(saved.issueData);
+          if (saved.authorData) setAuthorData(saved.authorData);
+          if (saved.validation) setValidation(saved.validation);
+          // Do not restore currentView or selectedCollection on load to land on Collections screen
+        }
       }
     } catch (e) {
       console.warn("Failed to load saved data", e);
