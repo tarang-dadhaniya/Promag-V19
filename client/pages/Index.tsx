@@ -165,6 +165,32 @@ export default function Index() {
     setCurrentView("upload");
   };
 
+  const handleOpenPublicationDetails = (publication: Publication) => {
+    // Open the full screen details form (not a dialog)
+    setEditingPublication(publication);
+    const collection =
+      collections.find((c) => c.id === publication.collectionId) || null;
+    if (collection) setSelectedCollection(collection);
+    setCurrentView("publication-details");
+  };
+
+  const handleSaveFromDetails = (data: any) => {
+    if (!editingPublication) return;
+    const updated: Publication = {
+      ...editingPublication,
+      title: data.name || editingPublication.title,
+      category: data.topicsCategory || editingPublication.category,
+      edition: data.edition || editingPublication.edition,
+      teaser: data.teaser || editingPublication.teaser,
+      description: data.description || editingPublication.description,
+      status: data.status || editingPublication.status,
+    };
+
+    setPublications((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+    setEditingPublication(null);
+    setCurrentView("publication-list");
+  };
+
   const handleSavePublication = (updatedPublication: Publication) => {
     setPublications((prev) =>
       prev.map((p) =>
