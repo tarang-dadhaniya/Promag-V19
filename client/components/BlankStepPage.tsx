@@ -46,6 +46,12 @@ export function BlankStepPage({
     });
   };
 
+  const handleKeywordsSave = () => {
+    // Handle saving keywords (you can extend this logic)
+    console.log("Saving keywords:", keywordsData);
+    // You can add additional logic here like API calls or form validation
+  };
+
   const steps = [1, 2, 3, 4].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
