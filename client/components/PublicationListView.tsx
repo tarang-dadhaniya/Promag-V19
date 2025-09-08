@@ -26,6 +26,10 @@ interface Publication {
   createdAt: Date;
   collectionId: string;
   status?: "draft" | "published" | "pending";
+  category?: string;
+  description?: string;
+  edition?: string;
+  teaser?: string;
 }
 
 interface PublicationListViewProps {
