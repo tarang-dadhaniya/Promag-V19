@@ -625,7 +625,6 @@ export function BlankStepPage({
           </div>
           {/* Tree Structure */}
           <div
-            key={treeRefresh}
             className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5"
           >
             {/* Main tree element */}
