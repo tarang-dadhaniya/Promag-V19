@@ -97,6 +97,11 @@ export function PDFUpload({ onFileUpload, className, initialFile }: PDFUploadPro
   const [btnPulse, setBtnPulse] = useState(false);
   const [checkPulse, setCheckPulse] = useState(false);
 
+  // helpers to avoid TypeScript narrowing inside switch branches
+  const isUploading = uploadStatus === 'uploading';
+  const isDragover = uploadStatus === 'dragover';
+  const isCompleted = uploadStatus === 'completed';
+
   // Hydrate from initialFile if provided (persistence)
   useEffect(() => {
     if (initialFile && !uploadedFile) {
