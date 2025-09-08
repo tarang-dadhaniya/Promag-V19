@@ -576,6 +576,19 @@ export function BlankStepPage({
                       </div>
                     </div>
                   )}
+
+                  {/* Cover upload progress */}
+                  {coverUploading && (
+                    <div className="w-full mt-3">
+                      <div className="w-full h-2 bg-gray-200 rounded overflow-hidden">
+                        <div
+                          className="h-2 bg-promag-primary rounded"
+                          style={{ width: `${coverProgress}%` }}
+                        />
+                      </div>
+                      <div className="text-promag-body text-sm mt-2 text-right">{coverProgress}%</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
