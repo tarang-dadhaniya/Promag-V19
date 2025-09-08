@@ -37,6 +37,7 @@ interface PublicationListViewProps {
   onEditCollectionSettings?: () => void;
   onDeletePublication?: (publication: Publication) => void;
   onClonePublication?: (publication: Publication) => void;
+  onFileChanges?: (publication: Publication) => void;
 }
 
 const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
