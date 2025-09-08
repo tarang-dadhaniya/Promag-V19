@@ -47,12 +47,19 @@ export function BlankStepPage({
     const title = (formData.title || "Untitled").trim();
     const startPage = (formData.startPage || "0").trim();
     const endPage = (formData.endPage || "0").trim();
-    setAddedSolutions((prev) => [
-      ...prev,
-      { id: String(Date.now()), title, startPage, endPage },
-    ]);
+    if (editingId) {
+      setAddedSolutions((prev) =>
+        prev.map((s) => (s.id === editingId ? { ...s, title, startPage, endPage } : s))
+      );
+    } else {
+      setAddedSolutions((prev) => [
+        ...prev,
+        { id: String(Date.now()), title, startPage, endPage },
+      ]);
+    }
     setShowAddModal(false);
     setFormData({ title: "", startPage: "", endPage: "" });
+    setEditingId(null);
   };
 
   // Keywords save handler
@@ -232,7 +239,7 @@ export function BlankStepPage({
                         {pdfFile.name}
                       </div>
                       <div className="text-black/60 font-inter text-xs">
-                        PDF selected — click to change
+                        PDF selected ��� click to change
                       </div>
                     </div>
                   )}
