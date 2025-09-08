@@ -787,6 +787,12 @@ export default function Index() {
         return (
           <BlankStepPage
             currentStep={blankStep}
+            publicationName={editingPublication?.title}
+            onGoToCollections={() => {
+              setSelectedCollection(null);
+              setCurrentView("collections");
+            }}
+            onGoToPublications={() => setCurrentView("publication-list")}
             onCancel={() => setCurrentView("publication-list")}
             onPrev={() => {
               setBlankStep((prev) => {
