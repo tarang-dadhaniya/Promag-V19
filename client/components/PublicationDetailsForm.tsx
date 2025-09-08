@@ -2,9 +2,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { Stepper } from "./ui/stepper";
-import { Calendar, CalendarDay } from "lucide-react";
-import { Button } from "./ui/button";
-import { format } from "date-fns";
+import { Calendar } from "lucide-react";
 
 interface PublicationDetailsFormData {
   name: string;
