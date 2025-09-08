@@ -190,7 +190,6 @@ export default function Index() {
     setCurrentView("publication-details");
   };
 
-
   const handleSaveFromDetails = (data: any) => {
     if (!editingPublication) return;
     const updated: Publication = {
@@ -681,7 +680,6 @@ export default function Index() {
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
             onOpenPublicationDetails={handleOpenPublicationDetails}
-
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
@@ -706,7 +704,6 @@ export default function Index() {
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
             onOpenPublicationDetails={handleOpenPublicationDetails}
-
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
@@ -818,7 +815,6 @@ export default function Index() {
             className="flex-1"
           />
         );
-
 
       case "upload":
         return (

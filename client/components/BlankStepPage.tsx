@@ -12,7 +12,16 @@ interface BlankStepPageProps {
   className?: string;
 }
 
-export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, onGoToCollections, onGoToPublications, publicationName, className }: BlankStepPageProps) {
+export function BlankStepPage({
+  currentStep,
+  onCancel,
+  onPrev,
+  onSave,
+  onGoToCollections,
+  onGoToPublications,
+  publicationName,
+  className,
+}: BlankStepPageProps) {
   const steps = [1, 2, 3, 4].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
@@ -40,7 +49,9 @@ export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, onGoToCol
           Publications
         </button>
         <span className="text-promag-body/70">/</span>
-        <span className="text-black">{publicationName || "Selected Publication Name"}</span>
+        <span className="text-black">
+          {publicationName || "Selected Publication Name"}
+        </span>
       </div>
 
       {/* Stepper */}
