@@ -38,6 +38,9 @@ export function BlankStepPage({
   const [treeRefresh, setTreeRefresh] = useState(0);
   const handleReloadTree = () => setTreeRefresh((n) => n + 1);
 
+  type Solution = { id: string; title: string; startPage: string; endPage: string };
+  const [addedSolutions, setAddedSolutions] = useState<Solution[]>([]);
+
   // Add Solutions handler
   const handleAddSolution = () => {
     console.log("Adding solution:", formData);
