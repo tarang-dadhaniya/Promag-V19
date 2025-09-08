@@ -296,9 +296,17 @@ const PublicationCard = ({
 
       {/* Action Buttons */}
       <div className="flex items-start gap-5 self-stretch">
-        <div className="w-[18px] h-[18px]" title="Settings" aria-hidden="true">
-          <SettingsIcon size={18} strokeWidth={1.5} color="#722555" />
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onSettings();
+          }}
+          className="w-[18px] h-[18px] group hover:scale-110 transition-transform"
+          title="Settings"
+          aria-label="Open publication settings"
+        >
+          <SettingsIcon size={18} strokeWidth={1.5} color="#722555" className="group-hover:text-promag-primary/80" />
+        </button>
 
         {/* Edit Icon */}
         <svg
