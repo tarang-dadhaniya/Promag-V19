@@ -365,7 +365,7 @@ export function PDFUpload({ onFileUpload, className, initialFile }: PDFUploadPro
 
               <button
                 onClick={handleButtonClick}
-                disabled={uploadStatus === 'uploading'}
+                disabled={isUploading}
                 className="flex h-[38px] sm:h-[42px] px-4 sm:px-5 py-2 sm:py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-xs sm:text-sm font-medium hover:bg-promag-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed transition-transform hover:scale-[1.03] active:scale-[0.98]"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
