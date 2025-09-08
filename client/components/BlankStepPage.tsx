@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils";
 interface BlankStepPageProps {
   currentStep: 1 | 2 | 3 | 4;
   onCancel: () => void;
+  onPrev?: () => void;
   onSave: () => void;
   className?: string;
 }
 
-export function BlankStepPage({ currentStep, onCancel, onSave, className }: BlankStepPageProps) {
+export function BlankStepPage({ currentStep, onCancel, onPrev, onSave, className }: BlankStepPageProps) {
   const steps = [1, 2, 3, 4].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
@@ -35,10 +36,10 @@ export function BlankStepPage({ currentStep, onCancel, onSave, className }: Blan
       <div className="flex justify-end items-center gap-2.5">
         <button
           type="button"
-          onClick={onCancel}
+          onClick={currentStep > 1 ? onPrev : onCancel}
           className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
         >
-          Cancel
+          {currentStep > 1 ? "Previous" : "Cancel"}
         </button>
         <button
           type="button"
