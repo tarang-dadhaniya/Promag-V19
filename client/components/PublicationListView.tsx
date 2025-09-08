@@ -866,6 +866,7 @@ export function PublicationListView({
             onShare={() => handleShare(publication)}
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
+            onSettings={() => handleOpenPublicationDetails(publication)}
           />
         ))}
       </div>
