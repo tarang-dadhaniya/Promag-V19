@@ -176,6 +176,11 @@ export function BlankStepPage({
               </div>
             </div>
           </div>
+
+          <div className="flex justify-end items-center gap-2.5 pt-2.5">
+            <button type="button" onClick={currentStep > 1 ? onPrev : onCancel} className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors">Previous</button>
+            <button type="button" onClick={onSave} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Save</button>
+          </div>
         </div>
       ) : currentStep === 3 ? (
         <div className="rounded-[10px] bg-white p-5 border border-gray-200">
@@ -316,6 +321,11 @@ export function BlankStepPage({
             </button>
           </div>
 
+          <div className="flex justify-end items-center gap-2.5 pt-2.5">
+            <button type="button" onClick={currentStep > 1 ? onPrev : onCancel} className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors">Previous</button>
+            <button type="button" onClick={onSave} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Save</button>
+          </div>
+
           {/* Add Solutions Modal */}
           {showAddModal && (
             <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -429,12 +439,8 @@ export function BlankStepPage({
 
             {/* Button Box */}
             <div className="flex justify-end items-center gap-2.5 flex-1 self-stretch">
-              <button
-                onClick={handleKeywordsSave}
-                className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
-              >
-                Save
-              </button>
+              <button type="button" onClick={currentStep > 1 ? onPrev : onCancel} className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors">Previous</button>
+              <button onClick={() => { handleKeywordsSave(); onSave(); }} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Save</button>
             </div>
           </div>
         </div>
@@ -442,23 +448,27 @@ export function BlankStepPage({
         <div className="rounded-[10px] bg-white min-h-[320px] border border-gray-200" />
       )}​
 
-      {/* Footer buttons */}
-      <div className="flex justify-end items-center gap-2.5 pt-2.5">
-        <button
-          type="button"
-          onClick={currentStep > 1 ? onPrev : onCancel}
-          className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
-        >
-          {currentStep > 1 ? "Previous" : "Cancel"}
-        </button>
-        <button
-          type="button"
-          onClick={onSave}
-          className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
-        >
-          Save
-        </button>
-      </div>
+      {currentStep === 1 && (
+        <>
+          {/* Footer buttons */}
+          <div className="flex justify-end items-center gap-2.5 pt-2.5">
+            <button
+              type="button"
+              onClick={currentStep > 1 ? onPrev : onCancel}
+              className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
+            >
+              {currentStep > 1 ? "Previous" : "Cancel"}
+            </button>
+            <button
+              type="button"
+              onClick={onSave}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+            >
+              Save
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
