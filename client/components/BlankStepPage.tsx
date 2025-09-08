@@ -40,6 +40,7 @@ export function BlankStepPage({
 
   type Solution = { id: string; title: string; startPage: string; endPage: string };
   const [addedSolutions, setAddedSolutions] = useState<Solution[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   // Add Solutions handler
   const handleAddSolution = () => {
