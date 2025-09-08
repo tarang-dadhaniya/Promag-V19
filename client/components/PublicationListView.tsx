@@ -3,14 +3,7 @@ import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
-import { PublicationDetailsForm } from "./PublicationDetailsForm";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
 
 interface Collection {
   id: string;
@@ -40,6 +33,7 @@ interface PublicationListViewProps {
   onDeleteCollection?: (collectionId: string) => void;
   className?: string;
   onEditPublication?: (publication: Publication) => void;
+  onOpenPublicationDetails?: (publication: Publication) => void;
   onEditCollectionSettings?: () => void;
   onDeletePublication?: (publication: Publication) => void;
   onClonePublication?: (publication: Publication) => void;
@@ -513,13 +507,10 @@ export function PublicationListView({
   const [showShareDialog, setShowShareDialog] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showCloneConfirmation, setShowCloneConfirmation] = useState(false);
-  const [showPublicationDetailsDialog, setShowPublicationDetailsDialog] = useState(false);
   const [sharePublication, setSharePublication] = useState<Publication | null>(
     null,
   );
   const [targetPublication, setTargetPublication] =
-    useState<Publication | null>(null);
-  const [detailsPublication, setDetailsPublication] =
     useState<Publication | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -559,22 +550,7 @@ export function PublicationListView({
     setShowCloneConfirmation(true);
   };
 
-  const handleOpenPublicationDetails = (publication: Publication) => {
-    setDetailsPublication(publication);
-    setShowPublicationDetailsDialog(true);
-  };
-
-  const handlePublicationDetailsSubmit = (data: any) => {
-    console.log("Publication details submitted:", data);
-    // Here you would update the publication with the new data
-    setShowPublicationDetailsDialog(false);
-    setDetailsPublication(null);
-  };
-
-  const handlePublicationDetailsCancel = () => {
-    setShowPublicationDetailsDialog(false);
-    setDetailsPublication(null);
-  };
+  // NOTE: opening details is handled by parent via onOpenPublicationDetails prop
 
   const confirmDelete = () => {
     if (targetPublication) {
@@ -870,7 +846,7 @@ export function PublicationListView({
             onShare={() => handleShare(publication)}
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
-            onSettings={() => handleOpenPublicationDetails(publication)}
+            onSettings={() => onOpenPublicationDetails?.(publication)}
           />
         ))}
       </div>
@@ -921,47 +897,6 @@ export function PublicationListView({
         onCancel={cancelAction}
       />
 
-      {/* Publication Details Dialog */}
-      <Dialog
-        open={showPublicationDetailsDialog}
-        onOpenChange={setShowPublicationDetailsDialog}
-      >
-        <DialogContent className="max-w-[90vw] max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-promag-primary font-manrope text-base font-semibold">
-              Manage Publications
-            </DialogTitle>
-          </DialogHeader>
-          {detailsPublication && (
-            <PublicationDetailsForm
-              onSubmit={handlePublicationDetailsSubmit}
-              onCancel={handlePublicationDetailsCancel}
-              initialData={{
-                name: detailsPublication.title,
-                topicsCategory: detailsPublication.category || "",
-                collection: detailsPublication.collectionId,
-                edition: detailsPublication.edition || "",
-                teaser: detailsPublication.teaser || "",
-                description: detailsPublication.description || "",
-                author: "",
-                editor: "",
-                language: "",
-                releaseDate: "",
-                isbnIssn: "",
-                indexOffset: "0",
-                documentPrintAllowed: false,
-                status: detailsPublication.status || "draft",
-                previewPages: "",
-                orientation: "",
-                presentation: false,
-              }}
-              collectionOptions={[
-                { value: detailsPublication.collectionId, label: "Current Collection" }
-              ]}
-            />
-          )}
-        </DialogContent>
-      </Dialog>
-    </div>
+        </div>
   );
 }
