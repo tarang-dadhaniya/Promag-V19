@@ -187,6 +187,15 @@ export default function Index() {
     setCurrentView("publication-details");
   };
 
+  const handleFileChanges = (publication: Publication) => {
+    // Open the file changes form for updating files
+    setEditingPublication(publication);
+    const collection =
+      collections.find((c) => c.id === publication.collectionId) || null;
+    if (collection) setSelectedCollection(collection);
+    setCurrentView("file-changes");
+  };
+
   const handleSaveFromDetails = (data: any) => {
     if (!editingPublication) return;
     const updated: Publication = {
