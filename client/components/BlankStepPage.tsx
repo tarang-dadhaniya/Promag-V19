@@ -443,11 +443,11 @@ export function BlankStepPage({
       )}​
 
       {/* Footer buttons */}
-      <div className="flex justify-end items-center gap-2.5">
+      <div className="flex justify-end items-center gap-2.5 pt-2.5">
         <button
           type="button"
           onClick={currentStep > 1 ? onPrev : onCancel}
-          className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
+          className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
         >
           {currentStep > 1 ? "Previous" : "Cancel"}
         </button>
