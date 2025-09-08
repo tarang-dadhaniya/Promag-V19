@@ -499,10 +499,13 @@ export function PublicationListView({
   const [showShareDialog, setShowShareDialog] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showCloneConfirmation, setShowCloneConfirmation] = useState(false);
+  const [showPublicationDetailsDialog, setShowPublicationDetailsDialog] = useState(false);
   const [sharePublication, setSharePublication] = useState<Publication | null>(
     null,
   );
   const [targetPublication, setTargetPublication] =
+    useState<Publication | null>(null);
+  const [detailsPublication, setDetailsPublication] =
     useState<Publication | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
