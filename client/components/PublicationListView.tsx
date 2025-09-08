@@ -566,6 +566,7 @@ export function PublicationListView({
   onEditCollectionSettings,
   onDeletePublication,
   onClonePublication,
+  onFileChanges,
 }: PublicationListViewProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [showActionDropdown, setShowActionDropdown] = useState(false);
