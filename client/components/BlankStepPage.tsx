@@ -34,6 +34,10 @@ export function BlankStepPage({
   // State for Keywords (Step 4)
   const [keywordsData, setKeywordsData] = useState("");
 
+  // Step 2 options
+  const [importEnrichments, setImportEnrichments] = useState(false);
+  const [importToc, setImportToc] = useState(false);
+
   // Step 2: working drop zones for File and Cover Image
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [coverFile, setCoverFile] = useState<File | null>(null);
@@ -318,45 +322,51 @@ export function BlankStepPage({
           {/* Checkboxes and Options */}
           <div className="flex flex-col items-start gap-3 mt-6">
             <div className="flex flex-col w-full gap-2">
-              <div className="flex justify-center items-center gap-2 self-stretch">
-                <div className="w-[18px] h-[18px] border border-[#B4B4B4] bg-white rounded-[3px]"></div>
-                <div className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Import native enrichments (old enrichments will be deleted if
-                  present)
-                </div>
-              </div>
+              <label htmlFor="import-enrichments" className="flex items-center gap-2">
+                <input
+                  id="import-enrichments"
+                  type="checkbox"
+                  className="h-[18px] w-[18px] rounded-[3px] border border-[#B4B4B4] bg-white accent-promag-primary"
+                  checked={importEnrichments}
+                  onChange={(e) => setImportEnrichments(e.target.checked)}
+                />
+                <span className="flex-1 text-promag-body font-inter text-sm font-medium">
+                  Import native enrichments (old enrichments will be deleted if present)
+                </span>
+              </label>
             </div>
             <div className="flex flex-col w-full gap-2">
-              <div className="flex justify-center items-center gap-2 self-stretch">
-                <div className="w-[18px] h-[18px] border border-[#B4B4B4] bg-white rounded-[3px]"></div>
-                <div className="flex-1 text-promag-body font-inter text-sm font-medium">
+              <label htmlFor="import-toc" className="flex items-center gap-2">
+                <input
+                  id="import-toc"
+                  type="checkbox"
+                  className="h-[18px] w-[18px] rounded-[3px] border border-[#B4B4B4] bg-white accent-promag-primary"
+                  checked={importToc}
+                  onChange={(e) => setImportToc(e.target.checked)}
+                />
+                <span className="flex-1 text-promag-body font-inter text-sm font-medium">
                   Import table of contents (removing existing index)!
-                </div>
-              </div>
+                </span>
+              </label>
             </div>
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Upload your PDF file here to convert it into a digital
-                  publication. It may take a while for the process to complete.
-                  You can learn more about its status under My Publications.
+                  Upload your PDF file here to convert it into a digital publication. It may take a while for the process to complete. You can learn more about its status under My Publications.
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center w-full max-w-[440px]">
-              <div className="text-promag-body font-inter text-sm font-medium leading-6">
-                Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.
-                <br />
-                Do not simulate a double-page spread on one page.
-                <br />
-                Get the best results by making every page the same size.
-              </div>
+            <div className="flex justify-center items-center w-full max-w-[520px]">
+              <ul className="list-disc pl-5 text-promag-body font-inter text-sm font-medium leading-6 space-y-1">
+                <li>Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.</li>
+                <li>Do not simulate a double-page spread on one page.</li>
+                <li>Get the best results by making every page the same size.</li>
+              </ul>
             </div>
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-error font-inter text-sm font-bold">
-                  Note: Don't use Promag to upload documents you do not have
-                  permission or own the copyright too.
+                  Note: Don't use Promag to upload documents you do not have permission or own the copyright too.
                 </div>
               </div>
             </div>
