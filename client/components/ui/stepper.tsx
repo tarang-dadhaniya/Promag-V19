@@ -44,9 +44,7 @@ export function Stepper({ steps, className }: StepperProps) {
             <div
               className={cn(
                 "w-[304px] h-[3px]",
-                steps[index + 1]?.completed
-                  ? "bg-promag-primary"
-                  : "bg-[#ABB7C2]",
+                steps[index].completed ? "bg-promag-primary" : "bg-[#ABB7C2]",
               )}
             />
           )}

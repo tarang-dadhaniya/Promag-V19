@@ -15,6 +15,7 @@ import { PublicationListView } from "../components/PublicationListView";
 import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
 import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
+import { BlankStepPage } from "../components/BlankStepPage";
 import {
   Dialog,
   DialogContent,
@@ -68,7 +69,8 @@ type ViewMode =
   | "publication-list"
   | "upload"
   | "edit-publication"
-  | "publication-details";
+  | "publication-details"
+  | "blank-step";
 
 export default function Index() {
   const STORAGE_KEY = "promag:publication";
@@ -98,6 +100,9 @@ export default function Index() {
   // Edit publication state
   const [editingPublication, setEditingPublication] =
     useState<Publication | null>(null);
+
+  // Simple blank step state
+  const [blankStep, setBlankStep] = useState<1 | 2 | 3 | 4>(2);
 
   // Upload flow state (existing)
   const [currentStep, setCurrentStep] = useState<Step>("upload");
@@ -200,8 +205,10 @@ export default function Index() {
     setPublications((prev) =>
       prev.map((p) => (p.id === updated.id ? updated : p)),
     );
-    setEditingPublication(null);
-    setCurrentView("publication-list");
+    // After saving step-1 details, show blank step-2 page by default
+    setEditingPublication(updated);
+    setBlankStep(2);
+    setCurrentView("blank-step");
   };
 
   const handleSavePublication = (updatedPublication: Publication) => {
@@ -767,6 +774,46 @@ export default function Index() {
               }))}
             />
           </div>
+        );
+
+      case "blank-step":
+        if (!editingPublication || !selectedCollection) {
+          setCurrentView("publication-list");
+          return null;
+        }
+        return (
+          <BlankStepPage
+            currentStep={blankStep}
+            publicationName={editingPublication?.title}
+            onGoToCollections={() => {
+              setSelectedCollection(null);
+              setCurrentView("collections");
+            }}
+            onGoToPublications={() => setCurrentView("publication-list")}
+            onCancel={() => setCurrentView("publication-list")}
+            onPrev={() => {
+              setBlankStep((prev) => {
+                if (prev === 2) {
+                  setCurrentView("publication-details");
+                  return prev;
+                }
+                const next = (prev - 1) as 1 | 2 | 3 | 4;
+                return next;
+              });
+            }}
+            onSave={() => {
+              // simple advance logic; loops back to publications after step 4
+              setBlankStep((prev) => {
+                const next = (prev + 1) as 1 | 2 | 3 | 4;
+                if (prev === 4) {
+                  setCurrentView("publication-list");
+                  return prev;
+                }
+                return next;
+              });
+            }}
+            className="flex-1"
+          />
         );
 
       case "upload":
