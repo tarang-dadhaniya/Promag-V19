@@ -303,7 +303,12 @@ const PublicationCard = ({
           title="Settings"
           aria-label="Open publication settings"
         >
-          <SettingsIcon size={18} strokeWidth={1.5} color="#722555" className="group-hover:text-promag-primary/80" />
+          <SettingsIcon
+            size={18}
+            strokeWidth={1.5}
+            color="#722555"
+            className="group-hover:text-promag-primary/80"
+          />
         </button>
 
         {/* Edit Icon */}
@@ -897,7 +902,6 @@ export function PublicationListView({
         onConfirm={confirmClone}
         onCancel={cancelAction}
       />
-
-        </div>
+    </div>
   );
 }

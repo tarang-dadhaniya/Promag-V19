@@ -197,7 +197,9 @@ export default function Index() {
       status: data.status || editingPublication.status,
     };
 
-    setPublications((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
+    setPublications((prev) =>
+      prev.map((p) => (p.id === updated.id ? updated : p)),
+    );
     setEditingPublication(null);
     setCurrentView("publication-list");
   };
@@ -283,7 +285,9 @@ export default function Index() {
                 releaseDate: base.releaseDate ?? authorData.releaseDate,
                 isbnIssn: base.isbnIssn ?? authorData.isbnIssn,
                 indexOffset: base.indexOffset ?? authorData.indexOffset,
-                documentPrintAllowed: base.documentPrintAllowed ?? !!authorData.documentPrintAllowed,
+                documentPrintAllowed:
+                  base.documentPrintAllowed ??
+                  !!authorData.documentPrintAllowed,
                 previewPages: base.previewPages ?? authorData.previewPages,
                 orientation: base.orientation ?? authorData.orientation,
                 presentation: base.presentation ?? !!authorData.presentation,
@@ -295,7 +299,7 @@ export default function Index() {
 
           setPublications(enriched);
         } catch (e) {
-          console.warn('Failed parsing publications', e);
+          console.warn("Failed parsing publications", e);
         }
       }
 
@@ -510,10 +514,15 @@ export default function Index() {
           releaseDate: data?.releaseDate || editingPublication.releaseDate,
           isbnIssn: data?.isbnIssn || editingPublication.isbnIssn,
           indexOffset: data?.indexOffset ?? editingPublication.indexOffset,
-          documentPrintAllowed: !!(data?.documentPrintAllowed ?? editingPublication.documentPrintAllowed),
+          documentPrintAllowed: !!(
+            data?.documentPrintAllowed ??
+            editingPublication.documentPrintAllowed
+          ),
           previewPages: data?.previewPages || editingPublication.previewPages,
           orientation: data?.orientation || editingPublication.orientation,
-          presentation: !!(data?.presentation ?? editingPublication.presentation),
+          presentation: !!(
+            data?.presentation ?? editingPublication.presentation
+          ),
         };
         setPublications((prev) =>
           prev.map((p) => (p.id === updated.id ? updated : p)),
@@ -747,9 +756,15 @@ export default function Index() {
               }}
               onSubmit={handleSaveFromDetails}
               onCancel={() => setCurrentView("publication-list")}
-              onGoToCollections={() => { setSelectedCollection(null); setCurrentView("collections"); }}
+              onGoToCollections={() => {
+                setSelectedCollection(null);
+                setCurrentView("collections");
+              }}
               onGoToPublications={() => setCurrentView("publication-list")}
-              collectionOptions={collections.map((c) => ({ value: c.id, label: c.title }))}
+              collectionOptions={collections.map((c) => ({
+                value: c.id,
+                label: c.title,
+              }))}
             />
           </div>
         );

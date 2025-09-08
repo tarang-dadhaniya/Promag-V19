@@ -50,7 +50,12 @@ interface FormFieldProps {
   className?: string;
 }
 
-function FormField({ label, required = false, children, className }: FormFieldProps) {
+function FormField({
+  label,
+  required = false,
+  children,
+  className,
+}: FormFieldProps) {
   return (
     <div className={cn("flex flex-col items-start gap-2", className)}>
       <label className="self-stretch text-promag-body font-inter text-sm font-medium">
@@ -69,13 +74,20 @@ interface InputFieldProps {
   className?: string;
 }
 
-function InputField({ placeholder, value, onChange, className }: InputFieldProps) {
+function InputField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: InputFieldProps) {
   return (
-    <div className={cn(
-      "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <input
         type="text"
         placeholder={placeholder}
@@ -94,13 +106,20 @@ interface TextareaFieldProps {
   className?: string;
 }
 
-function TextareaField({ placeholder, value, onChange, className }: TextareaFieldProps) {
+function TextareaField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: TextareaFieldProps) {
   return (
-    <div className={cn(
-      "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <textarea
         placeholder={placeholder}
         value={value}
@@ -119,17 +138,26 @@ interface DatePickerFieldProps {
   className?: string;
 }
 
-function DatePickerField({ placeholder, value, onChange, className }: DatePickerFieldProps) {
+function DatePickerField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: DatePickerFieldProps) {
   return (
-    <div className={cn(
-      "flex h-[42px] px-[14px] py-2.5 justify-between items-center flex-shrink-0 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
-      <span className={cn(
-        "font-inter text-sm font-normal",
-        value ? "text-promag-body" : "text-promag-placeholder"
-      )}>
+    <div
+      className={cn(
+        "flex h-[42px] px-[14px] py-2.5 justify-between items-center flex-shrink-0 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
+      <span
+        className={cn(
+          "font-inter text-sm font-normal",
+          value ? "text-promag-body" : "text-promag-placeholder",
+        )}
+      >
         {value || placeholder}
       </span>
       <Calendar size={18} color="#212121" />
@@ -144,25 +172,45 @@ interface CheckboxFieldProps {
   className?: string;
 }
 
-function CheckboxField({ label, checked, onChange, className }: CheckboxFieldProps) {
+function CheckboxField({
+  label,
+  checked,
+  onChange,
+  className,
+}: CheckboxFieldProps) {
   return (
     <div className={cn("flex pt-[5px] items-start gap-2", className)}>
       <div
         className={cn(
           "w-[18px] h-[18px] border rounded-[3px] cursor-pointer flex items-center justify-center",
-          checked 
-            ? "border-promag-primary bg-promag-primary" 
-            : "border-[#B4B4B4] bg-white"
+          checked
+            ? "border-promag-primary bg-promag-primary"
+            : "border-[#B4B4B4] bg-white",
         )}
         onClick={() => onChange(!checked)}
       >
         {checked && (
-          <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 4.5L4.5 8L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg
+            width="12"
+            height="9"
+            viewBox="0 0 12 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 4.5L4.5 8L11 1.5"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         )}
       </div>
-      <label className="flex-1 text-promag-body font-inter text-sm font-medium cursor-pointer" onClick={() => onChange(!checked)}>
+      <label
+        className="flex-1 text-promag-body font-inter text-sm font-medium cursor-pointer"
+        onClick={() => onChange(!checked)}
+      >
         {label}
       </label>
     </div>
@@ -238,16 +286,27 @@ export function PublicationDetailsForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation for required fields
     const requiredFields = [
-      'name', 'topicsCategory', 'collection', 'description', 'author', 
-      'editor', 'language', 'releaseDate', 'isbnIssn', 'status', 
-      'previewPages', 'orientation'
+      "name",
+      "topicsCategory",
+      "collection",
+      "description",
+      "author",
+      "editor",
+      "language",
+      "releaseDate",
+      "isbnIssn",
+      "status",
+      "previewPages",
+      "orientation",
     ];
-    
+
     for (const field of requiredFields) {
-      if (!formData[field as keyof PublicationDetailsFormData]?.toString().trim()) {
+      if (
+        !formData[field as keyof PublicationDetailsFormData]?.toString().trim()
+      ) {
         alert(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`);
         return;
       }
@@ -256,16 +315,17 @@ export function PublicationDetailsForm({
     onSubmit?.(formData);
   };
 
-  const updateField = (field: keyof PublicationDetailsFormData) => (value: string | boolean) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  const updateField =
+    (field: keyof PublicationDetailsFormData) => (value: string | boolean) => {
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+    };
 
   return (
     <div className={cn("flex flex-col gap-5", className)}>
-          {/* Breadcrumb */}
+      {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm font-inter font-medium">
         <button
           type="button"
@@ -283,7 +343,9 @@ export function PublicationDetailsForm({
           Publications
         </button>
         <span className="text-promag-body/70">/</span>
-        <span className="text-black">{formData.name || initialData?.name || "Selected Publication Name"}</span>
+        <span className="text-black">
+          {formData.name || initialData?.name || "Selected Publication Name"}
+        </span>
       </div>
 
       {/* Stepper */}
@@ -294,7 +356,6 @@ export function PublicationDetailsForm({
       {/* Form */}
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5">
         <div className="flex p-5 items-start content-start gap-[30px] gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
-          
           {/* Row 1: Name and Topics/Category */}
           <FormField
             label="Name"
@@ -347,10 +408,7 @@ export function PublicationDetailsForm({
           </FormField>
 
           {/* Row 3: Teaser - Full Width */}
-          <FormField
-            label="Teaser"
-            className="w-full"
-          >
+          <FormField label="Teaser" className="w-full">
             <TextareaField
               placeholder="Enter Teaser"
               value={formData.teaser}
@@ -359,11 +417,7 @@ export function PublicationDetailsForm({
           </FormField>
 
           {/* Row 4: Description - Full Width */}
-          <FormField
-            label="Description"
-            required
-            className="w-full"
-          >
+          <FormField label="Description" required className="w-full">
             <TextareaField
               placeholder="Enter Description"
               value={formData.description}
@@ -485,11 +539,7 @@ export function PublicationDetailsForm({
           </FormField>
 
           {/* Row 10: Orientation - Full Width */}
-          <FormField
-            label="Orientation"
-            required
-            className="w-full"
-          >
+          <FormField label="Orientation" required className="w-full">
             <Dropdown
               placeholder="Select Orientation"
               value={formData.orientation}

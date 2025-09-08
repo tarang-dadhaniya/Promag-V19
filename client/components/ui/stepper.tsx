@@ -24,7 +24,7 @@ export function Stepper({ steps, className }: StepperProps) {
               "flex w-10 h-10 flex-col justify-center items-center gap-2.5 rounded-full border-2",
               step.completed || step.current
                 ? "border-promag-primary bg-promag-primary"
-                : "border-[#ABB7C2] bg-white"
+                : "border-[#ABB7C2] bg-white",
             )}
           >
             <span
@@ -32,7 +32,7 @@ export function Stepper({ steps, className }: StepperProps) {
                 "text-center font-roboto text-base font-medium leading-normal",
                 step.completed || step.current
                   ? "text-white"
-                  : "text-[#ABB7C2]"
+                  : "text-[#ABB7C2]",
               )}
             >
               {step.number}
@@ -44,7 +44,9 @@ export function Stepper({ steps, className }: StepperProps) {
             <div
               className={cn(
                 "w-[304px] h-[3px]",
-                steps[index + 1]?.completed ? "bg-promag-primary" : "bg-[#ABB7C2]"
+                steps[index + 1]?.completed
+                  ? "bg-promag-primary"
+                  : "bg-[#ABB7C2]",
               )}
             />
           )}
