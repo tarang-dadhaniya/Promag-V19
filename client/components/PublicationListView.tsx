@@ -315,28 +315,85 @@ const PublicationCard = ({
         </button>
 
         {/* Edit Icon */}
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit();
+          }}
+          className="group hover:scale-110 transition-transform"
+          aria-label="Edit publication"
         >
-          <path
-            d="M8.25 3H3C2.6 3 2.22 3.16 1.94 3.44C1.66 3.72 1.5 4.1 1.5 4.5V15C1.5 15.4 1.66 15.78 1.94 16.06C2.22 16.34 2.6 16.5 3 16.5H13.5C13.9 16.5 14.28 16.34 14.56 16.06C14.84 15.78 15 15.4 15 15V9.75"
-            stroke="#722555"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M13.875 1.875C14.173 1.577 14.578 1.409 15 1.409C15.422 1.409 15.826 1.577 16.125 1.875C16.423 2.173 16.591 2.578 16.591 3C16.591 3.422 16.423 3.827 16.125 4.125L9 11.25L6 12L6.75 9L13.875 1.875Z"
-            stroke="#722555"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.25 3H3C2.6 3 2.22 3.16 1.94 3.44C1.66 3.72 1.5 4.1 1.5 4.5V15C1.5 15.4 1.66 15.78 1.94 16.06C2.22 16.34 2.6 16.5 3 16.5H13.5C13.9 16.5 14.28 16.34 14.56 16.06C14.84 15.78 15 15.4 15 15V9.75"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M13.875 1.875C14.173 1.577 14.578 1.409 15 1.409C15.422 1.409 15.826 1.577 16.125 1.875C16.423 2.173 16.591 2.578 16.591 3C16.591 3.422 16.423 3.827 16.125 4.125L9 11.25L6 12L6.75 9L13.875 1.875Z"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* File Changes Icon */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onFileChanges();
+          }}
+          className="group hover:scale-110 transition-transform"
+          aria-label="Change files"
+          title="File Changes"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 1.5L15 4.5V15C15 15.398 14.842 15.779 14.561 16.061C14.279 16.342 13.898 16.5 13.5 16.5H4.5C4.102 16.5 3.721 16.342 3.439 16.061C3.158 15.779 3 15.398 3 15V3C3 2.602 3.158 2.221 3.439 1.939C3.721 1.658 4.102 1.5 4.5 1.5H12Z"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12 1.5V4.5H15"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 7.5L12 10.5L9 13.5"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M6 10.5H12"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
 
         {/* Share Icon */}
         <button
