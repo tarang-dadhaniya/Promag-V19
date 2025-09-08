@@ -59,7 +59,7 @@ export function BlankStepPage({
         <Stepper steps={steps} />
       </div>
 
-      {/* Content Area: show design only on step 2 */}
+      {/* Content Area: show design only on step 2, step 3 tree structure, others blank */}
       {currentStep === 2 ? (
         <div className="rounded-[10px] bg-white p-6 md:p-8 lg:p-10 border border-gray-200">
           <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 xl:gap-16 w-full">
