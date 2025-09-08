@@ -3,7 +3,14 @@ import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
+import { PublicationDetailsForm } from "./PublicationDetailsForm";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
 
 interface Collection {
   id: string;
