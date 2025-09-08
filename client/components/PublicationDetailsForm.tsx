@@ -194,10 +194,12 @@ const defaultOrientationOptions: DropdownOption[] = [
   { value: "landscape", label: "Landscape" },
 ];
 
-export function PublicationDetailsForm({ 
-  onSubmit, 
-  onCancel, 
-  initialData, 
+export function PublicationDetailsForm({
+  onSubmit,
+  onCancel,
+  onGoToCollections,
+  onGoToPublications,
+  initialData,
   className,
   categoriesOptions = defaultCategoriesOptions,
   collectionOptions = [],
