@@ -32,6 +32,8 @@ interface DropdownOption {
 interface PublicationDetailsFormProps {
   onSubmit?: (data: PublicationDetailsFormData) => void;
   onCancel?: () => void;
+  onGoToCollections?: () => void;
+  onGoToPublications?: () => void;
   initialData?: Partial<PublicationDetailsFormData> | null;
   className?: string;
   categoriesOptions?: DropdownOption[];
