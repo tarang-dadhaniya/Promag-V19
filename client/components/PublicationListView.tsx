@@ -545,6 +545,23 @@ export function PublicationListView({
     setShowCloneConfirmation(true);
   };
 
+  const handleOpenPublicationDetails = (publication: Publication) => {
+    setDetailsPublication(publication);
+    setShowPublicationDetailsDialog(true);
+  };
+
+  const handlePublicationDetailsSubmit = (data: any) => {
+    console.log("Publication details submitted:", data);
+    // Here you would update the publication with the new data
+    setShowPublicationDetailsDialog(false);
+    setDetailsPublication(null);
+  };
+
+  const handlePublicationDetailsCancel = () => {
+    setShowPublicationDetailsDialog(false);
+    setDetailsPublication(null);
+  };
+
   const confirmDelete = () => {
     if (targetPublication) {
       // Here you would implement the actual deletion logic
