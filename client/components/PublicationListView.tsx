@@ -37,7 +37,6 @@ interface PublicationListViewProps {
   onEditCollectionSettings?: () => void;
   onDeletePublication?: (publication: Publication) => void;
   onClonePublication?: (publication: Publication) => void;
-  onFileChanges?: (publication: Publication) => void;
 }
 
 const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
@@ -86,7 +85,6 @@ const PublicationCard = ({
   onDelete,
   onClone,
   onSettings,
-  onFileChanges,
 }: {
   publication: Publication;
   onEdit: () => void;
@@ -94,7 +92,6 @@ const PublicationCard = ({
   onDelete: () => void;
   onClone: () => void;
   onSettings: () => void;
-  onFileChanges: () => void;
 }) => (
   <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
     {/* Cover Image */}
@@ -347,54 +344,6 @@ const PublicationCard = ({
           </svg>
         </button>
 
-        {/* File Changes Icon */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onFileChanges();
-          }}
-          className="group hover:scale-110 transition-transform"
-          aria-label="Change files"
-          title="File Changes"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 1.5L15 4.5V15C15 15.398 14.842 15.779 14.561 16.061C14.279 16.342 13.898 16.5 13.5 16.5H4.5C4.102 16.5 3.721 16.342 3.439 16.061C3.158 15.779 3 15.398 3 15V3C3 2.602 3.158 2.221 3.439 1.939C3.721 1.658 4.102 1.5 4.5 1.5H12Z"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M12 1.5V4.5H15"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9 7.5L12 10.5L9 13.5"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 10.5H12"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
         {/* Share Icon */}
         <button
           onClick={(e) => {
@@ -566,7 +515,6 @@ export function PublicationListView({
   onEditCollectionSettings,
   onDeletePublication,
   onClonePublication,
-  onFileChanges,
 }: PublicationListViewProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [showActionDropdown, setShowActionDropdown] = useState(false);
@@ -914,7 +862,6 @@ export function PublicationListView({
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
             onSettings={() => onOpenPublicationDetails?.(publication)}
-            onFileChanges={() => onFileChanges?.(publication)}
           />
         ))}
       </div>
