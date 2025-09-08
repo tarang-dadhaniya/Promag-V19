@@ -778,7 +778,7 @@ export function BlankStepPage({
                     {editingId ? "Edit Solution" : "Add Solution"}
                   </div>
                   <button
-                    onClick={() => setShowAddModal(false)}
+                    onClick={() => { setShowAddModal(false); setEditingId(null); }}
                     className="w-4 h-4 text-[#FF5656] hover:opacity-70"
                   >
                     <svg
@@ -859,7 +859,7 @@ export function BlankStepPage({
                 {/* Modal Footer */}
                 <div className="flex h-[60px] px-[30px] justify-end items-center gap-5 rounded-b-[10px] w-full">
                   <button
-                    onClick={() => setShowAddModal(false)}
+                    onClick={() => { setShowAddModal(false); setEditingId(null); }}
                     className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded-[5px] bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
                   >
                     Cancel
