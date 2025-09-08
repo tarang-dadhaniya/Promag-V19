@@ -43,9 +43,15 @@ export function BlankStepPage({
 
   // Add Solutions handler
   const handleAddSolution = () => {
-    console.log("Adding solution:", formData);
+    const title = (formData.title || "Untitled").trim();
+    const startPage = (formData.startPage || "0").trim();
+    const endPage = (formData.endPage || "0").trim();
+    setAddedSolutions((prev) => [
+      ...prev,
+      { id: String(Date.now()), title, startPage, endPage },
+    ]);
     setShowAddModal(false);
-    setFormData({ title: "Solutions", startPage: "5", endPage: "10" });
+    setFormData({ title: "", startPage: "", endPage: "" });
   };
 
   // Keywords save handler
