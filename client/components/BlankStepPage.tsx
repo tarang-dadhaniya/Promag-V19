@@ -418,7 +418,7 @@ export function BlankStepPage({
             </button>
             <button
               type="button"
-              onClick={() => setShowAddModal(true)}
+              onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
               <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -461,7 +461,7 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Add icon */}
                   <button
-                    onClick={() => setShowAddModal(true)}
+                    onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
@@ -596,7 +596,7 @@ export function BlankStepPage({
                 <div className="flex items-center gap-1.5">
                   {/* Same action icons as parent */}
                   <button
-                    onClick={() => setShowAddModal(true)}
+                    onClick={() => { setFormData({ title: "", startPage: "", endPage: "" }); setShowAddModal(true); }}
                     className="w-3.5 h-3.5 hover:opacity-70"
                   >
                     <svg
