@@ -399,9 +399,9 @@ export function BlankStepPage({
 
                   {!pdfFile ? (
                     <div className="flex flex-col items-center gap-6">
-                      <div className="flex p-[10px] flex-col items-center border-[3px] border-black rounded-[10px]">
+                      <div className={`flex p-[10px] flex-col items-center border-[3px] border-black rounded-[10px] ${pdfDrag ? 'animate-pulse' : ''}`}>
                         <svg
-                          className="flex h-11 flex-col justify-center items-center gap-2.5 flex-shrink-0"
+                          className={`flex h-11 flex-col justify-center items-center gap-2.5 flex-shrink-0 ${pdfDrag ? 'translate-y-1 transition-transform duration-200' : ''}`}
                           width="48"
                           height="45"
                           viewBox="0 0 48 45"
