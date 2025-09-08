@@ -34,6 +34,10 @@ export function BlankStepPage({
   // State for Keywords (Step 4)
   const [keywordsData, setKeywordsData] = useState("");
 
+  // Step 3 helpers
+  const [treeRefresh, setTreeRefresh] = useState(0);
+  const handleReloadTree = () => setTreeRefresh((n) => n + 1);
+
   // Step 2 options
   const [importEnrichments, setImportEnrichments] = useState(false);
   const [importToc, setImportToc] = useState(false);
@@ -391,8 +395,29 @@ export function BlankStepPage({
         </div>
       ) : currentStep === 3 ? (
         <div className="rounded-[10px] bg-white p-5 border border-gray-200">
+          {/* Toolbar */}
+          <div className="flex items-center justify-end gap-2.5 mb-[15px]">
+            <button
+              type="button"
+              onClick={handleReloadTree}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center rounded-lg border-2 border-promag-primary text-promag-primary font-inter text-sm font-semibold"
+            >
+              Reload
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowAddModal(true)}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Add
+            </button>
+          </div>
           {/* Tree Structure */}
-          <div className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5">
+          <div key={treeRefresh} className="flex flex-col items-start p-2 border border-dashed border-[#C2C2C2] rounded-[10px] bg-white mb-5">
             {/* Main tree element */}
             <div className="flex items-center gap-1 self-stretch bg-white p-1">
               {/* Caret */}
@@ -642,37 +667,6 @@ export function BlankStepPage({
             </div>
           </div>
 
-          {/* Button Box */}
-          <div className="flex justify-end items-center gap-2.5 self-stretch">
-            {/* Add Button */}
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
-            >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 4V12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 8H12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Add
-            </button>
-          </div>
 
           <div className="flex justify-end items-center gap-2.5 pt-2.5">
             <button
