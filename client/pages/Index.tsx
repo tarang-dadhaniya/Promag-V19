@@ -709,6 +709,7 @@ export default function Index() {
             onDeleteCollection={handleDeleteCollection}
             onEditPublication={handleEditPublication}
             onOpenPublicationDetails={handleOpenPublicationDetails}
+            onFileChanges={handleFileChanges}
             onEditCollectionSettings={() => {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
