@@ -401,7 +401,7 @@ export function PDFUpload({ onFileUpload, className, initialFile }: PDFUploadPro
           accept=".pdf"
           onChange={handleFileSelect}
           className="hidden"
-          disabled={uploadStatus === 'uploading'}
+          disabled={isUploading}
         />
 
         {renderUploadArea()}
