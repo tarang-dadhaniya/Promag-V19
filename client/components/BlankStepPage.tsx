@@ -62,6 +62,20 @@ export function BlankStepPage({
     setEditingId(null);
   };
 
+  const moveSolution = (id: string, direction: "up" | "down") => {
+    setAddedSolutions((prev) => {
+      const idx = prev.findIndex((x) => x.id === id);
+      if (idx === -1) return prev;
+      const swapWith = direction === "up" ? idx - 1 : idx + 1;
+      if (swapWith < 0 || swapWith >= prev.length) return prev;
+      const arr = prev.slice();
+      const tmp = arr[idx];
+      arr[idx] = arr[swapWith];
+      arr[swapWith] = tmp;
+      return arr;
+    });
+  };
+
   // Keywords save handler
   const handleKeywordsSave = () => {
     console.log("Saving keywords:", keywordsData);
@@ -239,7 +253,7 @@ export function BlankStepPage({
                         {pdfFile.name}
                       </div>
                       <div className="text-black/60 font-inter text-xs">
-                        PDF selected ��� click to change
+                        PDF selected — click to change
                       </div>
                     </div>
                   )}
