@@ -30,6 +30,7 @@ interface PublicationListViewProps {
   publications: Publication[];
   onNewIssue: () => void;
   onBackToCollections: () => void;
+  onGoToPublications?: () => void;
   onDeleteCollection?: (collectionId: string) => void;
   className?: string;
   onEditPublication?: (publication: Publication) => void;
@@ -508,6 +509,7 @@ export function PublicationListView({
   publications,
   onNewIssue,
   onBackToCollections,
+  onGoToPublications,
   onDeleteCollection,
   className,
   onEditPublication,
@@ -592,18 +594,23 @@ export function PublicationListView({
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Breadcrumb */}
-      <div className="flex items-center gap-4">
-        <div className="text-black font-inter text-sm font-medium">
-          <button
-            type="button"
-            onClick={onBackToCollections}
-            className="text-black/60 hover:text-promag-primary hover:underline underline-offset-4 cursor-pointer"
-            aria-label="Back to Collections"
-          >
-            Collections
-          </button>
-          <span className="text-black"> / Publications</span>
-        </div>
+      <div className="flex items-center gap-2 text-sm font-inter font-medium">
+        <button
+          type="button"
+          onClick={onBackToCollections}
+          className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
+          aria-label="Back to Collections"
+        >
+          Collections
+        </button>
+        <span className="text-promag-body/70">/</span>
+        <button
+          type="button"
+          onClick={onGoToPublications}
+          className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
+        >
+          Publications
+        </button>
       </div>
 
       {/* Search and Actions */}

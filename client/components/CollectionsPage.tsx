@@ -13,6 +13,7 @@ interface CollectionsPageProps {
   collections: Collection[];
   onCreateCollection: () => void;
   onSelectCollection: (collection: Collection) => void;
+  onBackToCollections?: () => void;
   className?: string;
 }
 
@@ -114,6 +115,7 @@ export function CollectionsPage({
   collections,
   onCreateCollection,
   onSelectCollection,
+  onBackToCollections,
   className,
 }: CollectionsPageProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -126,10 +128,16 @@ export function CollectionsPage({
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Breadcrumb */}
-      <div className="flex items-center gap-4">
-        <span className="text-black/60 font-inter text-sm font-normal">
-          Collections /
-        </span>
+      <div className="flex items-center gap-2 text-sm font-inter font-medium">
+        <button
+          type="button"
+          onClick={onBackToCollections}
+          className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
+          aria-label="Back to Collections"
+        >
+          Collections
+        </button>
+        <span className="text-promag-body/70">/</span>
       </div>
 
       {/* Search and Actions */}
