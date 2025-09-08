@@ -608,40 +608,17 @@ export function BlankStepPage({
           <div className="flex items-center justify-end gap-2.5 mb-[15px]">
             <button
               type="button"
-              onClick={handleReloadTree}
-              className="flex h-[42px] px-5 py-2.5 justify-center items-center rounded-lg border-2 border-promag-primary text-promag-primary font-inter text-sm font-semibold"
-            >
-              Reload
-            </button>
-            <button
-              type="button"
               onClick={() => {
                 setEditingId(null);
+                setParentId(null);
                 setFormData({ title: "", startPage: "", endPage: "" });
                 setShowAddModal(true);
               }}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 4V12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 8H12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M4 8H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Add
             </button>
