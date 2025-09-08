@@ -788,6 +788,16 @@ export default function Index() {
           <BlankStepPage
             currentStep={blankStep}
             onCancel={() => setCurrentView("publication-list")}
+            onPrev={() => {
+              setBlankStep((prev) => {
+                if (prev === 2) {
+                  setCurrentView("publication-details");
+                  return prev;
+                }
+                const next = (prev - 1) as 1 | 2 | 3 | 4;
+                return next;
+              });
+            }}
             onSave={() => {
               // simple advance logic; loops back to publications after step 4
               setBlankStep((prev) => {
