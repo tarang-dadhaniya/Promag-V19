@@ -1726,7 +1726,8 @@ export function BlankStepPage({
                   <button
                     type="button"
                     onClick={() => handleDeletePage(i)}
-                    className="absolute top-2 right-2 w-6 h-6 bg-white rounded flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+                    style={{ backgroundColor: "rgb(229 229 229)" }}
+                    className="absolute top-2 right-2 w-6 h-6 rounded flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
                     aria-label={`Delete page ${i + 1}`}
                   >
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
