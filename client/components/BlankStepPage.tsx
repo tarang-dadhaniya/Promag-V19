@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Stepper } from "./ui/stepper";
+import { ConfirmationDialog } from "./ConfirmationDialog";
 import { cn } from "@/lib/utils";
 
 interface BlankStepPageProps {
@@ -377,6 +378,24 @@ export function BlankStepPage({
 
   // Step 2: working drop zones for File and Cover Image
   const [pdfFile, setPdfFile] = useState<File | null>(null);
+
+  // Handle page deletion
+  const handleDeletePage = (pageIndex: number) => {
+    setPageToDelete(pageIndex);
+    setShowDeleteConfirmation(true);
+  };
+
+  const confirmDeletePage = () => {
+    if (pageToDelete !== null) {
+      setThumbnails(prev => prev.filter((_, index) => index !== pageToDelete));
+      setPdfNumPages(prev => prev - 1);
+    }
+    setPageToDelete(null);
+  };
+
+  const cancelDeletePage = () => {
+    setPageToDelete(null);
+  };
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [pdfDrag, setPdfDrag] = useState(false);
   const [coverDrag, setCoverDrag] = useState(false);
@@ -395,6 +414,10 @@ export function BlankStepPage({
   // Thumbnails generated from uploaded PDF (for step 5)
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [pdfNumPages, setPdfNumPages] = useState<number>(0);
+
+  // Delete confirmation state
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [pageToDelete, setPageToDelete] = useState<number | null>(null);
   const pdfObjectUrlRef = useRef<string | null>(null);
 
   // Drag-and-drop state for reordering pages
@@ -1702,14 +1725,15 @@ export function BlankStepPage({
 
                   <button
                     type="button"
-                    className="absolute top-2 right-2 w-6 h-6 bg-[#DDD] rounded flex items-center justify-center"
-                    aria-label={`More actions for page ${i + 1}`}
+                    onClick={() => handleDeletePage(i)}
+                    className="absolute top-2 right-2 w-6 h-6 bg-white rounded flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+                    aria-label={`Delete page ${i + 1}`}
                   >
-                    <svg width="14" height="14" viewBox="0 0 19 18" fill="none">
-                      <path
-                        d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z"
-                        fill="#212121"
-                      />
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.25 4.5H3.75H15.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M14.25 4.5V15C14.25 15.3978 14.092 15.7794 13.8107 16.0607C13.5294 16.342 13.1478 16.5 12.75 16.5H5.25C4.85218 16.5 4.47064 16.342 4.18934 16.0607C3.90804 15.7794 3.75 15.3978 3.75 15V4.5M6 4.5V3C6 2.60218 6.15804 2.22064 6.43934 1.93934C6.72064 1.65804 7.10218 1.5 7.5 1.5H10.5C10.8978 1.5 11.2794 1.65804 11.5607 1.93934C11.842 2.22064 12 2.60218 12 3V4.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M7.5 8.25V12.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M10.5 8.25V12.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </button>
                 </div>
