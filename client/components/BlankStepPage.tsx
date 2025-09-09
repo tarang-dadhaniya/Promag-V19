@@ -491,7 +491,7 @@ export function BlankStepPage({
         </span>
       </div>
       {/* Stepper */}
-      <div className="flex flex-col justify-center items-center gap-2.5 self-stretch">
+      <div className="flex flex-col justify-center items-center gap-2.5 self-stretch px-8">
         <Stepper steps={steps} />
       </div>
       {/* Content Area: show design only on step 2, step 3 tree structure, others blank */}
