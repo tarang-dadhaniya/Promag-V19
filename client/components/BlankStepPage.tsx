@@ -481,18 +481,52 @@ export function BlankStepPage({
         const max = Math.min(50, pdf.numPages || 0); // limit generation
         for (let i = 1; i <= max; i++) {
           const page = await pdf.getPage(i);
-          // compute a reasonable scale for thumbnail width ~ 145px
+          // compute a reasonable scale for thumbnail width
           const viewportForSize = page.getViewport({ scale: 1 });
-          const targetWidth = 145;
-          const scale = targetWidth / viewportForSize.width;
-          const viewport = page.getViewport({ scale });
+          const targetWidth = 120; // match UI thumbnail width
+          const baseScale = targetWidth / viewportForSize.width;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const finalScale = baseScale * dpr;
+
+          const viewport = page.getViewport({ scale: finalScale });
           const canvas = document.createElement("canvas");
           const context = canvas.getContext("2d");
           if (!context) continue;
-          canvas.width = Math.floor(viewport.width);
-          canvas.height = Math.floor(viewport.height);
-          await page.render({ canvasContext: context, viewport }).promise;
-          thumbs.push(canvas.toDataURL("image/jpeg", 0.75));
+
+          // Set canvas size in device pixels for crisp rendering
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+
+          // Fill white background (PDF pages may have transparency)
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+
+          // Render page into the high-res canvas
+          const renderContext = {
+            canvasContext: context,
+            viewport,
+          };
+          await page.render(renderContext).promise;
+
+          // If DPR > 1 we can downscale the image to the target width to reduce size
+          if (dpr > 1) {
+            const downCanvas = document.createElement("canvas");
+            const downCtx = downCanvas.getContext("2d");
+            if (downCtx) {
+              downCanvas.width = Math.round(canvas.width / dpr);
+              downCanvas.height = Math.round(canvas.height / dpr);
+              // draw white background
+              downCtx.fillStyle = "#ffffff";
+              downCtx.fillRect(0, 0, downCanvas.width, downCanvas.height);
+              downCtx.drawImage(canvas, 0, 0, downCanvas.width, downCanvas.height);
+              thumbs.push(downCanvas.toDataURL("image/jpeg", 0.9));
+            } else {
+              thumbs.push(canvas.toDataURL("image/jpeg", 0.9));
+            }
+          } else {
+            thumbs.push(canvas.toDataURL("image/jpeg", 0.9));
+          }
+
           if (cancelled) break;
         }
 
