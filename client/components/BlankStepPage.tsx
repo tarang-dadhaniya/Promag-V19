@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Stepper } from "./ui/stepper";
 import { cn } from "@/lib/utils";
 
 interface BlankStepPageProps {
-  currentStep: 1 | 2 | 3 | 4;
+  currentStep: 1 | 2 | 3 | 4 | 5;
   onCancel: () => void;
   onPrev?: () => void;
   onSave: () => void;
@@ -392,6 +392,225 @@ export function BlankStepPage({
   const [coverProgress, setCoverProgress] = useState(0);
   const coverUploadIntervalRef = useRef<number | null>(null);
 
+  // Thumbnails generated from uploaded PDF (for step 5)
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const [pdfNumPages, setPdfNumPages] = useState<number>(0);
+  const pdfObjectUrlRef = useRef<string | null>(null);
+
+  // Drag-and-drop state for reordering pages
+  const dragIndexRef = useRef<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+  const handleDragStart = (index: number, e: any) => {
+    dragIndexRef.current = index;
+    try {
+      e.dataTransfer.setData("text/plain", String(index));
+    } catch (err) {
+      // ignore
+    }
+    if (e.dataTransfer) e.dataTransfer.effectAllowed = "move";
+  };
+
+  const handleDragOver = (index: number, e: any) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+    if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDrop = (toIndex: number, e: any) => {
+    e.preventDefault();
+    const fromIndexStr = e.dataTransfer?.getData("text/plain");
+    const fromIndex = fromIndexStr
+      ? parseInt(fromIndexStr, 10)
+      : dragIndexRef.current;
+    if (fromIndex == null || isNaN(fromIndex)) return;
+    if (fromIndex === toIndex) {
+      setDragOverIndex(null);
+      dragIndexRef.current = null;
+      return;
+    }
+    setThumbnails((prev) => {
+      const arr = prev.slice();
+      const [item] = arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, item);
+      return arr;
+    });
+    setDragOverIndex(null);
+    dragIndexRef.current = null;
+  };
+
+  const handleDragEnd = () => {
+    setDragOverIndex(null);
+    dragIndexRef.current = null;
+  };
+
+  useEffect(() => {
+    if (!pdfFile) {
+      setThumbnails([]);
+      setPdfNumPages(0);
+      if (pdfObjectUrlRef.current) {
+        URL.revokeObjectURL(pdfObjectUrlRef.current);
+        pdfObjectUrlRef.current = null;
+      }
+      return;
+    }
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        // Create object URL for the PDF file
+        const url = URL.createObjectURL(pdfFile);
+        pdfObjectUrlRef.current = url;
+
+        // Load pdf.js dynamically if not present
+        const loadPdfJs = async () => {
+          const win = window as any;
+          if (win.pdfjsLib) {
+            try {
+              const existing = win.pdfjsLib.GlobalWorkerOptions;
+              if (existing && typeof existing === "object") {
+                existing.workerSrc =
+                  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+              } else {
+                // try to define it without overwriting if assignment is not allowed
+                try {
+                  Object.defineProperty(win.pdfjsLib, "GlobalWorkerOptions", {
+                    value: {
+                      workerSrc:
+                        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                    },
+                    configurable: true,
+                    writable: true,
+                  });
+                } catch (e) {
+                  /* ignore */
+                }
+              }
+            } catch (e) {
+              /* ignore */
+            }
+            return win.pdfjsLib;
+          }
+
+          await new Promise<void>((res, rej) => {
+            const s = document.createElement("script");
+            s.src =
+              "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js";
+            s.onload = () => res();
+            s.onerror = () => rej(new Error("Failed to load pdfjs"));
+            document.head.appendChild(s);
+          });
+          const lib = (window as any).pdfjsLib;
+          try {
+            const existing = lib && lib.GlobalWorkerOptions;
+            if (existing && typeof existing === "object") {
+              existing.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+            } else {
+              try {
+                Object.defineProperty(lib, "GlobalWorkerOptions", {
+                  value: {
+                    workerSrc:
+                      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                  },
+                  configurable: true,
+                  writable: true,
+                });
+              } catch (e) {
+                /* ignore */
+              }
+            }
+          } catch (e) {
+            /* ignore */
+          }
+          return lib;
+        };
+
+        const pdfjsLib = await loadPdfJs();
+        const loadingTask = pdfjsLib.getDocument(url);
+        const pdf = await loadingTask.promise;
+        if (cancelled) return;
+        setPdfNumPages(pdf.numPages || 0);
+
+        const thumbs: string[] = [];
+        const max = Math.min(50, pdf.numPages || 0); // limit generation
+        for (let i = 1; i <= max; i++) {
+          const page = await pdf.getPage(i);
+          // compute a reasonable scale for thumbnail width
+          const viewportForSize = page.getViewport({ scale: 1 });
+          const targetWidth = 120; // match UI thumbnail width
+          const baseScale = targetWidth / viewportForSize.width;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const finalScale = baseScale * dpr;
+
+          const viewport = page.getViewport({ scale: finalScale });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          if (!context) continue;
+
+          // Set canvas size in device pixels for crisp rendering
+          canvas.width = Math.ceil(viewport.width);
+          canvas.height = Math.ceil(viewport.height);
+
+          // Fill white background (PDF pages may have transparency)
+          context.fillStyle = "#ffffff";
+          context.fillRect(0, 0, canvas.width, canvas.height);
+
+          // Render page into the high-res canvas
+          const renderContext = {
+            canvasContext: context,
+            viewport,
+          };
+          await page.render(renderContext).promise;
+
+          // If DPR > 1 we can downscale the image to the target width to reduce size
+          if (dpr > 1) {
+            const downCanvas = document.createElement("canvas");
+            const downCtx = downCanvas.getContext("2d");
+            if (downCtx) {
+              downCanvas.width = Math.round(canvas.width / dpr);
+              downCanvas.height = Math.round(canvas.height / dpr);
+              // draw white background
+              downCtx.fillStyle = "#ffffff";
+              downCtx.fillRect(0, 0, downCanvas.width, downCanvas.height);
+              downCtx.drawImage(
+                canvas,
+                0,
+                0,
+                downCanvas.width,
+                downCanvas.height,
+              );
+              thumbs.push(downCanvas.toDataURL("image/jpeg", 0.9));
+            } else {
+              thumbs.push(canvas.toDataURL("image/jpeg", 0.9));
+            }
+          } else {
+            thumbs.push(canvas.toDataURL("image/jpeg", 0.9));
+          }
+
+          if (cancelled) break;
+        }
+
+        if (!cancelled) setThumbnails(thumbs);
+
+        // Cleanup pdf.js internal resources if available
+        pdf && typeof pdf.destroy === "function" && pdf.destroy();
+      } catch (err) {
+        console.error("Error generating thumbnails:", err);
+        setThumbnails([]);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      if (pdfObjectUrlRef.current) {
+        URL.revokeObjectURL(pdfObjectUrlRef.current);
+        pdfObjectUrlRef.current = null;
+      }
+    };
+  }, [pdfFile]);
+
   const startPdfUpload = (file: File) => {
     setPdfUploading(true);
     setPdfProgress(0);
@@ -459,7 +678,7 @@ export function BlankStepPage({
     return true;
   };
 
-  const steps = [1, 2, 3, 4].map((n) => ({
+  const steps = [1, 2, 3, 4, 5].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
     current: n === currentStep,
@@ -491,7 +710,7 @@ export function BlankStepPage({
         </span>
       </div>
       {/* Stepper */}
-      <div className="flex flex-col justify-center items-center gap-2.5 self-stretch">
+      <div className="flex flex-col justify-center items-center gap-2.5 self-stretch px-8">
         <Stepper steps={steps} />
       </div>
       {/* Content Area: show design only on step 2, step 3 tree structure, others blank */}
@@ -1443,6 +1662,88 @@ export function BlankStepPage({
                 Save
               </button>
             </div>
+          </div>
+        </div>
+      ) : currentStep === 5 ? (
+        <div className="rounded-[10px] bg-white p-5 border border-gray-200">
+          {/* PDF Pages List */}
+          <div className="mb-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {(thumbnails.length > 0 ? thumbnails : []).map((src, i) => (
+                <div
+                  key={i}
+                  draggable
+                  onDragStart={(e) => handleDragStart(i, e)}
+                  onDragOver={(e) => handleDragOver(i, e)}
+                  onDrop={(e) => handleDrop(i, e)}
+                  onDragEnd={handleDragEnd}
+                  className={
+                    "relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto " +
+                    (dragOverIndex === i ? "ring-2 ring-promag-primary" : "")
+                  }
+                  style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
+                >
+                  <img
+                    src={src || "/placeholder.svg"}
+                    alt={`Page ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+
+                  <div
+                    className={
+                      "absolute bottom-2 right-2 inline-flex px-2 py-1 items-center justify-center rounded-[4px] " +
+                      (i === 0 ? "bg-black/80" : "bg-promag-primary")
+                    }
+                  >
+                    <span className="text-white font-inter text-sm font-medium">
+                      {i + 1}
+                    </span>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="absolute top-2 right-2 w-6 h-6 bg-[#DDD] rounded flex items-center justify-center"
+                    aria-label={`More actions for page ${i + 1}`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 19 18" fill="none">
+                      <path
+                        d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z"
+                        fill="#212121"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+
+              {/* when no thumbnails generated yet, show placeholders for layout */}
+              {thumbnails.length === 0 &&
+                Array.from({ length: 6 }).map((_, idx) => (
+                  <div
+                    key={`ph${idx}`}
+                    className="flex items-center justify-center w-[120px] h-[170px] rounded border border-[#DEE6ED] bg-white text-promag-placeholder"
+                  >
+                    <div>No preview</div>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/* Button Box */}
+          <div className="flex justify-end items-center gap-2.5 pt-2.5">
+            <button
+              type="button"
+              onClick={currentStep > 1 ? onPrev : onCancel}
+              className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              onClick={onSave}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+            >
+              Save
+            </button>
           </div>
         </div>
       ) : (

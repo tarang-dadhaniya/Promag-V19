@@ -15,7 +15,12 @@ interface StepperProps {
 
 export function Stepper({ steps, className }: StepperProps) {
   return (
-    <div className={cn("flex justify-center items-center gap-2.5", className)}>
+    <div
+      className={cn(
+        "flex w-full justify-center items-center gap-2.5",
+        className,
+      )}
+    >
       {steps.map((step, index) => (
         <React.Fragment key={step.id}>
           {/* Step Circle */}
@@ -39,11 +44,11 @@ export function Stepper({ steps, className }: StepperProps) {
             </span>
           </div>
 
-          {/* Connector Line */}
+          {/* Connector Line - fluid */}
           {index < steps.length - 1 && (
             <div
               className={cn(
-                "w-[304px] h-[3px]",
+                "flex-1 h-[3px] mx-2",
                 steps[index].completed ? "bg-promag-primary" : "bg-[#ABB7C2]",
               )}
             />
