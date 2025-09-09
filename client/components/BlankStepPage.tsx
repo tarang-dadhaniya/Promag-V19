@@ -1576,7 +1576,7 @@ export function BlankStepPage({
               {(thumbnails.length > 0 ? thumbnails : []).map((src, i) => (
                 <div
                   key={i}
-                  className="relative w-[120px] h-[170px] rounded border-2 bg-white overflow-hidden mx-auto"
+                  className="relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto"
                   style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
                 >
                   <img src={src || "/placeholder.svg"} alt={`Page ${i + 1}`} className="w-full h-full object-cover" />
