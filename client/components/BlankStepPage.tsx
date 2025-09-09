@@ -419,7 +419,29 @@ export function BlankStepPage({
         // Load pdf.js dynamically if not present
         const loadPdfJs = async () => {
           const win = window as any;
-          if (win.pdfjsLib) return win.pdfjsLib;
+          if (win.pdfjsLib) {
+            try {
+              const existing = win.pdfjsLib.GlobalWorkerOptions;
+              if (existing && typeof existing === "object") {
+                existing.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+              } else {
+                // try to define it without overwriting if assignment is not allowed
+                try {
+                  Object.defineProperty(win.pdfjsLib, "GlobalWorkerOptions", {
+                    value: { workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js" },
+                    configurable: true,
+                    writable: true,
+                  });
+                } catch (e) {
+                  /* ignore */
+                }
+              }
+            } catch (e) {
+              /* ignore */
+            }
+            return win.pdfjsLib;
+          }
+
           await new Promise<void>((res, rej) => {
             const s = document.createElement("script");
             s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js";
@@ -428,8 +450,24 @@ export function BlankStepPage({
             document.head.appendChild(s);
           });
           const lib = (window as any).pdfjsLib;
-          lib.GlobalWorkerOptions = lib.GlobalWorkerOptions || {};
-          lib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+          try {
+            const existing = lib && lib.GlobalWorkerOptions;
+            if (existing && typeof existing === "object") {
+              existing.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+            } else {
+              try {
+                Object.defineProperty(lib, "GlobalWorkerOptions", {
+                  value: { workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js" },
+                  configurable: true,
+                  writable: true,
+                });
+              } catch (e) {
+                /* ignore */
+              }
+            }
+          } catch (e) {
+            /* ignore */
+          }
           return lib;
         };
 
