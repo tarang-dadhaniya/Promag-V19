@@ -282,6 +282,7 @@ export function PublicationDetailsForm({
     { id: "step2", number: "02", current: false, completed: false },
     { id: "step3", number: "03", current: false, completed: false },
     { id: "step4", number: "04", current: false, completed: false },
+    { id: "step5", number: "05", current: false, completed: false },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
