@@ -1445,6 +1445,26 @@ export function BlankStepPage({
             </div>
           </div>
         </div>
+      ) : currentStep === 5 ? (
+        <div className="rounded-[10px] bg-white p-5 border border-gray-200">
+          <div className="min-h-[240px]" />
+          <div className="flex justify-end items-center gap-2.5 pt-2.5">
+            <button
+              type="button"
+              onClick={currentStep > 1 ? onPrev : onCancel}
+              className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              type="button"
+              onClick={onSave}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+            >
+              Save
+            </button>
+          </div>
+        </div>
       ) : (
         <div className="rounded-[10px] bg-white min-h-[320px] border border-gray-200" />
       )}
