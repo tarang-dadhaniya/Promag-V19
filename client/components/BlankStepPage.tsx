@@ -3,7 +3,7 @@ import { Stepper } from "./ui/stepper";
 import { cn } from "@/lib/utils";
 
 interface BlankStepPageProps {
-  currentStep: 1 | 2 | 3 | 4;
+  currentStep: 1 | 2 | 3 | 4 | 5;
   onCancel: () => void;
   onPrev?: () => void;
   onSave: () => void;
@@ -459,7 +459,7 @@ export function BlankStepPage({
     return true;
   };
 
-  const steps = [1, 2, 3, 4].map((n) => ({
+  const steps = [1, 2, 3, 4, 5].map((n) => ({
     id: `step${n}`,
     number: n.toString().padStart(2, "0"),
     current: n === currentStep,
