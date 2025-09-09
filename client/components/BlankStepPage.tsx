@@ -1795,6 +1795,15 @@ export function BlankStepPage({
           </div>
         </>
       )}
+
+      {/* Delete confirmation dialog */}
+      <ConfirmationDialog
+        open={showDeleteConfirmation}
+        onOpenChange={setShowDeleteConfirmation}
+        type="delete"
+        onConfirm={confirmDeletePage}
+        onCancel={cancelDeletePage}
+      />
     </div>
   );
 }
