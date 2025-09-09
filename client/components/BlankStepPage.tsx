@@ -397,6 +397,51 @@ export function BlankStepPage({
   const [pdfNumPages, setPdfNumPages] = useState<number>(0);
   const pdfObjectUrlRef = useRef<string | null>(null);
 
+  // Drag-and-drop state for reordering pages
+  const dragIndexRef = useRef<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+  const handleDragStart = (index: number, e: any) => {
+    dragIndexRef.current = index;
+    try {
+      e.dataTransfer.setData("text/plain", String(index));
+    } catch (err) {
+      // ignore
+    }
+    if (e.dataTransfer) e.dataTransfer.effectAllowed = "move";
+  };
+
+  const handleDragOver = (index: number, e: any) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+    if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDrop = (toIndex: number, e: any) => {
+    e.preventDefault();
+    const fromIndexStr = e.dataTransfer?.getData("text/plain");
+    const fromIndex = fromIndexStr ? parseInt(fromIndexStr, 10) : dragIndexRef.current;
+    if (fromIndex == null || isNaN(fromIndex)) return;
+    if (fromIndex === toIndex) {
+      setDragOverIndex(null);
+      dragIndexRef.current = null;
+      return;
+    }
+    setThumbnails((prev) => {
+      const arr = prev.slice();
+      const [item] = arr.splice(fromIndex, 1);
+      arr.splice(toIndex, 0, item);
+      return arr;
+    });
+    setDragOverIndex(null);
+    dragIndexRef.current = null;
+  };
+
+  const handleDragEnd = () => {
+    setDragOverIndex(null);
+    dragIndexRef.current = null;
+  };
+
   useEffect(() => {
     if (!pdfFile) {
       setThumbnails([]);
@@ -1610,7 +1655,12 @@ export function BlankStepPage({
               {(thumbnails.length > 0 ? thumbnails : []).map((src, i) => (
                 <div
                   key={i}
-                  className="relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto"
+                  draggable
+                  onDragStart={(e) => handleDragStart(i, e)}
+                  onDragOver={(e) => handleDragOver(i, e)}
+                  onDrop={(e) => handleDrop(i, e)}
+                  onDragEnd={handleDragEnd}
+                  className={"relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto " + (dragOverIndex === i ? "ring-2 ring-promag-primary" : "")}
                   style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
                 >
                   <img src={src || "/placeholder.svg"} alt={`Page ${i + 1}`} className="w-full h-full object-cover" />
