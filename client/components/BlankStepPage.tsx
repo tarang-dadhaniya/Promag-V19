@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Stepper } from "./ui/stepper";
 import { cn } from "@/lib/utils";
 
@@ -391,6 +391,91 @@ export function BlankStepPage({
   const [coverUploading, setCoverUploading] = useState(false);
   const [coverProgress, setCoverProgress] = useState(0);
   const coverUploadIntervalRef = useRef<number | null>(null);
+
+  // Thumbnails generated from uploaded PDF (for step 5)
+  const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const [pdfNumPages, setPdfNumPages] = useState<number>(0);
+  const pdfObjectUrlRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!pdfFile) {
+      setThumbnails([]);
+      setPdfNumPages(0);
+      if (pdfObjectUrlRef.current) {
+        URL.revokeObjectURL(pdfObjectUrlRef.current);
+        pdfObjectUrlRef.current = null;
+      }
+      return;
+    }
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        // Create object URL for the PDF file
+        const url = URL.createObjectURL(pdfFile);
+        pdfObjectUrlRef.current = url;
+
+        // Load pdf.js dynamically if not present
+        const loadPdfJs = async () => {
+          const win = window as any;
+          if (win.pdfjsLib) return win.pdfjsLib;
+          await new Promise<void>((res, rej) => {
+            const s = document.createElement("script");
+            s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js";
+            s.onload = () => res();
+            s.onerror = () => rej(new Error("Failed to load pdfjs"));
+            document.head.appendChild(s);
+          });
+          const lib = (window as any).pdfjsLib;
+          lib.GlobalWorkerOptions = lib.GlobalWorkerOptions || {};
+          lib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+          return lib;
+        };
+
+        const pdfjsLib = await loadPdfJs();
+        const loadingTask = pdfjsLib.getDocument(url);
+        const pdf = await loadingTask.promise;
+        if (cancelled) return;
+        setPdfNumPages(pdf.numPages || 0);
+
+        const thumbs: string[] = [];
+        const max = Math.min(50, pdf.numPages || 0); // limit generation
+        for (let i = 1; i <= max; i++) {
+          const page = await pdf.getPage(i);
+          // compute a reasonable scale for thumbnail width ~ 145px
+          const viewportForSize = page.getViewport({ scale: 1 });
+          const targetWidth = 145;
+          const scale = targetWidth / viewportForSize.width;
+          const viewport = page.getViewport({ scale });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          if (!context) continue;
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
+          await page.render({ canvasContext: context, viewport }).promise;
+          thumbs.push(canvas.toDataURL("image/jpeg", 0.75));
+          if (cancelled) break;
+        }
+
+        if (!cancelled) setThumbnails(thumbs);
+
+        // Cleanup pdf.js internal resources if available
+        pdf && typeof pdf.destroy === "function" && pdf.destroy();
+      } catch (err) {
+        console.error("Error generating thumbnails:", err);
+        setThumbnails([]);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      if (pdfObjectUrlRef.current) {
+        URL.revokeObjectURL(pdfObjectUrlRef.current);
+        pdfObjectUrlRef.current = null;
+      }
+    };
+  }, [pdfFile]);
 
   const startPdfUpload = (file: File) => {
     setPdfUploading(true);
