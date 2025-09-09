@@ -420,7 +420,9 @@ export function BlankStepPage({
   const handleDrop = (toIndex: number, e: any) => {
     e.preventDefault();
     const fromIndexStr = e.dataTransfer?.getData("text/plain");
-    const fromIndex = fromIndexStr ? parseInt(fromIndexStr, 10) : dragIndexRef.current;
+    const fromIndex = fromIndexStr
+      ? parseInt(fromIndexStr, 10)
+      : dragIndexRef.current;
     if (fromIndex == null || isNaN(fromIndex)) return;
     if (fromIndex === toIndex) {
       setDragOverIndex(null);
@@ -468,12 +470,16 @@ export function BlankStepPage({
             try {
               const existing = win.pdfjsLib.GlobalWorkerOptions;
               if (existing && typeof existing === "object") {
-                existing.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+                existing.workerSrc =
+                  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
               } else {
                 // try to define it without overwriting if assignment is not allowed
                 try {
                   Object.defineProperty(win.pdfjsLib, "GlobalWorkerOptions", {
-                    value: { workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js" },
+                    value: {
+                      workerSrc:
+                        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                    },
                     configurable: true,
                     writable: true,
                   });
@@ -489,7 +495,8 @@ export function BlankStepPage({
 
           await new Promise<void>((res, rej) => {
             const s = document.createElement("script");
-            s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js";
+            s.src =
+              "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js";
             s.onload = () => res();
             s.onerror = () => rej(new Error("Failed to load pdfjs"));
             document.head.appendChild(s);
@@ -498,11 +505,15 @@ export function BlankStepPage({
           try {
             const existing = lib && lib.GlobalWorkerOptions;
             if (existing && typeof existing === "object") {
-              existing.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+              existing.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
             } else {
               try {
                 Object.defineProperty(lib, "GlobalWorkerOptions", {
-                  value: { workerSrc: "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js" },
+                  value: {
+                    workerSrc:
+                      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js",
+                  },
                   configurable: true,
                   writable: true,
                 });
@@ -563,7 +574,13 @@ export function BlankStepPage({
               // draw white background
               downCtx.fillStyle = "#ffffff";
               downCtx.fillRect(0, 0, downCanvas.width, downCanvas.height);
-              downCtx.drawImage(canvas, 0, 0, downCanvas.width, downCanvas.height);
+              downCtx.drawImage(
+                canvas,
+                0,
+                0,
+                downCanvas.width,
+                downCanvas.height,
+              );
               thumbs.push(downCanvas.toDataURL("image/jpeg", 0.9));
             } else {
               thumbs.push(canvas.toDataURL("image/jpeg", 0.9));
@@ -1660,13 +1677,27 @@ export function BlankStepPage({
                   onDragOver={(e) => handleDragOver(i, e)}
                   onDrop={(e) => handleDrop(i, e)}
                   onDragEnd={handleDragEnd}
-                  className={"relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto " + (dragOverIndex === i ? "ring-2 ring-promag-primary" : "")}
+                  className={
+                    "relative w-full h-full rounded border-2 bg-white overflow-hidden mx-auto " +
+                    (dragOverIndex === i ? "ring-2 ring-promag-primary" : "")
+                  }
                   style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
                 >
-                  <img src={src || "/placeholder.svg"} alt={`Page ${i + 1}`} className="w-full h-full object-cover" />
+                  <img
+                    src={src || "/placeholder.svg"}
+                    alt={`Page ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
 
-                  <div className={"absolute bottom-2 right-2 inline-flex px-2 py-1 items-center justify-center rounded-[4px] " + (i === 0 ? "bg-black/80" : "bg-promag-primary")}>
-                    <span className="text-white font-inter text-sm font-medium">{i + 1}</span>
+                  <div
+                    className={
+                      "absolute bottom-2 right-2 inline-flex px-2 py-1 items-center justify-center rounded-[4px] " +
+                      (i === 0 ? "bg-black/80" : "bg-promag-primary")
+                    }
+                  >
+                    <span className="text-white font-inter text-sm font-medium">
+                      {i + 1}
+                    </span>
                   </div>
 
                   <button
@@ -1675,7 +1706,10 @@ export function BlankStepPage({
                     aria-label={`More actions for page ${i + 1}`}
                   >
                     <svg width="14" height="14" viewBox="0 0 19 18" fill="none">
-                      <path d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z" fill="#212121"/>
+                      <path
+                        d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z"
+                        fill="#212121"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -1684,7 +1718,10 @@ export function BlankStepPage({
               {/* when no thumbnails generated yet, show placeholders for layout */}
               {thumbnails.length === 0 &&
                 Array.from({ length: 6 }).map((_, idx) => (
-                  <div key={`ph${idx}`} className="flex items-center justify-center w-[120px] h-[170px] rounded border border-[#DEE6ED] bg-white text-promag-placeholder">
+                  <div
+                    key={`ph${idx}`}
+                    className="flex items-center justify-center w-[120px] h-[170px] rounded border border-[#DEE6ED] bg-white text-promag-placeholder"
+                  >
                     <div>No preview</div>
                   </div>
                 ))}
