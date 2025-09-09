@@ -1571,47 +1571,36 @@ export function BlankStepPage({
       ) : currentStep === 5 ? (
         <div className="rounded-[10px] bg-white p-5 border border-gray-200">
           {/* PDF Pages List */}
-          <div className="flex items-start gap-2.5 mb-5">
-            {/* Main Thumbnail */}
-            <div className="flex-shrink-0">
-              <div className="relative w-[145px] h-[194px] rounded border border-[#DEE6ED] bg-white overflow-hidden">
-                <img
-                  src={thumbnails[0] ?? "/placeholder.svg"}
-                  alt="Main page thumbnail"
-                  className="w-full h-full object-cover rounded"
-                />
-                <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-black/80 min-w-[21px] h-[21px]">
-                  <span className="text-white font-inter text-sm font-medium">
-                    {thumbnails.length > 0 ? 1 : ""}
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div className="mb-5">
+            <div className="flex gap-3 flex-wrap items-start">
+              {(thumbnails.length > 0 ? thumbnails : []).map((src, i) => (
+                <div
+                  key={i}
+                  className="relative w-[120px] h-[170px] rounded border-2 bg-white overflow-hidden flex-shrink-0"
+                  style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
+                >
+                  <img src={src || "/placeholder.svg"} alt={`Page ${i + 1}`} className="w-full h-full object-cover" />
 
-            {/* PDF Pages List */}
-            <div className="flex items-start gap-2.5 flex-wrap flex-1">
-              {(thumbnails.length > 1 ? thumbnails.slice(1) : []).map((src, i) => (
-                <div key={i} className="relative w-[145px] h-[194px] rounded border-2 border-promag-primary bg-white overflow-hidden">
-                  <img src={src} alt={`Page ${i + 2}`} className="w-full h-full object-cover" />
-
-                  <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-promag-primary min-w-[23px] h-[21px]">
-                    <span className="text-white font-inter text-sm font-medium">{i + 2}</span>
+                  <div className={"absolute bottom-2 right-2 inline-flex px-2 py-1 items-center justify-center rounded-[4px] " + (i === 0 ? "bg-black/80" : "bg-promag-primary")}>
+                    <span className="text-white font-inter text-sm font-medium">{i + 1}</span>
                   </div>
 
-                  <div className="absolute top-[5px] right-[5px] flex w-[24px] h-[22px] items-center justify-center rounded-[3px] bg-[#DDD]">
-                    <svg width="18" height="18" viewBox="0 0 19 18" fill="none">
+                  <button
+                    type="button"
+                    className="absolute top-2 right-2 w-6 h-6 bg-[#DDD] rounded flex items-center justify-center"
+                    aria-label={`More actions for page ${i + 1}`}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 19 18" fill="none">
                       <path d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z" fill="#212121"/>
-                      <path d="M14.8516 9.75C15.2658 9.75 15.6016 9.41421 15.6016 9C15.6016 8.58579 15.2658 8.25 14.8516 8.25C14.4373 8.25 14.1016 8.58579 14.1016 9C14.1016 9.41421 14.4373 9.75 14.8516 9.75Z" fill="#212121"/>
-                      <path d="M4.35156 9.75C4.76578 9.75 5.10156 9.41421 5.10156 9C5.10156 8.58579 4.76578 8.25 4.35156 8.25C3.93735 8.25 3.60156 8.58579 3.60156 9C3.60156 9.41421 3.93735 9.75 4.35156 9.75Z" fill="#212121"/>
                     </svg>
-                  </div>
+                  </button>
                 </div>
               ))}
 
-              {/* placeholders when thumbnails not yet available */}
-              {thumbnails.length <= 1 &&
-                Array.from({ length: 3 }).map((_, idx) => (
-                  <div key={`ph${idx}`} className="flex items-center justify-center w-[145px] h-[194px] rounded border border-[#DEE6ED] bg-white text-promag-placeholder">
+              {/* when no thumbnails generated yet, show placeholders for layout */}
+              {thumbnails.length === 0 &&
+                Array.from({ length: 6 }).map((_, idx) => (
+                  <div key={`ph${idx}`} className="flex items-center justify-center w-[120px] h-[170px] rounded border border-[#DEE6ED] bg-white text-promag-placeholder">
                     <div>No preview</div>
                   </div>
                 ))}
