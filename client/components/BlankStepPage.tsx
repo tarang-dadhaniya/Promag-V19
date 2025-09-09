@@ -1572,11 +1572,11 @@ export function BlankStepPage({
         <div className="rounded-[10px] bg-white p-5 border border-gray-200">
           {/* PDF Pages List */}
           <div className="mb-5">
-            <div className="flex gap-3 flex-wrap items-start">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {(thumbnails.length > 0 ? thumbnails : []).map((src, i) => (
                 <div
                   key={i}
-                  className="relative w-[120px] h-[170px] rounded border-2 bg-white overflow-hidden flex-shrink-0"
+                  className="relative w-[120px] h-[170px] rounded border-2 bg-white overflow-hidden mx-auto"
                   style={{ borderColor: i === 0 ? "#DEE6ED" : undefined }}
                 >
                   <img src={src || "/placeholder.svg"} alt={`Page ${i + 1}`} className="w-full h-full object-cover" />
