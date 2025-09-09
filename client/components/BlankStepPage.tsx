@@ -1447,7 +1447,87 @@ export function BlankStepPage({
         </div>
       ) : currentStep === 5 ? (
         <div className="rounded-[10px] bg-white p-5 border border-gray-200">
-          <div className="min-h-[240px]" />
+          {/* PDF Pages List */}
+          <div className="flex items-start gap-2.5 mb-5">
+            {/* Main Thumbnail */}
+            <div className="flex-shrink-0">
+              <div className="relative w-[145px] h-[194px] rounded border border-[#DEE6ED]">
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/072533e8c3334588abe6b9595cb9d8205b6c5c90?width=290"
+                  alt="Main page thumbnail"
+                  className="w-full h-full object-cover rounded"
+                />
+                <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-black/80 min-w-[21px] h-[21px]">
+                  <span className="text-white font-inter text-sm font-medium">1</span>
+                </div>
+              </div>
+            </div>
+
+            {/* PDF Pages List */}
+            <div className="flex items-start gap-2.5 flex-wrap flex-1">
+              {/* Page 2 */}
+              <div className="relative w-[145px] h-[194px] rounded border-2 border-promag-primary bg-white">
+                <div className="absolute top-[14px] left-[15px] right-[15px]">
+                  <h3 className="text-black font-inter text-[11px] font-medium mb-[17px]">What is Lorem Ipsum?</h3>
+                  <p className="text-black font-inter text-[8px] font-medium leading-tight">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                  </p>
+                </div>
+                <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-promag-primary min-w-[23px] h-[21px]">
+                  <span className="text-white font-inter text-sm font-medium">2</span>
+                </div>
+                <div className="absolute top-[5px] right-[5px] flex w-[24px] h-[22px] px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-[#DDD]">
+                  <svg width="18" height="18" viewBox="0 0 19 18" fill="none">
+                    <path d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z" fill="#212121"/>
+                    <path d="M14.8516 9.75C15.2658 9.75 15.6016 9.41421 15.6016 9C15.6016 8.58579 15.2658 8.25 14.8516 8.25C14.4373 8.25 14.1016 8.58579 14.1016 9C14.1016 9.41421 14.4373 9.75 14.8516 9.75Z" fill="#212121"/>
+                    <path d="M4.35156 9.75C4.76578 9.75 5.10156 9.41421 5.10156 9C5.10156 8.58579 4.76578 8.25 4.35156 8.25C3.93735 8.25 3.60156 8.58579 3.60156 9C3.60156 9.41421 3.93735 9.75 4.35156 9.75Z" fill="#212121"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Page 3 */}
+              <div className="relative w-[145px] h-[194px] rounded border-2 border-promag-primary bg-white">
+                <div className="absolute top-[14px] left-[15px] right-[15px]">
+                  <h3 className="text-black font-inter text-[11px] font-medium mb-[17px]">What is Lorem Ipsum?</h3>
+                  <p className="text-black font-inter text-[8px] font-medium leading-tight">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                  </p>
+                </div>
+                <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-promag-primary min-w-[24px] h-[21px]">
+                  <span className="text-white font-inter text-sm font-medium">3</span>
+                </div>
+                <div className="absolute top-[5px] right-[5px] flex w-[24px] h-[22px] px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-[#DDD]">
+                  <svg width="18" height="18" viewBox="0 0 19 18" fill="none">
+                    <path d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z" fill="#212121"/>
+                    <path d="M14.8516 9.75C15.2658 9.75 15.6016 9.41421 15.6016 9C15.6016 8.58579 15.2658 8.25 14.8516 8.25C14.4373 8.25 14.1016 8.58579 14.1016 9C14.1016 9.41421 14.4373 9.75 14.8516 9.75Z" fill="#212121"/>
+                    <path d="M4.35156 9.75C4.76578 9.75 5.10156 9.41421 5.10156 9C5.10156 8.58579 4.76578 8.25 4.35156 8.25C3.93735 8.25 3.60156 8.58579 3.60156 9C3.60156 9.41421 3.93735 9.75 4.35156 9.75Z" fill="#212121"/>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Page 4 */}
+              <div className="relative w-[145px] h-[194px] rounded border-2 border-promag-primary bg-white">
+                <div className="absolute top-[14px] left-[15px] right-[15px]">
+                  <h3 className="text-black font-inter text-[11px] font-medium mb-[17px]">What is Lorem Ipsum?</h3>
+                  <p className="text-black font-inter text-[8px] font-medium leading-tight">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                  </p>
+                </div>
+                <div className="absolute bottom-[7px] right-[7px] inline-flex px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-promag-primary min-w-[24px] h-[21px]">
+                  <span className="text-white font-inter text-sm font-medium">4</span>
+                </div>
+                <div className="absolute top-[5px] right-[5px] flex w-[24px] h-[22px] px-[7px] py-[2px] items-center justify-center rounded-[3px] bg-[#DDD]">
+                  <svg width="18" height="18" viewBox="0 0 19 18" fill="none">
+                    <path d="M9.60156 9.75C10.0158 9.75 10.3516 9.41421 10.3516 9C10.3516 8.58579 10.0158 8.25 9.60156 8.25C9.18735 8.25 8.85156 8.58579 8.85156 9C8.85156 9.41421 9.18735 9.75 9.60156 9.75Z" fill="#212121"/>
+                    <path d="M14.8516 9.75C15.2658 9.75 15.6016 9.41421 15.6016 9C15.6016 8.58579 15.2658 8.25 14.8516 8.25C14.4373 8.25 14.1016 8.58579 14.1016 9C14.1016 9.41421 14.4373 9.75 14.8516 9.75Z" fill="#212121"/>
+                    <path d="M4.35156 9.75C4.76578 9.75 5.10156 9.41421 5.10156 9C5.10156 8.58579 4.76578 8.25 4.35156 8.25C3.93735 8.25 3.60156 8.58579 3.60156 9C3.60156 9.41421 3.93735 9.75 4.35156 9.75Z" fill="#212121"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Button Box */}
           <div className="flex justify-end items-center gap-2.5 pt-2.5">
             <button
               type="button"
