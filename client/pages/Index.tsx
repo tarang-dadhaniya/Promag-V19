@@ -102,7 +102,7 @@ export default function Index() {
     useState<Publication | null>(null);
 
   // Simple blank step state
-  const [blankStep, setBlankStep] = useState<1 | 2 | 3 | 4>(2);
+  const [blankStep, setBlankStep] = useState<1 | 2 | 3 | 4 | 5>(2);
 
   // Upload flow state (existing)
   const [currentStep, setCurrentStep] = useState<Step>("upload");
@@ -797,15 +797,15 @@ export default function Index() {
                   setCurrentView("publication-details");
                   return prev;
                 }
-                const next = (prev - 1) as 1 | 2 | 3 | 4;
+                const next = (prev - 1) as 1 | 2 | 3 | 4 | 5;
                 return next;
               });
             }}
             onSave={() => {
-              // simple advance logic; loops back to publications after step 4
+              // simple advance logic; loops back to publications after step 5
               setBlankStep((prev) => {
-                const next = (prev + 1) as 1 | 2 | 3 | 4;
-                if (prev === 4) {
+                const next = (prev + 1) as 1 | 2 | 3 | 4 | 5;
+                if (prev === 5) {
                   setCurrentView("publication-list");
                   return prev;
                 }
