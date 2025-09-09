@@ -387,8 +387,10 @@ export function BlankStepPage({
 
   const confirmDeletePage = () => {
     if (pageToDelete !== null) {
-      setThumbnails(prev => prev.filter((_, index) => index !== pageToDelete));
-      setPdfNumPages(prev => prev - 1);
+      setThumbnails((prev) =>
+        prev.filter((_, index) => index !== pageToDelete),
+      );
+      setPdfNumPages((prev) => prev - 1);
     }
     setPageToDelete(null);
   };
@@ -1730,11 +1732,41 @@ export function BlankStepPage({
                     className="absolute top-2 right-2 w-6 h-6 rounded flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
                     aria-label={`Delete page ${i + 1}`}
                   >
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2.25 4.5H3.75H15.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M14.25 4.5V15C14.25 15.3978 14.092 15.7794 13.8107 16.0607C13.5294 16.342 13.1478 16.5 12.75 16.5H5.25C4.85218 16.5 4.47064 16.342 4.18934 16.0607C3.90804 15.7794 3.75 15.3978 3.75 15V4.5M6 4.5V3C6 2.60218 6.15804 2.22064 6.43934 1.93934C6.72064 1.65804 7.10218 1.5 7.5 1.5H10.5C10.8978 1.5 11.2794 1.65804 11.5607 1.93934C11.842 2.22064 12 2.60218 12 3V4.5" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7.5 8.25V12.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M10.5 8.25V12.75" stroke="#EF4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.25 4.5H3.75H15.75"
+                        stroke="#EF4444"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M14.25 4.5V15C14.25 15.3978 14.092 15.7794 13.8107 16.0607C13.5294 16.342 13.1478 16.5 12.75 16.5H5.25C4.85218 16.5 4.47064 16.342 4.18934 16.0607C3.90804 15.7794 3.75 15.3978 3.75 15V4.5M6 4.5V3C6 2.60218 6.15804 2.22064 6.43934 1.93934C6.72064 1.65804 7.10218 1.5 7.5 1.5H10.5C10.8978 1.5 11.2794 1.65804 11.5607 1.93934C11.842 2.22064 12 2.60218 12 3V4.5"
+                        stroke="#EF4444"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M7.5 8.25V12.75"
+                        stroke="#EF4444"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M10.5 8.25V12.75"
+                        stroke="#EF4444"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -1796,7 +1828,6 @@ export function BlankStepPage({
           </div>
         </>
       )}
-
       {/* Delete confirmation dialog */}
       <ConfirmationDialog
         open={showDeleteConfirmation}
