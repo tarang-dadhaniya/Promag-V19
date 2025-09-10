@@ -571,18 +571,18 @@ export function PublicationListView({
 
   const confirmDelete = () => {
     if (targetPublication) {
-      // Here you would implement the actual deletion logic
-      // For now, we'll just close the dialog
-      console.log("Deleting publication:", targetPublication.title);
+      // Invoke parent handler to perform deletion and persist changes
+      onDeletePublication?.(targetPublication);
+      setShowDeleteConfirmation(false);
       setTargetPublication(null);
     }
   };
 
   const confirmClone = () => {
     if (targetPublication) {
-      // Here you would implement the actual cloning logic
-      // For now, we'll just close the dialog
-      console.log("Cloning publication:", targetPublication.title);
+      // Invoke parent handler to perform cloning and persist changes
+      onClonePublication?.(targetPublication);
+      setShowCloneConfirmation(false);
       setTargetPublication(null);
     }
   };
