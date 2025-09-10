@@ -795,6 +795,13 @@ export default function Index() {
                 setCurrentView("collections");
               }}
               onGoToPublications={() => setCurrentView("publication-list")}
+              categoriesOptions={[
+                { value: "action", label: t("categories.action") },
+                { value: "cinematic", label: t("categories.cinematic") },
+                { value: "comic", label: t("categories.comic") },
+                { value: "drama", label: t("categories.drama") },
+                { value: "education", label: t("categories.education") },
+              ]}
               collectionOptions={collections.map((c) => ({
                 value: c.id,
                 label: c.title,
