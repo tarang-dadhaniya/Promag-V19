@@ -74,9 +74,11 @@ const NewIssueCard = ({ onClick }: { onClick: () => void }) => {
 const PublicationCard = ({
   publication,
   onEdit,
+  t,
 }: {
   publication: Publication;
   onEdit: () => void;
+  t: (k: string, opts?: any) => string;
 }) => (
   <div className="relative w-full h-[285px]">
     <div className="flex w-full h-full flex-col items-center rounded-lg bg-white overflow-hidden border border-[#DEE6ED] relative">
@@ -158,10 +160,10 @@ const PublicationCard = ({
         )}
       >
         {publication.status === "draft"
-          ? "Draft"
+          ? t("publication.status.draft")
           : publication.status === "published"
-            ? "Published"
-            : "Pending"}
+            ? t("publication.status.live")
+            : t("common.pending")}
       </div>
     )}
 
@@ -546,6 +548,7 @@ export function PublicationsPage({
             key={publication.id}
             publication={publication}
             onEdit={() => onEditPublication?.(publication)}
+            t={t}
           />
         ))}
       </div>
@@ -554,10 +557,10 @@ export function PublicationsPage({
       {filteredPublications.length === 0 && searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No publications found matching "{searchQuery}"
+            {t("common.noPublicationsFound", { query: searchQuery })}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Try adjusting your search terms
+            {t("common.tryAdjustingSearch")}
           </p>
         </div>
       )}
