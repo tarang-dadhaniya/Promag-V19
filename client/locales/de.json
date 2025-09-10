@@ -23,6 +23,7 @@
     "action": "Aktion",
     "settings": "Einstellungen",
     "pending": "Ausstehend",
+    "noOptionsAvailable": "Keine Optionen verfügbar",
     "noOptionsAvailable": "Keine Optionen verfügbar"
   },
   "menu": {
@@ -86,7 +87,7 @@
     "author": "Autor",
     "editor": "Herausgeber",
     "language": "Sprache",
-    "releaseDate": "Veröffentlichungsdatum",
+    "releaseDate": "Ver��ffentlichungsdatum",
     "isbnIssn": "ISBN/ISSN",
     "indexOffset": "Indexversatz",
     "status": "Status",
@@ -98,6 +99,10 @@
     "editCollection": "Sammlung bearbeiten",
     "editPublication": "Publikation bearbeiten",
     "backToPublications": "Zurück zu Publikationen",
+    "coverImage": "Titelbild",
+    "dragDropHere": "Datei hierher ziehen und ablegen",
+    "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",
+    "coverPreviewAlt": "Vorschau des Sammlungs-Covers",
     "coverImage": "Titelbild",
     "dragDropHere": "Datei hierher ziehen und ablegen",
     "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",
