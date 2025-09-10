@@ -366,7 +366,7 @@ export function EditPublicationForm({
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Category"
+                placeholder={t("forms.placeholders.selectCategory")}
                 value={formData.category}
                 onChange={updateField("category")}
                 options={categoriesOptions}
