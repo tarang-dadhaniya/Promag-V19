@@ -431,13 +431,13 @@ export function EditPublicationForm({
                 onClick={onCancel}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-gray-300 bg-white text-gray-700 font-inter text-sm font-medium hover:bg-gray-50 transition-colors"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 onClick={handleSave}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
               >
-                Save Changes
+                {t("common.save")}
               </button>
             </div>
           </div>
