@@ -67,5 +67,9 @@
     "fileUploaded": "File uploaded successfully",
     "onlyPdf": "Please select a PDF file.",
     "maxSize10": "File size must be less than 10MB."
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "backHome": "Return to Home"
   }
 }
