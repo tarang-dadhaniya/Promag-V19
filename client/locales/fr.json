@@ -7,7 +7,10 @@
     "noCollectionsFound": "Aucune collection trouvée correspondant à \"{{query}}\"",
     "tryAdjustingSearch": "Essayez d'ajuster vos termes de recherche",
     "next": "Suivant",
+    "previous": "Précédent",
     "ok": "OK",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
     "uploadCompleted": "Téléversement terminé !",
     "uploadSuccessDescription": "Votre publication a été téléversée avec succès dans la collection.",
     "backTo": "Retour à {{target}}",
@@ -15,10 +18,11 @@
     "newIssue": "Nouvelle édition",
     "deleteCollection": "Supprimer la collection",
     "noPublicationsFound": "Aucune publication trouvée correspondant à \"{{query}}\"",
+    "noPublicationsInCollection": "Il n'y a pas encore de publications dans cette collection.",
+    "clickNewIssue": "Cliquez sur Nouvelle édition pour créer votre première publication.",
     "action": "Action",
     "settings": "Paramètres",
-    "previous": "Précédent",
-    "save": "Enregistrer"
+    "pending": "En attente"
   },
   "menu": {
     "managePublications": "Gérer les publications",
@@ -27,9 +31,7 @@
     "manageReader": "Gérer le lecteur",
     "pushNotifications": "Notifications push"
   },
-  "roles": {
-    "superAdmin": "SuperAdmin"
-  },
+  "roles": { "superAdmin": "SuperAdmin" },
   "categories": {
     "action": "Action",
     "cinematic": "Cinématique",
@@ -41,13 +43,29 @@
     "comingSoon": "Cette page arrive bientôt. Continuez à demander pour ajouter du contenu ici."
   },
   "publication": {
-    "status": {
-      "live": "En ligne",
-      "draft": "Brouillon"
-    },
-    "action": {
-      "backToDraft": "Repasser en brouillon",
-      "goLive": "Publier"
-    }
+    "status": { "live": "En ligne", "draft": "Brouillon" },
+    "action": { "backToDraft": "Repasser en brouillon", "goLive": "Publier" }
+  },
+  "dialog": {
+    "areYouSure": "Êtes-vous sûr ?",
+    "deleteCollectionDescription": "Vous êtes sur le point de supprimer la collection \"{{name}}\". Cette action est irréversible et supprimera définitivement toutes les publications de cette collection."
+  },
+  "api": {
+    "demoMessage": "Bonjour du serveur Express",
+    "ping": "ping"
+  },
+  "upload": {
+    "dropHere": "Déposez votre fichier ici",
+    "releaseToUpload": "Relâchez pour téléverser votre fichier PDF",
+    "uploading": "Téléversement en cours...",
+    "percentUploaded": "{{percent}}% téléversé",
+    "fileUploadedSuccess": "Votre fichier a été téléversé avec succès",
+    "selectOrDrag": "Sélectionnez un fichier ou glissez-déposez-le ici",
+    "sizeLimit10": "PDF, taille maximale 10 Mo",
+    "updateFile": "Mettre à jour le fichier",
+    "uploadFile": "Téléverser le fichier",
+    "fileUploaded": "Fichier téléversé avec succès",
+    "onlyPdf": "Veuillez sélectionner un fichier PDF.",
+    "maxSize10": "La taille du fichier doit être inférieure à 10 Mo."
   }
 }
