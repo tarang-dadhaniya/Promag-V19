@@ -128,7 +128,8 @@
       "titleRequired": "Bitte geben Sie einen Titel für die Sammlung ein.",
       "imageFileType": "Bitte wählen Sie eine PNG- oder JPEG-Bilddatei aus.",
       "imageMax8": "Die Dateigröße muss unter 8 MB liegen.",
-      "imageProcessFailed": "Bild konnte nicht verarbeitet werden. Bitte erneut versuchen."
+      "imageProcessFailed": "Bild konnte nicht verarbeitet werden. Bitte erneut versuchen.",
+      "fieldRequired": "{{field}} ist erforderlich"
     }
   },
   "steps": {
