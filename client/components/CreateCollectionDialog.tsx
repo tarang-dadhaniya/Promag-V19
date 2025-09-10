@@ -304,11 +304,10 @@ export function CreateCollectionDialog({
                   {/* Description */}
                   <div className="flex flex-col items-center gap-2 text-center">
                     <h3 className="text-black font-inter text-base font-semibold">
-                      Drag and drop file here
+                      {t("forms.dragDropHere")}
                     </h3>
                     <p className="text-black/60 font-inter text-xs font-medium max-w-md">
-                      The cover must be PNG or JPEG, up to 8 MB, 16:9 or 9:16
-                      aspect ratio, with each side between 320 px and 3,840
+                      {t("forms.coverImageRequirements")}
                     </p>
                   </div>
 
