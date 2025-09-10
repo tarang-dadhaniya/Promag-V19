@@ -399,27 +399,27 @@ export function EditPublicationForm({
             </FormField>
 
             {/* Row 3: Edition - Full Width */}
-            <FormField label="Edition (Optional)" className="w-full">
+            <FormField label={t("forms.editionOptional")} className="w-full">
               <InputField
-                placeholder="Enter Edition"
+                placeholder={t("forms.placeholders.edition")}
                 value={formData.edition}
                 onChange={updateField("edition")}
               />
             </FormField>
 
             {/* Row 4: Teaser - Full Width */}
-            <FormField label="Teaser" className="w-full">
+            <FormField label={t("forms.teaser")} className="w-full">
               <TextareaField
-                placeholder="Enter Teaser"
+                placeholder={t("forms.placeholders.teaser")}
                 value={formData.teaser}
                 onChange={updateField("teaser")}
               />
             </FormField>
 
             {/* Row 5: Description - Full Width */}
-            <FormField label="Description" className="w-full">
+            <FormField label={t("forms.description")} className="w-full">
               <TextareaField
-                placeholder="Enter Description"
+                placeholder={t("forms.placeholders.description")}
                 value={formData.description}
                 onChange={updateField("description")}
               />
