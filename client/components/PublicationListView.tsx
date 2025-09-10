@@ -4,6 +4,7 @@ import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Collection {
   id: string;
