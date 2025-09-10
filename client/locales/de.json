@@ -44,7 +44,10 @@
   },
   "publication": {
     "status": { "live": "Live", "draft": "Entwurf" },
-    "action": { "backToDraft": "Zurück zum Entwurf", "goLive": "Veröffentlichen" }
+    "action": {
+      "backToDraft": "Zurück zum Entwurf",
+      "goLive": "Veröffentlichen"
+    }
   },
   "dialog": {
     "areYouSure": "Sind Sie sicher?",

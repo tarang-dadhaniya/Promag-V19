@@ -626,7 +626,7 @@ export default function Index() {
                       ? "border-promag-primary bg-promag-primary text-white hover:bg-promag-primary/90"
                       : "border-promag-primary/50 bg-promag-primary/50 text-white cursor-not-allowed"
                   }`}
->
+                >
                   {t("common.next")}
                 </button>
               </div>
@@ -874,7 +874,11 @@ export default function Index() {
                   />
                 </svg>
                 <span className="font-inter text-sm">
-                  {t("common.backTo", { target: selectedCollection ? t("common.publications") : t("common.collections") })}
+                  {t("common.backTo", {
+                    target: selectedCollection
+                      ? t("common.publications")
+                      : t("common.collections"),
+                  })}
                 </span>
               </button>
             </div>

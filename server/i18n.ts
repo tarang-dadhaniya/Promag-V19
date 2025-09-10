@@ -19,9 +19,14 @@ void i18n.init({
   interpolation: { escapeValue: false },
 });
 
-export function getRequestT(req: { headers?: Record<string, any> } | undefined): TFunction {
+export function getRequestT(
+  req: { headers?: Record<string, any> } | undefined,
+): TFunction {
   const accept = req?.headers?.["accept-language"] as string | undefined;
-  const queryLngMatch = typeof (req as any)?.query?.lng === "string" ? (req as any).query.lng : undefined;
+  const queryLngMatch =
+    typeof (req as any)?.query?.lng === "string"
+      ? (req as any).query.lng
+      : undefined;
   const headerLng = accept?.split(",")[0]?.trim();
   const lng = queryLngMatch || headerLng || "en";
   // Clone to avoid cross-request mutations

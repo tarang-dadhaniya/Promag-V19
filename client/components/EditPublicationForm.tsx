@@ -13,7 +13,7 @@ interface Publication {
   coverImage?: string;
   createdAt: Date;
   collectionId: string;
-  status?: 'draft' | 'published' | 'pending';
+  status?: "draft" | "published" | "pending";
   category?: string;
   description?: string;
   edition?: string;
@@ -43,7 +43,12 @@ interface FormFieldProps {
   className?: string;
 }
 
-function FormField({ label, required = false, children, className }: FormFieldProps) {
+function FormField({
+  label,
+  required = false,
+  children,
+  className,
+}: FormFieldProps) {
   return (
     <div className={cn("flex flex-col items-start gap-2", className)}>
       <label className="self-stretch text-promag-body font-inter text-sm font-medium">
@@ -62,13 +67,20 @@ interface InputFieldProps {
   className?: string;
 }
 
-function InputField({ placeholder, value, onChange, className }: InputFieldProps) {
+function InputField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: InputFieldProps) {
   return (
-    <div className={cn(
-      "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <input
         type="text"
         placeholder={placeholder}
@@ -87,13 +99,20 @@ interface TextareaFieldProps {
   className?: string;
 }
 
-function TextareaField({ placeholder, value, onChange, className }: TextareaFieldProps) {
+function TextareaField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: TextareaFieldProps) {
   return (
-    <div className={cn(
-      "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <textarea
         placeholder={placeholder}
         value={value}
@@ -105,13 +124,13 @@ function TextareaField({ placeholder, value, onChange, className }: TextareaFiel
   );
 }
 
-export function EditPublicationForm({ 
-  publication, 
-  collections, 
-  categoriesOptions, 
-  onSave, 
-  onCancel, 
-  className 
+export function EditPublicationForm({
+  publication,
+  collections,
+  categoriesOptions,
+  onSave,
+  onCancel,
+  className,
 }: EditPublicationFormProps) {
   const [formData, setFormData] = useState({
     title: publication.title || "",
@@ -120,18 +139,21 @@ export function EditPublicationForm({
     edition: publication.edition || "",
     teaser: publication.teaser || "",
     description: publication.description || "",
-    status: publication.status || 'draft'
+    status: publication.status || "draft",
   });
 
   const [newCoverImage, setNewCoverImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const collectionOptions = collections.map(c => ({ value: c.id, label: c.title }));
-  
+  const collectionOptions = collections.map((c) => ({
+    value: c.id,
+    label: c.title,
+  }));
+
   const statusOptions = [
-    { value: 'draft', label: 'Draft' },
-    { value: 'published', label: 'Published' },
-    { value: 'pending', label: 'Pending Review' }
+    { value: "draft", label: "Draft" },
+    { value: "published", label: "Published" },
+    { value: "pending", label: "Pending Review" },
   ];
 
   const convertFileToBase64 = (file: File): Promise<string> => {
@@ -144,7 +166,7 @@ export function EditPublicationForm({
   };
 
   const handleImageUpload = useCallback(async (file: File) => {
-    const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const validTypes = ["image/png", "image/jpeg", "image/jpg"];
     if (!validTypes.includes(file.type)) {
       alert("Please select a PNG or JPEG image file.");
       return;
@@ -160,22 +182,25 @@ export function EditPublicationForm({
       const dataUrl = await convertFileToBase64(file);
       setNewCoverImage(dataUrl);
     } catch (error) {
-      console.error('Error converting file to base64:', error);
-      alert('Failed to process the image. Please try again.');
+      console.error("Error converting file to base64:", error);
+      alert("Failed to process the image. Please try again.");
     }
   }, []);
 
-  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      handleImageUpload(file);
-    }
-  }, [handleImageUpload]);
+  const handleFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        handleImageUpload(file);
+      }
+    },
+    [handleImageUpload],
+  );
 
   const updateField = (field: keyof typeof formData) => (value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -194,7 +219,7 @@ export function EditPublicationForm({
       edition: formData.edition,
       teaser: formData.teaser,
       description: formData.description,
-      status: formData.status as 'draft' | 'published' | 'pending',
+      status: formData.status as "draft" | "published" | "pending",
       coverImage: newCoverImage || publication.coverImage,
     };
 
@@ -208,17 +233,31 @@ export function EditPublicationForm({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={onCancel}
             className="flex items-center gap-2 text-black/60 hover:text-black transition-colors"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 12L6 8L10 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
             <span className="font-inter text-sm">Back to Publications</span>
           </button>
         </div>
-        <h1 className="text-black font-inter text-xl font-semibold">Edit Publication</h1>
+        <h1 className="text-black font-inter text-xl font-semibold">
+          Edit Publication
+        </h1>
       </div>
 
       {/* Form */}
@@ -226,16 +265,13 @@ export function EditPublicationForm({
         <div className="flex w-full flex-col gap-5">
           {/* Cover Image Section */}
           <div className="flex p-3 sm:p-5 items-start content-start gap-4 sm:gap-[30px] gap-y-4 sm:gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
-            <FormField
-              label="Cover Image"
-              className="w-full"
-            >
+            <FormField label="Cover Image" className="w-full">
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 {/* Current Image Preview */}
                 {displayImage && (
                   <div className="relative">
-                    <img 
-                      src={displayImage} 
+                    <img
+                      src={displayImage}
                       alt="Publication cover"
                       className="w-[120px] h-[150px] object-cover rounded-lg border border-gray-200"
                     />
@@ -244,9 +280,21 @@ export function EditPublicationForm({
                         onClick={() => setNewCoverImage(null)}
                         className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
                       >
-                        <svg width="12" height="12" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7.89147 12.9834C7.73314 12.9834 7.5748 12.925 7.4498 12.8C7.20814 12.5584 7.20814 12.1584 7.4498 11.9167L12.1665 7.20005C12.4081 6.95838 12.8081 6.95838 13.0498 7.20005C13.2915 7.44172 13.2915 7.84172 13.0498 8.08338L8.33314 12.8C8.21647 12.925 8.0498 12.9834 7.89147 12.9834Z" fill="white"/>
-                          <path d="M12.6081 12.9834C12.4498 12.9834 12.2915 12.925 12.1665 12.8L7.4498 8.08338C7.20814 7.84172 7.20814 7.44172 7.4498 7.20005C7.69147 6.95838 8.09147 6.95838 8.33314 7.20005L13.0498 11.9167C13.2915 12.1584 13.2915 12.5584 13.0498 12.8C12.9248 12.925 12.7665 12.9834 12.6081 12.9834Z" fill="white"/>
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 21 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7.89147 12.9834C7.73314 12.9834 7.5748 12.925 7.4498 12.8C7.20814 12.5584 7.20814 12.1584 7.4498 11.9167L12.1665 7.20005C12.4081 6.95838 12.8081 6.95838 13.0498 7.20005C13.2915 7.44172 13.2915 7.84172 13.0498 8.08338L8.33314 12.8C8.21647 12.925 8.0498 12.9834 7.89147 12.9834Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M12.6081 12.9834C12.4498 12.9834 12.2915 12.925 12.1665 12.8L7.4498 8.08338C7.20814 7.84172 7.20814 7.44172 7.4498 7.20005C7.69147 6.95838 8.09147 6.95838 8.33314 7.20005L13.0498 11.9167C13.2915 12.1584 13.2915 12.5584 13.0498 12.8C12.9248 12.925 12.7665 12.9834 12.6081 12.9834Z"
+                            fill="white"
+                          />
                         </svg>
                       </button>
                     )}
@@ -266,11 +314,29 @@ export function EditPublicationForm({
                     onClick={() => fileInputRef.current?.click()}
                     className="flex h-[42px] px-5 py-[10px] justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-white text-promag-primary font-inter text-sm font-medium hover:bg-promag-primary/5 transition-colors"
                   >
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 1V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M1 6H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6 1V11"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M1 6H11"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
-                    {displayImage ? 'Change Image' : 'Upload Image'}
+                    {displayImage ? "Change Image" : "Upload Image"}
                   </button>
                   <p className="text-black/60 font-inter text-xs">
                     PNG or JPEG, max 8MB
@@ -333,10 +399,7 @@ export function EditPublicationForm({
             </FormField>
 
             {/* Row 3: Edition - Full Width */}
-            <FormField
-              label="Edition (Optional)"
-              className="w-full"
-            >
+            <FormField label="Edition (Optional)" className="w-full">
               <InputField
                 placeholder="Enter Edition"
                 value={formData.edition}
@@ -345,10 +408,7 @@ export function EditPublicationForm({
             </FormField>
 
             {/* Row 4: Teaser - Full Width */}
-            <FormField
-              label="Teaser"
-              className="w-full"
-            >
+            <FormField label="Teaser" className="w-full">
               <TextareaField
                 placeholder="Enter Teaser"
                 value={formData.teaser}
@@ -357,10 +417,7 @@ export function EditPublicationForm({
             </FormField>
 
             {/* Row 5: Description - Full Width */}
-            <FormField
-              label="Description"
-              className="w-full"
-            >
+            <FormField label="Description" className="w-full">
               <TextareaField
                 placeholder="Enter Description"
                 value={formData.description}
@@ -370,13 +427,13 @@ export function EditPublicationForm({
 
             {/* Action Buttons */}
             <div className="flex justify-end items-center gap-2.5 w-full pt-2">
-              <button 
+              <button
                 onClick={onCancel}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-gray-300 bg-white text-gray-700 font-inter text-sm font-medium hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
-              <button 
+              <button
                 onClick={handleSave}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
               >
