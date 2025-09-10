@@ -1,6 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
+import { useCallback, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface DropdownOption {
   value: string;
@@ -132,6 +134,7 @@ export function EditPublicationForm({
   onCancel,
   className,
 }: EditPublicationFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     title: publication.title || "",
     category: publication.category || "",
@@ -151,9 +154,9 @@ export function EditPublicationForm({
   }));
 
   const statusOptions = [
-    { value: "draft", label: "Draft" },
-    { value: "published", label: "Published" },
-    { value: "pending", label: "Pending Review" },
+    { value: "draft", label: t("publication.status.draft") },
+    { value: "published", label: t("publication.status.live") },
+    { value: "pending", label: t("common.pending") },
   ];
 
   const convertFileToBase64 = (file: File): Promise<string> => {
@@ -174,7 +177,7 @@ export function EditPublicationForm({
 
     const maxSize = 8 * 1024 * 1024; // 8MB
     if (file.size > maxSize) {
-      alert("File size must be less than 8MB.");
+      alert(t("forms.validation.imageMax8"));
       return;
     }
 
@@ -183,7 +186,7 @@ export function EditPublicationForm({
       setNewCoverImage(dataUrl);
     } catch (error) {
       console.error("Error converting file to base64:", error);
-      alert("Failed to process the image. Please try again.");
+      alert(t("forms.validation.imageProcessFailed"));
     }
   }, []);
 
@@ -207,7 +210,7 @@ export function EditPublicationForm({
   const handleSave = () => {
     // Basic validation
     if (!formData.title.trim()) {
-      alert("Title is required");
+      alert(t("forms.validation.fieldRequired", { field: t("forms.name") }));
       return;
     }
 
