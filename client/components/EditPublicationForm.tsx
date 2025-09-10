@@ -362,7 +362,7 @@ export function EditPublicationForm({
             </FormField>
 
             <FormField
-              label="Category"
+              label={t("forms.topicsCategory")}
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
