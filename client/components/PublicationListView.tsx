@@ -600,9 +600,9 @@ export function PublicationListView({
           type="button"
           onClick={onBackToCollections}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
-          aria-label="Back to Collections"
+          aria-label={t("common.backToCollections")}
         >
-          Collections
+          {t("common.collections")}
         </button>
         <span className="text-promag-body/70">/</span>
         <button
@@ -610,7 +610,7 @@ export function PublicationListView({
           onClick={onGoToPublications}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
         >
-          Publications
+          {t("common.publications")}
         </button>
       </div>
 
