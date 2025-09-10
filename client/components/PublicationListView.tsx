@@ -822,7 +822,7 @@ export function PublicationListView({
                       strokeLinecap="round"
                     />
                   </svg>
-                  Delete Collection
+                  {t("common.deleteCollection", "Delete Collection")}
                 </button>
               </div>
             )}
