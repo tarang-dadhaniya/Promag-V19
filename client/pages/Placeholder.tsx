@@ -22,7 +22,7 @@ export default function Placeholder({ title, message }: PlaceholderProps) {
 
         {/* Content Area */}
         <div className="flex flex-1 flex-col p-5 gap-5 items-center justify-center">
-          <div className="flex flex-col itemscenter gap-4 text-center">
+          <div className="flex flex-col items-center gap-4 text-center">
             <h2 className="text-2xl font-semibold text-promag-body font-manrope">
               {title}
             </h2>
