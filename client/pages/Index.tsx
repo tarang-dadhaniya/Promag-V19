@@ -233,6 +233,25 @@ export default function Index() {
     setCurrentView("publication-list");
   };
 
+  // Delete a publication by id and clear editing state if necessary
+  const handleDeletePublication = (publication: Publication) => {
+    setPublications((prev) => prev.filter((p) => p.id !== publication.id));
+    if (editingPublication && editingPublication.id === publication.id) {
+      setEditingPublication(null);
+    }
+  };
+
+  // Clone a publication (create a new publication entry with new id)
+  const handleClonePublication = (publication: Publication) => {
+    const cloned: Publication = {
+      ...publication,
+      id: Date.now().toString(),
+      title: publication.title ? `${publication.title} (Copy)` : "Untitled Publication",
+      createdAt: new Date(),
+    };
+    setPublications((prev) => [...prev, cloned]);
+  };
+
   // Auto-close success popup after 5s and reset
   useEffect(() => {
     if (!showSuccess) return;
