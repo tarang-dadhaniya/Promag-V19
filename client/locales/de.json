@@ -11,7 +11,14 @@
     "uploadCompleted": "Upload abgeschlossen!",
     "uploadSuccessDescription": "Ihre Publikation wurde der Sammlung erfolgreich hinzugefügt.",
     "backTo": "Zurück zu {{target}}",
-    "backToCollections": "Zurück zu Sammlungen"
+    "backToCollections": "Zurück zu Sammlungen",
+    "newIssue": "Neue Ausgabe",
+    "deleteCollection": "Sammlung löschen",
+    "noPublicationsFound": "Keine Publikationen gefunden für \"{{query}}\"",
+    "action": "Aktion",
+    "settings": "Einstellungen",
+    "previous": "Zurück",
+    "save": "Speichern"
   },
   "menu": {
     "managePublications": "Publikationen verwalten",
@@ -32,5 +39,15 @@
   },
   "placeholder": {
     "comingSoon": "Diese Seite wird bald verfügbar sein. Fahren Sie mit Aufforderungen fort, um hier Inhalte hinzuzufügen."
+  },
+  "publication": {
+    "status": {
+      "live": "Live",
+      "draft": "Entwurf"
+    },
+    "action": {
+      "backToDraft": "Zurück zum Entwurf",
+      "goLive": "Veröffentlichen"
+    }
   }
 }
