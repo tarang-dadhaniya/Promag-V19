@@ -877,10 +877,10 @@ export function PublicationListView({
       {filteredPublications.length === 0 && searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No publications found matching "{searchQuery}"
+            {t("common.noPublicationsFound", { query: searchQuery })}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Try adjusting your search terms
+            {t("common.tryAdjustingSearch")}
           </p>
         </div>
       )}
