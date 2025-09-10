@@ -313,7 +313,7 @@ export function ShareDialog({
                     type="radio"
                     name="access"
                     checked={pendingAccessType === "anyone"}
-                    onChange={() => {}}
+                    onChange={() => handlePrivacyChange("anyone")}
                     className="sr-only"
                   />
                   <div
@@ -381,7 +381,7 @@ export function ShareDialog({
                     type="radio"
                     name="access"
                     checked={pendingAccessType === "link"}
-                    onChange={() => {}}
+                    onChange={() => handlePrivacyChange("link")}
                     className="sr-only"
                   />
                   <div
@@ -442,7 +442,7 @@ export function ShareDialog({
                     type="radio"
                     name="access"
                     checked={pendingAccessType === "choose"}
-                    onChange={() => {}}
+                    onChange={() => handlePrivacyChange("choose")}
                     className="sr-only"
                   />
                   <div
@@ -517,7 +517,7 @@ export function ShareDialog({
                     type="radio"
                     name="access"
                     checked={pendingAccessType === "password"}
-                    onChange={() => {}}
+                    onChange={() => handlePrivacyChange("password")}
                     className="sr-only"
                   />
                   <div
