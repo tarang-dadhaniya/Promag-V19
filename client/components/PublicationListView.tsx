@@ -41,44 +41,47 @@ interface PublicationListViewProps {
   onClonePublication?: (publication: Publication) => void;
 }
 
-const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
-  <div
-    onClick={onClick}
-    className="flex w-[305px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group h-[379px]"
-  >
-    <div className="flex flex-col items-center gap-[22px]">
-      <div className="flex items-center justify-center">
-        <svg
-          width="118"
-          height="118"
-          viewBox="0 0 118 118"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M59 40V78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-          <path
-            d="M40 59H78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-        </svg>
+const NewIssueCard = ({ onClick }: { onClick: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      onClick={onClick}
+      className="flex w-[305px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group h-[379px]"
+    >
+      <div className="flex flex-col items-center gap-[22px]">
+        <div className="flex items-center justify-center">
+          <svg
+            width="118"
+            height="118"
+            viewBox="0 0 118 118"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M59 40V78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+            <path
+              d="M40 59H78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+          </svg>
+        </div>
+        <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
+          {t("common.newIssue", "New Issue")}
+        </h3>
       </div>
-      <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
-        {t("common.newIssue", "New Issue")}
-      </h3>
     </div>
-  </div>
-);
+  );
+};
 
 const PublicationCard = ({
   publication,
@@ -519,6 +522,7 @@ export function PublicationListView({
   onDeletePublication,
   onClonePublication,
 }: PublicationListViewProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showActionDropdown, setShowActionDropdown] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
