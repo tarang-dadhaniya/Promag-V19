@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { DatePicker } from "./ui/datepicker";
@@ -156,6 +157,7 @@ function CheckboxField({ label, checked, onChange, className }: CheckboxFieldPro
 }
 
 export function AuthorDetailsForm({ onSubmit, onValidationChange, onPreview, onDataChange, initialData, className }: AuthorDetailsFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<AuthorDetailsFormData>({
     author: initialData?.author ?? "",
     editor: initialData?.editor ?? "",
@@ -349,8 +351,8 @@ export function AuthorDetailsForm({ onSubmit, onValidationChange, onPreview, onD
             />
           </FormField>
           <div className="flex justify-end items-center gap-2.5 w-full pt-2">
-            <button type="button" onClick={onPreview} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors">previous</button>
-            <button type="submit" className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Save</button>
+            <button type="button" onClick={onPreview} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors">{t("common.previous")}</button>
+            <button type="submit" className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">{t("common.save")}</button>
           </div>
         </div>
       </form>
