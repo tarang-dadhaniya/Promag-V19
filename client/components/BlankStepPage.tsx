@@ -1069,14 +1069,14 @@ export function BlankStepPage({
               onClick={currentStep > 1 ? onPrev : onCancel}
               className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
             >
-              Previous
+              {t("common.previous")}
             </button>
             <button
               type="button"
               onClick={onSave}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              Save
+              {t("common.save")}
             </button>
           </div>
         </div>
@@ -1524,14 +1524,14 @@ export function BlankStepPage({
               onClick={currentStep > 1 ? onPrev : onCancel}
               className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
             >
-              Previous
+              {t("common.previous")}
             </button>
             <button
               type="button"
               onClick={onSave}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              Save
+              {t("common.save")}
             </button>
           </div>
 
@@ -1577,7 +1577,7 @@ export function BlankStepPage({
                             setFormData({ ...formData, title: e.target.value })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="Add title"
+                          placeholder={t("forms.placeholders.addTitle")}
                         />
                       </div>
                     </div>
@@ -1598,7 +1598,7 @@ export function BlankStepPage({
                             })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="Add Start Page"
+                          placeholder={t("forms.placeholders.addStartPage")}
                         />
                       </div>
                     </div>
@@ -1619,7 +1619,7 @@ export function BlankStepPage({
                             })
                           }
                           className="text-promag-body font-inter text-sm font-normal leading-4 bg-transparent border-none outline-none flex-1"
-                          placeholder="Add End Page"
+                          placeholder={t("forms.placeholders.addEndPage")}
                         />
                       </div>
                     </div>
@@ -1635,14 +1635,14 @@ export function BlankStepPage({
                     }}
                     className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded-[5px] bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
                   >
-                    Cancel
+                    {t("common.cancel")}
                   </button>
                   <button
                     onClick={handleAddSolution}
                     className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
                   >
-                    Save
-                  </button>
+              {t("common.save")}
+            </button>
                 </div>
               </div>
             </div>
@@ -1663,7 +1663,7 @@ export function BlankStepPage({
                   value={keywordsData}
                   onChange={(e) => setKeywordsData(e.target.value)}
                   className="text-promag-placeholder font-inter text-sm font-normal bg-transparent border-none outline-none flex-1 placeholder:text-promag-placeholder"
-                  placeholder="Enter KeyWords"
+                  placeholder={t("forms.placeholders.enterKeywords")}
                 />
               </div>
             </div>
@@ -1675,8 +1675,8 @@ export function BlankStepPage({
                 onClick={currentStep > 1 ? onPrev : onCancel}
                 className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
               >
-                Previous
-              </button>
+              {t("common.previous")}
+            </button>
               <button
                 onClick={() => {
                   handleKeywordsSave();
@@ -1684,8 +1684,8 @@ export function BlankStepPage({
                 }}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
               >
-                Save
-              </button>
+              {t("common.save")}
+            </button>
             </div>
           </div>
         </div>
@@ -1792,14 +1792,14 @@ export function BlankStepPage({
               onClick={currentStep > 1 ? onPrev : onCancel}
               className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
             >
-              Previous
+              {t("common.previous")}
             </button>
             <button
               type="button"
               onClick={onSave}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              Save
+              {t("common.save")}
             </button>
           </div>
         </div>
@@ -1816,14 +1816,14 @@ export function BlankStepPage({
               onClick={currentStep > 1 ? onPrev : onCancel}
               className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
             >
-              {currentStep > 1 ? "Previous" : "Cancel"}
+              {currentStep > 1 ? t("common.previous") : t("common.cancel")}
             </button>
             <button
               type="button"
               onClick={onSave}
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              Save
+              {t("common.save")}
             </button>
           </div>
         </>
