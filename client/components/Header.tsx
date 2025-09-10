@@ -6,27 +6,71 @@ interface HeaderProps {
 }
 
 const MenuIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17 10H3" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M21 6H3" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M21 14H3" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M17 18H3" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17 10H3"
+      stroke="#212121"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21 6H3"
+      stroke="#212121"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M21 14H3"
+      stroke="#212121"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17 18H3"
+      stroke="#212121"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const ChevronDown = () => (
-  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 1L5 5L9 1" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg
+    width="10"
+    height="6"
+    viewBox="0 0 10 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 1L5 5L9 1"
+      stroke="#212121"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 export function Header({ title, className }: HeaderProps) {
   return (
-    <div className={cn(
-      "flex w-full px-3 sm:px-5 py-[14px] justify-between items-center bg-white",
-      "shadow-[0_0_30px_0_rgba(41,48,66,0.10)] h-[60px] sm:h-[68px]",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex w-full px-3 sm:px-5 py-[14px] justify-between items-center bg-white",
+        "shadow-[0_0_30px_0_rgba(41,48,66,0.10)] h-[60px] sm:h-[68px]",
+        className,
+      )}
+    >
       {/* Left side - Menu and Title */}
       <div className="flex items-center gap-3 sm:gap-5 min-w-0">
         <MenuIcon />

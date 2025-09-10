@@ -246,7 +246,9 @@ export default function Index() {
     const cloned: Publication = {
       ...publication,
       id: Date.now().toString(),
-      title: publication.title ? `${publication.title} (Copy)` : "Untitled Publication",
+      title: publication.title
+        ? `${publication.title} (Copy)`
+        : "Untitled Publication",
       createdAt: new Date(),
     };
     setPublications((prev) => [...prev, cloned]);

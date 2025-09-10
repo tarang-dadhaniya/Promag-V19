@@ -10,7 +10,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
 
-
 const App = () => (
   <TooltipProvider>
     <Toaster />
@@ -18,10 +17,16 @@ const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/company" element={<Placeholder title="Manage Company" />} />
+        <Route
+          path="/company"
+          element={<Placeholder title="Manage Company" />}
+        />
         <Route path="/apps" element={<Placeholder title="Manage Apps" />} />
         <Route path="/reader" element={<Placeholder title="Manage Reader" />} />
-        <Route path="/notifications" element={<Placeholder title="Push Notifications" />} />
+        <Route
+          path="/notifications"
+          element={<Placeholder title="Push Notifications" />}
+        />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
