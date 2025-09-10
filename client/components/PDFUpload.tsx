@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 interface UploadedFile {
@@ -187,6 +188,7 @@ export function PDFUpload({
   className,
   initialFile,
 }: PDFUploadProps) {
+  const { t } = useTranslation();
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null);
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle");
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -237,13 +239,13 @@ export function PDFUpload({
 
   const validateFile = (file: File): boolean => {
     if (file.type !== "application/pdf") {
-      alert("Please select a PDF file.");
+      alert(t("upload.onlyPdf"));
       return false;
     }
 
     const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
-      alert("File size must be less than 10MB.");
+      alert(t("upload.maxSize10"));
       return false;
     }
 
@@ -418,11 +420,11 @@ export function PDFUpload({
             </div>
             <div className="flex flex-col items-center gap-4 text-center">
               <h3 className="text-promag-primary font-inter text-lg font-bold animate-pulse">
-                Drop your file here
+                {t("upload.dropHere")}
               </h3>
               <div className="flex flex-col items-center gap-2">
                 <p className="text-black/60 font-inter text-sm font-medium">
-                  Release to upload your PDF file
+                  {t("upload.releaseToUpload")}
                 </p>
                 <div className="text-promag-primary font-inter text-2xl font-bold font-mono">
                   {currentTime}
@@ -440,7 +442,7 @@ export function PDFUpload({
             </div>
             <div className="flex flex-col items-center gap-4 text-center">
               <h3 className="text-promag-primary font-inter text-lg font-bold">
-                Uploading...
+                {t("upload.uploading")}
               </h3>
               <div className="w-full max-w-[300px]">
                 <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
@@ -450,7 +452,7 @@ export function PDFUpload({
                   />
                 </div>
                 <p className="text-black/60 font-inter text-sm font-medium">
-                  {uploadProgress}% uploaded
+                  {t("upload.percentUploaded", { percent: uploadProgress })}
                 </p>
               </div>
             </div>
@@ -472,10 +474,10 @@ export function PDFUpload({
             </div>
             <div className="flex flex-col items-center gap-4 text-center">
               <h3 className="text-green-600 font-inter text-lg font-bold">
-                Upload Completed!
+                {t("common.uploadCompleted")}
               </h3>
               <p className="text-black/60 font-inter text-sm font-medium">
-                Your file has been successfully uploaded
+                {t("upload.fileUploadedSuccess")}
               </p>
             </div>
           </div>
@@ -493,10 +495,10 @@ export function PDFUpload({
             <div className="flex flex-col items-center gap-4 sm:gap-6">
               <div className="flex flex-col items-center gap-2 text-center">
                 <h3 className="text-black font-inter text-sm sm:text-base font-semibold">
-                  Select a file or drag and drop here
+                  {t("upload.selectOrDrag")}
                 </h3>
                 <p className="text-black/60 font-inter text-xs sm:text-sm font-medium">
-                  PDF, file size no more than 10MB
+                  {t("upload.sizeLimit10")}
                 </p>
               </div>
 
@@ -527,7 +529,7 @@ export function PDFUpload({
                     strokeLinejoin="round"
                   />
                 </svg>
-                {uploadedFile ? "Update File" : "Upload File"}
+                {uploadedFile ? t("upload.updateFile") : t("upload.uploadFile")}
               </button>
             </div>
           </div>
@@ -604,7 +606,7 @@ export function PDFUpload({
         {uploadedFile && uploadStatus === "completed" && (
           <div className="w-full max-w-[568px] flex flex-col gap-2.5 animate-fade-in">
             <p className="text-black font-inter text-sm font-normal">
-              File uploaded successfully
+              {t("upload.fileUploaded")}
             </p>
 
             <div className="flex h-[50px] sm:h-[58px] flex-col items-start gap-2 rounded border border-green-400 bg-green-50 relative">
