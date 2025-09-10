@@ -326,7 +326,7 @@ const PublicationCard = ({
               onEdit();
             }}
             className="group hover:scale-110 transition-transform"
-            aria-label={t("common.edit","Edit publication")}
+            aria-label={t("common.edit", "Edit publication")}
           >
             <svg
               width="18"
@@ -359,7 +359,7 @@ const PublicationCard = ({
               onShare();
             }}
             className="group"
-            aria-label={t("common.share","Share publication")}
+            aria-label={t("common.share", "Share publication")}
           >
             <svg
               width="18"
@@ -434,7 +434,7 @@ const PublicationCard = ({
               onClone();
             }}
             className="group hover:scale-110 transition-transform"
-            aria-label={t("common.clone","Clone publication")}
+            aria-label={t("common.clone", "Clone publication")}
           >
             <svg
               width="18"
@@ -471,7 +471,7 @@ const PublicationCard = ({
               onDelete();
             }}
             className="group hover:scale-110 transition-transform"
-            aria-label={t("common.delete","Delete publication")}
+            aria-label={t("common.delete", "Delete publication")}
           >
             <svg
               width="18"
