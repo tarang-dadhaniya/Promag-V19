@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Sidebar } from "../components/Sidebar";
 import { Header } from "../components/Header";
 import {
@@ -73,6 +74,7 @@ type ViewMode =
   | "blank-step";
 
 export default function Index() {
+  const { t } = useTranslation();
   const STORAGE_KEY = "promag:publication";
   const COLLECTIONS_STORAGE_KEY = "promag:collections";
   const PUBLICATIONS_STORAGE_KEY = "promag:publications";
@@ -624,8 +626,8 @@ export default function Index() {
                       ? "border-promag-primary bg-promag-primary text-white hover:bg-promag-primary/90"
                       : "border-promag-primary/50 bg-promag-primary/50 text-white cursor-not-allowed"
                   }`}
-                >
-                  Next
+>
+                  {t("common.next")}
                 </button>
               </div>
             </div>
@@ -872,7 +874,7 @@ export default function Index() {
                   />
                 </svg>
                 <span className="font-inter text-sm">
-                  Back to {selectedCollection ? "Publications" : "Collections"}
+                  {t("common.backTo", { target: selectedCollection ? t("common.publications") : t("common.collections") })}
                 </span>
               </button>
             </div>
@@ -902,12 +904,12 @@ export default function Index() {
       sidebarCollectionId &&
       selectedCollection
     ) {
-      return `Publications - ${selectedCollection.title}`;
+      return `${t("common.publications")} - ${selectedCollection.title}`;
     }
 
     // For all other inner views, keep the stable section title and rely on
     // the breadcrumb to show detailed navigation context.
-    return "Manage Publications";
+    return t("menu.managePublications");
   };
 
   return (
@@ -1001,10 +1003,10 @@ export default function Index() {
                   />
                 </svg>
               </span>
-              Upload Completed!
+              {t("common.uploadCompleted")}
             </DialogTitle>
             <DialogDescription>
-              Your publication has been successfully uploaded to the collection.
+              {t("common.uploadSuccessDescription")}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -1015,7 +1017,7 @@ export default function Index() {
               }}
               className="inline-flex items-center justify-center h-10 px-4 rounded-md bg-promag-primary text-white hover:bg-promag-primary/90 transition-colors"
             >
-              OK
+              {t("common.ok")}
             </button>
           </DialogFooter>
         </DialogContent>
