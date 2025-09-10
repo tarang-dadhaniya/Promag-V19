@@ -311,11 +311,11 @@ export function PublicationDetailsForm({
     { value: "education", label: t("categories.education") },
   ];
   const localizedLanguageOptions = languageOptions ?? [
-    { value: "en", label: "English" },
-    { value: "es", label: "Spanish" },
-    { value: "fr", label: "French" },
-    { value: "de", label: "German" },
-    { value: "it", label: "Italian" },
+    { value: "en", label: t("languages.english") },
+    { value: "es", label: t("languages.spanish") },
+    { value: "fr", label: t("languages.french") },
+    { value: "de", label: t("languages.german") },
+    { value: "it", label: t("languages.italian") },
   ];
   const localizedStatusOptions = statusOptions ?? [
     { value: "draft", label: t("publication.status.draft") },
