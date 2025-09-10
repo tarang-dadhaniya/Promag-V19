@@ -11,7 +11,14 @@
     "uploadCompleted": "Téléversement terminé !",
     "uploadSuccessDescription": "Votre publication a été téléversée avec succès dans la collection.",
     "backTo": "Retour à {{target}}",
-    "backToCollections": "Retour aux collections"
+    "backToCollections": "Retour aux collections",
+    "newIssue": "Nouvelle édition",
+    "deleteCollection": "Supprimer la collection",
+    "noPublicationsFound": "Aucune publication trouvée correspondant à \"{{query}}\"",
+    "action": "Action",
+    "settings": "Paramètres",
+    "previous": "Précédent",
+    "save": "Enregistrer"
   },
   "menu": {
     "managePublications": "Gérer les publications",
@@ -32,5 +39,15 @@
   },
   "placeholder": {
     "comingSoon": "Cette page arrive bientôt. Continuez à demander pour ajouter du contenu ici."
+  },
+  "publication": {
+    "status": {
+      "live": "En ligne",
+      "draft": "Brouillon"
+    },
+    "action": {
+      "backToDraft": "Repasser en brouillon",
+      "goLive": "Publier"
+    }
   }
 }
