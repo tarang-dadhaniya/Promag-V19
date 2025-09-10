@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 const ChevronDown = () => (
@@ -22,6 +23,7 @@ interface DropdownProps {
 }
 
 export function Dropdown({ placeholder, value, onChange, options, className, disabled = false }: DropdownProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -77,7 +79,7 @@ export function Dropdown({ placeholder, value, onChange, options, className, dis
         <div className="absolute top-[44px] left-0 right-0 z-50 bg-white border border-promag-input-border rounded shadow-lg max-h-60 overflow-y-auto">
           {options.length === 0 ? (
             <div className="px-[14px] py-2.5 text-promag-placeholder font-inter text-sm">
-              No options available
+              {t("common.noOptionsAvailable")}
             </div>
           ) : (
             options.map((option) => (
