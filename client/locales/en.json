@@ -22,7 +22,8 @@
     "clickNewIssue": "Click New Issue to create your first publication.",
     "action": "Action",
     "settings": "Settings",
-    "pending": "Pending"
+    "pending": "Pending",
+    "noOptionsAvailable": "No options available"
   },
   "menu": {
     "managePublications": "Manage Publications",
@@ -94,6 +95,10 @@
     "editCollection": "Edit Collection",
     "editPublication": "Edit Publication",
     "backToPublications": "Back to Publications",
+    "coverImage": "Cover Image",
+    "dragDropHere": "Drag and drop file here",
+    "coverImageRequirements": "The cover must be PNG or JPEG, up to 8 MB, 16:9 or 9:16 aspect ratio, with each side between 320 px and 3,840",
+    "coverPreviewAlt": "Collection cover preview",
     "placeholders": {
       "issueName": "Enter Issue Name",
       "publicationTitle": "Enter Publication Title",
@@ -128,6 +133,18 @@
       "imageProcessFailed": "Failed to process the image. Please try again.",
       "fieldRequired": "{{field}} is required"
     }
+  },
+  "languages": {
+    "english": "English",
+    "hindi": "Hindi",
+    "spanish": "Spanish",
+    "french": "French",
+    "german": "German",
+    "italian": "Italian"
+  },
+  "orientations": {
+    "portrait": "Portrait",
+    "landscape": "Landscape"
   },
   "steps": {
     "uploadPdf": "Upload PDF",
