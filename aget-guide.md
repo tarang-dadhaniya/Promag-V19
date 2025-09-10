@@ -98,9 +98,15 @@ Example prompt the user might give the agent
   - Update any parent handlers if required and persist to localStorage if the UX expects it.
   - Return files changed and steps to verify.
 
-Commit messages and PRs
+Commit messages and PRs Guidelines
 - Keep commit messages concise and imperative (e.g., "fix: make share dialog radios selectable").
-- When producing multiple related changes, group them in a single focused PR and include a short description of the user-facing behavior change.
+- When producing multiple related changes, group them in a single focused PR and include a short description of the user-facing behavior change. 
+
+  - Format: `type: short description of change`
+  - **Examples**:
+    - `fix: correct button alignment in mobile view`
+    - `feat: add search functionality in publications list`
+    - `chore: update dependencies for security patches`
 
 Safety and constraints
 - Never expose secrets or write credentials to code.
