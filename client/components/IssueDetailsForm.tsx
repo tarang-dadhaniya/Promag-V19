@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
+import { useTranslation } from "react-i18next";
 
 interface DropdownOption {
   value: string;
@@ -28,8 +29,20 @@ interface IssueDetailsFormProps {
 }
 
 const ChevronDown = () => (
-  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 1L5 5L9 1" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg
+    width="10"
+    height="6"
+    viewBox="0 0 10 6"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M1 1L5 5L9 1"
+      stroke="#212121"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -40,7 +53,12 @@ interface FormFieldProps {
   className?: string;
 }
 
-function FormField({ label, required = false, children, className }: FormFieldProps) {
+function FormField({
+  label,
+  required = false,
+  children,
+  className,
+}: FormFieldProps) {
   return (
     <div className={cn("flex flex-col items-start gap-2", className)}>
       <label className="self-stretch text-promag-body font-inter text-sm font-medium">
@@ -59,13 +77,20 @@ interface InputFieldProps {
   className?: string;
 }
 
-function InputField({ placeholder, value, onChange, className }: InputFieldProps) {
+function InputField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: InputFieldProps) {
   return (
-    <div className={cn(
-      "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex h-[42px] px-[14px] py-2.5 items-center gap-2.5 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <input
         type="text"
         placeholder={placeholder}
@@ -94,13 +119,20 @@ interface TextareaFieldProps {
   className?: string;
 }
 
-function TextareaField({ placeholder, value, onChange, className }: TextareaFieldProps) {
+function TextareaField({
+  placeholder,
+  value,
+  onChange,
+  className,
+}: TextareaFieldProps) {
   return (
-    <div className={cn(
-      "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
-      "rounded border border-promag-input-border bg-white",
-      className
-    )}>
+    <div
+      className={cn(
+        "flex px-[14px] py-2.5 items-start gap-2.5 flex-1 self-stretch",
+        "rounded border border-promag-input-border bg-white",
+        className,
+      )}
+    >
       <textarea
         placeholder={placeholder}
         value={value}
@@ -112,7 +144,17 @@ function TextareaField({ placeholder, value, onChange, className }: TextareaFiel
   );
 }
 
-export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDataChange, initialData, className, categoriesOptions, collectionOptions }: IssueDetailsFormProps) {
+export function IssueDetailsForm({
+  onSubmit,
+  onValidationChange,
+  onPreview,
+  onDataChange,
+  initialData,
+  className,
+  categoriesOptions,
+  collectionOptions,
+}: IssueDetailsFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<IssueDetailsFormData>({
     name: initialData?.name ?? "",
     topicsCategory: initialData?.topicsCategory ?? "",
@@ -124,7 +166,7 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name.trim()) {
       alert("Name is required");
@@ -146,21 +188,27 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
     onSubmit?.(formData);
   };
 
-  const updateField = (field: keyof IssueDetailsFormData) => (value: string) => {
-    const newData = {
-      ...formData,
-      [field]: value
-    };
-    setFormData(newData);
+  const updateField =
+    (field: keyof IssueDetailsFormData) => (value: string) => {
+      const newData = {
+        ...formData,
+        [field]: value,
+      };
+      setFormData(newData);
 
-    // Check validation after update
-    const isValid = validateFormData(newData);
-    onValidationChange?.(isValid);
-    onDataChange?.(newData);
-  };
+      // Check validation after update
+      const isValid = validateFormData(newData);
+      onValidationChange?.(isValid);
+      onDataChange?.(newData);
+    };
 
   const validateFormData = (data: IssueDetailsFormData): boolean => {
-    return !!(data.name.trim() && data.topicsCategory.trim() && data.collection.trim() && data.description.trim());
+    return !!(
+      data.name.trim() &&
+      data.topicsCategory.trim() &&
+      data.collection.trim() &&
+      data.description.trim()
+    );
   };
 
   return (
@@ -220,10 +268,7 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
           </FormField>
 
           {/* Row 3: Teaser - Full Width */}
-          <FormField
-            label="Teaser"
-            className="w-full"
-          >
+          <FormField label="Teaser" className="w-full">
             <TextareaField
               placeholder="Enter Teaser"
               value={formData.teaser}
@@ -232,11 +277,7 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
           </FormField>
 
           {/* Row 4: Description - Full Width */}
-          <FormField
-            label="Description"
-            required
-            className="w-full"
-          >
+          <FormField label="Description" required className="w-full">
             <TextareaField
               placeholder="Enter Description"
               value={formData.description}
@@ -244,8 +285,19 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
             />
           </FormField>
           <div className="flex justify-end items-center gap-2.5 w-full pt-2">
-            <button type="button" onClick={onPreview} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors">previous</button>
-            <button type="submit" className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Next</button>
+            <button
+              type="button"
+              onClick={onPreview}
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors"
+            >
+              {t("common.previous")}
+            </button>
+            <button
+              type="submit"
+              className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
+            >
+              {t("common.next")}
+            </button>
           </div>
         </div>
       </form>

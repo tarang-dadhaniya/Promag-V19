@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { getRequestT } from "./i18n";
 
 export function createServer() {
   const app = express();
@@ -12,9 +13,11 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Example API routes
-  app.get("/api/ping", (_req, res) => {
-    const ping = process.env.PING_MESSAGE ?? "ping";
-    res.json({ message: ping });
+  app.get("/api/ping", (req, res) => {
+    const ping = process.env.PING_MESSAGE;
+    if (ping) return res.json({ message: ping });
+    const t = getRequestT(req);
+    res.json({ message: t("api.ping") });
   });
 
   app.get("/api/demo", handleDemo);
