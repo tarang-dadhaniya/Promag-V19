@@ -74,7 +74,7 @@ const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
         </svg>
       </div>
       <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
-        New Issue
+        {t("common.newIssue", "New Issue")}
       </h3>
     </div>
   </div>
