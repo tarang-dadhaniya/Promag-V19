@@ -22,7 +22,8 @@
     "clickNewIssue": "Cliquez sur Nouvelle édition pour créer votre première publication.",
     "action": "Action",
     "settings": "Paramètres",
-    "pending": "En attente"
+    "pending": "En attente",
+    "noOptionsAvailable": "Aucune option disponible"
   },
   "menu": {
     "managePublications": "Gérer les publications",
@@ -94,6 +95,10 @@
     "editCollection": "Modifier la collection",
     "editPublication": "Modifier la publication",
     "backToPublications": "Retour aux publications",
+    "coverImage": "Image de couverture",
+    "dragDropHere": "Glissez-déposez le fichier ici",
+    "coverImageRequirements": "La couverture doit être au format PNG ou JPEG, jusqu'à 8 Mo, au ratio 16:9 ou 9:16, avec chaque côté entre 320 px et 3 840",
+    "coverPreviewAlt": "Aperçu de la couverture de la collection",
     "placeholders": {
       "issueName": "Entrez le nom de l'édition",
       "publicationTitle": "Entrez le titre de la publication",
@@ -128,6 +133,18 @@
       "imageProcessFailed": "Échec du traitement de l'image. Veuillez réessayer.",
       "fieldRequired": "{{field}} est requis"
     }
+  },
+  "languages": {
+    "english": "Anglais",
+    "hindi": "Hindi",
+    "spanish": "Espagnol",
+    "french": "Français",
+    "german": "Allemand",
+    "italian": "Italien"
+  },
+  "orientations": {
+    "portrait": "Portrait",
+    "landscape": "Paysage"
   },
   "steps": {
     "uploadPdf": "Téléverser le PDF",
