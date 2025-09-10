@@ -107,6 +107,7 @@ Safety and constraints
 - Respect the project's package manager and tooling.
 - Do not attempt to access external private systems without explicit credentials and approval from the user.
 
+
 If something is unclear
 - Ask a single precise question (e.g., which component should own the state? which MCP should be prioritized?).
 
