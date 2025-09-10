@@ -67,5 +67,9 @@
     "fileUploaded": "Archivo subido correctamente",
     "onlyPdf": "Por favor, selecciona un archivo PDF.",
     "maxSize10": "El tamaño del archivo debe ser menor de 10 MB."
+  },
+  "notFound": {
+    "message": "¡Vaya! Página no encontrada",
+    "backHome": "Volver al inicio"
   }
 }
