@@ -51,11 +51,9 @@ Testing and verification
   - pnpm dev (locally via DevServerControl in the platform)
 - When making UI fixes, confirm behavior by describing the steps the user should perform in the running app (e.g., open Share dialog -> click Change -> select a different option).
 
-**UI Changes Verification**: 
-   After making UI changes, run `pnpm dev` and open the app in your browser. Test the modified component by interacting with it and confirming it behaves as expected.
-  
-**Backend Changes Verification**: 
-   Run `pnpm test` to ensure that all backend tests pass. For API changes, you can use Postman to make API requests and verify the responses are correct. Ensure no errors are present in the terminal when running the tests.
+**UI Changes Verification**: After making UI changes, run `pnpm dev` and open the app in your browser. Test the modified component by interacting with it and confirming it behaves as expected.
+
+**Backend Changes Verification**: Run `pnpm test` to ensure that all backend tests pass. For API changes, you can use Postman to make API requests and verify the responses are correct. Ensure no errors are present in the terminal when running the tests.
 
 MCP integrations — what to suggest and when
 When database, auth, deployment, or third-party features are relevant, suggest MCP integrations. Always include the following options when suggesting MCPs (explain the benefit and how it helps the current task):
