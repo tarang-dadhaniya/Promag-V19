@@ -355,7 +355,7 @@ export function EditPublicationForm({
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <InputField
-                placeholder="Enter Publication Title"
+                placeholder={t("forms.placeholders.publicationTitle")}
                 value={formData.title}
                 onChange={updateField("title")}
               />
