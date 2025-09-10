@@ -125,7 +125,8 @@
       "titleRequired": "Veuillez saisir un titre pour la collection.",
       "imageFileType": "Veuillez sélectionner un fichier image PNG ou JPEG.",
       "imageMax8": "La taille du fichier doit être inférieure à 8 Mo.",
-      "imageProcessFailed": "Échec du traitement de l'image. Veuillez réessayer."
+      "imageProcessFailed": "Échec du traitement de l'image. Veuillez réessayer.",
+      "fieldRequired": "{{field}} est requis"
     }
   },
   "steps": {
