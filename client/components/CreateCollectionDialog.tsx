@@ -239,7 +239,7 @@ export function CreateCollectionDialog({
                 <div className="relative">
                   <img
                     src={uploadedImage?.dataUrl ?? initialCoverImage}
-                    alt="Collection cover preview"
+                    alt={t("forms.coverPreviewAlt")}
                     className="w-[160px] h-[200px] object-cover rounded-[10px]"
                   />
                   <button
