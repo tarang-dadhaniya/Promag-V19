@@ -67,5 +67,9 @@
     "fileUploaded": "Fichier téléversé avec succès",
     "onlyPdf": "Veuillez sélectionner un fichier PDF.",
     "maxSize10": "La taille du fichier doit être inférieure à 10 Mo."
+  },
+  "notFound": {
+    "message": "Oups ! Page introuvable",
+    "backHome": "Retour à l'accueil"
   }
 }
