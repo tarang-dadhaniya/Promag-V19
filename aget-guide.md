@@ -20,6 +20,9 @@ How to read the codebase
 - Use data-loc attributes in the DOM snapshots to map UI elements back to source files (they look like: data-loc="client/components/Sidebar.tsx:109:11").
 - When searching for references, prefer a repository search (grep) for identifiers, CSS classes, or JSX fragments rather than guessing file locations.
 
+- To locate files from the DOM, look for `data-loc` attributes in the component elements. For example, if an element has the attribute `data-loc="client/components/Sidebar.tsx:109:11"`, it indicates that the relevant code resides in the `Sidebar.tsx` file at line 109, column 11. You can search for these attributes in the browser's DevTools or use the `grep` command to search through the codebase.
+
+
 Coding conventions and style
 - Keep components small and use existing utilities (e.g., cn from lib/utils, shared types in shared/api.ts).
 - Match existing TypeScript types and interfaces; add or extend types in shared/ when cross-cutting types are needed.
@@ -48,18 +51,33 @@ Testing and verification
   - pnpm dev (locally via DevServerControl in the platform)
 - When making UI fixes, confirm behavior by describing the steps the user should perform in the running app (e.g., open Share dialog -> click Change -> select a different option).
 
+**UI Changes Verification**: 
+   After making UI changes, run `pnpm dev` and open the app in your browser. Test the modified component by interacting with it and confirming it behaves as expected.
+  
+**Backend Changes Verification**: 
+   Run `pnpm test` to ensure that all backend tests pass. For API changes, you can use Postman to make API requests and verify the responses are correct. Ensure no errors are present in the terminal when running the tests.
+
 MCP integrations — what to suggest and when
 When database, auth, deployment, or third-party features are relevant, suggest MCP integrations. Always include the following options when suggesting MCPs (explain the benefit and how it helps the current task):
 
-• Neon: serverless Postgres. Use when a persistent relational DB is needed for production data.
+<!-- • Neon: serverless Postgres. Use when a persistent relational DB is needed for production data.
 • Netlify: deployment & hosting. Use for easy static/SSR deployments and CI/CD.
 • Zapier: automation across apps (webhooks, flows). Useful for integrating external services with content events.
 • Figma: design-to-code conversion. When the user mentions Figma designs, recommend the Builder.io Figma plugin (Get Plugin link).
 • Supabase: database + auth + realtime. Use when app needs auth and realtime features with minimal setup.
 • Builder CMS: manage content, models and assets. Recommend when the user wants a CMS-backed publishing workflow.
+• Sentry: error monitoring and performance tracing. Recommend for production error observability. -->
+
+**Neon**: Use when you need a persistent relational database with a serverless Postgres solution for production-ready, scalable data storage.
+**Netlify**: Ideal for deploying static sites or Server-Side Rendered (SSR) applications, with built-in CI/CD and easy integration with your GitHub repository.
+**Zapier**: Perfect for automating repetitive tasks and integrating external services. Use this for workflows like triggering emails or notifications based on content changes.
+**Figma**: Connect to the Figma plugin for seamless design-to-code conversion, especially when you want to implement UI elements directly from Figma designs.
+**Supabase**: Best for when you need authentication, real-time features, and a PostgreSQL database with minimal setup. Great for MVPs and production-ready apps alike.
+**Builder CMS**: Use this when you need a content management system to handle your app’s publishing workflow, models, and assets.
+**Sentry**: Use Sentry for error monitoring in production environments. This helps track performance issues and uncaught exceptions across your app in real-time.
+
 • Linear: issue tracking integration. Useful for linking repository tasks with tickets.
 • Notion: documentation and content management. Use for knowledge storage and docs syncing.
-• Sentry: error monitoring and performance tracing. Recommend for production error observability.
 • Context7: documentation lookup for libraries and frameworks. Use to fetch authoritative API docs.
 • Semgrep: static analysis for security. Suggest when performing security auditing.
 • Prisma Postgres: ORM integration. Suggest when using Postgres with typed database models.
