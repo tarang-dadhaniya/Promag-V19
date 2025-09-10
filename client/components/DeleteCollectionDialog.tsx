@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface DeleteCollectionDialogProps {
   open: boolean;
@@ -52,6 +53,7 @@ const AnimatedTrashIcon = () => (
 );
 
 export function DeleteCollectionDialog({ open, onOpenChange, onConfirm, collectionName }: DeleteCollectionDialogProps) {
+  const { t } = useTranslation();
   const handleConfirm = () => {
     onConfirm();
     onOpenChange(false);
@@ -67,7 +69,7 @@ export function DeleteCollectionDialog({ open, onOpenChange, onConfirm, collecti
         {/* Header */}
         <div className="flex w-full h-[60px] px-6 justify-between items-center border-b border-black/10">
           <DialogTitle className="text-black font-inter text-lg font-semibold">
-            Delete Collection
+            {t("common.deleteCollection")}
           </DialogTitle>
           <button 
             onClick={() => onOpenChange(false)}
@@ -87,11 +89,11 @@ export function DeleteCollectionDialog({ open, onOpenChange, onConfirm, collecti
           {/* Warning Message */}
           <div className="flex flex-col gap-3">
             <h3 className="text-black font-inter text-xl font-semibold">
-              Are you sure?
+              {t("dialog.areYouSure")}
             </h3>
             <div className="max-w-md">
               <p className="text-black/70 font-inter text-sm leading-relaxed">
-                You're about to delete the collection "<span className="font-semibold text-black">{collectionName}</span>". This action cannot be undone and will permanently remove all publications within this collection.
+                {t("dialog.deleteCollectionDescription", { name: collectionName })}
               </p>
             </div>
           </div>
@@ -102,13 +104,13 @@ export function DeleteCollectionDialog({ open, onOpenChange, onConfirm, collecti
               onClick={handleCancel}
               className="flex-1 h-[42px] px-5 py-[10px] justify-center items-center gap-[7px] rounded-lg border border-gray-300 bg-white text-gray-700 font-inter text-sm font-medium hover:bg-gray-50 transition-colors"
             >
-              Cancel
+              {t("common.cancel")}
             </button>
             <button
               onClick={handleConfirm}
               className="flex-1 h-[42px] px-5 py-[10px] justify-center items-center gap-[7px] rounded-lg border border-red-500 bg-red-500 text-white font-inter text-sm font-medium hover:bg-red-600 transition-colors"
             >
-              Delete Collection
+              {t("common.deleteCollection")}
             </button>
           </div>
         </div>
