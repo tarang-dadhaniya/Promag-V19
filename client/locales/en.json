@@ -7,7 +7,10 @@
     "noCollectionsFound": "No collections found matching \"{{query}}\"",
     "tryAdjustingSearch": "Try adjusting your search terms",
     "next": "Next",
+    "previous": "Previous",
     "ok": "OK",
+    "cancel": "Cancel",
+    "save": "Save",
     "uploadCompleted": "Upload Completed!",
     "uploadSuccessDescription": "Your publication has been successfully uploaded to the collection.",
     "backTo": "Back to {{target}}",
@@ -15,10 +18,11 @@
     "newIssue": "New Issue",
     "deleteCollection": "Delete Collection",
     "noPublicationsFound": "No publications found matching \"{{query}}\"",
+    "noPublicationsInCollection": "There are no publications in this collection yet.",
+    "clickNewIssue": "Click New Issue to create your first publication.",
     "action": "Action",
     "settings": "Settings",
-    "previous": "Previous",
-    "save": "Save"
+    "pending": "Pending"
   },
   "menu": {
     "managePublications": "Manage Publications",
@@ -27,9 +31,7 @@
     "manageReader": "Manage Reader",
     "pushNotifications": "Push Notifications"
   },
-  "roles": {
-    "superAdmin": "SuperAdmin"
-  },
+  "roles": { "superAdmin": "SuperAdmin" },
   "categories": {
     "action": "Action",
     "cinematic": "Cinematic",
@@ -41,13 +43,29 @@
     "comingSoon": "This page is coming soon. Continue prompting to add content here."
   },
   "publication": {
-    "status": {
-      "live": "Live",
-      "draft": "Draft"
-    },
-    "action": {
-      "backToDraft": "Back to Draft",
-      "goLive": "Go Live"
-    }
+    "status": { "live": "Live", "draft": "Draft" },
+    "action": { "backToDraft": "Back to Draft", "goLive": "Go Live" }
+  },
+  "dialog": {
+    "areYouSure": "Are you sure?",
+    "deleteCollectionDescription": "You're about to delete the collection \"{{name}}\". This action cannot be undone and will permanently remove all publications within this collection."
+  },
+  "api": {
+    "demoMessage": "Hello from Express server",
+    "ping": "ping"
+  },
+  "upload": {
+    "dropHere": "Drop your file here",
+    "releaseToUpload": "Release to upload your PDF file",
+    "uploading": "Uploading...",
+    "percentUploaded": "{{percent}}% uploaded",
+    "fileUploadedSuccess": "Your file has been successfully uploaded",
+    "selectOrDrag": "Select a file or drag and drop here",
+    "sizeLimit10": "PDF, file size no more than 10MB",
+    "updateFile": "Update File",
+    "uploadFile": "Upload File",
+    "fileUploaded": "File uploaded successfully",
+    "onlyPdf": "Please select a PDF file.",
+    "maxSize10": "File size must be less than 10MB."
   }
 }
