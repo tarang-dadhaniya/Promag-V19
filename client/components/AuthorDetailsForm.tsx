@@ -27,26 +27,7 @@ interface AuthorDetailsFormProps {
   className?: string;
 }
 
-// Dropdown options
-const languageOptions = [
-  { value: "english", label: "English" },
-  { value: "hindi", label: "Hindi" },
-  { value: "spanish", label: "Spanish" },
-  { value: "french", label: "French" },
-  { value: "german", label: "German" },
-];
-
-const statusOptions = [
-  { value: "done", label: "Done" },
-  { value: "pending", label: "Pending" },
-  { value: "processing", label: "Processing" },
-];
-
-const orientationOptions = [
-  { value: "test1", label: "Test1" },
-  { value: "test2", label: "Test2" },
-  { value: "test3", label: "Test3" },
-];
+// Dropdown options will be localized inside the component using i18next
 
 const ChevronDown = () => (
   <svg
@@ -239,6 +220,26 @@ export function AuthorDetailsForm({
   className,
 }: AuthorDetailsFormProps) {
   const { t } = useTranslation();
+
+  const languageOptionsL = [
+    { value: "en", label: t("languages.english") },
+    { value: "hi", label: t("languages.hindi") },
+    { value: "es", label: t("languages.spanish") },
+    { value: "fr", label: t("languages.french") },
+    { value: "de", label: t("languages.german") },
+  ];
+
+  const statusOptionsL = [
+    { value: "draft", label: t("publication.status.draft") },
+    { value: "pending", label: t("common.pending") },
+    { value: "published", label: t("publication.status.live") },
+  ];
+
+  const orientationOptionsL = [
+    { value: "portrait", label: t("orientations.portrait") },
+    { value: "landscape", label: t("orientations.landscape") },
+  ];
+
   const [formData, setFormData] = useState<AuthorDetailsFormData>({
     author: initialData?.author ?? "",
     editor: initialData?.editor ?? "",
@@ -352,7 +353,7 @@ export function AuthorDetailsForm({
               placeholder={t("forms.placeholders.language")}
               value={formData.language}
               onChange={updateField("language")}
-              options={languageOptions}
+              options={languageOptionsL}
             />
           </FormField>
 
@@ -413,7 +414,7 @@ export function AuthorDetailsForm({
               placeholder={t("forms.placeholders.selectStatus")}
               value={formData.status}
               onChange={updateField("status")}
-              options={statusOptions}
+              options={statusOptionsL}
             />
           </FormField>
 
@@ -435,7 +436,7 @@ export function AuthorDetailsForm({
               placeholder={t("forms.placeholders.selectOrientation")}
               value={formData.orientation}
               onChange={updateField("orientation")}
-              options={orientationOptions}
+              options={orientationOptionsL}
             />
           </FormField>
           <div className="flex justify-end items-center gap-2.5 w-full pt-2">
