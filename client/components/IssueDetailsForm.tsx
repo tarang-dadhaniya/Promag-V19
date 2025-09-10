@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
+import { useTranslation } from "react-i18next";
 
 interface DropdownOption {
   value: string;
@@ -113,6 +114,7 @@ function TextareaField({ placeholder, value, onChange, className }: TextareaFiel
 }
 
 export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDataChange, initialData, className, categoriesOptions, collectionOptions }: IssueDetailsFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<IssueDetailsFormData>({
     name: initialData?.name ?? "",
     topicsCategory: initialData?.topicsCategory ?? "",
@@ -244,8 +246,8 @@ export function IssueDetailsForm({ onSubmit, onValidationChange, onPreview, onDa
             />
           </FormField>
           <div className="flex justify-end items-center gap-2.5 w-full pt-2">
-            <button type="button" onClick={onPreview} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors">previous</button>
-            <button type="submit" className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">Next</button>
+            <button type="button" onClick={onPreview} className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary/40 text-promag-primary bg-white hover:bg-promag-primary/5 transition-colors">{t("common.previous")}</button>
+            <button type="submit" className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors">{t("common.next")}</button>
           </div>
         </div>
       </form>
