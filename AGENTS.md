@@ -1,3 +1,233 @@
+## language translat
+
+
+For **multi-language support**, you would need to integrate a language translation library (e.g., `i18next` or `react-intl`) into your React app. Once integrated, the app should use translated content based on the current language setting, and the content from this markdown file should be translated based on selected language dynamically. You can adjust texts like API response messages, route names, and UI components according to the language.
+
+<html>
+
+<head>
+
+<body>
+
+<title>
+
+<meta>
+
+<link>
+
+<style>
+
+<script>
+
+<div>
+
+<span>
+
+<header>
+
+<footer>
+
+<section>
+
+<article>
+
+<nav>
+
+<aside>
+
+<main>
+
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6>
+
+<p>
+
+<a>
+
+<ul>, <ol>, <li>
+
+<table>
+
+<thead>, <tbody>, <tfoot>
+
+<tr>, <td>, <th>
+
+<form>
+
+<input>
+
+<button>
+
+<select>
+
+<option>
+
+<textarea>
+
+<label>
+
+<img>
+
+<audio>
+
+<video>
+
+<iframe>
+
+<canvas>
+
+<svg>
+
+<strong>
+
+<em>
+
+<mark>
+
+<small>
+
+<del>
+
+<ins>
+
+<code>
+
+<pre>
+
+<blockquote>
+
+<q>
+
+<cite>
+
+<time>
+
+<progress>
+
+<meter>
+
+<fieldset>
+
+<legend>
+
+<details>
+
+<summary>
+
+<br>
+
+<hr>
+
+<b>
+
+<i>
+
+<u>
+
+<sub>
+
+<sup>
+
+<abbr>
+
+<address>
+
+<col>
+
+<colgroup>
+
+<optgroup>
+
+<tfoot>
+
+<bdi>
+
+<bdo>
+
+<datalist>
+
+<template>
+
+<wbr>
+
+<ruby>
+
+<rt>
+
+<rp>
+
+<data>
+
+<output>
+
+<progress>
+
+<kbd>
+
+<var>
+
+<samp>
+
+<keygen>
+
+<track>
+
+React-Specific Tags/Components:
+
+<React.Fragment> (Equivalent to <> </>)
+
+<Suspense>
+
+<ErrorBoundary>
+
+<Provider>
+
+<Route>
+
+<Switch>
+
+<Link>
+
+<NavLink>
+
+<Redirect>
+
+<StrictMode>
+
+<Portal>
+
+<Suspense fallback={<div>Loading...</div>}>
+
+<Context.Provider>
+
+<Context.Consumer>
+
+<memo>
+
+<forwardRef>
+
+I need Language translated in all above Tags that i am using in my whole project
+
+Example of language translated like this
+// en.json (English)
+{
+  "welcome_message": "Welcome to our application",
+  "login_button": "Login",
+  "home_page": "Home",
+  "error_not_found": "Page not found"
+}
+
+// fr.json (French)
+{
+  "welcome_message": "Bienvenue dans notre application",
+  "login_button": "Se connecter",
+  "home_page": "Accueil",
+  "error_not_found": "Page non trouvée"
+}
+
+
+
+
+
 # Fusion Starter
 
 A production-ready full-stack React application template with integrated Express server, featuring React Router 6 SPA mode, TypeScript, Vitest, Zod and modern tooling.
