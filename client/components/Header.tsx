@@ -1,4 +1,13 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
 
 interface HeaderProps {
   title: string;
@@ -62,7 +71,18 @@ const ChevronDown = () => (
   </svg>
 );
 
+const languageOptions = [
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "es", label: "Español", flag: "🇪🇸" }
+];
+
 export function Header({ title, className }: HeaderProps) {
+  const { t, i18n } = useTranslation();
+  const current = i18n.language?.split("-")[0] || "en";
+  const active = languageOptions.find((l) => l.code === current) || languageOptions[0];
+
   return (
     <div
       className={cn(
@@ -79,12 +99,31 @@ export function Header({ title, className }: HeaderProps) {
         </h1>
       </div>
 
-      {/* Right side - Profile */}
+      {/* Right side - Language + Profile */}
       <div className="flex items-center gap-3 sm:gap-6 flex-shrink-0">
-        {/* Country/Flag icon - Hidden on mobile */}
-        <div className="hidden sm:flex w-5 h-5 rounded-full bg-red-500 items-center justify-center">
-          <span className="text-white text-xs font-bold">🇺🇸</span>
-        </div>
+        {/* Language selector */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="hidden sm:inline-flex items-center gap-2 px-2 h-8 rounded-md border border-[#DDD] bg-white hover:bg-gray-50">
+              <span className="text-base">{active.flag}</span>
+              <span className="text-xs font-medium text-promag-body">{active.label}</span>
+              <ChevronDown />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuRadioGroup
+              value={current}
+              onValueChange={(val) => i18n.changeLanguage(val)}
+            >
+              {languageOptions.map((opt) => (
+                <DropdownMenuRadioItem key={opt.code} value={opt.code}>
+                  <span className="mr-2">{opt.flag}</span>
+                  {opt.label}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         {/* User Profile */}
         <div className="flex items-center gap-2 sm:gap-5">
@@ -104,7 +143,7 @@ export function Header({ title, className }: HeaderProps) {
                 John Doe
               </span>
               <span className="text-promag-body/80 font-inter text-xs font-normal">
-                SuperAdmin
+                {t("roles.superAdmin")}
               </span>
             </div>
           </div>

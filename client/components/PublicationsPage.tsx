@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
+import { useTranslation } from "react-i18next";
 
 interface Collection {
   id: string;
@@ -28,44 +29,47 @@ interface PublicationsPageProps {
   onEditCollectionSettings?: () => void;
 }
 
-const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
-  <div
-    onClick={onClick}
-    className="flex w-full h-[285px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group"
-  >
-    <div className="flex flex-col items-center gap-[22px]">
-      <div className="flex items-center justify-center">
-        <svg
-          width="118"
-          height="118"
-          viewBox="0 0 118 118"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M59 40V78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-          <path
-            d="M40 59H78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-        </svg>
+const NewIssueCard = ({ onClick }: { onClick: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      onClick={onClick}
+      className="flex w-full h-[285px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group"
+    >
+      <div className="flex flex-col items-center gap-[22px]">
+        <div className="flex items-center justify-center">
+          <svg
+            width="118"
+            height="118"
+            viewBox="0 0 118 118"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M59 40V78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+            <path
+              d="M40 59H78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+          </svg>
+        </div>
+        <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
+          {t("common.newIssue", "New Issue")}
+        </h3>
       </div>
-      <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
-        New Issue
-      </h3>
     </div>
-  </div>
-);
+  );
+};
 
 const PublicationCard = ({
   publication,
@@ -231,6 +235,7 @@ export function PublicationsPage({
   onEditPublication,
   onEditCollectionSettings,
 }: PublicationsPageProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showActionDropdown, setShowActionDropdown] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -265,11 +270,11 @@ export function PublicationsPage({
           onClick={onBackToCollections}
           className="text-black/60 font-inter text-sm font-normal hover:text-black/80 transition-colors"
         >
-          Collections
+          {t("common.collections")}
         </button>
         <span className="text-black/60 font-inter text-sm font-normal">/</span>
         <span className="text-black font-inter text-sm font-normal">
-          Publications
+          {t("common.publications")}
         </span>
       </div>
 
@@ -279,7 +284,7 @@ export function PublicationsPage({
         <div className="flex w-full max-w-[497px] h-[42px] px-[15px] items-center gap-3 rounded-lg border border-[#DDD] bg-white">
           <input
             type="text"
-            placeholder="Find in collections and folders"
+            placeholder={t("common.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 text-black/50 font-inter text-sm font-normal outline-none placeholder:text-black/50"
@@ -393,7 +398,7 @@ export function PublicationsPage({
                   strokeLinejoin="round"
                 />
               </svg>
-              Action
+              {t("common.action", "Action")}
               <svg
                 width="10"
                 height="6"
@@ -492,7 +497,7 @@ export function PublicationsPage({
                       strokeLinejoin="round"
                     />
                   </svg>
-                  Delete Collection
+                  {t("common.deleteCollection", "Delete Collection")}
                 </button>
               </div>
             )}
@@ -525,7 +530,7 @@ export function PublicationsPage({
                 strokeLinejoin="round"
               />
             </svg>
-            New Issue
+            {t("common.newIssue", "New Issue")}
           </button>
         </div>
       </div>
@@ -561,10 +566,10 @@ export function PublicationsPage({
       {filteredPublications.length === 0 && !searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No publications in this collection yet
+            {t("common.noPublicationsInCollection")}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Click "New Issue" to create your first publication
+            {t("common.clickNewIssue")}
           </p>
         </div>
       )}

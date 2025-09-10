@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   className?: string;
@@ -84,15 +85,24 @@ const navItems = [
 ];
 
 export function Sidebar({ className, onManagePublicationsClick, collections = [], selectedCollectionId = null, onSelectCollection, selectedCategory = null, onSelectCategory }: SidebarProps) {
+  const { t } = useTranslation();
   const categoryOptions = useMemo(() => [
-    { value: "action", label: "Action" },
-    { value: "cinematic", label: "Cinematic" },
-    { value: "comic", label: "Comic" },
-    { value: "drama", label: "Drama" },
-    { value: "education", label: "Education" },
-  ], []);
+    { value: "action", label: t("categories.action") },
+    { value: "cinematic", label: t("categories.cinematic") },
+    { value: "comic", label: t("categories.comic") },
+    { value: "drama", label: t("categories.drama") },
+    { value: "education", label: t("categories.education") },
+  ], [t]);
 
   const collectionOptions = useMemo(() => collections.map(c => ({ value: c.id, label: c.title })), [collections]);
+
+  const items = useMemo(() => [
+    { ...navItems[0], label: t("menu.managePublications") },
+    { ...navItems[1], label: t("menu.manageCompany") },
+    { ...navItems[2], label: t("menu.manageApps") },
+    { ...navItems[3], label: t("menu.manageReader") },
+    { ...navItems[4], label: t("menu.pushNotifications") },
+  ], [t]);
 
   return (
     <div className={cn("flex w-[260px] h-screen flex-col items-center bg-promag-primary px-[10px]", className)}>
@@ -105,7 +115,7 @@ export function Sidebar({ className, onManagePublicationsClick, collections = []
 
       {/* Navigation Items */}
       <div className="flex flex-col w-full gap-0">
-        {navItems.map((item, index) => (
+        {items.map((item, index) => (
           <button
             key={index}
             onClick={() => {

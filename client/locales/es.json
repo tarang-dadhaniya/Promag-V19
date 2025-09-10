@@ -1,0 +1,53 @@
+{
+  "common": {
+    "collections": "Colecciones",
+    "publications": "Publicaciones",
+    "searchPlaceholder": "Buscar en colecciones y carpetas",
+    "createCollection": "Crear una colección",
+    "noCollectionsFound": "No se encontraron colecciones que coincidan con \"{{query}}\"",
+    "tryAdjustingSearch": "Intenta ajustar tus términos de búsqueda",
+    "next": "Siguiente",
+    "ok": "OK",
+    "uploadCompleted": "¡Carga completada!",
+    "uploadSuccessDescription": "Tu publicación se ha subido correctamente a la colección.",
+    "backTo": "Volver a {{target}}",
+    "backToCollections": "Volver a Colecciones",
+    "newIssue": "Nueva edición",
+    "deleteCollection": "Eliminar colección",
+    "noPublicationsFound": "No se encontraron publicaciones que coincidan con \"{{query}}\"",
+    "action": "Acción",
+    "settings": "Configuración",
+    "previous": "Anterior",
+    "save": "Guardar"
+  },
+  "menu": {
+    "managePublications": "Gestionar publicaciones",
+    "manageCompany": "Gestionar empresa",
+    "manageApps": "Gestionar aplicaciones",
+    "manageReader": "Gestionar lector",
+    "pushNotifications": "Notificaciones push"
+  },
+  "roles": {
+    "superAdmin": "SuperAdmin"
+  },
+  "categories": {
+    "action": "Acción",
+    "cinematic": "Cinematográfico",
+    "comic": "Cómic",
+    "drama": "Drama",
+    "education": "Educación"
+  },
+  "placeholder": {
+    "comingSoon": "Esta página estará disponible pronto. Continúa solicitando para agregar contenido aquí."
+  },
+  "publication": {
+    "status": {
+      "live": "En línea",
+      "draft": "Borrador"
+    },
+    "action": {
+      "backToDraft": "Volver a Borrador",
+      "goLive": "Publicar"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import "./global.css";
+import "./lib/i18n";
 
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
@@ -9,29 +10,36 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
+import { useTranslation } from "react-i18next";
+import { Suspense } from "react";
 
-const App = () => (
-  <TooltipProvider>
-    <Toaster />
-    <Sonner />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route
-          path="/company"
-          element={<Placeholder title="Manage Company" />}
-        />
-        <Route path="/apps" element={<Placeholder title="Manage Apps" />} />
-        <Route path="/reader" element={<Placeholder title="Manage Reader" />} />
-        <Route
-          path="/notifications"
-          element={<Placeholder title="Push Notifications" />}
-        />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  </TooltipProvider>
-);
+const App = () => {
+  const { t } = useTranslation();
+  return (
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route
+              path="/company"
+              element={<Placeholder title={t("menu.manageCompany")} />}
+            />
+            <Route path="/apps" element={<Placeholder title={t("menu.manageApps")} />} />
+            <Route path="/reader" element={<Placeholder title={t("menu.manageReader")} />} />
+            <Route
+              path="/notifications"
+              element={<Placeholder title={t("menu.pushNotifications")} />}
+            />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </TooltipProvider>
+  );
+};
 
 createRoot(document.getElementById("root")!).render(<App />);

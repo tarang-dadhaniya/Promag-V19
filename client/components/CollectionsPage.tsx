@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ShareDialog } from "./ShareDialog";
+import { useTranslation } from "react-i18next";
 
 interface Collection {
   id: string;
@@ -17,44 +18,47 @@ interface CollectionsPageProps {
   className?: string;
 }
 
-const CreateCollectionCard = ({ onClick }: { onClick: () => void }) => (
-  <div
-    onClick={onClick}
-    className="flex w-full min-h-[300px] max-h-[385px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group"
-  >
-    <div className="flex flex-col items-center gap-[22px]">
-      <div className="flex items-center justify-center">
-        <svg
-          width="118"
-          height="118"
-          viewBox="0 0 118 118"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M59 40V78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-          <path
-            d="M40 59H78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-        </svg>
+const CreateCollectionCard = ({ onClick }: { onClick: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      onClick={onClick}
+      className="flex w-full min-h-[300px] max-h-[385px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group"
+    >
+      <div className="flex flex-col items-center gap-[22px]">
+        <div className="flex items-center justify-center">
+          <svg
+            width="118"
+            height="118"
+            viewBox="0 0 118 118"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M59 40V78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+            <path
+              d="M40 59H78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+          </svg>
+        </div>
+        <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
+          {t("common.createCollection")}
+        </h3>
       </div>
-      <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
-        Create a Collection
-      </h3>
     </div>
-  </div>
-);
+  );
+};
 
 const CollectionCard = ({
   collection,
@@ -118,6 +122,7 @@ export function CollectionsPage({
   onBackToCollections,
   className,
 }: CollectionsPageProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showShareDialog, setShowShareDialog] = useState(false);
 
@@ -133,9 +138,9 @@ export function CollectionsPage({
           type="button"
           onClick={onBackToCollections}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
-          aria-label="Back to Collections"
+          aria-label={t("common.backToCollections")}
         >
-          Collections
+          {t("common.collections")}
         </button>
         <span className="text-promag-body/70">/</span>
       </div>
@@ -146,7 +151,7 @@ export function CollectionsPage({
         <div className="flex w-full max-w-[497px] h-[42px] px-[15px] items-center gap-3 rounded-lg border border-[#DDD] bg-white">
           <input
             type="text"
-            placeholder="Find in collections and folders"
+            placeholder={t("common.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 text-black/50 font-inter text-sm font-normal outline-none placeholder:text-black/50"
@@ -227,7 +232,7 @@ export function CollectionsPage({
                 strokeLinejoin="round"
               />
             </svg>
-            Create a Collection
+            {t("common.createCollection")}
           </button>
         </div>
       </div>
@@ -251,10 +256,10 @@ export function CollectionsPage({
       {filteredCollections.length === 0 && searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No collections found matching "{searchQuery}"
+            {t("common.noCollectionsFound", { query: searchQuery })}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Try adjusting your search terms
+            {t("common.tryAdjustingSearch")}
           </p>
         </div>
       )}

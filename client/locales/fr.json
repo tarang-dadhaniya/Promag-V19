@@ -1,0 +1,53 @@
+{
+  "common": {
+    "collections": "Collections",
+    "publications": "Publications",
+    "searchPlaceholder": "Rechercher dans les collections et dossiers",
+    "createCollection": "Créer une collection",
+    "noCollectionsFound": "Aucune collection trouvée correspondant à \"{{query}}\"",
+    "tryAdjustingSearch": "Essayez d'ajuster vos termes de recherche",
+    "next": "Suivant",
+    "ok": "OK",
+    "uploadCompleted": "Téléversement terminé !",
+    "uploadSuccessDescription": "Votre publication a été téléversée avec succès dans la collection.",
+    "backTo": "Retour à {{target}}",
+    "backToCollections": "Retour aux collections",
+    "newIssue": "Nouvelle édition",
+    "deleteCollection": "Supprimer la collection",
+    "noPublicationsFound": "Aucune publication trouvée correspondant à \"{{query}}\"",
+    "action": "Action",
+    "settings": "Paramètres",
+    "previous": "Précédent",
+    "save": "Enregistrer"
+  },
+  "menu": {
+    "managePublications": "Gérer les publications",
+    "manageCompany": "Gérer l'entreprise",
+    "manageApps": "Gérer les applications",
+    "manageReader": "Gérer le lecteur",
+    "pushNotifications": "Notifications push"
+  },
+  "roles": {
+    "superAdmin": "SuperAdmin"
+  },
+  "categories": {
+    "action": "Action",
+    "cinematic": "Cinématique",
+    "comic": "Bande dessinée",
+    "drama": "Drame",
+    "education": "Éducation"
+  },
+  "placeholder": {
+    "comingSoon": "Cette page arrive bientôt. Continuez à demander pour ajouter du contenu ici."
+  },
+  "publication": {
+    "status": {
+      "live": "En ligne",
+      "draft": "Brouillon"
+    },
+    "action": {
+      "backToDraft": "Repasser en brouillon",
+      "goLive": "Publier"
+    }
+  }
+}

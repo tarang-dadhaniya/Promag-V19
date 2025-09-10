@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Collection {
   id: string;
@@ -40,44 +41,47 @@ interface PublicationListViewProps {
   onClonePublication?: (publication: Publication) => void;
 }
 
-const NewIssueCard = ({ onClick }: { onClick: () => void }) => (
-  <div
-    onClick={onClick}
-    className="flex w-[305px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group h-[379px]"
-  >
-    <div className="flex flex-col items-center gap-[22px]">
-      <div className="flex items-center justify-center">
-        <svg
-          width="118"
-          height="118"
-          viewBox="0 0 118 118"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M59 40V78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-          <path
-            d="M40 59H78"
-            stroke="#722555"
-            strokeWidth="5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:stroke-promag-primary/80"
-          />
-        </svg>
+const NewIssueCard = ({ onClick }: { onClick: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      onClick={onClick}
+      className="flex w-[305px] flex-col items-center justify-center border border-dashed border-[#DEE6ED] rounded-lg bg-white cursor-pointer hover:border-promag-primary/50 transition-colors group h-[379px]"
+    >
+      <div className="flex flex-col items-center gap-[22px]">
+        <div className="flex items-center justify-center">
+          <svg
+            width="118"
+            height="118"
+            viewBox="0 0 118 118"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M59 40V78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+            <path
+              d="M40 59H78"
+              stroke="#722555"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="group-hover:stroke-promag-primary/80"
+            />
+          </svg>
+        </div>
+        <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
+          {t("common.newIssue", "New Issue")}
+        </h3>
       </div>
-      <h3 className="text-promag-primary font-inter text-lg font-semibold group-hover:text-promag-primary/80">
-        New Issue
-      </h3>
     </div>
-  </div>
-);
+  );
+};
 
 const PublicationCard = ({
   publication,
@@ -93,416 +97,420 @@ const PublicationCard = ({
   onDelete: () => void;
   onClone: () => void;
   onSettings: () => void;
-}) => (
-  <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
-    {/* Cover Image */}
-    <div className="w-[281px] h-[200px] flex-shrink-0 relative">
-      {publication.coverImage ? (
-        <img
-          src={publication.coverImage}
-          alt={publication.title}
-          className="w-full h-full object-cover rounded-lg"
-        />
-      ) : (
-        <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-lg">
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-              stroke="#9CA3AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <polyline
-              points="14,2 14,8 20,8"
-              stroke="#9CA3AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <line
-              x1="16"
-              y1="13"
-              x2="8"
-              y2="13"
-              stroke="#9CA3AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <line
-              x1="16"
-              y1="17"
-              x2="8"
-              y2="17"
-              stroke="#9CA3AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <polyline
-              points="10,9 9,9 8,9"
-              stroke="#9CA3AF"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      )}
-    </div>
+}) => {
+  const { t } = useTranslation();
 
-    {/* Content */}
-    <div className="flex flex-col items-start gap-4 self-stretch">
-      {/* Title and Status Section */}
-      <div className="flex pb-4 flex-col items-start gap-[7px] self-stretch border-b border-[#DDD]">
-        <div className="flex justify-between items-center self-stretch">
-          <div className="flex items-start gap-[5px] flex-1">
-            <div className="w-[226px] text-promag-body font-inter text-lg font-normal">
-              {publication.title}
+  return (
+    <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
+      {/* Cover Image */}
+      <div className="w-[281px] h-[200px] flex-shrink-0 relative">
+        {publication.coverImage ? (
+          <img
+            src={publication.coverImage}
+            alt={publication.title}
+            className="w-full h-full object-cover rounded-lg"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-lg">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                stroke="#9CA3AF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <polyline
+                points="14,2 14,8 20,8"
+                stroke="#9CA3AF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line
+                x1="16"
+                y1="13"
+                x2="8"
+                y2="13"
+                stroke="#9CA3AF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <line
+                x1="16"
+                y1="17"
+                x2="8"
+                y2="17"
+                stroke="#9CA3AF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <polyline
+                points="10,9 9,9 8,9"
+                stroke="#9CA3AF"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col items-start gap-4 self-stretch">
+        {/* Title and Status Section */}
+        <div className="flex pb-4 flex-col items-start gap-[7px] self-stretch border-b border-[#DDD]">
+          <div className="flex justify-between items-center self-stretch">
+            <div className="flex items-start gap-[5px] flex-1">
+              <div className="w-[226px] text-promag-body font-inter text-lg font-normal">
+                {publication.title}
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between items-center self-stretch">
+            <div className="flex items-center gap-[7px] flex-1">
+              {publication.status === "published" ? (
+                <>
+                  <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-[#29A44A]">
+                    <div className="text-white font-inter text-xs font-semibold">
+                      {t("publication.status.live")}
+                    </div>
+                  </div>
+                  <div className="text-promag-primary font-inter text-[13px] font-semibold">
+                    {t("publication.action.backToDraft")}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-[#C7C7C7]">
+                    <div className="text-[#615F5F] font-inter text-xs font-semibold">
+                      {t("publication.status.draft")}
+                    </div>
+                  </div>
+                  <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-promag-primary">
+                    <div className="text-white font-inter text-xs font-semibold">
+                      {t("publication.action.goLive")}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="flex justify-end items-center gap-2.5">
+              {/* Google Play Store Icon */}
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 26 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19.4701 8.57526C16.5659 6.95089 11.9046 4.34253 4.67447 0.294236C4.18701 -0.0276884 3.62617 -0.069876 3.1416 0.094138L15.5464 12.4989L19.4701 8.57526Z"
+                  fill="#32BBFF"
+                />
+                <path
+                  d="M3.14126 0.0942383C3.05044 0.125 2.96206 0.16211 2.87754 0.206934C2.34243 0.496388 1.94922 1.05337 1.94922 1.75782V23.2403C1.94922 23.9447 2.34238 24.5017 2.87754 24.7911C2.96192 24.8359 3.05025 24.8731 3.14097 24.9041L15.5461 12.499L3.14126 0.0942383Z"
+                  fill="#32BBFF"
+                />
+                <path
+                  d="M15.5457 12.499L3.14062 24.9041C3.62534 25.0693 4.18618 25.0303 4.67378 24.7037C11.6854 20.7775 16.2942 18.2 19.232 16.5618C19.3138 16.5159 19.3939 16.471 19.4731 16.4265L15.5457 12.499Z"
+                  fill="#32BBFF"
+                />
+                <path
+                  d="M1.94922 12.499V23.2403C1.94922 23.9447 2.34238 24.5017 2.87754 24.7911C2.96192 24.8359 3.05025 24.8731 3.14097 24.9041L15.5461 12.499H1.94922Z"
+                  fill="#2C9FD9"
+                />
+                <path
+                  d="M4.67452 0.294332C4.09566 -0.0878952 3.41304 -0.0770065 2.87793 0.206978L15.3582 12.6873L19.4701 8.57535C16.5659 6.95099 11.9046 4.34263 4.67452 0.294332Z"
+                  fill="#29CC5E"
+                />
+                <path
+                  d="M15.3583 12.3108L2.87793 24.791C3.41309 25.075 4.09566 25.0914 4.67452 24.7037C11.6862 20.7774 16.2949 18.2 19.2327 16.5618C19.3145 16.5158 19.3947 16.4709 19.4739 16.4264L15.3583 12.3108Z"
+                  fill="#D93F21"
+                />
+                <path
+                  d="M24.6498 12.4989C24.6498 11.9037 24.3494 11.303 23.7542 10.9699C23.7542 10.9699 22.6409 10.3488 19.2287 8.44019L15.1699 12.4989L19.2326 16.5617C22.6074 14.6668 23.7541 14.0279 23.7541 14.0279C24.3494 13.6948 24.6498 13.0942 24.6498 12.4989Z"
+                  fill="#FFD500"
+                />
+                <path
+                  d="M23.7542 14.028C24.3494 13.6949 24.6498 13.0942 24.6498 12.499H15.1699L19.2326 16.5618C22.6075 14.6669 23.7542 14.028 23.7542 14.028Z"
+                  fill="#FFAA00"
+                />
+              </svg>
+              {/* App Store Icon */}
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 26 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipPath="url(#clip0_240_2442)">
+                  <path
+                    d="M20.7473 0.00146484H5.84917C3.05889 0.00146484 0.799805 2.26055 0.799805 5.05083V19.9521C0.799805 22.7393 3.05889 24.9983 5.84917 24.9983H20.7504C23.5376 24.9983 25.7998 22.7393 25.7998 19.949V5.05083C25.7967 2.26055 23.5376 0.00146484 20.7473 0.00146484Z"
+                    fill="url(#paint0_linear_240_2442)"
+                  />
+                  <path
+                    d="M13.1922 5.74448L13.6984 4.86958C14.0108 4.32275 14.7076 4.13843 15.2544 4.45088C15.8013 4.76333 15.9856 5.46011 15.6731 6.00693L10.7956 14.4497H14.3233C15.4669 14.4497 16.1074 15.7933 15.6106 16.7244H5.26821C4.63706 16.7244 4.13086 16.2182 4.13086 15.587C4.13086 14.9559 4.63706 14.4497 5.26821 14.4497H8.16787L11.8799 8.01607L10.7207 6.00381C10.4083 5.45698 10.5926 4.76646 11.1394 4.44775C11.6862 4.1353 12.3768 4.31963 12.6955 4.86646L13.1922 5.74448Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M8.80518 17.8962L7.71157 19.7928C7.39912 20.3396 6.70234 20.524 6.15552 20.2115C5.60869 19.8991 5.42437 19.2023 5.73682 18.6555L6.54922 17.2494C7.46782 16.9651 8.2146 17.1838 8.80518 17.8962Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M18.2224 14.4558H21.1813C21.8125 14.4558 22.3187 14.962 22.3187 15.5932C22.3187 16.2243 21.8125 16.7305 21.1813 16.7305H19.5378L20.647 18.6553C20.9595 19.2021 20.7751 19.8926 20.2283 20.2113C19.6815 20.5238 18.991 20.3395 18.6723 19.7926C16.8038 16.5524 15.4008 14.1277 14.4697 12.5123C13.5166 10.8688 14.1978 9.21895 14.8696 8.65967C15.6164 9.94077 16.7319 11.8749 18.2224 14.4558Z"
+                    fill="white"
+                  />
+                </g>
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_240_2442"
+                    x1="13.2998"
+                    y1="0.00146484"
+                    x2="13.2998"
+                    y2="24.9983"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#00BFFC" />
+                    <stop offset="1" stopColor="#0073F6" />
+                  </linearGradient>
+                  <clipPath id="clip0_240_2442">
+                    <rect
+                      width="25"
+                      height="25"
+                      fill="white"
+                      transform="translate(0.799805)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              {/* Globe Icon (lucide) */}
+              <GlobeIcon size={25} strokeWidth={1.6} color="#00A1E2" />
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center self-stretch">
-          <div className="flex items-center gap-[7px] flex-1">
-            {publication.status === "published" ? (
-              <>
-                <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-[#29A44A]">
-                  <div className="text-white font-inter text-xs font-semibold">
-                    Live
-                  </div>
-                </div>
-                <div className="text-promag-primary font-inter text-[13px] font-semibold">
-                  Back to Draft
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-[#C7C7C7]">
-                  <div className="text-[#615F5F] font-inter text-xs font-semibold">
-                    Draft
-                  </div>
-                </div>
-                <div className="flex px-2.5 py-[5px] justify-center items-center gap-5 rounded bg-promag-primary">
-                  <div className="text-white font-inter text-xs font-semibold">
-                    Go Live
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          <div className="flex justify-end items-center gap-2.5">
-            {/* Google Play Store Icon */}
+
+        {/* Action Buttons */}
+        <div className="flex items-start gap-5 self-stretch">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onSettings();
+            }}
+            className="w-[18px] h-[18px] group hover:scale-110 transition-transform"
+            title={t("common.settings")}
+            aria-label={t("common.settings")}
+          >
+            <SettingsIcon
+              size={18}
+              strokeWidth={1.5}
+              color="#722555"
+              className="group-hover:text-promag-primary/80"
+            />
+          </button>
+
+          {/* Edit Icon */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit();
+            }}
+            className="group hover:scale-110 transition-transform"
+            aria-label={t("common.edit", "Edit publication")}
+          >
             <svg
-              width="25"
-              height="25"
-              viewBox="0 0 26 25"
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M19.4701 8.57526C16.5659 6.95089 11.9046 4.34253 4.67447 0.294236C4.18701 -0.0276884 3.62617 -0.069876 3.1416 0.094138L15.5464 12.4989L19.4701 8.57526Z"
-                fill="#32BBFF"
+                d="M8.25 3H3C2.6 3 2.22 3.16 1.94 3.44C1.66 3.72 1.5 4.1 1.5 4.5V15C1.5 15.4 1.66 15.78 1.94 16.06C2.22 16.34 2.6 16.5 3 16.5H13.5C13.9 16.5 14.28 16.34 14.56 16.06C14.84 15.78 15 15.4 15 15V9.75"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
-                d="M3.14126 0.0942383C3.05044 0.125 2.96206 0.16211 2.87754 0.206934C2.34243 0.496388 1.94922 1.05337 1.94922 1.75782V23.2403C1.94922 23.9447 2.34238 24.5017 2.87754 24.7911C2.96192 24.8359 3.05025 24.8731 3.14097 24.9041L15.5461 12.499L3.14126 0.0942383Z"
-                fill="#32BBFF"
-              />
-              <path
-                d="M15.5457 12.499L3.14062 24.9041C3.62534 25.0693 4.18618 25.0303 4.67378 24.7037C11.6854 20.7775 16.2942 18.2 19.232 16.5618C19.3138 16.5159 19.3939 16.471 19.4731 16.4265L15.5457 12.499Z"
-                fill="#32BBFF"
-              />
-              <path
-                d="M1.94922 12.499V23.2403C1.94922 23.9447 2.34238 24.5017 2.87754 24.7911C2.96192 24.8359 3.05025 24.8731 3.14097 24.9041L15.5461 12.499H1.94922Z"
-                fill="#2C9FD9"
-              />
-              <path
-                d="M4.67452 0.294332C4.09566 -0.0878952 3.41304 -0.0770065 2.87793 0.206978L15.3582 12.6873L19.4701 8.57535C16.5659 6.95099 11.9046 4.34263 4.67452 0.294332Z"
-                fill="#29CC5E"
-              />
-              <path
-                d="M15.3583 12.3108L2.87793 24.791C3.41309 25.075 4.09566 25.0914 4.67452 24.7037C11.6862 20.7774 16.2949 18.2 19.2327 16.5618C19.3145 16.5158 19.3947 16.4709 19.4739 16.4264L15.3583 12.3108Z"
-                fill="#D93F21"
-              />
-              <path
-                d="M24.6498 12.4989C24.6498 11.9037 24.3494 11.303 23.7542 10.9699C23.7542 10.9699 22.6409 10.3488 19.2287 8.44019L15.1699 12.4989L19.2326 16.5617C22.6074 14.6668 23.7541 14.0279 23.7541 14.0279C24.3494 13.6948 24.6498 13.0942 24.6498 12.4989Z"
-                fill="#FFD500"
-              />
-              <path
-                d="M23.7542 14.028C24.3494 13.6949 24.6498 13.0942 24.6498 12.499H15.1699L19.2326 16.5618C22.6075 14.6669 23.7542 14.028 23.7542 14.028Z"
-                fill="#FFAA00"
+                d="M13.875 1.875C14.173 1.577 14.578 1.409 15 1.409C15.422 1.409 15.826 1.577 16.125 1.875C16.423 2.173 16.591 2.578 16.591 3C16.591 3.422 16.423 3.827 16.125 4.125L9 11.25L6 12L6.75 9L13.875 1.875Z"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
-            {/* App Store Icon */}
+          </button>
+
+          {/* Share Icon */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onShare();
+            }}
+            className="group"
+            aria-label={t("common.share", "Share publication")}
+          >
             <svg
-              width="25"
-              height="25"
-              viewBox="0 0 26 25"
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="group-hover:scale-110 transition-transform"
+            >
+              <circle
+                cx="13.5"
+                cy="3.75"
+                r="2.25"
+                stroke="#722555"
+                strokeWidth="1.5"
+              />
+              <circle
+                cx="4.5"
+                cy="9"
+                r="2.25"
+                stroke="#722555"
+                strokeWidth="1.5"
+              />
+              <circle
+                cx="13.5"
+                cy="14.25"
+                r="2.25"
+                stroke="#722555"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M6.44 10.13L11.56 13.12"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M11.56 4.88L6.44 7.87"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+
+          {/* Dollar Icon */}
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 0.75V17.25"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path
+              d="M12.75 3.75H7.125C6.428 3.75 5.761 4.027 5.269 4.519C4.777 5.011 4.5 5.679 4.5 6.375C4.5 7.071 4.777 7.739 5.269 8.231C5.761 8.723 6.428 9 7.125 9H10.875C11.571 9 12.239 9.277 12.731 9.769C13.223 10.261 13.5 10.929 13.5 11.625C13.5 12.321 13.223 12.989 12.731 13.481C12.239 13.973 11.571 14.25 10.875 14.25H4.5"
+              stroke="#722555"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Copy Icon */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClone();
+            }}
+            className="group hover:scale-110 transition-transform"
+            aria-label={t("common.clone", "Clone publication")}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clipPath="url(#clip0_240_2442)">
-                <path
-                  d="M20.7473 0.00146484H5.84917C3.05889 0.00146484 0.799805 2.26055 0.799805 5.05083V19.9521C0.799805 22.7393 3.05889 24.9983 5.84917 24.9983H20.7504C23.5376 24.9983 25.7998 22.7393 25.7998 19.949V5.05083C25.7967 2.26055 23.5376 0.00146484 20.7473 0.00146484Z"
-                  fill="url(#paint0_linear_240_2442)"
-                />
-                <path
-                  d="M13.1922 5.74448L13.6984 4.86958C14.0108 4.32275 14.7076 4.13843 15.2544 4.45088C15.8013 4.76333 15.9856 5.46011 15.6731 6.00693L10.7956 14.4497H14.3233C15.4669 14.4497 16.1074 15.7933 15.6106 16.7244H5.26821C4.63706 16.7244 4.13086 16.2182 4.13086 15.587C4.13086 14.9559 4.63706 14.4497 5.26821 14.4497H8.16787L11.8799 8.01607L10.7207 6.00381C10.4083 5.45698 10.5926 4.76646 11.1394 4.44775C11.6862 4.1353 12.3768 4.31963 12.6955 4.86646L13.1922 5.74448Z"
-                  fill="white"
-                />
-                <path
-                  d="M8.80518 17.8962L7.71157 19.7928C7.39912 20.3396 6.70234 20.524 6.15552 20.2115C5.60869 19.8991 5.42437 19.2023 5.73682 18.6555L6.54922 17.2494C7.46782 16.9651 8.2146 17.1838 8.80518 17.8962Z"
-                  fill="white"
-                />
-                <path
-                  d="M18.2224 14.4558H21.1813C21.8125 14.4558 22.3187 14.962 22.3187 15.5932C22.3187 16.2243 21.8125 16.7305 21.1813 16.7305H19.5378L20.647 18.6553C20.9595 19.2021 20.7751 19.8926 20.2283 20.2113C19.6815 20.5238 18.991 20.3395 18.6723 19.7926C16.8038 16.5524 15.4008 14.1277 14.4697 12.5123C13.5166 10.8688 14.1978 9.21895 14.8696 8.65967C15.6164 9.94077 16.7319 11.8749 18.2224 14.4558Z"
-                  fill="white"
-                />
-              </g>
-              <defs>
-                <linearGradient
-                  id="paint0_linear_240_2442"
-                  x1="13.2998"
-                  y1="0.00146484"
-                  x2="13.2998"
-                  y2="24.9983"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#00BFFC" />
-                  <stop offset="1" stopColor="#0073F6" />
-                </linearGradient>
-                <clipPath id="clip0_240_2442">
-                  <rect
-                    width="25"
-                    height="25"
-                    fill="white"
-                    transform="translate(0.799805)"
-                  />
-                </clipPath>
-              </defs>
+              <rect
+                x="6.75"
+                y="6.75"
+                width="9.75"
+                height="9.75"
+                rx="2.25"
+                stroke="#722555"
+                strokeWidth="1.5"
+              />
+              <rect
+                x="1.5"
+                y="1.5"
+                width="9.75"
+                height="9.75"
+                rx="2.25"
+                stroke="#722555"
+                strokeWidth="1.5"
+              />
             </svg>
-            {/* Globe Icon (lucide) */}
-            <GlobeIcon size={25} strokeWidth={1.6} color="#00A1E2" />
-          </div>
+          </button>
+
+          {/* Trash Icon */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            className="group hover:scale-110 transition-transform"
+            aria-label={t("common.delete", "Delete publication")}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.25 4.5H15.75"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M14.25 4.5V15C14.25 15.398 14.092 15.779 13.811 16.061C13.529 16.342 13.148 16.5 12.75 16.5H5.25C4.852 16.5 4.471 16.342 4.189 16.061C3.908 15.779 3.75 15.398 3.75 15V4.5M6 4.5V3C6 2.602 6.158 2.221 6.439 1.939C6.721 1.658 7.102 1.5 7.5 1.5H10.5C10.898 1.5 11.279 1.658 11.561 1.939C11.842 2.221 12 2.602 12 3V4.5"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M7.5 8.25V12.75"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M10.5 8.25V12.75"
+                stroke="#722555"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
-
-      {/* Action Buttons */}
-      <div className="flex items-start gap-5 self-stretch">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onSettings();
-          }}
-          className="w-[18px] h-[18px] group hover:scale-110 transition-transform"
-          title="Settings"
-          aria-label="Open publication settings"
-        >
-          <SettingsIcon
-            size={18}
-            strokeWidth={1.5}
-            color="#722555"
-            className="group-hover:text-promag-primary/80"
-          />
-        </button>
-
-        {/* Edit Icon */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onEdit();
-          }}
-          className="group hover:scale-110 transition-transform"
-          aria-label="Edit publication"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.25 3H3C2.6 3 2.22 3.16 1.94 3.44C1.66 3.72 1.5 4.1 1.5 4.5V15C1.5 15.4 1.66 15.78 1.94 16.06C2.22 16.34 2.6 16.5 3 16.5H13.5C13.9 16.5 14.28 16.34 14.56 16.06C14.84 15.78 15 15.4 15 15V9.75"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M13.875 1.875C14.173 1.577 14.578 1.409 15 1.409C15.422 1.409 15.826 1.577 16.125 1.875C16.423 2.173 16.591 2.578 16.591 3C16.591 3.422 16.423 3.827 16.125 4.125L9 11.25L6 12L6.75 9L13.875 1.875Z"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
-        {/* Share Icon */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onShare();
-          }}
-          className="group"
-          aria-label="Share publication"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="group-hover:scale-110 transition-transform"
-          >
-            <circle
-              cx="13.5"
-              cy="3.75"
-              r="2.25"
-              stroke="#722555"
-              strokeWidth="1.5"
-            />
-            <circle
-              cx="4.5"
-              cy="9"
-              r="2.25"
-              stroke="#722555"
-              strokeWidth="1.5"
-            />
-            <circle
-              cx="13.5"
-              cy="14.25"
-              r="2.25"
-              stroke="#722555"
-              strokeWidth="1.5"
-            />
-            <path
-              d="M6.44 10.13L11.56 13.12"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M11.56 4.88L6.44 7.87"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-
-        {/* Dollar Icon */}
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9 0.75V17.25"
-            stroke="#722555"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M12.75 3.75H7.125C6.428 3.75 5.761 4.027 5.269 4.519C4.777 5.011 4.5 5.679 4.5 6.375C4.5 7.071 4.777 7.739 5.269 8.231C5.761 8.723 6.428 9 7.125 9H10.875C11.571 9 12.239 9.277 12.731 9.769C13.223 10.261 13.5 10.929 13.5 11.625C13.5 12.321 13.223 12.989 12.731 13.481C12.239 13.973 11.571 14.25 10.875 14.25H4.5"
-            stroke="#722555"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-
-        {/* Copy Icon */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onClone();
-          }}
-          className="group hover:scale-110 transition-transform"
-          aria-label="Clone publication"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="6.75"
-              y="6.75"
-              width="9.75"
-              height="9.75"
-              rx="2.25"
-              stroke="#722555"
-              strokeWidth="1.5"
-            />
-            <rect
-              x="1.5"
-              y="1.5"
-              width="9.75"
-              height="9.75"
-              rx="2.25"
-              stroke="#722555"
-              strokeWidth="1.5"
-            />
-          </svg>
-        </button>
-
-        {/* Trash Icon */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-          className="group hover:scale-110 transition-transform"
-          aria-label="Delete publication"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M2.25 4.5H15.75"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M14.25 4.5V15C14.25 15.398 14.092 15.779 13.811 16.061C13.529 16.342 13.148 16.5 12.75 16.5H5.25C4.852 16.5 4.471 16.342 4.189 16.061C3.908 15.779 3.75 15.398 3.75 15V4.5M6 4.5V3C6 2.602 6.158 2.221 6.439 1.939C6.721 1.658 7.102 1.5 7.5 1.5H10.5C10.898 1.5 11.279 1.658 11.561 1.939C11.842 2.221 12 2.602 12 3V4.5"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M7.5 8.25V12.75"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M10.5 8.25V12.75"
-              stroke="#722555"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export function PublicationListView({
   collection,
@@ -518,6 +526,7 @@ export function PublicationListView({
   onDeletePublication,
   onClonePublication,
 }: PublicationListViewProps) {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [showActionDropdown, setShowActionDropdown] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -599,9 +608,9 @@ export function PublicationListView({
           type="button"
           onClick={onBackToCollections}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
-          aria-label="Back to Collections"
+          aria-label={t("common.backToCollections")}
         >
-          Collections
+          {t("common.collections")}
         </button>
         <span className="text-promag-body/70">/</span>
         <button
@@ -609,7 +618,7 @@ export function PublicationListView({
           onClick={onGoToPublications}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
         >
-          Publications
+          {t("common.publications")}
         </button>
       </div>
 
@@ -619,7 +628,7 @@ export function PublicationListView({
         <div className="flex w-[497px] h-[42px] px-[15px] justify-between items-center rounded-lg border border-[#DDD] bg-white">
           <input
             type="text"
-            placeholder="Find in collections and folders"
+            placeholder={t("common.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 text-promag-body/50 font-inter text-sm outline-none placeholder:text-promag-body/50"
@@ -728,7 +737,7 @@ export function PublicationListView({
                   strokeLinecap="round"
                 />
               </svg>
-              Action
+              {t("common.action", "Action")}
             </button>
 
             {showActionDropdown && (
@@ -780,7 +789,7 @@ export function PublicationListView({
                       strokeLinecap="round"
                     />
                   </svg>
-                  Settings
+                  {t("common.settings", "Settings")}
                 </button>
                 <button
                   onClick={() => {
@@ -821,7 +830,7 @@ export function PublicationListView({
                       strokeLinecap="round"
                     />
                   </svg>
-                  Delete Collection
+                  {t("common.deleteCollection", "Delete Collection")}
                 </button>
               </div>
             )}
@@ -852,7 +861,7 @@ export function PublicationListView({
                 strokeLinecap="round"
               />
             </svg>
-            New Issue
+            {t("common.newIssue", "New Issue")}
           </button>
         </div>
       </div>
@@ -876,10 +885,10 @@ export function PublicationListView({
       {filteredPublications.length === 0 && searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No publications found matching "{searchQuery}"
+            {t("common.noPublicationsFound", { query: searchQuery })}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Try adjusting your search terms
+            {t("common.tryAdjustingSearch")}
           </p>
         </div>
       )}
