@@ -7,7 +7,10 @@
     "noCollectionsFound": "Keine Sammlungen gefunden für \"{{query}}\"",
     "tryAdjustingSearch": "Passen Sie Ihre Suchbegriffe an",
     "next": "Weiter",
+    "previous": "Zurück",
     "ok": "OK",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
     "uploadCompleted": "Upload abgeschlossen!",
     "uploadSuccessDescription": "Ihre Publikation wurde der Sammlung erfolgreich hinzugefügt.",
     "backTo": "Zurück zu {{target}}",
@@ -15,10 +18,11 @@
     "newIssue": "Neue Ausgabe",
     "deleteCollection": "Sammlung löschen",
     "noPublicationsFound": "Keine Publikationen gefunden für \"{{query}}\"",
+    "noPublicationsInCollection": "Es gibt noch keine Publikationen in dieser Sammlung.",
+    "clickNewIssue": "Klicken Sie auf Neue Ausgabe, um Ihre erste Publikation zu erstellen.",
     "action": "Aktion",
     "settings": "Einstellungen",
-    "previous": "Zurück",
-    "save": "Speichern"
+    "pending": "Ausstehend"
   },
   "menu": {
     "managePublications": "Publikationen verwalten",
@@ -27,9 +31,7 @@
     "manageReader": "Reader verwalten",
     "pushNotifications": "Push-Benachrichtigungen"
   },
-  "roles": {
-    "superAdmin": "SuperAdmin"
-  },
+  "roles": { "superAdmin": "SuperAdmin" },
   "categories": {
     "action": "Action",
     "cinematic": "Kinematografisch",
@@ -41,13 +43,29 @@
     "comingSoon": "Diese Seite wird bald verfügbar sein. Fahren Sie mit Aufforderungen fort, um hier Inhalte hinzuzufügen."
   },
   "publication": {
-    "status": {
-      "live": "Live",
-      "draft": "Entwurf"
-    },
-    "action": {
-      "backToDraft": "Zurück zum Entwurf",
-      "goLive": "Veröffentlichen"
-    }
+    "status": { "live": "Live", "draft": "Entwurf" },
+    "action": { "backToDraft": "Zurück zum Entwurf", "goLive": "Veröffentlichen" }
+  },
+  "dialog": {
+    "areYouSure": "Sind Sie sicher?",
+    "deleteCollectionDescription": "Sie sind dabei, die Sammlung \"{{name}}\" zu löschen. Diese Aktion kann nicht rückgängig gemacht werden und entfernt dauerhaft alle Publikationen in dieser Sammlung."
+  },
+  "api": {
+    "demoMessage": "Hallo vom Express-Server",
+    "ping": "ping"
+  },
+  "upload": {
+    "dropHere": "Datei hier ablegen",
+    "releaseToUpload": "Zum Hochladen Ihrer PDF-Datei loslassen",
+    "uploading": "Wird hochgeladen...",
+    "percentUploaded": "{{percent}}% hochgeladen",
+    "fileUploadedSuccess": "Ihre Datei wurde erfolgreich hochgeladen",
+    "selectOrDrag": "Datei auswählen oder hierher ziehen",
+    "sizeLimit10": "PDF, Dateigröße höchstens 10 MB",
+    "updateFile": "Datei aktualisieren",
+    "uploadFile": "Datei hochladen",
+    "fileUploaded": "Datei erfolgreich hochgeladen",
+    "onlyPdf": "Bitte wählen Sie eine PDF-Datei aus.",
+    "maxSize10": "Die Dateigröße muss unter 10 MB liegen."
   }
 }
