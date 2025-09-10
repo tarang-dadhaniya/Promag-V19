@@ -530,7 +530,7 @@ export function PublicationsPage({
                 strokeLinejoin="round"
               />
             </svg>
-            New Issue
+            {t("common.newIssue", "New Issue")}
           </button>
         </div>
       </div>
