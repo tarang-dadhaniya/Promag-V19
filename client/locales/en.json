@@ -11,7 +11,14 @@
     "uploadCompleted": "Upload Completed!",
     "uploadSuccessDescription": "Your publication has been successfully uploaded to the collection.",
     "backTo": "Back to {{target}}",
-    "backToCollections": "Back to Collections"
+    "backToCollections": "Back to Collections",
+    "newIssue": "New Issue",
+    "deleteCollection": "Delete Collection",
+    "noPublicationsFound": "No publications found matching \"{{query}}\"",
+    "action": "Action",
+    "settings": "Settings",
+    "previous": "Previous",
+    "save": "Save"
   },
   "menu": {
     "managePublications": "Manage Publications",
@@ -32,5 +39,15 @@
   },
   "placeholder": {
     "comingSoon": "This page is coming soon. Continue prompting to add content here."
+  },
+  "publication": {
+    "status": {
+      "live": "Live",
+      "draft": "Draft"
+    },
+    "action": {
+      "backToDraft": "Back to Draft",
+      "goLive": "Go Live"
+    }
   }
 }
