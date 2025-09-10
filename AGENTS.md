@@ -192,7 +192,14 @@ Usage in components
   - Labels: t("menu.managePublications")
   - Placeholders: t("common.searchPlaceholder")
   - Buttons: t("common.createCollection")
+  - p: t("common.createCollection")
+  - li: t("common.createCollection")
+  - span: t("common.createCollection")
+  - div: t("common.createCollection")
   - Options: t("categories.action"), etc.
+
+  // Example using the translation function t() in React components
+
 - Never hard-code user-facing strings. Replace all literals with translation keys.
 - For aria-labels and titles, also use t() (e.g., aria-label={t("common.backToCollections")}).
 
