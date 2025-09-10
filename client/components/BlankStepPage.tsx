@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Stepper } from "./ui/stepper";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,7 @@ export function BlankStepPage({
   publicationName,
   className,
 }: BlankStepPageProps) {
+  const { t } = useTranslation();
   // State for Add Solutions modal
   const [showAddModal, setShowAddModal] = useState(false);
   const [formData, setFormData] = useState({
