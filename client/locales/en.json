@@ -1,0 +1,36 @@
+{
+  "common": {
+    "collections": "Collections",
+    "publications": "Publications",
+    "searchPlaceholder": "Find in collections and folders",
+    "createCollection": "Create a Collection",
+    "noCollectionsFound": "No collections found matching \"{{query}}\"",
+    "tryAdjustingSearch": "Try adjusting your search terms",
+    "next": "Next",
+    "ok": "OK",
+    "uploadCompleted": "Upload Completed!",
+    "uploadSuccessDescription": "Your publication has been successfully uploaded to the collection.",
+    "backTo": "Back to {{target}}",
+    "backToCollections": "Back to Collections"
+  },
+  "menu": {
+    "managePublications": "Manage Publications",
+    "manageCompany": "Manage Company",
+    "manageApps": "Manage Apps",
+    "manageReader": "Manage Reader",
+    "pushNotifications": "Push Notifications"
+  },
+  "roles": {
+    "superAdmin": "SuperAdmin"
+  },
+  "categories": {
+    "action": "Action",
+    "cinematic": "Cinematic",
+    "comic": "Comic",
+    "drama": "Drama",
+    "education": "Education"
+  },
+  "placeholder": {
+    "comingSoon": "This page is coming soon. Continue prompting to add content here."
+  }
+}
