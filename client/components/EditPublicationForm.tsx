@@ -168,7 +168,7 @@ export function EditPublicationForm({
   const handleImageUpload = useCallback(async (file: File) => {
     const validTypes = ["image/png", "image/jpeg", "image/jpg"];
     if (!validTypes.includes(file.type)) {
-      alert("Please select a PNG or JPEG image file.");
+      alert(t("forms.validation.imageFileType"));
       return;
     }
 
