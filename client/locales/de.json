@@ -74,5 +74,66 @@
   "notFound": {
     "message": "Ups! Seite nicht gefunden",
     "backHome": "Zurück zur Startseite"
+  },
+  "forms": {
+    "name": "Name",
+    "topicsCategory": "Themen/Kategorie",
+    "collection": "Sammlung",
+    "editionOptional": "Ausgabe (optional)",
+    "teaser": "Teaser",
+    "description": "Beschreibung",
+    "author": "Autor",
+    "editor": "Herausgeber",
+    "language": "Sprache",
+    "releaseDate": "Veröffentlichungsdatum",
+    "isbnIssn": "ISBN/ISSN",
+    "indexOffset": "Indexversatz",
+    "status": "Status",
+    "previewPages": "Vorschauseiten",
+    "orientation": "Ausrichtung",
+    "presentation": "Präsentation",
+    "documentPrintAllowed": "Druck des Dokuments erlaubt",
+    "addCollection": "Sammlung hinzufügen",
+    "editCollection": "Sammlung bearbeiten",
+    "editPublication": "Publikation bearbeiten",
+    "backToPublications": "Zurück zu Publikationen",
+    "placeholders": {
+      "issueName": "Ausgabenamen eingeben",
+      "publicationTitle": "Publikationstitel eingeben",
+      "selectCategory": "Kategorie auswählen",
+      "selectCollection": "Sammlung auswählen",
+      "edition": "Ausgabe eingeben",
+      "teaser": "Teaser eingeben",
+      "description": "Beschreibung eingeben",
+      "author": "Autor eingeben",
+      "editor": "Herausgeber eingeben",
+      "language": "Sprache auswählen",
+      "date": "TT-MM-JJJJ",
+      "isbnIssn": "ISBN/ISSN eingeben",
+      "indexOffset": "0",
+      "pages": "Seiten eingeben",
+      "addTitle": "Titel hinzufügen",
+      "addStartPage": "Startseite hinzufügen",
+      "addEndPage": "Endseite hinzufügen",
+      "enterKeywords": "Schlüsselwörter eingeben",
+      "selectStatus": "Status auswählen",
+      "selectOrientation": "Ausrichtung auswählen",
+      "selectFile": "Datei auswählen"
+    },
+    "validation": {
+      "nameRequired": "Name ist erforderlich",
+      "topicsRequired": "Themen/Kategorie ist erforderlich",
+      "collectionRequired": "Sammlung ist erforderlich",
+      "descriptionRequired": "Beschreibung ist erforderlich",
+      "titleRequired": "Bitte geben Sie einen Titel für die Sammlung ein.",
+      "imageFileType": "Bitte wählen Sie eine PNG- oder JPEG-Bilddatei aus.",
+      "imageMax8": "Die Dateigröße muss unter 8 MB liegen.",
+      "imageProcessFailed": "Bild konnte nicht verarbeitet werden. Bitte erneut versuchen."
+    }
+  },
+  "steps": {
+    "uploadPdf": "PDF hochladen",
+    "issueDetails": "Ausgabendetails",
+    "authorDetails": "Autordetails"
   }
 }
