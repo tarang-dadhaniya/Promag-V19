@@ -323,8 +323,8 @@ export function PublicationDetailsForm({
     { value: "pending", label: t("common.pending") },
   ];
   const localizedOrientationOptions = orientationOptions ?? [
-    { value: "portrait", label: "Portrait" },
-    { value: "landscape", label: "Landscape" },
+    { value: "portrait", label: t("orientations.portrait") },
+    { value: "landscape", label: t("orientations.landscape") },
   ];
 
   return (
