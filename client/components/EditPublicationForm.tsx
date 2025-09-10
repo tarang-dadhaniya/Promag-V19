@@ -379,7 +379,7 @@ export function EditPublicationForm({
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Collection"
+                placeholder={t("forms.placeholders.selectCollection")}
                 value={formData.collection}
                 onChange={updateField("collection")}
                 options={collectionOptions}
