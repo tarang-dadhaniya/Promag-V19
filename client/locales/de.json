@@ -70,5 +70,9 @@
     "fileUploaded": "Datei erfolgreich hochgeladen",
     "onlyPdf": "Bitte wählen Sie eine PDF-Datei aus.",
     "maxSize10": "Die Dateigröße muss unter 10 MB liegen."
+  },
+  "notFound": {
+    "message": "Ups! Seite nicht gefunden",
+    "backHome": "Zurück zur Startseite"
   }
 }
