@@ -387,11 +387,11 @@ export function EditPublicationForm({
             </FormField>
 
             <FormField
-              label="Status"
+              label={t("forms.status")}
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Status"
+                placeholder={t("forms.placeholders.selectStatus")}
                 value={formData.status}
                 onChange={updateField("status")}
                 options={statusOptions}
