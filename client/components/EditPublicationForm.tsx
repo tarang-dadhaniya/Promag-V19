@@ -168,7 +168,7 @@ export function EditPublicationForm({
   const handleImageUpload = useCallback(async (file: File) => {
     const validTypes = ["image/png", "image/jpeg", "image/jpg"];
     if (!validTypes.includes(file.type)) {
-      alert("Please select a PNG or JPEG image file.");
+      alert(t("forms.validation.imageFileType"));
       return;
     }
 
@@ -252,7 +252,9 @@ export function EditPublicationForm({
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="font-inter text-sm">Back to Publications</span>
+            <span className="font-inter text-sm">
+              {t("forms.backToPublications")}
+            </span>
           </button>
         </div>
         <h1 className="text-black font-inter text-xl font-semibold">
@@ -355,18 +357,18 @@ export function EditPublicationForm({
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <InputField
-                placeholder="Enter Publication Title"
+                placeholder={t("forms.placeholders.publicationTitle")}
                 value={formData.title}
                 onChange={updateField("title")}
               />
             </FormField>
 
             <FormField
-              label="Category"
+              label={t("forms.topicsCategory")}
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Category"
+                placeholder={t("forms.placeholders.selectCategory")}
                 value={formData.category}
                 onChange={updateField("category")}
                 options={categoriesOptions}
@@ -379,7 +381,7 @@ export function EditPublicationForm({
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Collection"
+                placeholder={t("forms.placeholders.selectCollection")}
                 value={formData.collection}
                 onChange={updateField("collection")}
                 options={collectionOptions}
@@ -387,11 +389,11 @@ export function EditPublicationForm({
             </FormField>
 
             <FormField
-              label="Status"
+              label={t("forms.status")}
               className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
             >
               <Dropdown
-                placeholder="Select Status"
+                placeholder={t("forms.placeholders.selectStatus")}
                 value={formData.status}
                 onChange={updateField("status")}
                 options={statusOptions}
@@ -399,27 +401,27 @@ export function EditPublicationForm({
             </FormField>
 
             {/* Row 3: Edition - Full Width */}
-            <FormField label="Edition (Optional)" className="w-full">
+            <FormField label={t("forms.editionOptional")} className="w-full">
               <InputField
-                placeholder="Enter Edition"
+                placeholder={t("forms.placeholders.edition")}
                 value={formData.edition}
                 onChange={updateField("edition")}
               />
             </FormField>
 
             {/* Row 4: Teaser - Full Width */}
-            <FormField label="Teaser" className="w-full">
+            <FormField label={t("forms.teaser")} className="w-full">
               <TextareaField
-                placeholder="Enter Teaser"
+                placeholder={t("forms.placeholders.teaser")}
                 value={formData.teaser}
                 onChange={updateField("teaser")}
               />
             </FormField>
 
             {/* Row 5: Description - Full Width */}
-            <FormField label="Description" className="w-full">
+            <FormField label={t("forms.description")} className="w-full">
               <TextareaField
-                placeholder="Enter Description"
+                placeholder={t("forms.placeholders.description")}
                 value={formData.description}
                 onChange={updateField("description")}
               />
@@ -431,13 +433,13 @@ export function EditPublicationForm({
                 onClick={onCancel}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-gray-300 bg-white text-gray-700 font-inter text-sm font-medium hover:bg-gray-50 transition-colors"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 onClick={handleSave}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
               >
-                Save Changes
+                {t("common.save")}
               </button>
             </div>
           </div>

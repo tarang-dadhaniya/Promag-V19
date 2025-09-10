@@ -67,5 +67,71 @@
     "fileUploaded": "Fichier téléversé avec succès",
     "onlyPdf": "Veuillez sélectionner un fichier PDF.",
     "maxSize10": "La taille du fichier doit être inférieure à 10 Mo."
+  },
+  "notFound": {
+    "message": "Oups ! Page introuvable",
+    "backHome": "Retour à l'accueil"
+  },
+  "forms": {
+    "name": "Nom",
+    "topicsCategory": "Sujets/Catégorie",
+    "collection": "Collection",
+    "editionOptional": "Édition (optionnel)",
+    "teaser": "Accroche",
+    "description": "Description",
+    "author": "Auteur",
+    "editor": "Éditeur",
+    "language": "Langue",
+    "releaseDate": "Date de sortie",
+    "isbnIssn": "ISBN/ISSN",
+    "indexOffset": "Décalage d'index",
+    "status": "Statut",
+    "previewPages": "Pages d'aperçu",
+    "orientation": "Orientation",
+    "presentation": "Présentation",
+    "documentPrintAllowed": "Impression du document autorisée",
+    "addCollection": "Ajouter une collection",
+    "editCollection": "Modifier la collection",
+    "editPublication": "Modifier la publication",
+    "backToPublications": "Retour aux publications",
+    "placeholders": {
+      "issueName": "Entrez le nom de l'édition",
+      "publicationTitle": "Entrez le titre de la publication",
+      "selectCategory": "Sélectionner une catégorie",
+      "selectCollection": "Sélectionner une collection",
+      "edition": "Entrez l'édition",
+      "teaser": "Entrez l'accroche",
+      "description": "Entrez la description",
+      "author": "Entrez l'auteur",
+      "editor": "Entrez l'éditeur",
+      "language": "Sélectionner la langue",
+      "date": "JJ-MM-AAAA",
+      "isbnIssn": "Entrez l'ISBN/ISSN",
+      "indexOffset": "0",
+      "pages": "Entrez le nombre de pages",
+      "addTitle": "Ajouter un titre",
+      "addStartPage": "Ajouter la page de début",
+      "addEndPage": "Ajouter la page de fin",
+      "enterKeywords": "Entrez des mots-clés",
+      "selectStatus": "Sélectionner un statut",
+      "selectOrientation": "Sélectionner l'orientation",
+      "selectFile": "Sélectionner un fichier"
+    },
+    "validation": {
+      "nameRequired": "Le nom est requis",
+      "topicsRequired": "Le sujet/la catégorie est requis(e)",
+      "collectionRequired": "La collection est requise",
+      "descriptionRequired": "La description est requise",
+      "titleRequired": "Veuillez saisir un titre pour la collection.",
+      "imageFileType": "Veuillez sélectionner un fichier image PNG ou JPEG.",
+      "imageMax8": "La taille du fichier doit être inférieure à 8 Mo.",
+      "imageProcessFailed": "Échec du traitement de l'image. Veuillez réessayer.",
+      "fieldRequired": "{{field}} est requis"
+    }
+  },
+  "steps": {
+    "uploadPdf": "Téléverser le PDF",
+    "issueDetails": "Détails de l'édition",
+    "authorDetails": "Détails de l'auteur"
   }
 }

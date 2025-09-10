@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { Stepper } from "./ui/stepper";
@@ -217,32 +218,7 @@ function CheckboxField({
   );
 }
 
-const defaultCategoriesOptions: DropdownOption[] = [
-  { value: "action", label: "Action" },
-  { value: "cinematic", label: "Cinematic" },
-  { value: "comic", label: "Comic" },
-  { value: "drama", label: "Drama" },
-  { value: "education", label: "Education" },
-];
-
-const defaultLanguageOptions: DropdownOption[] = [
-  { value: "en", label: "English" },
-  { value: "es", label: "Spanish" },
-  { value: "fr", label: "French" },
-  { value: "de", label: "German" },
-  { value: "it", label: "Italian" },
-];
-
-const defaultStatusOptions: DropdownOption[] = [
-  { value: "draft", label: "Draft" },
-  { value: "published", label: "Published" },
-  { value: "pending", label: "Pending" },
-];
-
-const defaultOrientationOptions: DropdownOption[] = [
-  { value: "portrait", label: "Portrait" },
-  { value: "landscape", label: "Landscape" },
-];
+// Localized defaults will be created inside the component using useTranslation
 
 export function PublicationDetailsForm({
   onSubmit,
@@ -251,12 +227,14 @@ export function PublicationDetailsForm({
   onGoToPublications,
   initialData,
   className,
-  categoriesOptions = defaultCategoriesOptions,
+  categoriesOptions,
   collectionOptions = [],
-  languageOptions = defaultLanguageOptions,
-  statusOptions = defaultStatusOptions,
-  orientationOptions = defaultOrientationOptions,
+  languageOptions,
+  statusOptions,
+  orientationOptions,
 }: PublicationDetailsFormProps) {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState<PublicationDetailsFormData>({
     name: initialData?.name ?? "",
     topicsCategory: initialData?.topicsCategory ?? "",
@@ -324,6 +302,31 @@ export function PublicationDetailsForm({
       }));
     };
 
+  // Build localized defaults if not provided
+  const localizedCategories = categoriesOptions ?? [
+    { value: "action", label: t("categories.action") },
+    { value: "cinematic", label: t("categories.cinematic") },
+    { value: "comic", label: t("categories.comic") },
+    { value: "drama", label: t("categories.drama") },
+    { value: "education", label: t("categories.education") },
+  ];
+  const localizedLanguageOptions = languageOptions ?? [
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+    { value: "fr", label: "French" },
+    { value: "de", label: "German" },
+    { value: "it", label: "Italian" },
+  ];
+  const localizedStatusOptions = statusOptions ?? [
+    { value: "draft", label: t("publication.status.draft") },
+    { value: "published", label: t("publication.status.live") },
+    { value: "pending", label: t("common.pending") },
+  ];
+  const localizedOrientationOptions = orientationOptions ?? [
+    { value: "portrait", label: "Portrait" },
+    { value: "landscape", label: "Landscape" },
+  ];
+
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Breadcrumb */}
@@ -333,7 +336,7 @@ export function PublicationDetailsForm({
           onClick={() => onGoToCollections?.()}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
         >
-          Collections
+          {t("common.collections")}
         </button>
         <span className="text-promag-body/70">/</span>
         <button
@@ -341,11 +344,11 @@ export function PublicationDetailsForm({
           onClick={() => onGoToPublications?.()}
           className="text-promag-body/70 hover:text-promag-primary hover:underline underline-offset-4"
         >
-          Publications
+          {t("common.publications")}
         </button>
         <span className="text-promag-body/70">/</span>
         <span className="text-black">
-          {formData.name || initialData?.name || "Selected Publication Name"}
+          {formData.name || initialData?.name || t("common.publications")}
         </span>
       </div>
 
@@ -359,38 +362,38 @@ export function PublicationDetailsForm({
         <div className="flex p-5 items-start content-start gap-[30px] gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
           {/* Row 1: Name and Topics/Category */}
           <FormField
-            label="Name"
+            label={t("forms.name")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Issue Name"
+              placeholder={t("forms.placeholders.issueName")}
               value={formData.name}
               onChange={updateField("name")}
             />
           </FormField>
 
           <FormField
-            label="Topics/Category"
+            label={t("forms.topicsCategory")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Category"
+              placeholder={t("forms.placeholders.selectCategory")}
               value={formData.topicsCategory}
               onChange={updateField("topicsCategory")}
-              options={categoriesOptions}
+              options={localizedCategories}
             />
           </FormField>
 
           {/* Row 2: Collection and Edition */}
           <FormField
-            label="Collection"
+            label={t("forms.collection")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Collection"
+              placeholder={t("forms.placeholders.selectCollection")}
               value={formData.collection}
               onChange={updateField("collection")}
               options={collectionOptions}
@@ -398,29 +401,29 @@ export function PublicationDetailsForm({
           </FormField>
 
           <FormField
-            label="Edition(Optional)"
+            label={t("forms.editionOptional")}
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Edition"
+              placeholder={t("forms.placeholders.edition")}
               value={formData.edition}
               onChange={updateField("edition")}
             />
           </FormField>
 
           {/* Row 3: Teaser - Full Width */}
-          <FormField label="Teaser" className="w-full">
+          <FormField label={t("forms.teaser")} className="w-full">
             <TextareaField
-              placeholder="Enter Teaser"
+              placeholder={t("forms.placeholders.teaser")}
               value={formData.teaser}
               onChange={updateField("teaser")}
             />
           </FormField>
 
           {/* Row 4: Description - Full Width */}
-          <FormField label="Description" required className="w-full">
+          <FormField label={t("forms.description")} required className="w-full">
             <TextareaField
-              placeholder="Enter Description"
+              placeholder={t("forms.placeholders.description")}
               value={formData.description}
               onChange={updateField("description")}
             />
@@ -428,24 +431,24 @@ export function PublicationDetailsForm({
 
           {/* Row 5: Author and Editor */}
           <FormField
-            label="Author"
+            label={t("forms.author")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Author"
+              placeholder={t("forms.placeholders.author")}
               value={formData.author}
               onChange={updateField("author")}
             />
           </FormField>
 
           <FormField
-            label="Editor"
+            label={t("forms.editor")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Editor"
+              placeholder={t("forms.placeholders.editor")}
               value={formData.editor}
               onChange={updateField("editor")}
             />
@@ -453,25 +456,25 @@ export function PublicationDetailsForm({
 
           {/* Row 6: Language and Release Date */}
           <FormField
-            label="Language"
+            label={t("forms.language")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Language"
+              placeholder={t("forms.placeholders.language")}
               value={formData.language}
               onChange={updateField("language")}
-              options={languageOptions}
+              options={localizedLanguageOptions}
             />
           </FormField>
 
           <FormField
-            label="Release Date"
+            label={t("forms.releaseDate")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <DatePickerField
-              placeholder="DD-MM-YYYY"
+              placeholder={t("forms.placeholders.date")}
               value={formData.releaseDate}
               onChange={updateField("releaseDate")}
             />
@@ -479,17 +482,17 @@ export function PublicationDetailsForm({
 
           {/* Row 7: ISBN/ISSN with Presentation checkbox */}
           <FormField
-            label="ISBN/ISSN"
+            label={t("forms.isbnIssn")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter ISBN/ISSN"
+              placeholder={t("forms.placeholders.isbnIssn")}
               value={formData.isbnIssn}
               onChange={updateField("isbnIssn")}
             />
             <CheckboxField
-              label="Presentation"
+              label={t("forms.presentation")}
               checked={formData.presentation}
               onChange={updateField("presentation")}
             />
@@ -497,17 +500,17 @@ export function PublicationDetailsForm({
 
           {/* Row 8: Index Offset with Document Print Allowed checkbox */}
           <FormField
-            label="Index Offset"
+            label={t("forms.indexOffset")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="0"
+              placeholder={t("forms.placeholders.indexOffset")}
               value={formData.indexOffset}
               onChange={updateField("indexOffset")}
             />
             <CheckboxField
-              label="Document Print Allowed"
+              label={t("forms.documentPrintAllowed")}
               checked={formData.documentPrintAllowed}
               onChange={updateField("documentPrintAllowed")}
             />
@@ -515,37 +518,37 @@ export function PublicationDetailsForm({
 
           {/* Row 9: Status and Preview Pages */}
           <FormField
-            label="Status"
+            label={t("forms.status")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Status"
+              placeholder={t("forms.placeholders.selectStatus")}
               value={formData.status}
               onChange={updateField("status")}
-              options={statusOptions}
+              options={localizedStatusOptions}
             />
           </FormField>
 
           <FormField
-            label="Preview Pages"
+            label={t("forms.previewPages")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Pages"
+              placeholder={t("forms.placeholders.pages")}
               value={formData.previewPages}
               onChange={updateField("previewPages")}
             />
           </FormField>
 
           {/* Row 10: Orientation - Full Width */}
-          <FormField label="Orientation" required className="w-full">
+          <FormField label={t("forms.orientation")} required className="w-full">
             <Dropdown
-              placeholder="Select Orientation"
+              placeholder={t("forms.placeholders.selectOrientation")}
               value={formData.orientation}
               onChange={updateField("orientation")}
-              options={orientationOptions}
+              options={localizedOrientationOptions}
             />
           </FormField>
 
@@ -556,13 +559,13 @@ export function PublicationDetailsForm({
               onClick={onCancel}
               className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded bg-[#D9D9D9] text-promag-body font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
             >
-              Cancel
+              {t("common.cancel")}
             </button>
             <button
               type="submit"
               className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
             >
-              Save
+              {t("common.save")}
             </button>
           </div>
         </div>

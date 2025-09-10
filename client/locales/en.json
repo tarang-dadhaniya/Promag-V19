@@ -67,5 +67,71 @@
     "fileUploaded": "File uploaded successfully",
     "onlyPdf": "Please select a PDF file.",
     "maxSize10": "File size must be less than 10MB."
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "backHome": "Return to Home"
+  },
+  "forms": {
+    "name": "Name",
+    "topicsCategory": "Topics/Category",
+    "collection": "Collection",
+    "editionOptional": "Edition (Optional)",
+    "teaser": "Teaser",
+    "description": "Description",
+    "author": "Author",
+    "editor": "Editor",
+    "language": "Language",
+    "releaseDate": "Release Date",
+    "isbnIssn": "ISBN/ISSN",
+    "indexOffset": "Index Offset",
+    "status": "Status",
+    "previewPages": "Preview Pages",
+    "orientation": "Orientation",
+    "presentation": "Presentation",
+    "documentPrintAllowed": "Document Print Allowed",
+    "addCollection": "Add Collection",
+    "editCollection": "Edit Collection",
+    "editPublication": "Edit Publication",
+    "backToPublications": "Back to Publications",
+    "placeholders": {
+      "issueName": "Enter Issue Name",
+      "publicationTitle": "Enter Publication Title",
+      "selectCategory": "Select Category",
+      "selectCollection": "Select Collection",
+      "edition": "Enter Edition",
+      "teaser": "Enter Teaser",
+      "description": "Enter Description",
+      "author": "Enter Author",
+      "editor": "Enter Editor",
+      "language": "Select Language",
+      "date": "DD-MM-YYYY",
+      "isbnIssn": "Enter ISBN/ISSN",
+      "indexOffset": "0",
+      "pages": "Enter Pages",
+      "addTitle": "Add title",
+      "addStartPage": "Add Start Page",
+      "addEndPage": "Add End Page",
+      "enterKeywords": "Enter KeyWords",
+      "selectStatus": "Select Status",
+      "selectOrientation": "Select Orientation",
+      "selectFile": "Select File"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "topicsRequired": "Topics/Category is required",
+      "collectionRequired": "Collection is required",
+      "descriptionRequired": "Description is required",
+      "titleRequired": "Please enter a title for the collection.",
+      "imageFileType": "Please select a PNG or JPEG image file.",
+      "imageMax8": "File size must be less than 8MB.",
+      "imageProcessFailed": "Failed to process the image. Please try again.",
+      "fieldRequired": "{{field}} is required"
+    }
+  },
+  "steps": {
+    "uploadPdf": "Upload PDF",
+    "issueDetails": "Issue Details",
+    "authorDetails": "Author Details"
   }
 }

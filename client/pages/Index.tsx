@@ -646,11 +646,11 @@ export default function Index() {
               collection: issueData?.collection ?? selectedCollection?.id ?? "",
             }}
             categoriesOptions={[
-              { value: "action", label: "Action" },
-              { value: "cinematic", label: "Cinematic" },
-              { value: "comic", label: "Comic" },
-              { value: "drama", label: "Drama" },
-              { value: "education", label: "Education" },
+              { value: "action", label: t("categories.action") },
+              { value: "cinematic", label: t("categories.cinematic") },
+              { value: "comic", label: t("categories.comic") },
+              { value: "drama", label: t("categories.drama") },
+              { value: "education", label: t("categories.education") },
             ]}
             collectionOptions={collections.map((c) => ({
               value: c.id,
@@ -749,11 +749,11 @@ export default function Index() {
             publication={editingPublication}
             collections={collections}
             categoriesOptions={[
-              { value: "action", label: "Action" },
-              { value: "cinematic", label: "Cinematic" },
-              { value: "comic", label: "Comic" },
-              { value: "drama", label: "Drama" },
-              { value: "education", label: "Education" },
+              { value: "action", label: t("categories.action") },
+              { value: "cinematic", label: t("categories.cinematic") },
+              { value: "comic", label: t("categories.comic") },
+              { value: "drama", label: t("categories.drama") },
+              { value: "education", label: t("categories.education") },
             ]}
             onSave={handleSavePublication}
             onCancel={handleCancelEdit}
@@ -795,6 +795,13 @@ export default function Index() {
                 setCurrentView("collections");
               }}
               onGoToPublications={() => setCurrentView("publication-list")}
+              categoriesOptions={[
+                { value: "action", label: t("categories.action") },
+                { value: "cinematic", label: t("categories.cinematic") },
+                { value: "comic", label: t("categories.comic") },
+                { value: "drama", label: t("categories.drama") },
+                { value: "education", label: t("categories.education") },
+              ]}
               collectionOptions={collections.map((c) => ({
                 value: c.id,
                 label: c.title,

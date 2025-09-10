@@ -169,19 +169,19 @@ export function IssueDetailsForm({
 
     // Basic validation
     if (!formData.name.trim()) {
-      alert("Name is required");
+      alert(t("forms.validation.nameRequired"));
       return;
     }
     if (!formData.topicsCategory.trim()) {
-      alert("Topics/Category is required");
+      alert(t("forms.validation.topicsRequired"));
       return;
     }
     if (!formData.collection.trim()) {
-      alert("Collection is required");
+      alert(t("forms.validation.collectionRequired"));
       return;
     }
     if (!formData.description.trim()) {
-      alert("Description is required");
+      alert(t("forms.validation.descriptionRequired"));
       return;
     }
 
@@ -218,24 +218,24 @@ export function IssueDetailsForm({
         <div className="flex p-3 sm:p-5 items-start content-start gap-4 sm:gap-[30px] gap-y-4 sm:gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
           {/* Row 1: Name and Topics/Category */}
           <FormField
-            label="Name"
+            label={t("forms.name")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Issue Name"
+              placeholder={t("forms.placeholders.issueName")}
               value={formData.name}
               onChange={updateField("name")}
             />
           </FormField>
 
           <FormField
-            label="Topics/Category"
+            label={t("forms.topicsCategory")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Category"
+              placeholder={t("forms.placeholders.selectCategory")}
               value={formData.topicsCategory}
               onChange={updateField("topicsCategory")}
               options={categoriesOptions}
@@ -244,12 +244,12 @@ export function IssueDetailsForm({
 
           {/* Row 2: Collection and Edition */}
           <FormField
-            label="Collection"
+            label={t("forms.collection")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Collection"
+              placeholder={t("forms.placeholders.selectCollection")}
               value={formData.collection}
               onChange={updateField("collection")}
               options={collectionOptions}
@@ -257,29 +257,29 @@ export function IssueDetailsForm({
           </FormField>
 
           <FormField
-            label="Edition(Optional)"
+            label={t("forms.editionOptional")}
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Edition"
+              placeholder={t("forms.placeholders.edition")}
               value={formData.edition}
               onChange={updateField("edition")}
             />
           </FormField>
 
           {/* Row 3: Teaser - Full Width */}
-          <FormField label="Teaser" className="w-full">
+          <FormField label={t("forms.teaser")} className="w-full">
             <TextareaField
-              placeholder="Enter Teaser"
+              placeholder={t("forms.placeholders.teaser")}
               value={formData.teaser}
               onChange={updateField("teaser")}
             />
           </FormField>
 
           {/* Row 4: Description - Full Width */}
-          <FormField label="Description" required className="w-full">
+          <FormField label={t("forms.description")} required className="w-full">
             <TextareaField
-              placeholder="Enter Description"
+              placeholder={t("forms.placeholders.description")}
               value={formData.description}
               onChange={updateField("description")}
             />
