@@ -703,6 +703,8 @@ export default function Index() {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
             }}
+            onDeletePublication={handleDeletePublication}
+            onClonePublication={handleClonePublication}
             className="flex-1"
           />
         );
@@ -727,6 +729,8 @@ export default function Index() {
               setEditingCollection(selectedCollection);
               setShowEditCollectionDialog(true);
             }}
+            onDeletePublication={handleDeletePublication}
+            onClonePublication={handleClonePublication}
             className="flex-1"
           />
         );
