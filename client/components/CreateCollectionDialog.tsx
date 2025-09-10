@@ -214,7 +214,7 @@ export function CreateCollectionDialog({
           {/* Cover Image Upload */}
           <div className="flex flex-col gap-2">
             <label className="text-black font-inter text-sm font-medium">
-              Cover Image
+              {t("forms.coverImage")}
             </label>
 
             <div
