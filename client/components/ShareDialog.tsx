@@ -313,7 +313,7 @@ export function ShareDialog({
                     type="radio"
                     name="access"
                     checked={pendingAccessType === "anyone"}
-                    onChange={() => {}}
+                    onChange={() => handlePrivacyChange("anyone")}
                     className="sr-only"
                   />
                   <div
