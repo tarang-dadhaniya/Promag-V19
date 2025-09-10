@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
+import { useTranslation } from "react-i18next";
 
 interface Collection {
   id: string;
