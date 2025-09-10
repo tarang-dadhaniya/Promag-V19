@@ -7,7 +7,10 @@
     "noCollectionsFound": "No se encontraron colecciones que coincidan con \"{{query}}\"",
     "tryAdjustingSearch": "Intenta ajustar tus términos de búsqueda",
     "next": "Siguiente",
+    "previous": "Anterior",
     "ok": "OK",
+    "cancel": "Cancelar",
+    "save": "Guardar",
     "uploadCompleted": "¡Carga completada!",
     "uploadSuccessDescription": "Tu publicación se ha subido correctamente a la colección.",
     "backTo": "Volver a {{target}}",
@@ -15,10 +18,11 @@
     "newIssue": "Nueva edición",
     "deleteCollection": "Eliminar colección",
     "noPublicationsFound": "No se encontraron publicaciones que coincidan con \"{{query}}\"",
+    "noPublicationsInCollection": "Aún no hay publicaciones en esta colección.",
+    "clickNewIssue": "Haz clic en Nueva edición para crear tu primera publicación.",
     "action": "Acción",
     "settings": "Configuración",
-    "previous": "Anterior",
-    "save": "Guardar"
+    "pending": "Pendiente"
   },
   "menu": {
     "managePublications": "Gestionar publicaciones",
@@ -27,9 +31,7 @@
     "manageReader": "Gestionar lector",
     "pushNotifications": "Notificaciones push"
   },
-  "roles": {
-    "superAdmin": "SuperAdmin"
-  },
+  "roles": { "superAdmin": "SuperAdmin" },
   "categories": {
     "action": "Acción",
     "cinematic": "Cinematográfico",
@@ -41,13 +43,29 @@
     "comingSoon": "Esta página estará disponible pronto. Continúa solicitando para agregar contenido aquí."
   },
   "publication": {
-    "status": {
-      "live": "En línea",
-      "draft": "Borrador"
-    },
-    "action": {
-      "backToDraft": "Volver a Borrador",
-      "goLive": "Publicar"
-    }
+    "status": { "live": "En línea", "draft": "Borrador" },
+    "action": { "backToDraft": "Volver a Borrador", "goLive": "Publicar" }
+  },
+  "dialog": {
+    "areYouSure": "¿Estás seguro?",
+    "deleteCollectionDescription": "Estás a punto de eliminar la colección \"{{name}}\". Esta acción no se puede deshacer y eliminará permanentemente todas las publicaciones de esta colección."
+  },
+  "api": {
+    "demoMessage": "Hola desde el servidor Express",
+    "ping": "ping"
+  },
+  "upload": {
+    "dropHere": "Suelta tu archivo aquí",
+    "releaseToUpload": "Suelta para subir tu archivo PDF",
+    "uploading": "Subiendo...",
+    "percentUploaded": "{{percent}}% subido",
+    "fileUploadedSuccess": "Tu archivo se ha subido correctamente",
+    "selectOrDrag": "Selecciona un archivo o arrástralo aquí",
+    "sizeLimit10": "PDF, tamaño máximo 10 MB",
+    "updateFile": "Actualizar archivo",
+    "uploadFile": "Subir archivo",
+    "fileUploaded": "Archivo subido correctamente",
+    "onlyPdf": "Por favor, selecciona un archivo PDF.",
+    "maxSize10": "El tamaño del archivo debe ser menor de 10 MB."
   }
 }
