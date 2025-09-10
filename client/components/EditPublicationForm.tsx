@@ -269,14 +269,14 @@ export function EditPublicationForm({
         <div className="flex w-full flex-col gap-5">
           {/* Cover Image Section */}
           <div className="flex p-3 sm:p-5 items-start content-start gap-4 sm:gap-[30px] gap-y-4 sm:gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
-            <FormField label="Cover Image" className="w-full">
+            <FormField label={t("forms.coverImage")} className="w-full">
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 {/* Current Image Preview */}
                 {displayImage && (
                   <div className="relative">
                     <img
                       src={displayImage}
-                      alt="Publication cover"
+                      alt={t("forms.coverPreviewAlt")}
                       className="w-[120px] h-[150px] object-cover rounded-lg border border-gray-200"
                     />
                     {newCoverImage && (
