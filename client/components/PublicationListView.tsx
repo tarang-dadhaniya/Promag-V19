@@ -620,7 +620,7 @@ export function PublicationListView({
         <div className="flex w-[497px] h-[42px] px-[15px] justify-between items-center rounded-lg border border-[#DDD] bg-white">
           <input
             type="text"
-            placeholder="Find in collections and folders"
+            placeholder={t("common.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 text-promag-body/50 font-inter text-sm outline-none placeholder:text-promag-body/50"
