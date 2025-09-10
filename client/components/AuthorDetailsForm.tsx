@@ -258,20 +258,20 @@ export function AuthorDetailsForm({
 
     // Basic validation
     const requiredFields = [
-      { field: "author", label: "Author" },
-      { field: "editor", label: "Editor" },
-      { field: "language", label: "Language" },
-      { field: "releaseDate", label: "Release Date" },
-      { field: "isbnIssn", label: "ISBN/ISSN" },
-      { field: "indexOffset", label: "Index Offset" },
-      { field: "status", label: "Status" },
-      { field: "previewPages", label: "Preview Pages" },
-      { field: "orientation", label: "Orientation" },
+      { field: "author", label: t("forms.author") },
+      { field: "editor", label: t("forms.editor") },
+      { field: "language", label: t("forms.language") },
+      { field: "releaseDate", label: t("forms.releaseDate") },
+      { field: "isbnIssn", label: t("forms.isbnIssn") },
+      { field: "indexOffset", label: t("forms.indexOffset") },
+      { field: "status", label: t("forms.status") },
+      { field: "previewPages", label: t("forms.previewPages") },
+      { field: "orientation", label: t("forms.orientation") },
     ];
 
     for (const { field, label } of requiredFields) {
       if (!formData[field as keyof AuthorDetailsFormData]) {
-        alert(`${label} is required`);
+        alert(t("forms.validation.fieldRequired", { field: label }));
         return;
       }
     }
@@ -319,24 +319,24 @@ export function AuthorDetailsForm({
         <div className="flex p-3 sm:p-5 items-start content-start gap-4 sm:gap-[30px] gap-y-4 sm:gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
           {/* Row 1: Author and Editor */}
           <FormField
-            label="Author"
+            label={t("forms.author")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Author"
+              placeholder={t("forms.placeholders.author")}
               value={formData.author}
               onChange={updateField("author")}
             />
           </FormField>
 
           <FormField
-            label="Editor"
+            label={t("forms.editor")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Editor"
+              placeholder={t("forms.placeholders.editor")}
               value={formData.editor}
               onChange={updateField("editor")}
             />
@@ -344,12 +344,12 @@ export function AuthorDetailsForm({
 
           {/* Row 2: Language and Release Date */}
           <FormField
-            label="Language"
+            label={t("forms.language")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Language"
+              placeholder={t("forms.placeholders.language")}
               value={formData.language}
               onChange={updateField("language")}
               options={languageOptions}
@@ -357,12 +357,12 @@ export function AuthorDetailsForm({
           </FormField>
 
           <FormField
-            label="Release Date"
+            label={t("forms.releaseDate")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <DatePicker
-              placeholder="DD-MM-YYYY"
+              placeholder={t("forms.placeholders.date")}
               value={formData.releaseDate}
               onChange={updateField("releaseDate")}
             />
@@ -370,14 +370,14 @@ export function AuthorDetailsForm({
 
           {/* Row 3: ISBN/ISSN with Checkbox and Index Offset with Checkbox */}
           <div className="flex w-full lg:w-[calc(50%-15px)] lg:max-w-[775px] flex-col items-start gap-2">
-            <FormField label="ISBN/ISSN" required className="w-full">
+            <FormField label={t("forms.isbnIssn")} required className="w-full">
               <InputField
-                placeholder="Enter ISBN/ISSN"
+                placeholder={t("forms.placeholders.isbnIssn")}
                 value={formData.isbnIssn}
                 onChange={updateField("isbnIssn")}
               />
               <CheckboxField
-                label="Presentation"
+                label={t("forms.presentation")}
                 checked={formData.presentation}
                 onChange={updateField("presentation")}
               />
@@ -385,14 +385,14 @@ export function AuthorDetailsForm({
           </div>
 
           <div className="flex w-full lg:w-[calc(50%-15px)] lg:max-w-[775px] flex-col items-start gap-2">
-            <FormField label="Index Offset" required className="w-full">
+            <FormField label={t("forms.indexOffset")} required className="w-full">
               <InputField
-                placeholder="0"
+                placeholder={t("forms.placeholders.indexOffset")}
                 value={formData.indexOffset}
                 onChange={updateField("indexOffset")}
               />
               <CheckboxField
-                label="Document Print Allowed"
+                label={t("forms.documentPrintAllowed")}
                 checked={formData.documentPrintAllowed}
                 onChange={updateField("documentPrintAllowed")}
               />
@@ -401,12 +401,12 @@ export function AuthorDetailsForm({
 
           {/* Row 4: Status and Preview Pages */}
           <FormField
-            label="Status"
+            label={t("forms.status")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <Dropdown
-              placeholder="Select Status"
+              placeholder={t("forms.placeholders.selectStatus")}
               value={formData.status}
               onChange={updateField("status")}
               options={statusOptions}
@@ -414,21 +414,21 @@ export function AuthorDetailsForm({
           </FormField>
 
           <FormField
-            label="Preview Pages"
+            label={t("forms.previewPages")}
             required
             className="w-full lg:w-[calc(50%-15px)] lg:max-w-[775px]"
           >
             <InputField
-              placeholder="Enter Pages"
+              placeholder={t("forms.placeholders.pages")}
               value={formData.previewPages}
               onChange={updateField("previewPages")}
             />
           </FormField>
 
           {/* Row 5: Orientation - Full Width */}
-          <FormField label="Orientation" required className="w-full">
+          <FormField label={t("forms.orientation")} required className="w-full">
             <Dropdown
-              placeholder="Select Orientation"
+              placeholder={t("forms.placeholders.selectOrientation")}
               value={formData.orientation}
               onChange={updateField("orientation")}
               options={orientationOptions}
