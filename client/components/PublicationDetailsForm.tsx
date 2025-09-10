@@ -302,6 +302,31 @@ export function PublicationDetailsForm({
       }));
     };
 
+  // Build localized defaults if not provided
+  const localizedCategories = categoriesOptions ?? [
+    { value: "action", label: t("categories.action") },
+    { value: "cinematic", label: t("categories.cinematic") },
+    { value: "comic", label: t("categories.comic") },
+    { value: "drama", label: t("categories.drama") },
+    { value: "education", label: t("categories.education") },
+  ];
+  const localizedLanguageOptions = languageOptions ?? [
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+    { value: "fr", label: "French" },
+    { value: "de", label: "German" },
+    { value: "it", label: "Italian" },
+  ];
+  const localizedStatusOptions = statusOptions ?? [
+    { value: "draft", label: t("publication.status.draft") },
+    { value: "published", label: t("publication.status.live") },
+    { value: "pending", label: t("common.pending") },
+  ];
+  const localizedOrientationOptions = orientationOptions ?? [
+    { value: "portrait", label: "Portrait" },
+    { value: "landscape", label: "Landscape" },
+  ];
+
   return (
     <div className={cn("flex flex-col gap-5", className)}>
       {/* Breadcrumb */}
@@ -357,7 +382,7 @@ export function PublicationDetailsForm({
               placeholder={t("forms.placeholders.selectCategory")}
               value={formData.topicsCategory}
               onChange={updateField("topicsCategory")}
-              options={categoriesOptions}
+              options={localizedCategories}
             />
           </FormField>
 
@@ -439,7 +464,7 @@ export function PublicationDetailsForm({
               placeholder={t("forms.placeholders.language")}
               value={formData.language}
               onChange={updateField("language")}
-              options={languageOptions}
+              options={localizedLanguageOptions}
             />
           </FormField>
 
@@ -501,7 +526,7 @@ export function PublicationDetailsForm({
               placeholder={t("forms.placeholders.selectStatus")}
               value={formData.status}
               onChange={updateField("status")}
-              options={statusOptions}
+              options={localizedStatusOptions}
             />
           </FormField>
 
@@ -523,7 +548,7 @@ export function PublicationDetailsForm({
               placeholder={t("forms.placeholders.selectOrientation")}
               value={formData.orientation}
               onChange={updateField("orientation")}
-              options={orientationOptions}
+              options={localizedOrientationOptions}
             />
           </FormField>
 
