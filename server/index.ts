@@ -16,7 +16,6 @@ export function createServer() {
   app.get("/api/ping", (req, res) => {
     const ping = process.env.PING_MESSAGE;
     if (ping) return res.json({ message: ping });
-    const { getRequestT } = require("./i18n");
     const t = getRequestT(req);
     res.json({ message: t("api.ping") });
   });
