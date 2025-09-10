@@ -1641,8 +1641,8 @@ export function BlankStepPage({
                     onClick={handleAddSolution}
                     className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
                   >
-              {t("common.save")}
-            </button>
+                    {t("common.save")}
+                  </button>
                 </div>
               </div>
             </div>
@@ -1675,8 +1675,8 @@ export function BlankStepPage({
                 onClick={currentStep > 1 ? onPrev : onCancel}
                 className="flex h-[41px] px-5 py-3 justify-center items-center gap-2.5 rounded border border-promag-primary text-promag-body font-inter text-sm font-medium transition-colors"
               >
-              {t("common.previous")}
-            </button>
+                {t("common.previous")}
+              </button>
               <button
                 onClick={() => {
                   handleKeywordsSave();
@@ -1684,8 +1684,8 @@ export function BlankStepPage({
                 }}
                 className="flex h-[42px] px-5 py-2.5 justify-center items-center gap-[7px] rounded-lg border border-promag-primary bg-promag-primary text-white font-inter text-sm font-medium hover:bg-promag-primary/90 transition-colors"
               >
-              {t("common.save")}
-            </button>
+                {t("common.save")}
+              </button>
             </div>
           </div>
         </div>

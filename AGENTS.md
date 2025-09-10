@@ -54,7 +54,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 ### Styling System
 
 - **Primary**: TailwindCSS 3 utility classes
-- **Theme and design tokens**: Configure in `client/global.css` 
+- **Theme and design tokens**: Configure in `client/global.css`
 - **UI components**: Pre-built library in `client/components/ui/`
 - **Utility**: `cn()` function combines `clsx` + `tailwind-merge` for conditional classes
 
@@ -74,16 +74,20 @@ className={cn(
 - **API endpoints**: Prefixed with `/api/`
 
 #### Example API Routes
+
 - `GET /api/ping` - Simple ping api
-- `GET /api/demo` - Demo endpoint  
+- `GET /api/demo` - Demo endpoint
 
 ### Shared Types
+
 Import consistent types in both client and server:
+
 ```typescript
-import { DemoResponse } from '@shared/api';
+import { DemoResponse } from "@shared/api";
 ```
 
 Path aliases:
+
 - `@shared/*` - Shared folder
 - `@/*` - Client folder
 
@@ -104,7 +108,9 @@ pnpm test          # Run Vitest tests
 Open `client/global.css` and `tailwind.config.ts` and add new tailwind colors.
 
 ### New API Route
+
 1. **Optional**: Create a shared interface in `shared/api.ts`:
+
 ```typescript
 export interface MyRouteResponse {
   message: string;
@@ -113,19 +119,21 @@ export interface MyRouteResponse {
 ```
 
 2. Create a new route handler in `server/routes/my-route.ts`:
+
 ```typescript
 import { RequestHandler } from "express";
 import { MyRouteResponse } from "@shared/api"; // Optional: for type safety
 
 export const handleMyRoute: RequestHandler = (req, res) => {
   const response: MyRouteResponse = {
-    message: 'Hello from my endpoint!'
+    message: "Hello from my endpoint!",
   };
   res.json(response);
 };
 ```
 
 3. Register the route in `server/index.ts`:
+
 ```typescript
 import { handleMyRoute } from "./routes/my-route";
 
@@ -134,16 +142,19 @@ app.get("/api/my-endpoint", handleMyRoute);
 ```
 
 4. Use in React components with type safety:
-```typescript
-import { MyRouteResponse } from '@shared/api'; // Optional: for type safety
 
-const response = await fetch('/api/my-endpoint');
+```typescript
+import { MyRouteResponse } from "@shared/api"; // Optional: for type safety
+
+const response = await fetch("/api/my-endpoint");
 const data: MyRouteResponse = await response.json();
 ```
 
 ### New Page Route
+
 1. Create component in `client/pages/MyPage.tsx`
 2. Add route in `client/App.tsx`:
+
 ```typescript
 <Route path="/my-page" element={<MyPage />} />
 ```
@@ -163,18 +174,19 @@ const data: MyRouteResponse = await response.json();
 - Comprehensive UI component library included
 - Type-safe API communication via shared interfaces
 
-
 ## Localization (i18n) Implementation Guide
 
 This project ships with full multi-language support (English, French, German, Spanish) using i18next on both client and server.
 
 Key files
+
 - client/lib/i18n.ts: Client i18next setup (react-i18next + language detector). Defines resources, supportedLngs, and persistence in localStorage.
 - server/i18n.ts: Server i18next instance for API localization. getRequestT(req) detects language via ?lng=<code> or Accept-Language.
 - client/locales/{en,fr,de,es}.json: Translation files. Use nested namespaces (common, menu, categories, dialog, upload, api, notFound, etc.).
 - client/components/Header.tsx: Language switcher (Dropdown) calling i18n.changeLanguage(code).
 
 Usage in components
+
 - Import useTranslation from react-i18next and use t("key.path").
   Example:
   - Labels: t("menu.managePublications")
@@ -185,25 +197,29 @@ Usage in components
 - For aria-labels and titles, also use t() (e.g., aria-label={t("common.backToCollections")}).
 
 Server-side API messages
+
 - Use getRequestT(req) in route handlers and return localized strings:
   const t = getRequestT(req);
   res.json({ message: t("api.demoMessage") });
 - Clients can override language via query param (?lng=fr); otherwise Accept-Language is honored; fallback is en.
 
 Adding or updating strings
+
 - Add keys to all four locale files with the same structure. Keep keys semantically grouped (common, menu, categories, upload, dialog, api, notFound...).
 - Prefer interpolation instead of string concatenation:
   t("common.backTo", { target: t("common.collections") })
 - For counts/plurals, use i18next pluralization rules with the count option.
 
 Adding a new language
-1) Create client/locales/<lang>.json with full translations.
-2) Import it in client/lib/i18n.ts and add to resources + supportedLngs.
-3) Import it in server/i18n.ts and add to resources + supportedLngs.
-4) Add to languageOptions in client/components/Header.tsx (code, label, flag).
-5) Verify fonts and right-to-left (if applicable) and update layout if needed.
+
+1. Create client/locales/<lang>.json with full translations.
+2. Import it in client/lib/i18n.ts and add to resources + supportedLngs.
+3. Import it in server/i18n.ts and add to resources + supportedLngs.
+4. Add to languageOptions in client/components/Header.tsx (code, label, flag).
+5. Verify fonts and right-to-left (if applicable) and update layout if needed.
 
 Testing checklist
+
 - Header language switcher changes all visible UI texts without layout breakage.
 - Sidebar navigation, search placeholder, buttons, dialogs, and forms update dynamically.
 - NotFound page is localized (notFound.message, notFound.backHome).
@@ -211,6 +227,7 @@ Testing checklist
 - Refresh page; language persists via localStorage key i18nextLng.
 
 Do’s and Don’ts
+
 - Do: keep translation keys stable; avoid renaming unless necessary.
 - Do: keep JSON valid and consistent across languages.
 - Don’t: embed HTML in translations if avoidable; prefer simple strings and React composition.
@@ -218,12 +235,13 @@ Do’s and Don’ts
 
 Examples
 Client:
-  const { t } = useTranslation();
-  <button>{t("common.createCollection")}</button>
+const { t } = useTranslation();
+<button>{t("common.createCollection")}</button>
 Server:
-  const t = getRequestT(req);
-  res.status(200).json({ message: t("api.demoMessage") });
+const t = getRequestT(req);
+res.status(200).json({ message: t("api.demoMessage") });
 
 Troubleshooting
+
 - If a key shows as the raw string, ensure it exists in all locale files and that the component imports ./lib/i18n.
 - If server responses aren’t localized, verify Accept-Language header or ?lng and server/i18n.ts resources.

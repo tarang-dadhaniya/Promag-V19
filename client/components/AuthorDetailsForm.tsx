@@ -385,7 +385,11 @@ export function AuthorDetailsForm({
           </div>
 
           <div className="flex w-full lg:w-[calc(50%-15px)] lg:max-w-[775px] flex-col items-start gap-2">
-            <FormField label={t("forms.indexOffset")} required className="w-full">
+            <FormField
+              label={t("forms.indexOffset")}
+              required
+              className="w-full"
+            >
               <InputField
                 placeholder={t("forms.placeholders.indexOffset")}
                 value={formData.indexOffset}

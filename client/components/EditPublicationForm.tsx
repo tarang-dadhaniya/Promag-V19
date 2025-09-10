@@ -252,7 +252,9 @@ export function EditPublicationForm({
                 strokeLinejoin="round"
               />
             </svg>
-            <span className="font-inter text-sm">{t("forms.backToPublications")}</span>
+            <span className="font-inter text-sm">
+              {t("forms.backToPublications")}
+            </span>
           </button>
         </div>
         <h1 className="text-black font-inter text-xl font-semibold">
