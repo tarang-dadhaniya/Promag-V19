@@ -566,10 +566,10 @@ export function PublicationsPage({
       {filteredPublications.length === 0 && !searchQuery && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <p className="text-black/60 font-inter text-lg">
-            No publications in this collection yet
+            {t("common.noPublicationsInCollection")}
           </p>
           <p className="text-black/40 font-inter text-sm mt-2">
-            Click "New Issue" to create your first publication
+            {t("common.clickNewIssue")}
           </p>
         </div>
       )}
