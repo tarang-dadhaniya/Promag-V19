@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "../components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface CreateCollectionDialogProps {
   open: boolean;
@@ -17,6 +18,7 @@ interface UploadedImage {
 }
 
 export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "create", initialData }: CreateCollectionDialogProps) {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [uploadedImage, setUploadedImage] = useState<UploadedImage | null>(null);
   const [initialCoverImage, setInitialCoverImage] = useState<string | undefined>(undefined);
@@ -38,13 +40,13 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
   const validateFile = (file: File): boolean => {
     const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
     if (!validTypes.includes(file.type)) {
-      alert("Please select a PNG or JPEG image file.");
+      alert(t("forms.validation.imageFileType"));
       return false;
     }
 
     const maxSize = 8 * 1024 * 1024; // 8MB
     if (file.size > maxSize) {
-      alert("File size must be less than 8MB.");
+      alert(t("forms.validation.imageMax8"));
       return false;
     }
 
@@ -71,7 +73,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
         });
       } catch (error) {
         console.error('Error converting file to base64:', error);
-        alert('Failed to process the image. Please try again.');
+        alert(t("forms.validation.imageProcessFailed"));
       }
     }
   }, []);
@@ -113,7 +115,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
 
   const handleSave = () => {
     if (!title.trim()) {
-      alert("Please enter a title for the collection.");
+      alert(t("forms.validation.titleRequired"));
       return;
     }
 
@@ -146,7 +148,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
         {/* Header */}
         <div className="flex w-full h-[50px] px-5 justify-between items-center border-b border-black/20">
           <DialogTitle className="text-black font-inter text-lg font-semibold">
-            {mode === "edit" ? "Edit Collection" : "Add Collection"}
+            {mode === "edit" ? t("forms.editCollection") : t("forms.addCollection")}
           </DialogTitle>
           <button 
             onClick={() => onOpenChange(false)}
@@ -163,12 +165,12 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
           {/* Title Field */}
           <div className="flex flex-col gap-2">
             <label className="text-black font-inter text-sm font-medium">
-              Title
+              {t("forms.name")}
             </label>
             <div className="flex h-[42px] px-[14px] py-[10px] items-center gap-[10px] rounded-[5px] border border-[#DDD] bg-white">
               <input
                 type="text"
-                placeholder="Enter Title"
+                placeholder={t("forms.placeholders.publicationTitle")}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="flex-1 text-black font-inter text-sm font-normal outline-none placeholder:text-black/50"
@@ -248,7 +250,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
                       <path d="M6 1V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M1 6H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    Select File
+                    {t("forms.placeholders.selectFile")}
                   </button>
                 </div>
               )}
@@ -262,7 +264,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
             onClick={handleCancel}
             className="flex h-[41px] px-5 py-3 justify-center items-center gap-[10px] rounded-[5px] bg-[#D9D9D9] text-black font-inter text-sm font-medium hover:bg-[#D9D9D9]/80 transition-colors"
           >
-            Cancel
+            {t("common.cancel")}
           </button>
           <button
             onClick={handleSave}
@@ -274,7 +276,7 @@ export function CreateCollectionDialog({ open, onOpenChange, onSave, mode = "cre
                 : "bg-promag-primary/50 text-white/80 cursor-not-allowed"
             )}
           >
-            Save
+            {t("common.save")}
           </button>
         </div>
       </DialogContent>
