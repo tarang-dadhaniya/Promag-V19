@@ -497,7 +497,7 @@ export function PublicationsPage({
                       strokeLinejoin="round"
                     />
                   </svg>
-                  Delete Collection
+                  {t("common.deleteCollection", "Delete Collection")}
                 </button>
               </div>
             )}
