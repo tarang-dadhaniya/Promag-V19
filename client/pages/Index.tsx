@@ -72,7 +72,8 @@ type ViewMode =
   | "upload"
   | "edit-publication"
   | "publication-details"
-  | "blank-step";
+  | "blank-step"
+  | "company";
 
 export default function Index() {
   const { t } = useTranslation();
