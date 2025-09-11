@@ -252,3 +252,41 @@ Troubleshooting
 
 - If a key shows as the raw string, ensure it exists in all locale files and that the component imports ./lib/i18n.
 - If server responses aren’t localized, verify Accept-Language header or ?lng and server/i18n.ts resources.
+
+---
+
+## Agent Instructions: Multi‑language Support (i18n)
+
+Use this playbook whenever adding or modifying UI or API text.
+
+1) Detect and replace literals
+- Search for hard‑coded strings in client/**/*.{ts,tsx} and server/**/*.{ts}.
+- Replace with t("…") on client and getRequestT(req) on server.
+
+2) Maintain locale parity
+- Add/modify keys in all locale files: client/locales/{en,fr,de,es}.json
+- Keep identical structure across languages; validate JSON.
+
+3) Use existing namespaces and keys
+- Reuse or extend: common, menu, forms (+ forms.placeholders, forms.validation), upload, dialog, publication, notFound, api, languages, orientations, steps.
+- Prefer semantic keys; avoid UI‑position‑based names.
+
+4) Options and enums
+- Localize dropdown options (languages, orientations, statuses) via t().
+- Never hard‑code option labels.
+
+5) Accessibility
+- Localize aria-label, title, alt text, placeholders.
+
+6) Server responses
+- const t = getRequestT(req); return messages using t("api.*").
+- Respect ?lng and Accept-Language; fallback to en.
+
+7) Add a new language
+- Create client/locales/<lang>.json (copy en), update client/lib/i18n.ts and server/i18n.ts, and Header.tsx options.
+
+8) QA checklist
+- Switch language in Header; confirm all visible text changes and persists (localStorage i18nextLng).
+- Verify /api endpoints localize per header or ?lng.
+
+For a detailed workflow, see docs/i18n-translation-guide.md.
