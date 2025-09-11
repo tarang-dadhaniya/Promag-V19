@@ -24,8 +24,7 @@
     "settings": "Einstellungen",
     "pending": "Ausstehend",
     "noOptionsAvailable": "Keine Optionen verfügbar",
-    "add": "Hinzufügen",
-    "noOptionsAvailable": "Keine Optionen verfügbar"
+    "add": "Hinzufügen"
   },
   "menu": {
     "managePublications": "Publikationen verwalten",
@@ -41,6 +40,20 @@
     "comic": "Comic",
     "drama": "Drama",
     "education": "Bildung"
+  },
+  "translation": {
+    "table": {
+      "title": "Übersetzungsverwaltung",
+      "element": "Element",
+      "content": "Inhalt",
+      "language": "Sprache",
+      "options": "Optionen",
+      "searchPlaceholder": "Übersetzungen suchen...",
+      "addNew": "Übersetzung hinzufügen",
+      "noTranslationsFound": "Keine Übersetzungen gefunden für \"{{query}}\"",
+      "edit": "Bearbeiten",
+      "delete": "Löschen"
+    }
   },
   "placeholder": {
     "comingSoon": "Diese Seite wird bald verfügbar sein. Fahren Sie mit Aufforderungen fort, um hier Inhalte hinzuzufügen."
@@ -114,10 +127,6 @@
     "editCollection": "Sammlung bearbeiten",
     "editPublication": "Publikation bearbeiten",
     "backToPublications": "Zurück zu Publikationen",
-    "coverImage": "Titelbild",
-    "dragDropHere": "Datei hierher ziehen und ablegen",
-    "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",
-    "coverPreviewAlt": "Vorschau des Sammlungs-Covers",
     "coverImage": "Titelbild",
     "dragDropHere": "Datei hierher ziehen und ablegen",
     "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",

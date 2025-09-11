@@ -41,6 +41,20 @@
     "drama": "Drame",
     "education": "Éducation"
   },
+  "translation": {
+    "table": {
+      "title": "Gestion des Traductions",
+      "element": "Élément",
+      "content": "Contenu",
+      "language": "Langue",
+      "options": "Options",
+      "searchPlaceholder": "Rechercher des traductions...",
+      "addNew": "Ajouter une Traduction",
+      "noTranslationsFound": "Aucune traduction trouvée pour \"{{query}}\"",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    }
+  },
   "placeholder": {
     "comingSoon": "Cette page arrive bientôt. Continuez à demander pour ajouter du contenu ici."
   },
@@ -144,7 +158,7 @@
       "descriptionRequired": "La description est requise",
       "titleRequired": "Veuillez saisir un titre pour la collection.",
       "imageFileType": "Veuillez sélectionner un fichier image PNG ou JPEG.",
-      "imageMax8": "La taille du fichier doit être inférieure à 8 Mo.",
+      "imageMax8": "La taille du fichier doit ��tre inférieure à 8 Mo.",
       "imageProcessFailed": "Échec du traitement de l'image. Veuillez réessayer.",
       "fieldRequired": "{{field}} est requis"
     }

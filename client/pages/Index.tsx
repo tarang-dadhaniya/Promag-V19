@@ -17,6 +17,7 @@ import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
 import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
 import { BlankStepPage } from "../components/BlankStepPage";
+import { CompanyTranslationTable } from "../components/CompanyTranslationTable";
 import {
   Dialog,
   DialogContent,
@@ -71,7 +72,8 @@ type ViewMode =
   | "upload"
   | "edit-publication"
   | "publication-details"
-  | "blank-step";
+  | "blank-step"
+  | "company";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -902,9 +904,17 @@ export default function Index() {
           </div>
         );
 
+      case "company":
+        return <CompanyTranslationTable className="flex-1" />;
+
       default:
         return null;
     }
+  };
+
+  const handleManageCompanyClick = () => {
+    setCurrentView("company");
+    setSelectedCollection(null);
   };
 
   const getPageTitle = () => {
@@ -916,6 +926,11 @@ export default function Index() {
       selectedCollection
     ) {
       return `${t("common.publications")} - ${selectedCollection.title}`;
+    }
+
+    // Handle company view
+    if (currentView === "company") {
+      return t("menu.manageCompany");
     }
 
     // For all other inner views, keep the stable section title and rely on
@@ -932,6 +947,7 @@ export default function Index() {
             setSelectedCollection(null);
             setCurrentView("collections");
           }}
+          onManageCompanyClick={handleManageCompanyClick}
           collections={collections}
           selectedCollectionId={
             sidebarCollectionId || (selectedCollection?.id ?? "")
@@ -949,6 +965,9 @@ export default function Index() {
           }}
           selectedCategory={sidebarCategory}
           onSelectCategory={(val) => setSidebarCategory(val ?? "")}
+          activeMenuItem={
+            currentView === "company" ? "company" : "publications"
+          }
         />
       </div>
 

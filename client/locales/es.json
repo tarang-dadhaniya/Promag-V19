@@ -41,6 +41,20 @@
     "drama": "Drama",
     "education": "Educación"
   },
+  "translation": {
+    "table": {
+      "title": "Gestión de Traducciones",
+      "element": "Elemento",
+      "content": "Contenido",
+      "language": "Idioma",
+      "options": "Opciones",
+      "searchPlaceholder": "Buscar traducciones...",
+      "addNew": "Agregar Traducción",
+      "noTranslationsFound": "No se encontraron traducciones para \"{{query}}\"",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
   "placeholder": {
     "comingSoon": "Esta página estará disponible pronto. Continúa solicitando para agregar contenido aquí."
   },
