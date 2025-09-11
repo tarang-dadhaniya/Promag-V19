@@ -1117,7 +1117,7 @@ export function BlankStepPage({
                   strokeLinejoin="round"
                 />
               </svg>
-              Add
+              {t("common.add")}
             </button>
           </div>
           {/* Tree Structure */}
