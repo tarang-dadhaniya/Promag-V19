@@ -86,7 +86,7 @@ const navItems = [
   },
 ];
 
-export function Sidebar({ className, onManagePublicationsClick, collections = [], selectedCollectionId = null, onSelectCollection, selectedCategory = null, onSelectCategory }: SidebarProps) {
+export function Sidebar({ className, onManagePublicationsClick, onManageCompanyClick, collections = [], selectedCollectionId = null, onSelectCollection, selectedCategory = null, onSelectCategory, activeMenuItem = "publications" }: SidebarProps) {
   const { t } = useTranslation();
   const categoryOptions = useMemo(() => [
     { value: "action", label: t("categories.action") },
