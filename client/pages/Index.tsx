@@ -905,9 +905,7 @@ export default function Index() {
         );
 
       case "company":
-        return (
-          <CompanyTranslationTable className="flex-1" />
-        );
+        return <CompanyTranslationTable className="flex-1" />;
 
       default:
         return null;
@@ -967,7 +965,9 @@ export default function Index() {
           }}
           selectedCategory={sidebarCategory}
           onSelectCategory={(val) => setSidebarCategory(val ?? "")}
-          activeMenuItem={currentView === "company" ? "company" : "publications"}
+          activeMenuItem={
+            currentView === "company" ? "company" : "publications"
+          }
         />
       </div>
 
