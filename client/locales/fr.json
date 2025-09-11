@@ -23,7 +23,8 @@
     "action": "Action",
     "settings": "Paramètres",
     "pending": "En attente",
-    "noOptionsAvailable": "Aucune option disponible"
+    "noOptionsAvailable": "Aucune option disponible",
+    "add": "Ajouter"
   },
   "menu": {
     "managePublications": "Gérer les publications",
@@ -45,7 +46,8 @@
   },
   "publication": {
     "status": { "live": "En ligne", "draft": "Brouillon" },
-    "action": { "backToDraft": "Repasser en brouillon", "goLive": "Publier" }
+    "action": { "backToDraft": "Repasser en brouillon", "goLive": "Publier" },
+    "selectedNameFallback": "Nom de publication sélectionné"
   },
   "dialog": {
     "areYouSure": "Êtes-vous sûr ?",
@@ -67,7 +69,20 @@
     "uploadFile": "Téléverser le fichier",
     "fileUploaded": "Fichier téléversé avec succès",
     "onlyPdf": "Veuillez sélectionner un fichier PDF.",
-    "maxSize10": "La taille du fichier doit être inférieure à 10 Mo."
+    "maxSize10": "La taille du fichier doit être inférieure à 10 Mo.",
+    "dragDropHere": "Glissez-déposez le fichier ici",
+    "browseFiles": "Parcourir les fichiers",
+    "pdfSelectedClickToChange": "PDF sélectionné — cliquez pour changer",
+    "imageSelectedClickToChange": "Image sélectionnée — cliquez pour changer",
+    "importNativeEnrichments": "Importer les enrichissements natifs (les anciens enrichissements seront supprimés le cas échéant)",
+    "importToc": "Importer la table des matières (suppression de l'index existant) !",
+    "instructions": "Téléversez ici votre fichier PDF pour le convertir en publication numérique. Le processus peut prendre un certain temps. Vous pouvez en savoir plus sur son statut dans Mes publications.",
+    "requirements": {
+      "versionAndSize": "Votre PDF doit être v1.0–1.5 et faire moins de 300 Mo / 1000 pages.",
+      "noDoublePage": "Ne simulez pas une double page sur une seule page.",
+      "samePageSize": "Obtenez les meilleurs résultats en donnant la même taille à chaque page."
+    },
+    "copyrightNote": "Remarque : n'utilisez pas Promag pour téléverser des documents dont vous n'avez pas l'autorisation ou dont vous ne possédez pas les droits d'auteur."
   },
   "notFound": {
     "message": "Oups ! Page introuvable",
