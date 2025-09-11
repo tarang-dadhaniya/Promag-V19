@@ -6,11 +6,13 @@ import { useTranslation } from "react-i18next";
 interface SidebarProps {
   className?: string;
   onManagePublicationsClick?: () => void;
+  onManageCompanyClick?: () => void;
   collections?: { id: string; title: string }[];
   selectedCollectionId?: string | null;
   onSelectCollection?: (id: string | null) => void;
   selectedCategory?: string | null;
   onSelectCategory?: (value: string | null) => void;
+  activeMenuItem?: string;
 }
 
 const PromagLogo = () => (
