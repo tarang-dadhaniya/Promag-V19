@@ -733,7 +733,7 @@ export function BlankStepPage({
         </button>
         <span className="text-promag-body/70">/</span>
         <span className="text-black">
-          {publicationName || "Selected Publication Name"}
+          {publicationName || t("publication.selectedNameFallback")}
         </span>
       </div>
       {/* Stepper */}
@@ -835,10 +835,10 @@ export function BlankStepPage({
                       </div>
                       <div className="flex flex-col justify-center items-center gap-2">
                         <div className="text-black font-inter text-base font-bold">
-                          Drag and drop file here
+                          {t("upload.dragDropHere")}
                         </div>
                         <div className="text-black/60 font-inter text-sm font-medium">
-                          Browse Files
+                          {t("upload.browseFiles")}
                         </div>
                       </div>
                     </div>
@@ -848,7 +848,7 @@ export function BlankStepPage({
                         {pdfFile.name}
                       </div>
                       <div className="text-black/60 font-inter text-xs">
-                        PDF selected — click to change
+                        {t("upload.pdfSelectedClickToChange")}
                       </div>
                     </div>
                   )}
@@ -962,12 +962,10 @@ export function BlankStepPage({
                       </div>
                       <div className="flex flex-col justify-center items-center gap-2">
                         <div className="text-black font-inter text-base font-bold">
-                          Drag and drop file here
+                          {t("upload.dragDropHere")}
                         </div>
                         <div className="text-black/60 text-center font-inter text-sm font-medium">
-                          The cover must be PNG or JPEG, up to 8 MB, 16:9 or
-                          9:16 aspect ratio, with each side between 320 px and
-                          3,840 px.
+                          {t("forms.coverImageRequirements")}
                         </div>
                       </div>
                     </div>
@@ -977,7 +975,7 @@ export function BlankStepPage({
                         {coverFile.name}
                       </div>
                       <div className="text-black/60 font-inter text-xs">
-                        Image selected — click to change
+                        {t("upload.imageSelectedClickToChange")}
                       </div>
                     </div>
                   )}
@@ -1016,8 +1014,7 @@ export function BlankStepPage({
                   onChange={(e) => setImportEnrichments(e.target.checked)}
                 />
                 <span className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Import native enrichments (old enrichments will be deleted if
-                  present)
+                  {t("upload.importNativeEnrichments")}
                 </span>
               </label>
             </div>
@@ -1031,35 +1028,32 @@ export function BlankStepPage({
                   onChange={(e) => setImportToc(e.target.checked)}
                 />
                 <span className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Import table of contents (removing existing index)!
+                  {t("upload.importToc")}
                 </span>
               </label>
             </div>
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-body font-inter text-sm font-medium">
-                  Upload your PDF file here to convert it into a digital
-                  publication. It may take a while for the process to complete.
-                  You can learn more about its status under My Publications.
+                  {t("upload.instructions")}
                 </div>
               </div>
             </div>
             <div className="flex justify-center items-center w-full max-w-[520px]">
               <ul className="list-disc pl-5 text-promag-body font-inter text-sm font-medium leading-6 space-y-1">
                 <li>
-                  Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.
+                  {t("upload.requirements.versionAndSize")}
                 </li>
-                <li>Do not simulate a double-page spread on one page.</li>
+                <li>{t("upload.requirements.noDoublePage")}</li>
                 <li>
-                  Get the best results by making every page the same size.
+                  {t("upload.requirements.samePageSize")}
                 </li>
               </ul>
             </div>
             <div className="flex flex-col w-full gap-2">
               <div className="flex justify-center items-center gap-2 self-stretch">
                 <div className="flex-1 text-promag-error font-inter text-sm font-bold">
-                  Note: Don't use Promag to upload documents you do not have
-                  permission or own the copyright too.
+                  {t("upload.copyrightNote")}
                 </div>
               </div>
             </div>
