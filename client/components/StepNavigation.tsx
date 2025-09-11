@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export type Step = "upload" | "issue-details" | "author-details";
 
@@ -15,10 +16,10 @@ interface StepNavigationProps {
   className?: string;
 }
 
-const steps: Array<{ id: Step; label: string }> = [
-  { id: "upload", label: "Upload PDF" },
-  { id: "issue-details", label: "Issue Details" },
-  { id: "author-details", label: "Author Details" },
+const getSteps = (t: (k: string, opt?: any) => string): Array<{ id: Step; label: string }> => [
+  { id: "upload", label: t("steps.uploadPdf") },
+  { id: "issue-details", label: t("steps.issueDetails") },
+  { id: "author-details", label: t("steps.authorDetails") },
 ];
 
 type StepStatus = "completed" | "current" | "upcoming";
@@ -51,6 +52,8 @@ export function StepNavigation({
   currentStep,
   className,
 }: StepNavigationProps) {
+  const { t } = useTranslation();
+  const steps = getSteps(t);
   const currentIndex = steps.findIndex((s) => s.id === currentStep);
   return (
     <div className={cn("flex w-full flex-col gap-5 py-2", className)}>
