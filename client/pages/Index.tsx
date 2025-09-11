@@ -949,6 +949,7 @@ export default function Index() {
             setSelectedCollection(null);
             setCurrentView("collections");
           }}
+          onManageCompanyClick={handleManageCompanyClick}
           collections={collections}
           selectedCollectionId={
             sidebarCollectionId || (selectedCollection?.id ?? "")
@@ -966,6 +967,7 @@ export default function Index() {
           }}
           selectedCategory={sidebarCategory}
           onSelectCategory={(val) => setSidebarCategory(val ?? "")}
+          activeMenuItem={currentView === "company" ? "company" : "publications"}
         />
       </div>
 
