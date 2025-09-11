@@ -22,7 +22,9 @@
     "clickNewIssue": "Haz clic en Nueva edición para crear tu primera publicación.",
     "action": "Acción",
     "settings": "Configuración",
-    "pending": "Pendiente"
+    "pending": "Pendiente",
+    "noOptionsAvailable": "No hay opciones disponibles",
+    "add": "Agregar"
   },
   "menu": {
     "managePublications": "Gestionar publicaciones",
@@ -44,7 +46,8 @@
   },
   "publication": {
     "status": { "live": "En línea", "draft": "Borrador" },
-    "action": { "backToDraft": "Volver a Borrador", "goLive": "Publicar" }
+    "action": { "backToDraft": "Volver a Borrador", "goLive": "Publicar" },
+    "selectedNameFallback": "Nombre de publicación seleccionado"
   },
   "dialog": {
     "areYouSure": "¿Estás seguro?",
@@ -66,7 +69,20 @@
     "uploadFile": "Subir archivo",
     "fileUploaded": "Archivo subido correctamente",
     "onlyPdf": "Por favor, selecciona un archivo PDF.",
-    "maxSize10": "El tamaño del archivo debe ser menor de 10 MB."
+    "maxSize10": "El tamaño del archivo debe ser menor de 10 MB.",
+    "dragDropHere": "Arrastra y suelta el archivo aquí",
+    "browseFiles": "Explorar archivos",
+    "pdfSelectedClickToChange": "PDF seleccionado — haz clic para cambiar",
+    "imageSelectedClickToChange": "Imagen seleccionada — haz clic para cambiar",
+    "importNativeEnrichments": "Importar enriquecimientos nativos (los anteriores se eliminarán si están presentes)",
+    "importToc": "Importar tabla de contenidos (eliminando el índice existente)!",
+    "instructions": "Sube aquí tu archivo PDF para convertirlo en una publicación digital. El proceso puede tardar un poco. Puedes ver su estado en Mis publicaciones.",
+    "requirements": {
+      "versionAndSize": "Tu PDF debe ser v1.0–1.5 y tener menos de 300 Mb / 1000 páginas.",
+      "noDoublePage": "No simules una página doble en una sola página.",
+      "samePageSize": "Obtén los mejores resultados haciendo que todas las páginas tengan el mismo tamaño."
+    },
+    "copyrightNote": "Nota: No uses Promag para subir documentos para los que no tengas permiso o no seas propietario de los derechos de autor."
   },
   "notFound": {
     "message": "¡Vaya! Página no encontrada",
@@ -94,6 +110,10 @@
     "editCollection": "Editar colección",
     "editPublication": "Editar publicación",
     "backToPublications": "Volver a publicaciones",
+    "coverImage": "Imagen de portada",
+    "dragDropHere": "Arrastra y suelta el archivo aquí",
+    "coverImageRequirements": "La portada debe ser PNG o JPEG, hasta 8 MB, relación de aspecto 16:9 o 9:16, con cada lado entre 320 px y 3.840",
+    "coverPreviewAlt": "Vista previa de la portada de la colección",
     "placeholders": {
       "issueName": "Ingresar nombre de la edición",
       "publicationTitle": "Ingresar título de la publicación",
@@ -128,6 +148,18 @@
       "imageProcessFailed": "Error al procesar la imagen. Inténtalo de nuevo.",
       "fieldRequired": "{{field}} es obligatorio"
     }
+  },
+  "languages": {
+    "english": "Inglés",
+    "hindi": "Hindi",
+    "spanish": "Español",
+    "french": "Francés",
+    "german": "Alemán",
+    "italian": "Italiano"
+  },
+  "orientations": {
+    "portrait": "Vertical",
+    "landscape": "Horizontal"
   },
   "steps": {
     "uploadPdf": "Subir PDF",

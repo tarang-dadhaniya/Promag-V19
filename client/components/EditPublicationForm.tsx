@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
+import { useTranslation } from "react-i18next";
 
 interface DropdownOption {
   value: string;
@@ -132,6 +133,7 @@ export function EditPublicationForm({
   onCancel,
   className,
 }: EditPublicationFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     title: publication.title || "",
     category: publication.category || "",
@@ -151,9 +153,9 @@ export function EditPublicationForm({
   }));
 
   const statusOptions = [
-    { value: "draft", label: "Draft" },
-    { value: "published", label: "Published" },
-    { value: "pending", label: "Pending Review" },
+    { value: "draft", label: t("publication.status.draft") },
+    { value: "published", label: t("publication.status.live") },
+    { value: "pending", label: t("common.pending") },
   ];
 
   const convertFileToBase64 = (file: File): Promise<string> => {
@@ -174,7 +176,7 @@ export function EditPublicationForm({
 
     const maxSize = 8 * 1024 * 1024; // 8MB
     if (file.size > maxSize) {
-      alert("File size must be less than 8MB.");
+      alert(t("forms.validation.imageMax8"));
       return;
     }
 
@@ -183,7 +185,7 @@ export function EditPublicationForm({
       setNewCoverImage(dataUrl);
     } catch (error) {
       console.error("Error converting file to base64:", error);
-      alert("Failed to process the image. Please try again.");
+      alert(t("forms.validation.imageProcessFailed"));
     }
   }, []);
 
@@ -207,7 +209,7 @@ export function EditPublicationForm({
   const handleSave = () => {
     // Basic validation
     if (!formData.title.trim()) {
-      alert("Title is required");
+      alert(t("forms.validation.fieldRequired", { field: t("forms.name") }));
       return;
     }
 
@@ -267,14 +269,14 @@ export function EditPublicationForm({
         <div className="flex w-full flex-col gap-5">
           {/* Cover Image Section */}
           <div className="flex p-3 sm:p-5 items-start content-start gap-4 sm:gap-[30px] gap-y-4 sm:gap-y-5 self-stretch flex-wrap rounded-[10px] bg-white">
-            <FormField label="Cover Image" className="w-full">
+            <FormField label={t("forms.coverImage")} className="w-full">
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 {/* Current Image Preview */}
                 {displayImage && (
                   <div className="relative">
                     <img
                       src={displayImage}
-                      alt="Publication cover"
+                      alt={t("forms.coverPreviewAlt")}
                       className="w-[120px] h-[150px] object-cover rounded-lg border border-gray-200"
                     />
                     {newCoverImage && (

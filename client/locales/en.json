@@ -22,7 +22,9 @@
     "clickNewIssue": "Click New Issue to create your first publication.",
     "action": "Action",
     "settings": "Settings",
-    "pending": "Pending"
+    "pending": "Pending",
+    "noOptionsAvailable": "No options available",
+    "add": "Add"
   },
   "menu": {
     "managePublications": "Manage Publications",
@@ -44,7 +46,8 @@
   },
   "publication": {
     "status": { "live": "Live", "draft": "Draft" },
-    "action": { "backToDraft": "Back to Draft", "goLive": "Go Live" }
+    "action": { "backToDraft": "Back to Draft", "goLive": "Go Live" },
+    "selectedNameFallback": "Selected Publication Name"
   },
   "dialog": {
     "areYouSure": "Are you sure?",
@@ -66,7 +69,20 @@
     "uploadFile": "Upload File",
     "fileUploaded": "File uploaded successfully",
     "onlyPdf": "Please select a PDF file.",
-    "maxSize10": "File size must be less than 10MB."
+    "maxSize10": "File size must be less than 10MB.",
+    "dragDropHere": "Drag and drop file here",
+    "browseFiles": "Browse Files",
+    "pdfSelectedClickToChange": "PDF selected — click to change",
+    "imageSelectedClickToChange": "Image selected — click to change",
+    "importNativeEnrichments": "Import native enrichments (old enrichments will be deleted if present)",
+    "importToc": "Import table of contents (removing existing index)!",
+    "instructions": "Upload your PDF file here to convert it into a digital publication. It may take a while for the process to complete. You can learn more about its status under My Publications.",
+    "requirements": {
+      "versionAndSize": "Your PDF must be v1.0-1.5 and less than 300 Mb / 1000 pages.",
+      "noDoublePage": "Do not simulate a double-page spread on one page.",
+      "samePageSize": "Get the best results by making every page the same size."
+    },
+    "copyrightNote": "Note: Don't use Promag to upload documents you do not have permission or own the copyright too."
   },
   "notFound": {
     "message": "Oops! Page not found",
@@ -94,6 +110,10 @@
     "editCollection": "Edit Collection",
     "editPublication": "Edit Publication",
     "backToPublications": "Back to Publications",
+    "coverImage": "Cover Image",
+    "dragDropHere": "Drag and drop file here",
+    "coverImageRequirements": "The cover must be PNG or JPEG, up to 8 MB, 16:9 or 9:16 aspect ratio, with each side between 320 px and 3,840",
+    "coverPreviewAlt": "Collection cover preview",
     "placeholders": {
       "issueName": "Enter Issue Name",
       "publicationTitle": "Enter Publication Title",
@@ -128,6 +148,18 @@
       "imageProcessFailed": "Failed to process the image. Please try again.",
       "fieldRequired": "{{field}} is required"
     }
+  },
+  "languages": {
+    "english": "English",
+    "hindi": "Hindi",
+    "spanish": "Spanish",
+    "french": "French",
+    "german": "German",
+    "italian": "Italian"
+  },
+  "orientations": {
+    "portrait": "Portrait",
+    "landscape": "Landscape"
   },
   "steps": {
     "uploadPdf": "Upload PDF",

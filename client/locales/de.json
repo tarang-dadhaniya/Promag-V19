@@ -22,7 +22,10 @@
     "clickNewIssue": "Klicken Sie auf Neue Ausgabe, um Ihre erste Publikation zu erstellen.",
     "action": "Aktion",
     "settings": "Einstellungen",
-    "pending": "Ausstehend"
+    "pending": "Ausstehend",
+    "noOptionsAvailable": "Keine Optionen verfügbar",
+    "add": "Hinzufügen",
+    "noOptionsAvailable": "Keine Optionen verfügbar"
   },
   "menu": {
     "managePublications": "Publikationen verwalten",
@@ -47,7 +50,8 @@
     "action": {
       "backToDraft": "Zurück zum Entwurf",
       "goLive": "Veröffentlichen"
-    }
+    },
+    "selectedNameFallback": "Ausgewählter Publikationsname"
   },
   "dialog": {
     "areYouSure": "Sind Sie sicher?",
@@ -69,7 +73,20 @@
     "uploadFile": "Datei hochladen",
     "fileUploaded": "Datei erfolgreich hochgeladen",
     "onlyPdf": "Bitte wählen Sie eine PDF-Datei aus.",
-    "maxSize10": "Die Dateigröße muss unter 10 MB liegen."
+    "maxSize10": "Die Dateigröße muss unter 10 MB liegen.",
+    "dragDropHere": "Datei hierher ziehen und ablegen",
+    "browseFiles": "Dateien durchsuchen",
+    "pdfSelectedClickToChange": "PDF ausgewählt — zum Ändern klicken",
+    "imageSelectedClickToChange": "Bild ausgewählt — zum Ändern klicken",
+    "importNativeEnrichments": "Native Anreicherungen importieren (alte Anreicherungen werden ggf. gelöscht)",
+    "importToc": "Inhaltsverzeichnis importieren (bestehenden Index entfernen)!",
+    "instructions": "Laden Sie hier Ihre PDF-Datei hoch, um sie in eine digitale Publikation zu konvertieren. Der Vorgang kann einige Zeit dauern. Weitere Informationen finden Sie unter Meine Publikationen.",
+    "requirements": {
+      "versionAndSize": "Ihre PDF muss Version 1.0–1.5 und kleiner als 300 Mb / 1000 Seiten sein.",
+      "noDoublePage": "Simulieren Sie keine Doppelseite auf einer Seite.",
+      "samePageSize": "Beste Ergebnisse erzielen Sie, wenn alle Seiten gleich groß sind."
+    },
+    "copyrightNote": "Hinweis: Verwenden Sie Promag nicht zum Hochladen von Dokumenten, für die Sie keine Berechtigung haben oder deren Urheberrecht Sie nicht besitzen."
   },
   "notFound": {
     "message": "Ups! Seite nicht gefunden",
@@ -97,6 +114,14 @@
     "editCollection": "Sammlung bearbeiten",
     "editPublication": "Publikation bearbeiten",
     "backToPublications": "Zurück zu Publikationen",
+    "coverImage": "Titelbild",
+    "dragDropHere": "Datei hierher ziehen und ablegen",
+    "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",
+    "coverPreviewAlt": "Vorschau des Sammlungs-Covers",
+    "coverImage": "Titelbild",
+    "dragDropHere": "Datei hierher ziehen und ablegen",
+    "coverImageRequirements": "Das Cover muss PNG oder JPEG sein, bis zu 8 MB, Seitenverhältnis 16:9 oder 9:16, jede Seite zwischen 320 px und 3.840",
+    "coverPreviewAlt": "Vorschau des Sammlungs-Covers",
     "placeholders": {
       "issueName": "Ausgabenamen eingeben",
       "publicationTitle": "Publikationstitel eingeben",
@@ -131,6 +156,18 @@
       "imageProcessFailed": "Bild konnte nicht verarbeitet werden. Bitte erneut versuchen.",
       "fieldRequired": "{{field}} ist erforderlich"
     }
+  },
+  "languages": {
+    "english": "Englisch",
+    "hindi": "Hindi",
+    "spanish": "Spanisch",
+    "french": "Französisch",
+    "german": "Deutsch",
+    "italian": "Italienisch"
+  },
+  "orientations": {
+    "portrait": "Hochformat",
+    "landscape": "Querformat"
   },
   "steps": {
     "uploadPdf": "PDF hochladen",
