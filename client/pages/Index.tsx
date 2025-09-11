@@ -904,6 +904,11 @@ export default function Index() {
           </div>
         );
 
+      case "company":
+        return (
+          <CompanyTranslationTable className="flex-1" />
+        );
+
       default:
         return null;
     }
