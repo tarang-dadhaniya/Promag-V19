@@ -24,6 +24,7 @@
     "settings": "Einstellungen",
     "pending": "Ausstehend",
     "noOptionsAvailable": "Keine Optionen verfügbar",
+    "add": "Hinzufügen",
     "noOptionsAvailable": "Keine Optionen verfügbar"
   },
   "menu": {
@@ -49,7 +50,8 @@
     "action": {
       "backToDraft": "Zurück zum Entwurf",
       "goLive": "Veröffentlichen"
-    }
+    },
+    "selectedNameFallback": "Ausgewählter Publikationsname"
   },
   "dialog": {
     "areYouSure": "Sind Sie sicher?",
@@ -71,7 +73,20 @@
     "uploadFile": "Datei hochladen",
     "fileUploaded": "Datei erfolgreich hochgeladen",
     "onlyPdf": "Bitte wählen Sie eine PDF-Datei aus.",
-    "maxSize10": "Die Dateigröße muss unter 10 MB liegen."
+    "maxSize10": "Die Dateigröße muss unter 10 MB liegen.",
+    "dragDropHere": "Datei hierher ziehen und ablegen",
+    "browseFiles": "Dateien durchsuchen",
+    "pdfSelectedClickToChange": "PDF ausgewählt — zum Ändern klicken",
+    "imageSelectedClickToChange": "Bild ausgewählt — zum Ändern klicken",
+    "importNativeEnrichments": "Native Anreicherungen importieren (alte Anreicherungen werden ggf. gelöscht)",
+    "importToc": "Inhaltsverzeichnis importieren (bestehenden Index entfernen)!",
+    "instructions": "Laden Sie hier Ihre PDF-Datei hoch, um sie in eine digitale Publikation zu konvertieren. Der Vorgang kann einige Zeit dauern. Weitere Informationen finden Sie unter Meine Publikationen.",
+    "requirements": {
+      "versionAndSize": "Ihre PDF muss Version 1.0–1.5 und kleiner als 300 Mb / 1000 Seiten sein.",
+      "noDoublePage": "Simulieren Sie keine Doppelseite auf einer Seite.",
+      "samePageSize": "Beste Ergebnisse erzielen Sie, wenn alle Seiten gleich groß sind."
+    },
+    "copyrightNote": "Hinweis: Verwenden Sie Promag nicht zum Hochladen von Dokumenten, für die Sie keine Berechtigung haben oder deren Urheberrecht Sie nicht besitzen."
   },
   "notFound": {
     "message": "Ups! Seite nicht gefunden",
@@ -87,7 +102,7 @@
     "author": "Autor",
     "editor": "Herausgeber",
     "language": "Sprache",
-    "releaseDate": "Ver��ffentlichungsdatum",
+    "releaseDate": "Veröffentlichungsdatum",
     "isbnIssn": "ISBN/ISSN",
     "indexOffset": "Indexversatz",
     "status": "Status",
