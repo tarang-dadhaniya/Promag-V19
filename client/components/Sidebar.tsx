@@ -117,26 +117,35 @@ export function Sidebar({ className, onManagePublicationsClick, onManageCompanyC
 
       {/* Navigation Items */}
       <div className="flex flex-col w-full gap-0">
-        {items.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              if (index === 0) {
-                onManagePublicationsClick?.();
-              }
-            }}
-            className={cn(
-              "flex w-full px-3 sm:px-[26px] py-3 sm:py-4 items-center gap-2 sm:gap-[10px] rounded text-white transition-colors text-left",
-              "font-inter text-xs sm:text-sm font-medium",
-              item.active ? "bg-promag-secondary" : "hover:bg-promag-secondary/50"
-            )}
-          >
-            <div className="w-3 h-3 sm:w-4 sm:h-4 text-white flex-shrink-0">
-              {item.icon}
-            </div>
-            <span className="hidden sm:block">{item.label}</span>
-          </button>
-        ))}
+        {items.map((item, index) => {
+          const isActive = (
+            (index === 0 && activeMenuItem === "publications") ||
+            (index === 1 && activeMenuItem === "company")
+          );
+
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                if (index === 0) {
+                  onManagePublicationsClick?.();
+                } else if (index === 1) {
+                  onManageCompanyClick?.();
+                }
+              }}
+              className={cn(
+                "flex w-full px-3 sm:px-[26px] py-3 sm:py-4 items-center gap-2 sm:gap-[10px] rounded text-white transition-colors text-left",
+                "font-inter text-xs sm:text-sm font-medium",
+                isActive ? "bg-promag-secondary" : "hover:bg-promag-secondary/50"
+              )}
+            >
+              <div className="w-3 h-3 sm:w-4 sm:h-4 text-white flex-shrink-0">
+                {item.icon}
+              </div>
+              <span className="hidden sm:block">{item.label}</span>
+            </button>
+          );
+        })}
       </div>
 
     </div>
