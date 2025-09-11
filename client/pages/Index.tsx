@@ -17,6 +17,7 @@ import { CreateCollectionDialog } from "../components/CreateCollectionDialog";
 import { EditPublicationForm } from "../components/EditPublicationForm";
 import { PublicationDetailsForm } from "../components/PublicationDetailsForm";
 import { BlankStepPage } from "../components/BlankStepPage";
+import { CompanyTranslationTable } from "../components/CompanyTranslationTable";
 import {
   Dialog,
   DialogContent,
