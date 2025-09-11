@@ -914,6 +914,11 @@ export default function Index() {
     }
   };
 
+  const handleManageCompanyClick = () => {
+    setCurrentView("company");
+    setSelectedCollection(null);
+  };
+
   const getPageTitle = () => {
     // If the user selected a collection from the sidebar and we're on the
     // publication list view, show "Publications - <Collection>" in header.
@@ -923,6 +928,11 @@ export default function Index() {
       selectedCollection
     ) {
       return `${t("common.publications")} - ${selectedCollection.title}`;
+    }
+
+    // Handle company view
+    if (currentView === "company") {
+      return t("menu.manageCompany");
     }
 
     // For all other inner views, keep the stable section title and rely on
