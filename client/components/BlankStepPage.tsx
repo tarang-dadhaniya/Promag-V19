@@ -1041,13 +1041,9 @@ export function BlankStepPage({
             </div>
             <div className="flex justify-center items-center w-full max-w-[520px]">
               <ul className="list-disc pl-5 text-promag-body font-inter text-sm font-medium leading-6 space-y-1">
-                <li>
-                  {t("upload.requirements.versionAndSize")}
-                </li>
+                <li>{t("upload.requirements.versionAndSize")}</li>
                 <li>{t("upload.requirements.noDoublePage")}</li>
-                <li>
-                  {t("upload.requirements.samePageSize")}
-                </li>
+                <li>{t("upload.requirements.samePageSize")}</li>
               </ul>
             </div>
             <div className="flex flex-col w-full gap-2">

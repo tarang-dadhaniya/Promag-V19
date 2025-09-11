@@ -16,7 +16,9 @@ interface StepNavigationProps {
   className?: string;
 }
 
-const getSteps = (t: (k: string, opt?: any) => string): Array<{ id: Step; label: string }> => [
+const getSteps = (
+  t: (k: string, opt?: any) => string,
+): Array<{ id: Step; label: string }> => [
   { id: "upload", label: t("steps.uploadPdf") },
   { id: "issue-details", label: t("steps.issueDetails") },
   { id: "author-details", label: t("steps.authorDetails") },
