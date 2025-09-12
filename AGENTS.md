@@ -189,6 +189,6 @@ This content has moved to ./traslate.md. Agents must read that file first for al
 
 ## Table Structure Integration
 
-This document provides the structure and integration steps for embedding a dynamic table structure into this project.
+This document provides the structure and integration steps for embedding table structure into this project.
 
 - Full playbook: ./table.md
