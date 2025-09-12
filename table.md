@@ -23,46 +23,29 @@ The table will consist of the following columns:
 
 ## Integration Steps
 
-### 1. Create Table Structure in Builder.io
+### 1. Create Table Structure
 
-To integrate a static table into your Builder.io project, you first need to create a basic table structure:
+To integrate a static table into this project, you first need to create a basic table structure:
 
-1. Go to the Builder.io dashboard and navigate to your project.
-2. In your page or template, add a custom **HTML Block** or use the **Custom Code** feature.
-3. Copy and paste the HTML code for the table as shown in the example above.
+1. In this page or template, add a custom **HTML Block** or use the **Custom Code** feature.
+2. Copy and paste the HTML code for the table as shown in the example above.
 
 ```html
 <table id="static-table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Country</th>
-      <th>Actions</th>
+      <th>content</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
-      <td>John Doe</td>
-      <td>30</td>
-      <td>USA</td>
-      <td>Edit | Delete</td>
+      <td><p>content</p></td>
     </tr>
     <tr>
-      <td>2</td>
-      <td>Jane Smith</td>
-      <td>25</td>
-      <td>Canada</td>
-      <td>Edit | Delete</td>
+      <td><p>content</p></td>
     </tr>
     <tr>
-      <td>3</td>
-      <td>Robert Brown</td>
-      <td>45</td>
-      <td>UK</td>
-      <td>Edit | Delete</td>
+      <td><p>content</p></td>
     </tr>
   </tbody>
 </table>
