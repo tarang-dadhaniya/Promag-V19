@@ -1,5 +1,5 @@
-
 # Table Structure Integration
+
 ## Overview
 
 This document provides the structure and integration steps for embedding a static table structure into your Builder.io project. It guides you through creating a basic table that doesn't rely on dynamic data.
@@ -7,6 +7,7 @@ This document provides the structure and integration steps for embedding a stati
 ## Table Structure Example
 
 The table will consist of the following columns:
+
 - **ID**
 - **Name**
 - **Age**
@@ -15,11 +16,11 @@ The table will consist of the following columns:
 
 ### Example Static Table:
 
-| ID  | Name      | Age | Country | Actions  |
-|-----|-----------|-----|---------|----------|
-| 1   | John Doe  | 30  | USA     | Edit | Delete |
-| 2   | Jane Smith| 25  | Canada  | Edit | Delete |
-| 3   | Robert Brown | 45  | UK  | Edit | Delete |
+| ID  | Name         | Age | Country | Actions |
+| --- | ------------ | --- | ------- | ------- | ------ |
+| 1   | John Doe     | 30  | USA     | Edit    | Delete |
+| 2   | Jane Smith   | 25  | Canada  | Edit    | Delete |
+| 3   | Robert Brown | 45  | UK      | Edit    | Delete |
 
 ## Integration Steps
 
@@ -62,7 +63,8 @@ To customize the table's appearance, you can use CSS or Builder.io’s design op
   margin: 20px 0;
 }
 
-#static-table th, #static-table td {
+#static-table th,
+#static-table td {
   padding: 10px;
   text-align: left;
   border: 1px solid #ddd;

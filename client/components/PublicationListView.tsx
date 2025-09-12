@@ -555,7 +555,8 @@ export function PublicationListView({
   );
   const [targetPublication, setTargetPublication] =
     useState<Publication | null>(null);
-  const [selectedPublication, setSelectedPublication] = useState<Publication | null>(null);
+  const [selectedPublication, setSelectedPublication] =
+    useState<Publication | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside

@@ -49,7 +49,7 @@ export function PublicationViewModal({
   onClone,
   onSettings,
   onStatusChange,
-  className
+  className,
 }: PublicationViewModalProps) {
   const { t, i18n } = useTranslation();
 
@@ -64,21 +64,21 @@ export function PublicationViewModal({
 
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat(i18n.language, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     }).format(date);
   };
 
   const getLanguageDisplay = (lang?: string) => {
     if (!lang) return "";
     const languageMap: Record<string, string> = {
-      "en": t("languages.english"),
-      "de": t("languages.german"),
-      "es": t("languages.spanish"),
-      "fr": t("languages.french"),
-      "it": t("languages.italian"),
-      "hi": t("languages.hindi")
+      en: t("languages.english"),
+      de: t("languages.german"),
+      es: t("languages.spanish"),
+      fr: t("languages.french"),
+      it: t("languages.italian"),
+      hi: t("languages.hindi"),
     };
     return languageMap[lang] || lang;
   };
@@ -159,7 +159,9 @@ export function PublicationViewModal({
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <p className="text-gray-500 text-sm">{t("forms.coverImage")}</p>
+                      <p className="text-gray-500 text-sm">
+                        {t("forms.coverImage")}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -170,10 +172,24 @@ export function PublicationViewModal({
                 {/* Platform Icons (simulated) */}
                 <div className="w-12 h-12 bg-black/80 rounded flex items-center justify-center">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <rect width="28" height="28" rx="8" fill="url(#gradient1)" />
-                    <path d="M14 8L15 12H19L16 15L17 19L14 17L11 19L12 15L9 12H13L14 8Z" fill="white" />
+                    <rect
+                      width="28"
+                      height="28"
+                      rx="8"
+                      fill="url(#gradient1)"
+                    />
+                    <path
+                      d="M14 8L15 12H19L16 15L17 19L14 17L11 19L12 15L9 12H13L14 8Z"
+                      fill="white"
+                    />
                     <defs>
-                      <linearGradient id="gradient1" x1="0" y1="0" x2="28" y2="28">
+                      <linearGradient
+                        id="gradient1"
+                        x1="0"
+                        y1="0"
+                        x2="28"
+                        y2="28"
+                      >
                         <stop stopColor="#00BFFC" />
                         <stop offset="1" stopColor="#0073F6" />
                       </linearGradient>
@@ -191,7 +207,13 @@ export function PublicationViewModal({
                     <circle cx="14" cy="14" r="14" fill="url(#gradient2)" />
                     <path d="M10 10H18V18H10V10Z" fill="white" />
                     <defs>
-                      <linearGradient id="gradient2" x1="0" y1="0" x2="28" y2="28">
+                      <linearGradient
+                        id="gradient2"
+                        x1="0"
+                        y1="0"
+                        x2="28"
+                        y2="28"
+                      >
                         <stop stopColor="#00A1E2" />
                         <stop offset="1" stopColor="#00E0A5" />
                       </linearGradient>
@@ -213,8 +235,14 @@ export function PublicationViewModal({
                 {/* Publication Meta */}
                 <div className="text-promag-body font-inter text-lg font-normal leading-[26px]">
                   <p>
-                    {t("forms.placeholders.publicationTitle")} {formatDate(publication.createdAt)} {t("common.publications").toLowerCase()} "{publication.category || t("categories.education")}", 
-                    {getLanguageDisplay(publication.language) && ` ${t("forms.language").toLowerCase()}: ${getLanguageDisplay(publication.language)}.`} {publication.previewPages || "30"} {t("forms.previewPages").toLowerCase()}.
+                    {t("forms.placeholders.publicationTitle")}{" "}
+                    {formatDate(publication.createdAt)}{" "}
+                    {t("common.publications").toLowerCase()} "
+                    {publication.category || t("categories.education")}",
+                    {getLanguageDisplay(publication.language) &&
+                      ` ${t("forms.language").toLowerCase()}: ${getLanguageDisplay(publication.language)}.`}{" "}
+                    {publication.previewPages || "30"}{" "}
+                    {t("forms.previewPages").toLowerCase()}.
                   </p>
                   {publication.author && (
                     <p className="mt-2">
@@ -230,7 +258,9 @@ export function PublicationViewModal({
                     {t("forms.description")}:
                   </p>
                   <p className="text-sm">
-                    {publication.description || publication.teaser || t("publication.selectedNameFallback")}
+                    {publication.description ||
+                      publication.teaser ||
+                      t("publication.selectedNameFallback")}
                   </p>
                 </div>
 
@@ -241,14 +271,14 @@ export function PublicationViewModal({
                       {t("publication.status.live")}
                     </button>
                   ) : (
-                    <button 
+                    <button
                       onClick={handleStatusToggle}
                       className="flex px-5 py-2 justify-center items-center rounded-md border border-promag-primary text-promag-primary font-inter text-sm font-semibold hover:bg-promag-primary/5 transition-colors"
                     >
                       {t("publication.action.goLive")}
                     </button>
                   )}
-                  
+
                   {isLive && (
                     <button
                       onClick={handleStatusToggle}
