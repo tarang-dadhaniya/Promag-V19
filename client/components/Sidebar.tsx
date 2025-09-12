@@ -309,9 +309,8 @@ export function Sidebar({
       {/* Navigation Items */}
       <div className="flex flex-col w-full gap-0">
         {items.map((item, index) => {
-          const isActive =
-            (index === 0 && activeMenuItem === "publications") ||
-            (index === 1 && activeMenuItem === "company");
+          const routes = ["/", "/company", "/apps", "/reader", "/notifications"];
+          const isActive = location.pathname === routes[index];
 
           return (
             <button
@@ -321,6 +320,8 @@ export function Sidebar({
                   onManagePublicationsClick?.();
                 } else if (index === 1) {
                   onManageCompanyClick?.();
+                } else {
+                  navigate(routes[index]);
                 }
               }}
               className={cn(
