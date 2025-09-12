@@ -28,7 +28,7 @@ const App = () => {
               path="/company"
               element={<Placeholder title={t("menu.manageCompany")} />}
             />
-            <Route path="/apps" element={<Placeholder title={t("menu.manageApps")} />} />
+            <Route path="/apps" element={<ManageApps />} />
             <Route path="/reader" element={<Placeholder title={t("menu.manageReader")} />} />
             <Route
               path="/notifications"
