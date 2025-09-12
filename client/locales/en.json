@@ -61,7 +61,19 @@
   "publication": {
     "status": { "live": "Live", "draft": "Draft" },
     "action": { "backToDraft": "Back to Draft", "goLive": "Go Live" },
-    "selectedNameFallback": "Selected Publication Name"
+    "selectedNameFallback": "Selected Publication Name",
+    "view": {
+      "publishedOn": "Published on",
+      "in": "in",
+      "language": "language",
+      "pages": "pages",
+      "author": "Author",
+      "publicationDescription": "Publication description:",
+      "technicalAnalysis": "Technical Analysis of the Financial Markets",
+      "marketing": "Marketing",
+      "german": "German",
+      "defaultDescription": "Discover the art and science of financial marketing in this comprehensive guide tailored for professionals in the finance industry. Mastering Financial Marketing offers actionable insights into crafting impactful campaigns, leveraging digital tools, and staying compliant with industry regulations."
+    }
   },
   "dialog": {
     "areYouSure": "Are you sure?",
