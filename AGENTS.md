@@ -7,6 +7,11 @@
 > - Then consult ./docs/i18n-translation-guide.md and the rest of this document.
 > - If any conflict exists, follow ./table.md for static table tasks and ./traslate.md for i18n; note the reasoning in your PR.
 > - Next, for any new task, please ensure that all static data undergoes i18n integration.
+>   - When a task includes static text, table content, labels, or documentation (including markdown files), integrate the strings with the i18n system instead of hard‑coding.
+>   - For UI components and pages: replace literals with translation keys and use useTranslation()/t() in React components; add the keys to all locale files in client/locales/{en,fr,de,es}.json.
+>   - For plain HTML embedded in markup or CMS content: prefer using i18n-aware components; if embedding raw HTML, include data-i18n attributes and add corresponding keys to locale files, or provide localized markdown files as described in ./traslate.md.
+>   - For documentation/markdown files containing user-facing static content, maintain per-language copies under docs/locales/<lang>/ (for example docs/locales/en/table.md, docs/locales/fr/table.md) and reference them from the main docs. Agents must add or update localized markdown when adding new static docs.
+>   - When adding keys, update the PR description with the list of keys added and confirm locale parity (en/fr/de/es).
 
 A production-ready full-stack React application template with integrated Express server, featuring React Router 6 SPA mode, TypeScript, Vitest, Zod and modern tooling.
 
