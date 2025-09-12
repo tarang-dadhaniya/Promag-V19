@@ -1,5 +1,5 @@
 
-# Static Table Structure Integration
+# Table Structure Integration
 ## Overview
 
 This document provides the structure and integration steps for embedding a static table structure into your Builder.io project. It guides you through creating a basic table that doesn't rely on dynamic data.
