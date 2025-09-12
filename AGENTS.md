@@ -186,3 +186,9 @@ This content has moved to ./traslate.md. Agents must read that file first for al
 
 - Full playbook: ./traslate.md
 - Detailed workflow: ./docs/i18n-translation-guide.md
+
+## Table Structure Integration
+
+This document provides the structure and integration steps for embedding a dynamic table structure into this project.
+
+- Full playbook: ./table.md
