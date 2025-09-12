@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
+import ManageApps from "./pages/ManageApps";
 import { useTranslation } from "react-i18next";
 import { Suspense } from "react";
 
@@ -27,8 +28,11 @@ const App = () => {
               path="/company"
               element={<Placeholder title={t("menu.manageCompany")} />}
             />
-            <Route path="/apps" element={<Placeholder title={t("menu.manageApps")} />} />
-            <Route path="/reader" element={<Placeholder title={t("menu.manageReader")} />} />
+            <Route path="/apps" element={<ManageApps />} />
+            <Route
+              path="/reader"
+              element={<Placeholder title={t("menu.manageReader")} />}
+            />
             <Route
               path="/notifications"
               element={<Placeholder title={t("menu.pushNotifications")} />}

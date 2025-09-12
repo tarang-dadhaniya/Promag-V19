@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   className?: string;
@@ -262,6 +263,8 @@ export function Sidebar({
   activeMenuItem = "publications",
 }: SidebarProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const categoryOptions = useMemo(
     () => [
       { value: "action", label: t("categories.action") },
@@ -306,9 +309,14 @@ export function Sidebar({
       {/* Navigation Items */}
       <div className="flex flex-col w-full gap-0">
         {items.map((item, index) => {
-          const isActive =
-            (index === 0 && activeMenuItem === "publications") ||
-            (index === 1 && activeMenuItem === "company");
+          const routes = [
+            "/",
+            "/company",
+            "/apps",
+            "/reader",
+            "/notifications",
+          ];
+          const isActive = location.pathname === routes[index];
 
           return (
             <button
@@ -318,6 +326,8 @@ export function Sidebar({
                   onManagePublicationsClick?.();
                 } else if (index === 1) {
                   onManageCompanyClick?.();
+                } else {
+                  navigate(routes[index]);
                 }
               }}
               className={cn(
