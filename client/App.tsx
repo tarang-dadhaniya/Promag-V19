@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
+import ManageApps from "./pages/ManageApps";
 import { useTranslation } from "react-i18next";
 import { Suspense } from "react";
 
