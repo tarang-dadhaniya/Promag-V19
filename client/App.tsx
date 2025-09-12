@@ -36,7 +36,7 @@ const App = () => {
             />
             <Route
               path="/notifications"
-              element={<Placeholder title={t("menu.pushNotifications")} />}
+              element={<PushNotifications />}
             />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
