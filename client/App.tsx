@@ -34,10 +34,7 @@ const App = () => {
               path="/reader"
               element={<Placeholder title={t("menu.manageReader")} />}
             />
-            <Route
-              path="/notifications"
-              element={<PushNotifications />}
-            />
+            <Route path="/notifications" element={<PushNotifications />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
