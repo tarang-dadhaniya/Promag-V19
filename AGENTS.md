@@ -6,6 +6,7 @@
 > - Next, read ./traslate.md for translation/localization workflow and requirements.
 > - Then consult ./docs/i18n-translation-guide.md and the rest of this document.
 > - If any conflict exists, follow ./table.md for static table tasks and ./traslate.md for i18n; note the reasoning in your PR.
+> - Next, for any new task, please ensure that all static data undergoes i18n integration.
 
 A production-ready full-stack React application template with integrated Express server, featuring React Router 6 SPA mode, TypeScript, Vitest, Zod and modern tooling.
 
