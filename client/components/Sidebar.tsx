@@ -263,6 +263,8 @@ export function Sidebar({
   activeMenuItem = "publications",
 }: SidebarProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const categoryOptions = useMemo(
     () => [
       { value: "action", label: t("categories.action") },
