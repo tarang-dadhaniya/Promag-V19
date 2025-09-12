@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Dropdown } from "./ui/dropdown";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   className?: string;
