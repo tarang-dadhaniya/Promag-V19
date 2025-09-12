@@ -139,7 +139,7 @@ Register route (add above the catch-all `*` route) in client/App.tsx:
 import StaticTableDemo from "@/pages/StaticTableDemo";
 
 // inside <Routes>
-<Route path="/static-table" element={<StaticTableDemo />} />
+<Route path="/static-table" element={<StaticTableDemo />} />;
 ```
 
 ## Styling notes

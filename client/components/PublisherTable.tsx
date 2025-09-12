@@ -15,38 +15,40 @@ const publisherData = [
     id: 1,
     name: "Floyd Miles",
     phone: "+447700960748",
-    title: "The More Important the Work, the More Important the Rest"
+    title: "The More Important the Work, the More Important the Rest",
   },
   {
     id: 2,
-    name: "Leslie Alexander", 
+    name: "Leslie Alexander",
     phone: "+447700960939",
-    title: "Understanding color theory: the color wheel and finding complementary colors"
+    title:
+      "Understanding color theory: the color wheel and finding complementary colors",
   },
   {
     id: 3,
     name: "Marvin McKinney",
-    phone: "+447700960035", 
-    title: "Any mechanical keyboard enthusiasts in design?"
+    phone: "+447700960035",
+    title: "Any mechanical keyboard enthusiasts in design?",
   },
   {
     id: 4,
     name: "Ralph Edwards",
     phone: "+447700960612",
-    title: "Yo Reddit! What's a small thing that anyone can do at nearly anytime to improve their mood and make"
+    title:
+      "Yo Reddit! What's a small thing that anyone can do at nearly anytime to improve their mood and make",
   },
   {
     id: 5,
     name: "Ronald Richards",
     phone: "+447700960054",
-    title: "Any mechanical keyboard enthusiasts in design?"
+    title: "Any mechanical keyboard enthusiasts in design?",
   },
   {
     id: 6,
     name: "Esther Howard",
-    phone: "+447700960776", 
-    title: "How to design a product that can grow itself 10x in year:"
-  }
+    phone: "+447700960776",
+    title: "How to design a product that can grow itself 10x in year:",
+  },
 ];
 
 export function PublisherTable() {
@@ -99,14 +101,20 @@ export function PublisherTable() {
                     size="sm"
                     className="p-0 h-auto hover:bg-transparent"
                   >
-                    <Edit className="w-5 h-5 text-promag-primary" strokeWidth={2} />
+                    <Edit
+                      className="w-5 h-5 text-promag-primary"
+                      strokeWidth={2}
+                    />
                   </Button>
                   <Button
                     variant="ghost"
-                    size="sm" 
+                    size="sm"
                     className="p-0 h-auto hover:bg-transparent"
                   >
-                    <Trash2 className="w-5 h-5 text-[#D9534F]" strokeWidth={2} />
+                    <Trash2
+                      className="w-5 h-5 text-[#D9534F]"
+                      strokeWidth={2}
+                    />
                   </Button>
                 </div>
               </TableCell>

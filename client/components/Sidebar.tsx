@@ -309,7 +309,13 @@ export function Sidebar({
       {/* Navigation Items */}
       <div className="flex flex-col w-full gap-0">
         {items.map((item, index) => {
-          const routes = ["/", "/company", "/apps", "/reader", "/notifications"];
+          const routes = [
+            "/",
+            "/company",
+            "/apps",
+            "/reader",
+            "/notifications",
+          ];
           const isActive = location.pathname === routes[index];
 
           return (

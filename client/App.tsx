@@ -29,7 +29,10 @@ const App = () => {
               element={<Placeholder title={t("menu.manageCompany")} />}
             />
             <Route path="/apps" element={<ManageApps />} />
-            <Route path="/reader" element={<Placeholder title={t("menu.manageReader")} />} />
+            <Route
+              path="/reader"
+              element={<Placeholder title={t("menu.manageReader")} />}
+            />
             <Route
               path="/notifications"
               element={<Placeholder title={t("menu.pushNotifications")} />}
