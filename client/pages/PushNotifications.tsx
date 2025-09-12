@@ -153,9 +153,10 @@ export default function PushNotifications() {
         <Header title={t("menu.pushNotifications")} />
 
         {/* Content Area */}
-        <div className="flex flex-1 flex-col p-5 gap-5">
+        <div className="flex flex-1 flex-col p-3 md:p-5 gap-5">
           {/* Table Container */}
-          <div className="bg-white rounded-[5px] border border-[rgba(222,230,237,0.87)] overflow-hidden">
+          <div className="bg-white rounded-[5px] border border-[rgba(222,230,237,0.87)] overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
             {/* Table */}
             <Table className="w-full">
               <TableHeader>
@@ -236,9 +237,10 @@ export default function PushNotifications() {
               </TableBody>
             </Table>
 
+            </div>
             {/* Pagination Footer */}
-            <div className="flex justify-between items-center px-4 py-[14px] border-t border-[#DDD] bg-white">
-              <div className="flex items-center gap-[10px]">
+            <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-[14px] border-t border-[#DDD] bg-white gap-4 sm:gap-0">
+              <div className="flex flex-col sm:flex-row items-center gap-[10px]">
                 <Select value={pageSize} onValueChange={setPageSize}>
                   <SelectTrigger className="w-auto h-[33px] px-[15px] border border-[#DEE6ED] rounded-lg bg-white">
                     <SelectValue>
@@ -260,7 +262,7 @@ export default function PushNotifications() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center flex-wrap">
                 {/* First Page / Previous Page */}
                 <PaginationButton
                   onClick={() => setCurrentPage(1)}
