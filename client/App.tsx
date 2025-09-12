@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Placeholder from "./pages/Placeholder";
 import ManageApps from "./pages/ManageApps";
+import PushNotifications from "./pages/PushNotifications";
 import { useTranslation } from "react-i18next";
 import { Suspense } from "react";
 
