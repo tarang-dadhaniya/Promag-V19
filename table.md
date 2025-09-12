@@ -1,4 +1,4 @@
-# Table Structure Integration
+## Table Structure Integration
 
 ## Overview
 
