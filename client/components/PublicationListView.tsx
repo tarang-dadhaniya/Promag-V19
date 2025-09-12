@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { DeleteCollectionDialog } from "./DeleteCollectionDialog";
 import { ShareDialog } from "./ShareDialog";
 import { ConfirmationDialog } from "./ConfirmationDialog";
+import { PublicationViewModal } from "./PublicationViewModal";
 import { Settings as SettingsIcon, Globe as GlobeIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -24,6 +25,16 @@ interface Publication {
   description?: string;
   edition?: string;
   teaser?: string;
+  author?: string;
+  editor?: string;
+  language?: string;
+  releaseDate?: string;
+  isbnIssn?: string;
+  indexOffset?: string | number;
+  documentPrintAllowed?: boolean;
+  previewPages?: string;
+  orientation?: string;
+  presentation?: boolean;
 }
 
 interface PublicationListViewProps {
@@ -90,6 +101,7 @@ const PublicationCard = ({
   onDelete,
   onClone,
   onSettings,
+  onView,
 }: {
   publication: Publication;
   onEdit: () => void;
@@ -97,11 +109,15 @@ const PublicationCard = ({
   onDelete: () => void;
   onClone: () => void;
   onSettings: () => void;
+  onView: () => void;
 }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)]">
+    <div
+      className="flex w-[305px] h-[379px] p-3 flex-col items-start gap-[14px] rounded-lg bg-white shadow-[0px_0px_15px_-1px_rgba(12,12,13,0.08)] cursor-pointer hover:shadow-lg transition-shadow"
+      onClick={onView}
+    >
       {/* Cover Image */}
       <div className="w-[281px] h-[200px] flex-shrink-0 relative">
         {publication.coverImage ? (
@@ -533,10 +549,13 @@ export function PublicationListView({
   const [showShareDialog, setShowShareDialog] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [showCloneConfirmation, setShowCloneConfirmation] = useState(false);
+  const [showPublicationModal, setShowPublicationModal] = useState(false);
   const [sharePublication, setSharePublication] = useState<Publication | null>(
     null,
   );
   const [targetPublication, setTargetPublication] =
+    useState<Publication | null>(null);
+  const [selectedPublication, setSelectedPublication] =
     useState<Publication | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -574,6 +593,20 @@ export function PublicationListView({
   const handleClone = (publication: Publication) => {
     setTargetPublication(publication);
     setShowCloneConfirmation(true);
+  };
+
+  const handleViewPublication = (publication: Publication) => {
+    setSelectedPublication(publication);
+    setShowPublicationModal(true);
+  };
+
+  const handleStatusChange = (status: "draft" | "published") => {
+    if (selectedPublication) {
+      // Update the publication status (this would typically be handled by parent)
+      const updatedPublication = { ...selectedPublication, status };
+      setSelectedPublication(updatedPublication);
+      // You could call a parent handler here to persist the change
+    }
   };
 
   // NOTE: opening details is handled by parent via onOpenPublicationDetails prop
@@ -878,6 +911,7 @@ export function PublicationListView({
             onDelete={() => handleDelete(publication)}
             onClone={() => handleClone(publication)}
             onSettings={() => onOpenPublicationDetails?.(publication)}
+            onView={() => handleViewPublication(publication)}
           />
         ))}
       </div>
@@ -926,6 +960,41 @@ export function PublicationListView({
         type="clone"
         onConfirm={confirmClone}
         onCancel={cancelAction}
+      />
+
+      <PublicationViewModal
+        open={showPublicationModal}
+        onOpenChange={setShowPublicationModal}
+        publication={selectedPublication}
+        onEdit={() => {
+          setShowPublicationModal(false);
+          if (selectedPublication) {
+            onEditPublication?.(selectedPublication);
+          }
+        }}
+        onShare={() => {
+          if (selectedPublication) {
+            handleShare(selectedPublication);
+          }
+        }}
+        onDelete={() => {
+          if (selectedPublication) {
+            setShowPublicationModal(false);
+            handleDelete(selectedPublication);
+          }
+        }}
+        onClone={() => {
+          if (selectedPublication) {
+            handleClone(selectedPublication);
+          }
+        }}
+        onSettings={() => {
+          setShowPublicationModal(false);
+          if (selectedPublication) {
+            onOpenPublicationDetails?.(selectedPublication);
+          }
+        }}
+        onStatusChange={handleStatusChange}
       />
     </div>
   );

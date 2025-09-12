@@ -61,7 +61,19 @@
   "publication": {
     "status": { "live": "En ligne", "draft": "Brouillon" },
     "action": { "backToDraft": "Repasser en brouillon", "goLive": "Publier" },
-    "selectedNameFallback": "Nom de publication sélectionné"
+    "selectedNameFallback": "Nom de publication sélectionné",
+    "view": {
+      "publishedOn": "Publié le",
+      "in": "dans",
+      "language": "langue",
+      "pages": "pages",
+      "author": "Auteur",
+      "publicationDescription": "Description de la publication :",
+      "technicalAnalysis": "Analyse Technique des Marchés Financiers",
+      "marketing": "Marketing",
+      "german": "Allemand",
+      "defaultDescription": "Découvrez l'art et la science du marketing financier dans ce guide complet conçu pour les professionnels de l'industrie financière. Maîtriser le Marketing Financier offre des aperçus pratiques pour créer des campagnes impactantes, tirer parti des outils numériques et rester conforme aux réglementations de l'industrie."
+    }
   },
   "dialog": {
     "areYouSure": "Êtes-vous sûr ?",

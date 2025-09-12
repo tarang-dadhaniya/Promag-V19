@@ -64,7 +64,19 @@
       "backToDraft": "Zurück zum Entwurf",
       "goLive": "Veröffentlichen"
     },
-    "selectedNameFallback": "Ausgewählter Publikationsname"
+    "selectedNameFallback": "Ausgewählter Publikationsname",
+    "view": {
+      "publishedOn": "Veröffentlicht am",
+      "in": "in",
+      "language": "Sprache",
+      "pages": "Seiten",
+      "author": "Autor",
+      "publicationDescription": "Publikationsbeschreibung:",
+      "technicalAnalysis": "Technische Analyse der Finanzmärkte",
+      "marketing": "Marketing",
+      "german": "Deutsch",
+      "defaultDescription": "Entdecken Sie die Kunst und Wissenschaft des Finanzmarketings in diesem umfassenden Leitfaden für Fachkräfte in der Finanzbranche. Finanzmarketing beherrschen bietet umsetzbare Einblicke in die Erstellung wirkungsvoller Kampagnen, die Nutzung digitaler Tools und die Einhaltung von Branchenvorschriften."
+    }
   },
   "dialog": {
     "areYouSure": "Sind Sie sicher?",
