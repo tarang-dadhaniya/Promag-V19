@@ -10,6 +10,15 @@ This guide defines the canonical approach for adding a static (non-dynamic) tabl
 - Country
 - Actions (Edit, Delete)
 
+## Localization and i18n for static data
+
+All static data added to the project (UI tables, example rows, markdown docs, or other static content) must be integrated with the i18n system. Preferred approaches:
+
+- React components: use useTranslation() and t("namespace.key") for all visible text. Add new keys to client/locales/{en,fr,de,es}.json and keep structure identical across languages.
+- Plain HTML / CMS content: avoid hard-coded strings in multiple languages. Provide localized markdown files (docs/locales/<lang>/...) or use data-i18n attributes and add keys to locale JSON files.
+
+Follow these quick examples below for both Option A and Option B.
+
 ## Option A — Plain HTML (quick embed)
 
 Use this exact HTML when you need a simple drop-in table (no interactivity required):

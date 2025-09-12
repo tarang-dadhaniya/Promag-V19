@@ -205,3 +205,17 @@ Use this playbook whenever adding or modifying UI or API text.
 - Verify /api endpoints localize per header or ?lng.
 
 For a detailed workflow, see ./docs/i18n-translation-guide.md.
+
+## Markdown files and static documentation
+
+- Any markdown file that contains user-facing static content (guides, example tables, help text) must have localized counterparts. Store localized versions under docs/locales/<lang>/ with the same filename (for example: docs/locales/en/table.md and docs/locales/fr/table.md).
+- When a markdown file is used to render UI or is embedded into the app, prefer moving the visible strings into translation keys and render them via useTranslation() in React. This keeps parity between UI and docs and allows the same translations to be reused.
+- Process for agents adding static markdown content:
+  1. Add the English source file under docs/locales/en/.
+  2. Add matching keys in client/locales/en.json for any strings that must appear in the UI; then duplicate the keys in the other locale files (fr/de/es) with placeholder translations if necessary.
+  3. Create localized markdown files for fr/de/es under docs/locales/<lang>/ and translate the content.
+  4. Update AGENTS.md and the relevant README lines in the PR to list the added files and keys, and confirm locale parity.
+- If the content is small (for example a static table embedded in a page), use translation keys for headers and action labels and keep the row data in per-language JSON or localized markdown files.
+- Agents should always run a quick check after changes: open the page, switch languages using the Header, and confirm the static content updates accordingly.
+
+This policy ensures that static data is multilingual by default and that agents do not need to ask for i18n on every task.

@@ -323,9 +323,17 @@ export function Sidebar({
               key={index}
               onClick={() => {
                 if (index === 0) {
-                  onManagePublicationsClick?.();
+                  if (onManagePublicationsClick) {
+                    onManagePublicationsClick();
+                  } else {
+                    navigate(routes[index]);
+                  }
                 } else if (index === 1) {
-                  onManageCompanyClick?.();
+                  if (onManageCompanyClick) {
+                    onManageCompanyClick();
+                  } else {
+                    navigate(routes[index]);
+                  }
                 } else {
                   navigate(routes[index]);
                 }
